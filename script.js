@@ -51,7 +51,7 @@ function openModal(plan) {
     $('modal-title').textContent = 'Upgrade to Business';
     $('modal-desc').textContent = 'Full team access, custom branding, API & white label — just $15/month.';
     $('modal-cta').textContent = '🛒 Buy Business on Gumroad — $15/month';
-    $('modal-cta').href = 'https://gumroad.com';
+    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/sxjewg';
     $('modal-features').innerHTML = `
       <li>Everything in Pro</li><li>5 team members</li>
       <li>Custom branding & API access</li><li>Bulk export</li>
@@ -60,7 +60,7 @@ function openModal(plan) {
     $('modal-title').textContent = 'Upgrade to Pro';
     $('modal-desc').textContent = 'Unlock AI tools, remove watermarks, export to PDF just $5/month worldwide.';
     $('modal-cta').textContent = '🛒 Buy on Gumroad $5/month';
-    $('modal-cta').href = 'https://gumroad.com';
+    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/uuppvu';
     $('modal-features').innerHTML = `
       <li>AI-powered resume writer</li><li>PDF & PNG export (no watermark)</li>
       <li>Unlimited QR codes & logos</li><li>Premium design templates</li>
