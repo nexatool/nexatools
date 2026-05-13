@@ -455,6 +455,8 @@ function setResumeAccent(color, el) {
 function buildResume() {
   const name  = ($('r-name')?.value  || '').trim();
   const title = ($('r-title')?.value || '').trim();
+   const fontFamily = $('r-font-family')?.value || 'Georgia';
+  const fontStyle  = $('r-font-style')?.value  || 'normal';
   if (!name && !title) { const out=$('resume-out'); if(out) out.innerHTML='<p class="empty-state">Fill the form above — resume will appear here ✨</p>'; return; }
   const email = ($('r-email')?.value || '').trim();
   const phone = ($('r-phone')?.value || '').trim();
@@ -720,6 +722,8 @@ function setInvTemplate(tpl, el) {
   generateInvoice();
 }
 function generateInvoice() {
+     const invFont  = $('inv-font-family')?.value || 'Arial';
+  const invStyle = $('inv-font-style')?.value  || 'normal';
   const from  = $('inv-from')?.value?.trim() || 'Your Company';
   const email = $('inv-email')?.value?.trim() || '';
   const phone = $('inv-phone')?.value?.trim() || '';
