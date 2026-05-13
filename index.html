@@ -146,18 +146,39 @@
           <label class="form-label">Template Style</label>
           <div class="shape-opts">
   <button class="shape-opt active" onclick="setResumeTemplate('classic',this)">📄 Classic</button>
-  <button class="shape-opt" onclick="setResumeTemplate('modern',this)">⚡ Modern 🔒</button>
-  <button class="shape-opt" onclick="setResumeTemplate('minimal',this)">✦ Minimal 🔒</button>
-  <button class="shape-opt" onclick="setResumeTemplate('bold',this)">🔥 Bold 🔒</button>
-  <button class="shape-opt" onclick="setResumeTemplate('executive',this)">👔 Executive 🔒</button>
-  <button class="shape-opt" onclick="setResumeTemplate('creative',this)">🎨 Creative 🔒</button>
-  <button class="shape-opt" onclick="setResumeTemplate('neon',this)">🌟 Neon Dark 🔒</button>
+  <button class="shape-opt" onclick="setResumeTemplate('modern',this)">⚡ Modern </button>
+  <button class="shape-opt" onclick="setResumeTemplate('minimal',this)">✦ Minimal </button>
+  <button class="shape-opt" onclick="setResumeTemplate('bold',this)">🔥 Bold </button>
+  <button class="shape-opt" onclick="setResumeTemplate('executive',this)">👔 Executive </button>
+  <button class="shape-opt" onclick="setResumeTemplate('creative',this)">🎨 Creative </button>
+  <button class="shape-opt" onclick="setResumeTemplate('neon',this)">🌟 Neon Dark </button>
 </div>
         </div>
         <div class="form-group">
           <label class="form-label">Accent Color</label>
           <div class="swatch-row" id="r-accent-row"></div>
         </div>
+        <div class="form-grid-2">
+  <div class="form-group">
+    <label class="form-label">Font Family</label>
+    <select id="r-font-family" onchange="buildResume()">
+      <option value="Georgia">Georgia (Serif)</option>
+      <option value="Arial">Arial (Sans)</option>
+      <option value="Courier New">Courier New (Mono)</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Font Style</label>
+    <select id="r-font-style" onchange="buildResume()">
+      <option value="normal">Regular</option>
+      <option value="bold">Bold</option>
+      <option value="italic">Italic</option>
+      <option value="bold italic">Bold Italic</option>
+    </select>
+  </div>
+</div>
         <div class="form-grid-2">
           <div class="form-group"><label class="form-label">Full Name</label><input id="r-name" placeholder="John Smith" oninput="buildResume()"></div>
           <div class="form-group"><label class="form-label">Job Title</label><input id="r-title" placeholder="Senior Product Designer" oninput="buildResume()"></div>
@@ -204,10 +225,32 @@
   <label class="form-label">Billing Template</label>
   <div class="shape-opts">
     <button class="shape-opt active" onclick="setInvTemplate('basic',this)">📄 Basic</button>
-    <button class="shape-opt" onclick="setInvTemplate('corporate',this)">🌑 Corporate Dark 🔒</button>
-    <button class="shape-opt" onclick="setInvTemplate('gradient',this)">🎨 Gradient 🔒</button>
-    <button class="shape-opt" onclick="setInvTemplate('luxury',this)">💎 Luxury 🔒</button>
+    <button class="shape-opt" onclick="setInvTemplate('corporate',this)">🌑 Corporate Dark</button>
+    <button class="shape-opt" onclick="setInvTemplate('gradient',this)">🎨 Gradient </button>
+    <button class="shape-opt" onclick="setInvTemplate('luxury',this)">💎 Luxury </button>
   </div>
+
+      <div class="form-grid-2">
+  <div class="form-group">
+    <label class="form-label">Font Family</label>
+    <select id="r-font-family" onchange="buildResume()">
+      <option value="Georgia">Georgia (Serif)</option>
+      <option value="Arial">Arial (Sans)</option>
+      <option value="Courier New">Courier New (Mono)</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Font Style</label>
+    <select id="r-font-style" onchange="buildResume()">
+      <option value="normal">Regular</option>
+      <option value="bold">Bold</option>
+      <option value="italic">Italic</option>
+      <option value="bold italic">Bold Italic</option>
+    </select>
+  </div>
+</div>
 </div>
         <div class="items-section"><label class="form-label">Items / Services</label><div id="items-wrap"></div><button class="btn btn-ghost add-item-btn" onclick="addItem()">+ Add Item</button></div>
         <div class="output-wrap"><div class="output-label">Billing Preview</div><div id="invoice-out"><p class="empty-state">Fill details and click Generate ✨</p></div></div>
@@ -257,10 +300,10 @@
   <label class="form-label">Logo Style</label>
   <div class="shape-opts">
     <button class="shape-opt active" onclick="setLogoStyle('basic',this)">✦ Basic</button>
-    <button class="shape-opt" onclick="setLogoStyle('gradient',this)">🌈 Gradient 🔒</button>
-    <button class="shape-opt" onclick="setLogoStyle('shadow',this)">🌑 3D Shadow 🔒</button>
-    <button class="shape-opt" onclick="setLogoStyle('neon',this)">⚡ Neon Glow 🔒</button>
-    <button class="shape-opt" onclick="setLogoStyle('monogram',this)">💎 Monogram 🔒</button>
+    <button class="shape-opt" onclick="setLogoStyle('gradient',this)">🌈 Gradient </button>
+    <button class="shape-opt" onclick="setLogoStyle('shadow',this)">🌑 3D Shadow </button>
+    <button class="shape-opt" onclick="setLogoStyle('neon',this)">⚡ Neon Glow </button>
+    <button class="shape-opt" onclick="setLogoStyle('monogram',this)">💎 Monogram </button>
   </div>
 </div>
             <div class="form-group"><label class="form-label">Shape</label>
@@ -335,9 +378,9 @@
               <label class="form-label">Pro Styles</label>
               <div class="shape-opts">
                 <button class="shape-opt active" id="qr-style-basic" onclick="setQRStyle('basic',this)">⬛ Basic</button>
-                <button class="shape-opt" onclick="setQRStyle('rounded',this)">🔵 Rounded 🔒</button>
-                <button class="shape-opt" onclick="setQRStyle('gradient',this)">🌈 Gradient 🔒</button>
-                <button class="shape-opt" onclick="setQRStyle('logo',this)">🖼️ Logo Center 🔒</button>
+                <button class="shape-opt" onclick="setQRStyle('rounded',this)">🔵 Rounded </button>
+                <button class="shape-opt" onclick="setQRStyle('gradient',this)">🌈 Gradient </button>
+                <button class="shape-opt" onclick="setQRStyle('logo',this)">🖼️ Logo Center </button>
               </div>
             </div>
           </div>
@@ -383,11 +426,11 @@
               <div class="shape-opts">
                 <button class="shape-opt active" onclick="setBCTheme('dark',this)">🌑 Dark</button>
                 <button class="shape-opt" onclick="setBCTheme('light',this)">☀️ Light</button>
-                <button class="shape-opt" onclick="setBCTheme('cyan',this)">🔵 Cyan 🔒</button>
-                <button class="shape-opt" onclick="setBCTheme('purple',this)">🟣 Purple 🔒</button>
-                <button class="shape-opt" onclick="setBCTheme('gold',this)">✨ Gold Luxury 🔒</button>
-                <button class="shape-opt" onclick="setBCTheme('neon',this)">⚡ Neon Glow 🔒</button>
-                <button class="shape-opt" onclick="setBCTheme('glass',this)">🪟 Glass Morphism 🔒</button>
+                <button class="shape-opt" onclick="setBCTheme('cyan',this)">🔵 Cyan </button>
+                <button class="shape-opt" onclick="setBCTheme('purple',this)">🟣 Purple </button>
+                <button class="shape-opt" onclick="setBCTheme('gold',this)">✨ Gold Luxury </button>
+                <button class="shape-opt" onclick="setBCTheme('neon',this)">⚡ Neon Glow </button>
+                <button class="shape-opt" onclick="setBCTheme('glass',this)">🪟 Glass Morphism </button>
               </div>
             </div>
           </div>
