@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<meta name="author" content="NexaTools.io">
+<title>Contact Us — NexaTools.io | Get in Touch</title>
+<meta name="description" content="Contact NexaTools.io for support, feedback, bug reports, or Pro plan queries. We respond within 24-48 hours. Email: pro@nexatools.io">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nexatools.io/contact.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<!-- Open Graph -->
+<meta property="og:title" content="Contact NexaTools.io">
+<meta property="og:description" content="Get in touch with NexaTools.io — support, feedback, or Pro plan queries.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexatools.io/contact.html">
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact NexaTools.io",
+  "url": "https://nexatools.io/contact.html",
+  "description": "Contact page for NexaTools.io",
+  "publisher": {
+    "@type": "Organization",
+    "name": "NexaTools.io",
+    "url": "https://nexatools.io",
+    "email": "pro@nexatools.io",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "pro@nexatools.io",
+      "contactType": "customer support",
+      "availableLanguage": ["English", "Urdu"]
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero {
+    position: relative;
+    z-index: 1;
+    padding: calc(var(--nav-h) + 60px) 32px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .page-hero p {
+    color: var(--text2);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .contact-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  /* Contact Info Cards */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-card {
+    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: var(--transition);
+    text-decoration: none;
+    display: block;
+  }
+  .contact-card:hover {
+    border-color: var(--border3);
+    transform: translateX(6px);
+    box-shadow: 0 8px 30px rgba(0,229,255,0.08);
+  }
+  .contact-card .cc-icon {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .contact-card .cc-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    margin-bottom: 6px;
+  }
+  .contact-card .cc-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cyan);
+  }
+  .contact-card .cc-desc {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .response-card {
+    background: rgba(0,229,255,0.05);
+    border: 1px solid var(--border3);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .response-card .rc-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .response-card .rc-text {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .response-card .rc-text strong {
+    color: var(--cyan);
+    display: block;
+    margin-bottom: 4px;
+  }
+  /* Contact Form */
+  .contact-form-wrap {
+    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+  }
+  .contact-form-wrap h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text), var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .form-group-cf {
+    margin-bottom: 20px;
+  }
+  .form-label-cf {
+    font-size: 0.7rem;
+    color: var(--muted2);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .form-input-cf {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    outline: none;
+    transition: var(--transition);
+    width: 100%;
+  }
+  .form-input-cf:focus {
+    border-color: var(--cyan);
+    background: rgba(0,229,255,0.05);
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.1);
+  }
+  textarea.form-input-cf {
+    resize: vertical;
+    min-height: 120px;
+  }
+  select.form-input-cf option {
+    background: #0a0c1a;
+  }
+  .submit-btn {
+    width: 100%;
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    padding: 14px 24px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .submit-btn:hover {
+    box-shadow: 0 8px 28px var(--cyan-glow);
+    transform: translateY(-2px);
+  }
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .success-msg {
+    display: none;
+    background: rgba(48,209,88,0.1);
+    border: 1px solid rgba(48,209,88,0.3);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    color: var(--green);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 16px;
+  }
+  /* FAQ Quick -->
+  .faq-box {
+    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    margin-bottom: 32px;
+  }
+  .faq-box h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text), var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .faq-item-cf {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .faq-item-cf:last-child { border-bottom: none; }
+  .faq-q-cf {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .faq-q-cf::before {
+    content: 'Q';
+    background: var(--cyan-dim);
+    border: 1px solid var(--border3);
+    color: var(--cyan);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .faq-a-cf {
+    color: var(--text2);
+    font-size: 0.86rem;
+    line-height: 1.7;
+    padding-left: 32px;
+  }
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-content { padding: 0 20px 60px; }
+    .page-hero { padding: calc(var(--nav-h) + 40px) 20px 40px; }
+    .contact-form-wrap { padding: 24px; }
+    .faq-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-orb orb-3"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html">Tools</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html" style="color:var(--cyan);">Contact</a>
+      <a class="nav-link" href="privacy-policy.html">Privacy</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="about.html">About Us</a>
+      <a class="btn-nav-pro" href="index.html"><span class="btn-glow"></span>⚡ Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html">Tools</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="index.html" class="btn-nav-pro">⚡ Try Free Tools</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge" style="margin-bottom:24px;display:inline-flex;"><span class="badge-dot"></span>We'd Love to Hear From You</div>
+  <h1>Get in <span class="title-gradient">Touch With Us</span></h1>
+  <p>Have a question, found a bug, or want to share feedback? We're here to help. Usually respond within 24–48 hours.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="contact-content">
+
+  <div class="contact-grid">
+
+    <!-- Left: Contact Info -->
+    <div class="contact-info">
+
+      <a href="mailto:pro@nexatools.io" class="contact-card">
+        <span class="cc-icon">✉️</span>
+        <div class="cc-label">General & Pro Support</div>
+        <div class="cc-value">pro@nexatools.io</div>
+        <div class="cc-desc">For Pro plan queries, feature requests, and general support.</div>
+      </a>
+
+      <a href="mailto:bugs@nexatools.io" class="contact-card">
+        <span class="cc-icon">🐛</span>
+        <div class="cc-label">Bug Reports</div>
+        <div class="cc-value">bugs@nexatools.io</div>
+        <div class="cc-desc">Found something broken? Let us know and we'll fix it fast.</div>
+      </a>
+
+      <a href="mailto:business@nexatools.io" class="contact-card">
+        <span class="cc-icon">🤝</span>
+        <div class="cc-label">Business & Partnerships</div>
+        <div class="cc-value">business@nexatools.io</div>
+        <div class="cc-desc">Collaboration, sponsorships, and business inquiries.</div>
+      </a>
+
+      <div class="response-card">
+        <span class="rc-icon">⏱️</span>
+        <div class="rc-text">
+          <strong>Response Time</strong>
+          We typically respond within 24–48 hours on business days. Pro subscribers receive priority responses within 12 hours.
+        </div>
+      </div>
+
+      <div style="background:rgba(191,90,242,0.06);border:1px solid rgba(191,90,242,0.2);border-radius:var(--radius);padding:20px 24px;">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--purple);font-weight:600;margin-bottom:8px;">⚡ Pro Subscribers</div>
+        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">Pro users get priority support and dedicated help activating features. Email your Gumroad receipt to <strong style="color:var(--cyan);">pro@nexatools.io</strong> to get started.</p>
+      </div>
+
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-form-wrap">
+      <h2>📬 Send Us a Message</h2>
+
+      <div class="form-group-cf">
+        <label class="form-label-cf">Your Name</label>
+        <input id="cf-name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name">
+      </div>
+
+      <div class="form-group-cf">
+        <label class="form-label-cf">Email Address</label>
+        <input id="cf-email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email">
+      </div>
+
+      <div class="form-group-cf">
+        <label class="form-label-cf">Subject</label>
+        <select id="cf-subject" class="form-input-cf">
+          <option value="">Select a topic...</option>
+          <option value="general">General Question</option>
+          <option value="bug">Bug Report</option>
+          <option value="feature">Feature Request</option>
+          <option value="pro">Pro Plan Support</option>
+          <option value="business">Business / Partnership</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group-cf">
+        <label class="form-label-cf">Message</label>
+        <textarea id="cf-message" class="form-input-cf" placeholder="Tell us how we can help you..."></textarea>
+      </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+        <span id="btn-text">📨 Send Message</span>
+      </button>
+
+      <div class="success-msg" id="success-msg">
+        ✅ Message received! We'll get back to you within 24–48 hours. Thank you!
+      </div>
+
+      <p style="color:var(--text3);font-size:0.75rem;margin-top:16px;text-align:center;line-height:1.6;">
+        By submitting this form, you agree to our <a href="privacy-policy.html" style="color:var(--cyan);">Privacy Policy</a>. We never share your information.
+      </p>
+    </div>
+  </div>
+
+  <!-- Quick FAQ -->
+  <div class="faq-box">
+    <h2>❓ Frequently Asked Questions</h2>
+
+    <div class="faq-item-cf">
+      <div class="faq-q-cf">Is NexaTools.io really 100% free?</div>
+      <div class="faq-a-cf">Yes! All 7 tools are completely free to use — no credit card, no signup, no hidden charges. The optional Pro plan ($5/month) unlocks AI writing, premium templates, and removes watermarks.</div>
+    </div>
+
+    <div class="faq-item-cf">
+      <div class="faq-q-cf">How do I activate my Pro plan after purchasing?</div>
+      <div class="faq-a-cf">After purchasing on Gumroad, forward your receipt to <a href="mailto:pro@nexatools.io" style="color:var(--cyan);">pro@nexatools.io</a>. We'll activate your Pro features within 24 hours.</div>
+    </div>
+
+    <div class="faq-item-cf">
+      <div class="faq-q-cf">Is my data safe? Do you store my information?</div>
+      <div class="faq-a-cf">Absolutely. All tools run entirely in your browser. We never collect, store, or transmit any of your personal data or documents to our servers.</div>
+    </div>
+
+    <div class="faq-item-cf">
+      <div class="faq-q-cf">Can I use the tools for commercial purposes?</div>
+      <div class="faq-a-cf">Yes! Resumes, invoices, logos, QR codes and business cards created with NexaTools can all be used for personal and commercial purposes freely.</div>
+    </div>
+
+    <div class="faq-item-cf">
+      <div class="faq-q-cf">How do I report a bug or request a feature?</div>
+      <div class="faq-a-cf">Email us at <a href="mailto:bugs@nexatools.io" style="color:var(--cyan);">bugs@nexatools.io</a> for bugs, or use the contact form above for feature requests. We read every message.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;">
+    <div style="font-size:2rem;margin-bottom:12px;">🚀</div>
+    <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:12px;">Start Using NexaTools Free</h2>
+    <p style="color:var(--text2);font-size:0.95rem;margin-bottom:24px;">No account needed. Just open and start building.</p>
+    <a href="index.html" class="btn-primary" style="text-decoration:none;display:inline-flex;"><span>⚡ Go to Tools</span></a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io — Worldwide 🌍</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+function submitForm() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value;
+  const message = document.getElementById('cf-message').value.trim();
+  const btn     = document.getElementById('submit-btn');
+  const success = document.getElementById('success-msg');
+
+  if (!name)    { alert('Please enter your name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if (!subject) { alert('Please select a subject.'); return; }
+  if (!message || message.length < 10) { alert('Please write a message (at least 10 characters).'); return; }
+
+  btn.disabled = true;
+  document.getElementById('btn-text').textContent = '⏳ Sending...';
+
+  // Construct mailto link as fallback
+  const mailtoLink = `mailto:pro@nexatools.io?subject=${encodeURIComponent('[NexaTools] ' + subject + ' - ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nSubject: ' + subject + '\n\nMessage:\n' + message)}`;
+
+  setTimeout(() => {
+    window.location.href = mailtoLink;
+    success.style.display = 'block';
+    btn.disabled = false;
+    document.getElementById('btn-text').textContent = '📨 Send Message';
+    document.getElementById('cf-name').value = '';
+    document.getElementById('cf-email').value = '';
+    document.getElementById('cf-subject').value = '';
+    document.getElementById('cf-message').value = '';
+  }, 800);
+}
+</script>
+</body>
+</html>
