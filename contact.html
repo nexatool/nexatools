@@ -13,12 +13,10 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<!-- Open Graph -->
 <meta property="og:title" content="Contact NexaTools.io">
 <meta property="og:description" content="Get in touch with NexaTools.io — support, feedback, or Pro plan queries.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexatools.io/contact.html">
-<!-- Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,7 +78,6 @@
     gap: 32px;
     margin-bottom: 48px;
   }
-  /* Contact Info Cards */
   .contact-info {
     display: flex;
     flex-direction: column;
@@ -146,7 +143,6 @@
     display: block;
     margin-bottom: 4px;
   }
-  /* Contact Form */
   .contact-form-wrap {
     background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
     border: 1px solid var(--border);
@@ -163,9 +159,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .form-group-cf {
-    margin-bottom: 20px;
-  }
+  .form-group-cf { margin-bottom: 20px; }
   .form-label-cf {
     font-size: 0.7rem;
     color: var(--muted2);
@@ -196,9 +190,7 @@
     resize: vertical;
     min-height: 120px;
   }
-  select.form-input-cf option {
-    background: #0a0c1a;
-  }
+  select.form-input-cf option { background: #0a0c1a; }
   .submit-btn {
     width: 100%;
     background: var(--cyan);
@@ -236,7 +228,7 @@
     text-align: center;
     margin-top: 16px;
   }
-  /* FAQ Quick -->
+  /* FAQ */
   .faq-box {
     background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
     border: 1px solid var(--border);
@@ -301,7 +293,6 @@
 <div class="bg-orb orb-2"></div>
 <div class="bg-orb orb-3"></div>
 
-<!-- NAVIGATION -->
 <nav id="navbar">
   <div class="nav-inner">
     <div class="nav-logo" onclick="window.location.href='index.html'">
@@ -336,42 +327,35 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="page-hero">
   <div class="hero-badge" style="margin-bottom:24px;display:inline-flex;"><span class="badge-dot"></span>We'd Love to Hear From You</div>
   <h1>Get in <span class="title-gradient">Touch With Us</span></h1>
   <p>Have a question, found a bug, or want to share feedback? We're here to help. Usually respond within 24–48 hours.</p>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="contact-content">
 
   <div class="contact-grid">
 
-    <!-- Left: Contact Info -->
     <div class="contact-info">
-
       <a href="mailto:pro@nexatools.io" class="contact-card">
         <span class="cc-icon">✉️</span>
         <div class="cc-label">General & Pro Support</div>
         <div class="cc-value">pro@nexatools.io</div>
         <div class="cc-desc">For Pro plan queries, feature requests, and general support.</div>
       </a>
-
       <a href="mailto:bugs@nexatools.io" class="contact-card">
         <span class="cc-icon">🐛</span>
         <div class="cc-label">Bug Reports</div>
         <div class="cc-value">bugs@nexatools.io</div>
         <div class="cc-desc">Found something broken? Let us know and we'll fix it fast.</div>
       </a>
-
       <a href="mailto:business@nexatools.io" class="contact-card">
         <span class="cc-icon">🤝</span>
         <div class="cc-label">Business & Partnerships</div>
         <div class="cc-value">business@nexatools.io</div>
         <div class="cc-desc">Collaboration, sponsorships, and business inquiries.</div>
       </a>
-
       <div class="response-card">
         <span class="rc-icon">⏱️</span>
         <div class="rc-text">
@@ -379,28 +363,22 @@
           We typically respond within 24–48 hours on business days. Pro subscribers receive priority responses within 12 hours.
         </div>
       </div>
-
       <div style="background:rgba(191,90,242,0.06);border:1px solid rgba(191,90,242,0.2);border-radius:var(--radius);padding:20px 24px;">
         <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--purple);font-weight:600;margin-bottom:8px;">⚡ Pro Subscribers</div>
         <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">Pro users get priority support and dedicated help activating features. Email your Gumroad receipt to <strong style="color:var(--cyan);">pro@nexatools.io</strong> to get started.</p>
       </div>
-
     </div>
 
-    <!-- Right: Contact Form -->
     <div class="contact-form-wrap">
       <h2>📬 Send Us a Message</h2>
-
       <div class="form-group-cf">
         <label class="form-label-cf">Your Name</label>
         <input id="cf-name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name">
       </div>
-
       <div class="form-group-cf">
         <label class="form-label-cf">Email Address</label>
         <input id="cf-email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email">
       </div>
-
       <div class="form-group-cf">
         <label class="form-label-cf">Subject</label>
         <select id="cf-subject" class="form-input-cf">
@@ -413,57 +391,46 @@
           <option value="other">Other</option>
         </select>
       </div>
-
       <div class="form-group-cf">
         <label class="form-label-cf">Message</label>
         <textarea id="cf-message" class="form-input-cf" placeholder="Tell us how we can help you..."></textarea>
       </div>
-
       <button class="submit-btn" id="submit-btn" onclick="submitForm()">
         <span id="btn-text">📨 Send Message</span>
       </button>
-
       <div class="success-msg" id="success-msg">
         ✅ Message received! We'll get back to you within 24–48 hours. Thank you!
       </div>
-
       <p style="color:var(--text3);font-size:0.75rem;margin-top:16px;text-align:center;line-height:1.6;">
         By submitting this form, you agree to our <a href="privacy-policy.html" style="color:var(--cyan);">Privacy Policy</a>. We never share your information.
       </p>
     </div>
   </div>
 
-  <!-- Quick FAQ -->
   <div class="faq-box">
     <h2>❓ Frequently Asked Questions</h2>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">Is NexaTools.io really 100% free?</div>
       <div class="faq-a-cf">Yes! All 7 tools are completely free to use — no credit card, no signup, no hidden charges. The optional Pro plan ($5/month) unlocks AI writing, premium templates, and removes watermarks.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">How do I activate my Pro plan after purchasing?</div>
       <div class="faq-a-cf">After purchasing on Gumroad, forward your receipt to <a href="mailto:pro@nexatools.io" style="color:var(--cyan);">pro@nexatools.io</a>. We'll activate your Pro features within 24 hours.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">Is my data safe? Do you store my information?</div>
       <div class="faq-a-cf">Absolutely. All tools run entirely in your browser. We never collect, store, or transmit any of your personal data or documents to our servers.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">Can I use the tools for commercial purposes?</div>
       <div class="faq-a-cf">Yes! Resumes, invoices, logos, QR codes and business cards created with NexaTools can all be used for personal and commercial purposes freely.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">How do I report a bug or request a feature?</div>
       <div class="faq-a-cf">Email us at <a href="mailto:bugs@nexatools.io" style="color:var(--cyan);">bugs@nexatools.io</a> for bugs, or use the contact form above for feature requests. We read every message.</div>
     </div>
   </div>
 
-  <!-- CTA -->
   <div style="background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;">
     <div style="font-size:2rem;margin-bottom:12px;">🚀</div>
     <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:12px;">Start Using NexaTools Free</h2>
@@ -473,7 +440,6 @@
 
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <div class="logo-icon">
@@ -516,7 +482,6 @@ function submitForm() {
   btn.disabled = true;
   document.getElementById('btn-text').textContent = '⏳ Sending...';
 
-  // Construct mailto link as fallback
   const mailtoLink = `mailto:pro@nexatools.io?subject=${encodeURIComponent('[NexaTools] ' + subject + ' - ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nSubject: ' + subject + '\n\nMessage:\n' + message)}`;
 
   setTimeout(() => {
