@@ -437,7 +437,7 @@ function initResume() {
 }
 
 function setResumeTemplate(tpl, el) {
-  const proTemplates = ['modern', 'minimal', 'bold', 'executive', 'creative', 'neon'];
+  const proTemplates = ['bold', 'executive', 'creative', 'neon'];
   if (proTemplates.includes(tpl) && !requirePro('Premium Templates')) return;
   currentResumeTemplate = tpl;
   document.querySelectorAll('#panel-resume .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
@@ -708,7 +708,7 @@ function removeItem(i) {
   generateInvoice();
 }
 function setInvTemplate(tpl, el) {
-  const proTemplates = ['corporate', 'gradient', 'luxury'];
+  const proTemplates = ['gradient', 'luxury'];
   if (proTemplates.includes(tpl) && !requirePro('Premium Invoice Templates')) return;
   const inp = document.createElement('input');
   inp.id = 'inv-template';
@@ -1040,7 +1040,7 @@ function setLS(shape,el){ logoShape=shape; document.querySelectorAll('#panel-log
 function setLogoIcon(ic,el){ logoIcon=ic; document.querySelectorAll('#l-icons .icon-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoFontStyle(style,el){ logoFontStyle=style; drawLogo(); }
 function setLogoStyle(style, el) {
-  const proStyles = ['gradient', 'shadow', 'neon', 'monogram'];
+  const proStyles = ['shadow', 'neon', 'monogram'];
   if (proStyles.includes(style) && !requirePro('Premium Logo Styles')) return;
   const inp = $('logo-style') || document.createElement('input');
   inp.id = 'logo-style';
@@ -1478,7 +1478,7 @@ function genQR() {
   }, 100);
 }
 function setQRStyle(style, el) {
-  if (style !== 'basic' && !requirePro('Pro QR Styles')) return;
+  if (style !== 'basic' && style !== 'rounded' && !requirePro('Pro QR Styles')) return;
   qrStyle = style;
   document.querySelectorAll('#panel-qr .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
@@ -1667,7 +1667,7 @@ function drawBCard() {
 }
 
 function setBCTheme(theme, el) {
-  const proThemes = ['cyan', 'purple', 'gold', 'neon', 'glass'];
+  const proThemes = ['purple', 'gold', 'neon', 'glass'];
   if (proThemes.includes(theme) && !requirePro('Premium Business Card Themes')) return;
   bcTheme = theme;
   document.querySelectorAll('#panel-bcard .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
