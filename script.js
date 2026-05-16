@@ -657,7 +657,7 @@ function printResume() {
     return; 
   }
   const isPro = currentPlan === 'pro' || currentPlan === 'business';
-  const watermark = isPro ? '' : `
+ const watermark = '';
     <div style="position:fixed;bottom:20px;right:20px;
     background:rgba(0,0,0,0.08);padding:8px 16px;
     border-radius:8px;font-size:11px;color:#999;
@@ -770,7 +770,7 @@ function generateInvoice() {
       </table>
       <div style="text-align:right;font-size:1.4rem;font-weight:800;color:#6a0dad;">Total: $${subtotal.toFixed(2)}</div>
       <div style="margin-top:24px;font-size:0.78rem;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:12px;">
-        Thank you for your business! • ${isPro ? '' : 'Created with NexaTools.io'}
+        Thank you for your business!
       </div>
     </div>`;
 
@@ -917,7 +917,7 @@ function triggerGenerateInvoice() {
 }
 function printInvoice() {
   const isPro = currentPlan === 'pro' || currentPlan === 'business';
-  const watermark = isPro ? '' : `
+  ]const watermark = '';
     <div style="position:fixed;bottom:20px;right:20px;
     background:rgba(0,0,0,0.08);padding:8px 16px;
     border-radius:8px;font-size:11px;color:#999;
@@ -1500,8 +1500,8 @@ function drawBCard() {
   const canvas = $('bcard-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const w = isPro ? 700 : 600;
-  const h = isPro ? 400 : 340;
+ const w = 700;
+const h = 400;
   canvas.width = w;
   canvas.height = h;
 
