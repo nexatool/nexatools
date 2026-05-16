@@ -1938,3 +1938,166 @@ footer {
   .glass-card { padding: 16px 12px; }
   .plan-price { font-size: 1.8rem; }
 }
+/* ============================================
+   BLOG MODAL — Enhanced Styling Fixes
+   style.css ke bilkul END mein paste karo
+   ============================================ */
+
+/* Blog Modal Overlay */
+#blog-modal {
+  padding: 16px;
+}
+
+#blog-modal .modal {
+  max-width: 640px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  background: linear-gradient(145deg, #0c0e1a, #080a16);
+}
+
+/* Sticky Close Button */
+#blog-modal .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#blog-modal .modal-close:hover {
+  background: rgba(255,80,80,0.15);
+  border-color: rgba(255,80,80,0.3);
+  color: #ff5050;
+}
+
+/* Scrollable Content Area */
+#blog-modal-content {
+  overflow-y: auto;
+  padding: 32px 28px 28px;
+  max-height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) transparent;
+}
+
+#blog-modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+#blog-modal-content::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 4px;
+}
+
+/* Blog Post Title */
+#blog-modal-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px !important;
+  line-height: 1.3;
+  padding-right: 40px; /* space for close btn */
+}
+
+/* Blog Post Meta (date/time) */
+#blog-modal-content > p:first-of-type,
+#blog-modal-content p[style*="0.78rem"] {
+  color: var(--text3) !important;
+  font-size: 0.78rem !important;
+  margin-bottom: 20px !important;
+}
+
+/* Tool Cards inside blog modal */
+#blog-modal-content [style*="background:var(--surface2)"],
+#blog-modal-content [style*="background: var(--surface2)"] {
+  background: rgba(16, 20, 38, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 12px !important;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+#blog-modal-content [style*="background:var(--surface2)"]:hover,
+#blog-modal-content [style*="background: var(--surface2)"]:hover {
+  border-color: rgba(0, 229, 255, 0.2) !important;
+  transform: translateX(4px);
+}
+
+/* Tool name / bold title inside cards */
+#blog-modal-content [style*="font-weight:700"],
+#blog-modal-content [style*="font-weight: 700"] {
+  color: var(--text) !important;
+  font-size: 0.92rem !important;
+}
+
+/* Description text inside cards */
+#blog-modal-content [style*="font-size:0.85rem"],
+#blog-modal-content [style*="font-size: 0.85rem"] {
+  color: var(--text2) !important;
+  line-height: 1.65 !important;
+}
+
+/* Numbered badges (invoice guide cyan circles) */
+#blog-modal-content [style*="border-radius:50%"] {
+  flex-shrink: 0 !important;
+}
+
+/* CTA Button row at bottom */
+#blog-modal-content [style*="margin-top:20px"] {
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+#blog-modal-content .btn-cyan {
+  padding: 12px 28px !important;
+  font-size: 0.88rem !important;
+  border-radius: 12px !important;
+}
+
+/* QR guide — type/use row */
+#blog-modal-content [style*="justify-content:space-between"] {
+  gap: 12px;
+}
+
+/* Intro paragraph */
+#blog-modal-content p {
+  color: var(--text2);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* Mobile fixes */
+@media (max-width: 640px) {
+  #blog-modal .modal {
+    max-height: 92vh;
+    border-radius: 20px;
+  }
+
+  #blog-modal-content {
+    padding: 24px 18px 20px;
+  }
+
+  #blog-modal-content h2 {
+    font-size: 1.15rem;
+  }
+}
