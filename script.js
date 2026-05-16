@@ -42,9 +42,32 @@ function scrollToSection(selector) {
 }
 
 // ---------- Pro Modal ----------
-function openModal(plan) {
-  // All features are free — no pro modal needed
-  return;
+function openModal(plan) { return; // ALL FREE - disabled
+  const modal = $('pro-modal');
+  if (!modal) return;
+
+  if (plan === 'business') {
+    $('modal-title').textContent = 'Upgrade to Business';
+    $('modal-desc').textContent = 'Full team access, custom branding, API & white label — just $15/month.';
+    $('modal-cta').textContent = '🛒 Buy Business on Gumroad — $15/month';
+    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/sxjewg';
+    $('modal-features').innerHTML = `
+      <li>Everything in Pro</li><li>5 team members</li>
+      <li>Custom branding & API access</li><li>Bulk export</li>
+      <li>White label option</li><li>Priority support</li>`;
+  } else {
+    $('modal-title').textContent = 'Upgrade to Pro';
+    $('modal-desc').textContent = 'Unlock AI tools, remove watermarks, export to PDF just $5/month worldwide.';
+    $('modal-cta').textContent = '🛒 Buy on Gumroad $5/month';
+    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/uuppvu';
+    $('modal-features').innerHTML = `
+      <li>AI-powered resume writer</li><li>PDF & PNG export (no watermark)</li>
+      <li>Unlimited QR codes & logos</li><li>Premium design templates</li>
+      <li>Priority email support</li>`;
+  }
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
@@ -154,10 +177,10 @@ const staticPages = {
       <h2 style="font-family:var(--font-display);margin-bottom:8px;">👤 Sign In</h2>
       <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:24px;">NexaTools currently does not require an account. All tools are free with no login needed.</p>
       <div style="background:var(--cyan-dim);border:1px solid var(--border3);border-radius:12px;padding:20px;margin-bottom:20px;">
-        <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">✅ All Features Free</div>
-        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">Sab tools bilkul free hain — koi login, koi payment nahin chahiye.</p>
+        <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">⚡ Pro Users</div>
+        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">After purchasing Pro on Gumroad, email your receipt to <a href="mailto:pro@nexatools.io" style="color:var(--cyan);">pro@nexatools.io</a> and we'll activate your features within 24 hours.</p>
       </div>
-      <button class="btn btn-cyan" style="width:100%;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Start Using Free Tools</button>
+      <button class="btn btn-cyan" style="width:100%;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Use Free Tools</button>
     `
   },
 
@@ -346,9 +369,9 @@ const staticPages = {
           <p style="color:var(--text2);font-size:0.88rem;margin:0;">Usually within 24–48 hours on business days.</p>
         </div>
         <div style="background:var(--cyan-dim);border:1px solid var(--border3);border-radius:12px;padding:16px 20px;text-align:center;">
-          <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">✅ All Tools Free</div>
-          <p style="color:var(--text2);font-size:0.82rem;margin-bottom:12px;">Sab features bilkul free hain — koi subscription nahin.</p>
-          <button class="btn btn-cyan" style="padding:8px 24px;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Start Building Free</button>
+          <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">⚡ Need Pro Support?</div>
+          <p style="color:var(--text2);font-size:0.82rem;margin-bottom:12px;">Pro subscribers get priority responses within 12 hours.</p>
+          <button class="btn btn-cyan" style="padding:8px 24px;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Free Tools</button>
         </div>
       </div>
     `
@@ -1454,6 +1477,7 @@ function genQR() {
   }, 100);
 }
 function setQRStyle(style, el) {
+  
   qrStyle = style;
   document.querySelectorAll('#panel-qr .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
