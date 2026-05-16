@@ -3,7 +3,7 @@
    All tools functional, IDs aligned to HTML
    ============================================ */
 function requirePro(feature) {
-  return true;
+  return true; // All features free
 }
 // ---------- Global State ----------
 let invoiceItems = [{ desc: 'Web Development', qty: 1, rate: 150 }];
@@ -20,7 +20,7 @@ let qrColor = '#00e5ff';
 let qrType = 'url';
 let qrStyle = 'basic';
 let bcTheme = 'dark';
-let currentPlan = 'pro';
+let currentPlan = 'pro'; // All features unlocked
 
 // ---------- Helper ----------
 function $(id) { return document.getElementById(id); }
@@ -177,10 +177,10 @@ const staticPages = {
       <h2 style="font-family:var(--font-display);margin-bottom:8px;">👤 Sign In</h2>
       <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:24px;">NexaTools currently does not require an account. All tools are free with no login needed.</p>
       <div style="background:var(--cyan-dim);border:1px solid var(--border3);border-radius:12px;padding:20px;margin-bottom:20px;">
-        <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">⚡ Pro Users</div>
-        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">After purchasing Pro on Gumroad, email your receipt to <a href="mailto:pro@nexatools.io" style="color:var(--cyan);">pro@nexatools.io</a> and we'll activate your features within 24 hours.</p>
+        <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">✅ All Features Free</div>
+        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">NexaTools.io ke sab tools bilkul free hain — koi login, koi payment nahin.</p>
       </div>
-      <button class="btn btn-cyan" style="width:100%;" onclick="closeStaticModal();openModal();">⚡ Get Pro — $5/month</button>
+      <button class="btn btn-cyan" style="width:100%;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Start Using Free Tools</button>
     `
   },
 
@@ -369,9 +369,9 @@ const staticPages = {
           <p style="color:var(--text2);font-size:0.88rem;margin:0;">Usually within 24–48 hours on business days.</p>
         </div>
         <div style="background:var(--cyan-dim);border:1px solid var(--border3);border-radius:12px;padding:16px 20px;text-align:center;">
-          <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">⚡ Need Pro Support?</div>
-          <p style="color:var(--text2);font-size:0.82rem;margin-bottom:12px;">Pro subscribers get priority responses within 12 hours.</p>
-          <button class="btn btn-cyan" style="padding:8px 24px;" onclick="closeStaticModal();openModal();">Get Pro — $5/month</button>
+          <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">✅ All Tools Free</div>
+          <p style="color:var(--text2);font-size:0.82rem;margin-bottom:12px;">Sab features bilkul free hain — koi subscription nahin.</p>
+          <button class="btn btn-cyan" style="padding:8px 24px;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Start Building Free</button>
         </div>
       </div>
     `
@@ -1656,12 +1656,6 @@ function drawBCard() {
     ctx.fillText(web, x + 24, y);
   }
 
-  // Branding watermark
-  ctx.fillStyle = th.sub;
-  ctx.font = '10px Arial';
-  ctx.textAlign = 'right';
-  ctx.globalAlpha = isPro ? 0.2 : 0.4;
-  ctx.fillText(isPro ? 'NexaTools.io Pro' : 'Made with NexaTools.io', w - 20, h - (isPro ? 22 : 16));
   ctx.globalAlpha = 1;
 }
 
