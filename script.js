@@ -1780,95 +1780,148 @@ function toggleFaq(btn) {
   }
 }
 // ---------- BLOG ----------
+// Yeh pura section script.js mein line 1782 ke baad wala
+// const blogPosts = { ... } replace karo is se
+
 const blogPosts = {
   'resume-tips': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">📄 Top 10 Resume Tips for Students</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 5 min read</p>
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      ${['Keep it to 1 page — recruiters spend only 6 seconds on a resume.','Use action words: Managed, Created, Improved, Developed.','Add your LinkedIn and GitHub links.','Tailor your resume for every job — no generic resumes.','Put your most impressive achievement at the top.','Use a clean readable font — Arial or Georgia.','Quantify results: "Increased sales by 30%" not just "Increased sales".','Include relevant projects if you have no work experience.','Proofread 3 times — spelling mistakes are instant rejection.','Use NexaTools Resume Builder for a professional template — free!'].map((tip, i) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
-          <span style="color:var(--cyan);font-weight:700;font-size:0.9rem;min-width:24px;">${i+1}.</span>
-          <span style="color:var(--text2);font-size:0.88rem;line-height:1.7;">${tip}</span>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">📄 Top 10 Resume Tips for Students</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 5 min read</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${['Keep it to 1 page — recruiters spend only 6 seconds on a resume.',
+         'Use action words: Managed, Created, Improved, Developed.',
+         'Add your LinkedIn and GitHub links.',
+         'Tailor your resume for every job — no generic resumes.',
+         'Put your most impressive achievement at the top.',
+         'Use a clean readable font — Arial or Georgia.',
+         'Quantify results: "Increased sales by 30%" not just "Increased sales".',
+         'Include relevant projects if you have no work experience.',
+         'Proofread 3 times — spelling mistakes are instant rejection.',
+         'Use NexaTools Resume Builder for a professional template — free!']
+        .map((tip, i) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:border-color 0.2s;">
+          <span style="background:var(--cyan-dim);border:1px solid rgba(0,229,255,0.3);color:var(--cyan);font-weight:700;font-size:0.8rem;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</span>
+          <span style="color:var(--text2);font-size:0.88rem;line-height:1.75;">${tip}</span>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
       <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('resume',document.querySelector('.tab-btn'))">📄 Try Resume Builder Free →</button>
     </div>`,
 
   'invoice-guide': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">🧾 Free Invoice Generator for Freelancers</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 4 min read</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;">As a freelancer in Pakistan, sending professional invoices builds trust with international clients. Here's how to do it free:</p>
-      ${['Open NexaTools Billing Generator tab.','Enter your name/company and client details.','Add your services with quantity and rate.','Select invoice template — Basic is free.','Click Generate then Print/Save as PDF.','Send PDF to your client via email or WhatsApp.'].map((step, i) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
-          <span style="background:var(--cyan);color:#000;font-weight:700;font-size:0.8rem;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;">${i+1}</span>
-          <span style="color:var(--text2);font-size:0.88rem;line-height:1.7;">${step}</span>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">🧾 Free Invoice Generator for Freelancers</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 4 min read</p>
+    <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:16px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:14px 16px;">As a freelancer in Pakistan, sending professional invoices builds trust with international clients. Here's how to do it free:</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${['Open NexaTools Billing Generator tab.',
+         'Enter your name/company and client details.',
+         'Add your services with quantity and rate.',
+         'Select invoice template — Basic, Corporate, Gradient or Luxury.',
+         'Click Generate then Print/Save as PDF.',
+         'Send PDF to your client via email or WhatsApp.']
+        .map((step, i) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;">
+          <span style="background:var(--cyan);color:#000;font-weight:800;font-size:0.78rem;min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</span>
+          <span style="color:var(--text2);font-size:0.88rem;line-height:1.75;">${step}</span>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
-      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('invoice',document.querySelector('.tab-btn:nth-child(2)'))">🧾 Try Invoice Generator Free →</button>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
+      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('invoice',document.querySelectorAll('.tab-btn')[1])">🧾 Try Invoice Generator Free →</button>
     </div>`,
 
   'ai-tools': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">⚡ Best Free AI Tools for Freelancers 2026</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 6 min read</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      ${[['📄 AI Resume Builder','Create professional resumes in minutes with AI-written summaries.'],['🧾 Invoice Generator','Send professional invoices to clients worldwide — free.'],['🎨 Logo Maker','Design a stunning logo for your brand without a designer.'],['📱 QR Code Generator','Create QR codes for your website, WiFi, UPI and more.'],['💼 Business Card','Design and download a professional business card instantly.'],['🔐 Password Generator','Generate ultra-secure passwords for all your accounts.']].map(([title, desc]) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-          <div style="font-weight:700;margin-bottom:4px;">${title}</div>
-          <div style="color:var(--text2);font-size:0.85rem;">${desc}</div>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">⚡ Best Free AI Tools for Freelancers 2026</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 6 min read</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${[['📄','Resume Builder','100% FREE','Create professional resumes in minutes with AI-written summaries.'],
+         ['🧾','Billing Generator','100% FREE','Send professional invoices to clients worldwide — free.'],
+         ['🎨','Logo Maker','100% FREE','Design a stunning logo for your brand without a designer.'],
+         ['📱','QR Code Generator','100% FREE','Create QR codes for your website, WiFi, UPI and more.'],
+         ['💼','Business Card','100% FREE','Design and download a professional business card instantly.'],
+         ['🔐','Password Generator','100% FREE','Generate ultra-secure passwords for all your accounts.']]
+        .map(([icon, title, badge, desc]) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:1.3rem;">${icon}</span>
+            <span style="font-weight:700;color:var(--text);font-size:0.92rem;">${title}</span>
+            <span style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;background:rgba(48,209,88,0.12);border:1px solid rgba(48,209,88,0.3);color:var(--green);padding:2px 8px;border-radius:8px;font-weight:700;">${badge}</span>
+          </div>
+          <div style="color:var(--text2);font-size:0.85rem;line-height:1.65;">${desc}</div>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
       <button class="btn btn-cyan" onclick="closeBlogModal();scrollToSection('.tools-section')">🚀 Try All Tools Free →</button>
     </div>`,
 
   'qr-guide': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">📱 How to Create QR Codes Free</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 4 min read</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;">QR codes are used everywhere — restaurant menus, business cards, payment links. Create yours free in seconds:</p>
-      ${[['URL QR Code','Share your website link instantly.'],['WiFi QR Code','Let guests connect to WiFi without typing passwords.'],['UPI Payment QR','Accept payments directly via QR code.'],['Email QR Code','Let people email you with one scan.'],['Text QR Code','Share any message or information.']].map(([type, use]) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-          <span style="font-weight:700;color:var(--cyan);">${type}</span>
-          <span style="color:var(--text2);font-size:0.85rem;">${use}</span>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">📱 How to Create QR Codes Free</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 4 min read</p>
+    <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:16px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:14px 16px;">QR codes are used everywhere — restaurant menus, business cards, payment links. Create yours free in seconds:</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${[['🔗','URL QR Code','Share your website or portfolio link instantly.'],
+         ['📶','WiFi QR Code','Let guests connect to WiFi without typing passwords.'],
+         ['💳','UPI Payment QR','Accept payments directly via QR code — perfect for shops.'],
+         ['📧','Email QR Code','Let people email you with one scan.'],
+         ['📝','Text QR Code','Share any message, address or information.']]
+        .map(([icon, type, use]) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center;">
+          <span style="font-size:1.5rem;flex-shrink:0;">${icon}</span>
+          <div style="flex:1;">
+            <div style="font-weight:700;color:var(--cyan);font-size:0.88rem;margin-bottom:3px;">${type}</div>
+            <div style="color:var(--text2);font-size:0.82rem;line-height:1.6;">${use}</div>
+          </div>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
-      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('qr',document.querySelector('.tab-btn:nth-child(5)'))">📱 Generate QR Code Free →</button>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
+      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('qr',document.querySelectorAll('.tab-btn')[4])">📱 Generate QR Code Free →</button>
     </div>`,
 
   'logo-guide': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">🎨 Create a Professional Logo Free</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 5 min read</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;">A great logo builds trust instantly. Here's how to create one free in under 5 minutes:</p>
-      ${['Open NexaTools Logo Maker tab.','Enter your brand name and tagline.','Pick an icon that represents your business.','Choose background color and text color.','Select shape — Circle, Square or Rounded.','Adjust font style and size.','Preview updates live — no waiting.','Click Download PNG to save your logo.'].map((step, i) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
-          <span style="color:var(--cyan);font-weight:700;min-width:24px;">${i+1}.</span>
-          <span style="color:var(--text2);font-size:0.88rem;line-height:1.7;">${step}</span>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">🎨 Create a Professional Logo Free</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 5 min read</p>
+    <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:16px;background:rgba(191,90,242,0.06);border:1px solid rgba(191,90,242,0.15);border-radius:12px;padding:14px 16px;">A great logo builds trust instantly. Here's how to create one free in under 5 minutes:</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${['Open NexaTools Logo Maker tab.',
+         'Enter your brand name and tagline.',
+         'Pick an icon that represents your business.',
+         'Choose background color and text color.',
+         'Select shape — Circle, Square or Rounded.',
+         'Adjust font style and size.',
+         'Preview updates live — no waiting.',
+         'Click Download PNG to save your logo.']
+        .map((step, i) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;">
+          <span style="background:var(--purple-dim);border:1px solid rgba(191,90,242,0.3);color:var(--purple);font-weight:700;font-size:0.8rem;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</span>
+          <span style="color:var(--text2);font-size:0.88rem;line-height:1.75;">${step}</span>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
-      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('logo',document.querySelector('.tab-btn:nth-child(4)'))">🎨 Make Your Logo Free →</button>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
+      <button class="btn btn-cyan" onclick="closeBlogModal();switchTool('logo',document.querySelectorAll('.tab-btn')[3])">🎨 Make Your Logo Free →</button>
     </div>`,
 
   'student-tools': `
-    <h2 style="font-family:var(--font-display);margin-bottom:8px;">🎓 Top Free Tools Every Student Needs</h2>
-    <p style="color:var(--text2);font-size:0.78rem;margin-bottom:20px;">📅 May 2026 · 5 min read</p>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      ${[['📄 Resume Builder','Build a job-ready resume before graduation — free.'],['🔐 Password Generator','Secure all your student accounts with strong passwords.'],['📱 QR Code Generator','Share your portfolio or LinkedIn with a QR code.'],['🎨 Logo Maker','Create a logo for your student startup or project.'],['💼 Business Card','Design a card for networking events and job fairs.'],['🧾 Invoice Generator','Earn freelancing income and send professional invoices.']].map(([tool, desc]) => `
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-          <div style="font-weight:700;margin-bottom:4px;">${tool}</div>
-          <div style="color:var(--text2);font-size:0.85rem;">${desc}</div>
+    <h2 style="font-family:var(--font-display);margin-bottom:6px;">🎓 Top Free Tools Every Student Needs</h2>
+    <p style="color:var(--text3);font-size:0.78rem;margin-bottom:24px;">📅 May 2026 &nbsp;·&nbsp; 5 min read</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${[['📄','Resume Builder','Build a job-ready resume before graduation — free.'],
+         ['🔐','Password Generator','Secure all your student accounts with strong passwords.'],
+         ['📱','QR Code Generator','Share your portfolio or LinkedIn with a QR code.'],
+         ['🎨','Logo Maker','Create a logo for your student startup or project.'],
+         ['💼','Business Card','Design a card for networking events and job fairs.'],
+         ['🧾','Invoice Generator','Earn freelancing income and send professional invoices.']]
+        .map(([icon, tool, desc]) => `
+        <div style="background:rgba(16,20,38,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:flex-start;">
+          <span style="font-size:1.6rem;flex-shrink:0;line-height:1;">${icon}</span>
+          <div>
+            <div style="font-weight:700;color:var(--text);font-size:0.92rem;margin-bottom:4px;">${tool}</div>
+            <div style="color:var(--text2);font-size:0.85rem;line-height:1.65;">${desc}</div>
+          </div>
         </div>`).join('')}
     </div>
-    <div style="margin-top:20px;text-align:center;">
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">
       <button class="btn btn-cyan" onclick="closeBlogModal();scrollToSection('.tools-section')">🚀 Try All Tools Free →</button>
     </div>`
 };
-
 function openBlogModal(post) {
   const modal = $('blog-modal');
   const content = $('blog-modal-content');
