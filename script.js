@@ -43,31 +43,8 @@ function scrollToSection(selector) {
 
 // ---------- Pro Modal ----------
 function openModal(plan) {
-  const modal = $('pro-modal');
-  if (!modal) return;
-
-  if (plan === 'business') {
-    $('modal-title').textContent = 'Upgrade to Business';
-    $('modal-desc').textContent = 'Full team access, custom branding, API & white label — just $15/month.';
-    $('modal-cta').textContent = '🛒 Buy Business on Gumroad — $15/month';
-    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/sxjewg';
-    $('modal-features').innerHTML = `
-      <li>Everything in Pro</li><li>5 team members</li>
-      <li>Custom branding & API access</li><li>Bulk export</li>
-      <li>White label option</li><li>Priority support</li>`;
-  } else {
-    $('modal-title').textContent = 'Upgrade to Pro';
-    $('modal-desc').textContent = 'Unlock AI tools, remove watermarks, export to PDF just $5/month worldwide.';
-    $('modal-cta').textContent = '🛒 Buy on Gumroad $5/month';
-    $('modal-cta').href = 'https://storekeeper133.gumroad.com/l/uuppvu';
-    $('modal-features').innerHTML = `
-      <li>AI-powered resume writer</li><li>PDF & PNG export (no watermark)</li>
-      <li>Unlimited QR codes & logos</li><li>Premium design templates</li>
-      <li>Priority email support</li>`;
-  }
-
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // All features are free — no pro modal needed
+  return;
 }
 
 function closeModal() {
@@ -178,7 +155,7 @@ const staticPages = {
       <p style="color:var(--text2);font-size:0.88rem;line-height:1.8;margin-bottom:24px;">NexaTools currently does not require an account. All tools are free with no login needed.</p>
       <div style="background:var(--cyan-dim);border:1px solid var(--border3);border-radius:12px;padding:20px;margin-bottom:20px;">
         <div style="font-size:0.85rem;color:var(--cyan);font-weight:600;margin-bottom:6px;">✅ All Features Free</div>
-        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">NexaTools.io ke sab tools bilkul free hain — koi login, koi payment nahin.</p>
+        <p style="color:var(--text2);font-size:0.85rem;line-height:1.7;margin:0;">Sab tools bilkul free hain — koi login, koi payment nahin chahiye.</p>
       </div>
       <button class="btn btn-cyan" style="width:100%;" onclick="closeStaticModal();scrollToSection('.tools-section')">🚀 Start Using Free Tools</button>
     `
@@ -436,7 +413,7 @@ function initResume() {
 }
 
 function setResumeTemplate(tpl, el) {
-  const proTemplates = ['bold', 'executive', 'creative', 'neon'];
+  const proTemplates = [];
   if (proTemplates.includes(tpl) && !requirePro('Premium Templates')) return;
   currentResumeTemplate = tpl;
   document.querySelectorAll('#panel-resume .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
@@ -707,7 +684,7 @@ function removeItem(i) {
   generateInvoice();
 }
 function setInvTemplate(tpl, el) {
-  const proTemplates = ['gradient', 'luxury'];
+  const proTemplates = [];
   if (proTemplates.includes(tpl) && !requirePro('Premium Invoice Templates')) return;
   const inp = document.createElement('input');
   inp.id = 'inv-template';
@@ -1039,7 +1016,7 @@ function setLS(shape,el){ logoShape=shape; document.querySelectorAll('#panel-log
 function setLogoIcon(ic,el){ logoIcon=ic; document.querySelectorAll('#l-icons .icon-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoFontStyle(style,el){ logoFontStyle=style; drawLogo(); }
 function setLogoStyle(style, el) {
-  const proStyles = ['shadow', 'neon', 'monogram'];
+  const proStyles = [];
   if (proStyles.includes(style) && !requirePro('Premium Logo Styles')) return;
   const inp = $('logo-style') || document.createElement('input');
   inp.id = 'logo-style';
@@ -1477,7 +1454,6 @@ function genQR() {
   }, 100);
 }
 function setQRStyle(style, el) {
-  if (style !== 'basic' && style !== 'rounded' && !requirePro('Pro QR Styles')) return;
   qrStyle = style;
   document.querySelectorAll('#panel-qr .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
@@ -1660,7 +1636,7 @@ function drawBCard() {
 }
 
 function setBCTheme(theme, el) {
-  const proThemes = ['purple', 'gold', 'neon', 'glass'];
+  const proThemes = [];
   if (proThemes.includes(theme) && !requirePro('Premium Business Card Themes')) return;
   bcTheme = theme;
   document.querySelectorAll('#panel-bcard .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
