@@ -3,7 +3,7 @@
    All tools functional, IDs aligned to HTML
    ============================================ */
 function requirePro(feature) {
-  return true; // All features free
+  return true;
 }
 // ---------- Global State ----------
 let invoiceItems = [{ desc: 'Web Development', qty: 1, rate: 150 }];
@@ -20,7 +20,7 @@ let qrColor = '#00e5ff';
 let qrType = 'url';
 let qrStyle = 'basic';
 let bcTheme = 'dark';
-let currentPlan = 'pro'; // All features unlocked
+let currentPlan = 'pro';
 
 // ---------- Helper ----------
 function $(id) { return document.getElementById(id); }
@@ -1656,6 +1656,12 @@ function drawBCard() {
     ctx.fillText(web, x + 24, y);
   }
 
+  // Branding watermark
+  ctx.fillStyle = th.sub;
+  ctx.font = '10px Arial';
+  ctx.textAlign = 'right';
+  ctx.globalAlpha = isPro ? 0.2 : 0.4;
+  ctx.fillText(isPro ? 'NexaTools.io Pro' : 'Made with NexaTools.io', w - 20, h - (isPro ? 22 : 16));
   ctx.globalAlpha = 1;
 }
 
