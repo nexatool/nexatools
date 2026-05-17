@@ -436,6 +436,8 @@ function initResume() {
 }
 
 function setResumeTemplate(tpl, el) {
+  const proTemplates = ['bold', 'executive', 'creative', 'neon'];
+  if (proTemplates.includes(tpl) && !requirePro('Premium Templates')) return;
   currentResumeTemplate = tpl;
   document.querySelectorAll('#panel-resume .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
@@ -462,7 +464,11 @@ function buildResume() {
   const skills= ($('r-skills')?.value|| '').trim();
   const exp   = ($('r-exp')?.value   || '').trim();
   const edu   = ($('r-edu')?.value   || '').trim();
-  const proj  = ($('r-proj')?.value  || '').trim();
+  const proj     = ($('r-proj')?.value     || '').trim();
+  const linkedin = ($('r-linkedin')?.value || '').trim();
+  const github   = ($('r-github')?.value   || '').trim();
+  const lang     = ($('r-lang')?.value     || '').trim();
+  const socialLinks = [linkedin ? '🔗 '+linkedin : '', github ? '💻 '+github : ''].filter(Boolean).join('   ');
 
   const acc = resumeAccent;
   const tpl = currentResumeTemplate;
@@ -479,6 +485,7 @@ function buildResume() {
         <div style="font-size:2rem;font-weight:700;">${name}</div>
         <div style="font-size:1rem;opacity:0.9;margin-top:6px;">${title}</div>
         <div style="font-size:0.78rem;margin-top:8px;opacity:0.8;">${contactParts.join(' · ')}</div>
+        ${socialLinks ? `<div style="font-size:0.75rem;margin-top:4px;opacity:0.85;">${socialLinks}</div>` : ''}
       </div>
       <div style="padding:28px;">
         ${about ? `<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};border-bottom:2px solid ${acc};padding-bottom:4px;margin-bottom:10px;">Summary</div><p style="font-size:0.88rem;line-height:1.7;">${about}</p>` : ''}
@@ -486,6 +493,7 @@ function buildResume() {
         ${exp ? `<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};border-bottom:2px solid ${acc};padding-bottom:4px;margin:20px 0 10px;">Experience</div><p style="font-size:0.88rem;line-height:1.7;white-space:pre-wrap;">${exp}</p>` : ''}
         ${edu ? `<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};border-bottom:2px solid ${acc};padding-bottom:4px;margin:20px 0 10px;">Education</div><p style="font-size:0.88rem;line-height:1.7;white-space:pre-wrap;">${edu}</p>` : ''}
         ${proj ? `<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};border-bottom:2px solid ${acc};padding-bottom:4px;margin:20px 0 10px;">Projects</div><p style="font-size:0.88rem;line-height:1.7;white-space:pre-wrap;">${proj}</p>` : ''}
+        ${lang ? `<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};border-bottom:2px solid ${acc};padding-bottom:4px;margin:20px 0 10px;">Languages</div><p style="font-size:0.88rem;line-height:1.7;">${lang}</p>` : ''}
       </div>
     </div>`;
 
@@ -499,11 +507,13 @@ function buildResume() {
         <div style="font-size:2.2rem;font-weight:900;letter-spacing:-1px;">${name}</div>
         <div style="font-size:1rem;color:${acc};margin-top:6px;font-weight:600;">${title}</div>
         <div style="display:flex;gap:16px;margin-top:12px;font-size:0.78rem;opacity:0.8;flex-wrap:wrap;">${contactParts.map(c=>`<span>● ${c}</span>`).join('')}</div>
+        ${socialLinks ? `<div style="font-size:0.75rem;margin-top:4px;opacity:0.85;">${socialLinks}</div>` : ''}
       </div>
       <div style="display:grid;grid-template-columns:1fr 2fr;min-height:300px;">
         <div style="background:#f8f8ff;padding:24px;border-right:3px solid ${acc}22;">
           ${skills ? `<div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:12px;">Skills</div>${skills.split(',').map(s=>`<div style="background:#fff;border-left:3px solid ${acc};padding:6px 10px;margin-bottom:6px;font-size:0.8rem;border-radius:0 6px 6px 0;">${s.trim()}</div>`).join('')}` : ''}
           ${edu ? `<div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:${acc};margin:16px 0 10px;">Education</div><p style="font-size:0.8rem;line-height:1.6;white-space:pre-wrap;">${edu}</p>` : ''}
+          ${lang ? `<div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:${acc};margin:16px 0 10px;">Languages</div><p style="font-size:0.8rem;line-height:1.6;">${lang}</p>` : ''}
         </div>
         <div style="padding:24px;">
           ${about ? `<div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:10px;">About</div><p style="font-size:0.88rem;line-height:1.7;margin-bottom:20px;">${about}</p>` : ''}
@@ -521,11 +531,13 @@ function buildResume() {
         <div style="font-size:2.4rem;font-weight:300;letter-spacing:-1px;color:#111;">${name}</div>
         <div style="font-size:1rem;color:${acc};margin-top:4px;font-weight:500;">${title}</div>
         <div style="font-size:0.78rem;color:#888;margin-top:8px;">${contactParts.join('  ·  ')}</div>
+        ${socialLinks ? `<div style="font-size:0.75rem;color:#888;margin-top:4px;">${socialLinks}</div>` : ''}
       </div>
       ${about ? `<p style="font-size:0.9rem;line-height:1.8;color:#444;margin-bottom:24px;font-style:italic;">${about}</p>` : ''}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
         <div>
           ${skills ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#999;margin-bottom:12px;">Skills</div>${skills.split(',').map(s=>`<div style="padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem;color:#333;">${s.trim()}</div>`).join('')}` : ''}
+          ${lang ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#999;margin:16px 0 12px;">Languages</div>${lang.split(',').map(l=>`<div style="padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem;color:#333;">${l.trim()}</div>`).join('')}` : ''}
         </div>
         <div>
           ${exp ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#999;margin-bottom:12px;">Experience</div><p style="font-size:0.85rem;line-height:1.7;color:#333;white-space:pre-wrap;">${exp}</p>` : ''}
@@ -543,6 +555,7 @@ function buildResume() {
         <div style="font-size:2.5rem;font-weight:900;text-transform:uppercase;letter-spacing:-1px;">${name}</div>
         <div style="font-size:1rem;color:${acc};margin-top:6px;font-weight:700;text-transform:uppercase;letter-spacing:2px;">${title}</div>
         <div style="font-size:0.75rem;color:#888;margin-top:10px;">${contactParts.join(' | ')}</div>
+        ${socialLinks ? `<div style="font-size:0.73rem;color:#888;margin-top:4px;">${socialLinks}</div>` : ''}
       </div>
       <div style="padding:0 36px 36px;">
         ${about ? `<div style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:${acc};margin-bottom:10px;">About</div><p style="font-size:0.88rem;line-height:1.7;color:#ccc;">${about}</p>` : ''}
@@ -550,6 +563,7 @@ function buildResume() {
         ${exp ? `<div style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:${acc};margin:20px 0 10px;">Experience</div><p style="font-size:0.88rem;line-height:1.7;color:#ccc;white-space:pre-wrap;">${exp}</p>` : ''}
         ${edu ? `<div style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:${acc};margin:20px 0 10px;">Education</div><p style="font-size:0.88rem;line-height:1.7;color:#ccc;white-space:pre-wrap;">${edu}</p>` : ''}
         ${proj ? `<div style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:${acc};margin:20px 0 10px;">Projects</div><p style="font-size:0.88rem;line-height:1.7;color:#ccc;white-space:pre-wrap;">${proj}</p>` : ''}
+        ${lang ? `<div style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:${acc};margin:20px 0 10px;">Languages</div><p style="font-size:0.88rem;line-height:1.7;color:#ccc;">${lang}</p>` : ''}
       </div>
     </div>`;
 
@@ -563,12 +577,14 @@ function buildResume() {
         <div style="font-size:0.85rem;color:${acc};margin-top:8px;letter-spacing:4px;text-transform:uppercase;">${title}</div>
         <div style="width:60px;height:3px;background:${acc};margin:20px auto 0;"></div>
         <div style="font-size:0.75rem;color:#888;margin-top:16px;">${contactParts.join(' · ')}</div>
+        ${socialLinks ? `<div style="font-size:0.73rem;color:#888;margin-top:4px;">${socialLinks}</div>` : ''}
       </div>
       <div style="padding:36px;max-width:700px;margin:0 auto;">
         ${about ? `<p style="font-size:0.9rem;line-height:1.9;color:#444;text-align:center;font-style:italic;border-bottom:1px solid #eee;padding-bottom:24px;margin-bottom:24px;">"${about}"</p>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
           <div>
             ${skills ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:${acc};margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid ${acc};">Core Skills</div>${skills.split(',').map(s=>`<div style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.85rem;border-bottom:1px solid #f5f5f5;"><span style="color:${acc};font-size:1rem;">◆</span>${s.trim()}</div>`).join('')}` : ''}
+            ${lang ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:${acc};margin:16px 0 14px;padding-bottom:6px;border-bottom:2px solid ${acc};">Languages</div><p style="font-size:0.85rem;line-height:1.8;">${lang}</p>` : ''}
           </div>
           <div>
             ${exp ? `<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:${acc};margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid ${acc};">Experience</div><p style="font-size:0.85rem;line-height:1.8;white-space:pre-wrap;">${exp}</p>` : ''}
@@ -590,7 +606,9 @@ function buildResume() {
         <div style="height:2px;background:${acc}44;margin:20px 0;"></div>
         <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:10px;">Contact</div>
         ${contactParts.map(c=>`<div style="font-size:0.75rem;color:#aaa;margin-bottom:6px;">● ${c}</div>`).join('')}
+        ${socialLinks ? `<div style="font-size:0.73rem;color:#aaa;margin-top:4px;">${socialLinks}</div>` : ''}
         ${skills ? `<div style="height:2px;background:${acc}44;margin:20px 0;"></div><div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:12px;">Skills</div>${skills.split(',').map(s=>`<div style="margin-bottom:8px;"><div style="font-size:0.75rem;margin-bottom:3px;">${s.trim()}</div><div style="height:3px;background:#333;border-radius:2px;"><div style="height:100%;width:80%;background:${acc};border-radius:2px;"></div></div></div>`).join('')}` : ''}
+        ${lang ? `<div style="height:2px;background:${acc}44;margin:20px 0;"></div><div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:8px;">Languages</div><p style="font-size:0.75rem;color:#aaa;">${lang}</p>` : ''}
       </div>
       <div style="padding:32px;">
         ${about ? `<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:${acc};margin-bottom:10px;">About Me</div><p style="font-size:0.88rem;line-height:1.7;color:#444;margin-bottom:24px;">${about}</p>` : ''}
@@ -609,12 +627,14 @@ function buildResume() {
         <div style="font-size:2rem;font-weight:700;color:#fff;text-shadow:0 0 20px ${acc};">${name}</div>
         <div style="font-size:0.9rem;color:${acc};margin-top:6px;text-shadow:0 0 10px ${acc};">${title}</div>
         <div style="font-size:0.72rem;color:#666;margin-top:10px;">${contactParts.join(' · ')}</div>
+        ${socialLinks ? `<div style="font-size:0.7rem;color:#666;margin-top:4px;">${socialLinks}</div>` : ''}
       </div>
       ${about ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;">// about</div><p style="font-size:0.85rem;line-height:1.7;color:#aaa;margin-bottom:20px;border-left:2px solid ${acc}44;padding-left:16px;">${about}</p>` : ''}
       ${skills ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin-bottom:10px;">// skills</div><div style="margin-bottom:20px;">${skills.split(',').map(s=>`<span style="display:inline-block;background:${acc}15;border:1px solid ${acc}44;color:${acc};padding:4px 12px;border-radius:6px;margin:3px;font-size:0.78rem;">${s.trim()}</span>`).join('')}</div>` : ''}
       ${exp ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;">// experience</div><p style="font-size:0.85rem;line-height:1.7;color:#aaa;margin-bottom:20px;white-space:pre-wrap;">${exp}</p>` : ''}
       ${edu ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;">// education</div><p style="font-size:0.85rem;line-height:1.7;color:#aaa;white-space:pre-wrap;">${edu}</p>` : ''}
       ${proj ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin:20px 0 8px;">// projects</div><p style="font-size:0.85rem;line-height:1.7;color:#aaa;white-space:pre-wrap;">${proj}</p>` : ''}
+      ${lang ? `<div style="font-size:0.6rem;color:${acc};text-transform:uppercase;letter-spacing:3px;margin:20px 0 8px;">// languages</div><p style="font-size:0.85rem;line-height:1.7;color:#aaa;">${lang}</p>` : ''}
       <div style="margin-top:24px;font-size:0.65rem;color:#333;text-align:right;">made with nexatools.io</div>
     </div>`;
   }
@@ -705,7 +725,8 @@ function removeItem(i) {
   generateInvoice();
 }
 function setInvTemplate(tpl, el) {
-
+  const proTemplates = ['gradient', 'luxury'];
+  if (proTemplates.includes(tpl) && !requirePro('Premium Invoice Templates')) return;
   const inp = document.createElement('input');
   inp.id = 'inv-template';
   inp.type = 'hidden';
@@ -1036,7 +1057,8 @@ function setLS(shape,el){ logoShape=shape; document.querySelectorAll('#panel-log
 function setLogoIcon(ic,el){ logoIcon=ic; document.querySelectorAll('#l-icons .icon-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoFontStyle(style,el){ logoFontStyle=style; drawLogo(); }
 function setLogoStyle(style, el) {
-
+  const proStyles = ['shadow', 'neon', 'monogram'];
+  if (proStyles.includes(style) && !requirePro('Premium Logo Styles')) return;
   const inp = $('logo-style') || document.createElement('input');
   inp.id = 'logo-style';
   inp.type = 'hidden';
@@ -1473,7 +1495,7 @@ function genQR() {
   }, 100);
 }
 function setQRStyle(style, el) {
-
+  if (style !== 'basic' && style !== 'rounded' && !requirePro('Pro QR Styles')) return;
   qrStyle = style;
   document.querySelectorAll('#panel-qr .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
@@ -1570,18 +1592,6 @@ function drawBCard() {
   ctx.fillStyle = th.acc2 + '10';
   ctx.fill();
 
-  // Pro badge
-  if (isPro) {
-    ctx.fillStyle = lineGrad;
-    ctx.beginPath();
-    ctx.roundRect(w - 100, h - 50, 80, 24, 12);
-    ctx.fill();
-    ctx.fillStyle = '#000';
-    ctx.font = 'bold 10px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('⚡ PRO', w - 60, h - 34);
-  }
-
   const name    = $('bc-name')?.value?.trim()  || 'Your Name';
   const role    = $('bc-role')?.value?.trim()  || 'Professional Title';
   const company = $('bc-co')?.value?.trim()    || '';
@@ -1656,7 +1666,8 @@ function drawBCard() {
 }
 
 function setBCTheme(theme, el) {
-
+  const proThemes = ['purple', 'gold', 'neon', 'glass'];
+  if (proThemes.includes(theme) && !requirePro('Premium Business Card Themes')) return;
   bcTheme = theme;
   document.querySelectorAll('#panel-bcard .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
