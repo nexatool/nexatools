@@ -1,0 +1,43 @@
+<!-- 
+==============================================
+INDEX.HTML MEIN YEH 2 CHANGES KARO:
+==============================================
+
+=== CHANGE 1: Footer links replace karo ===
+Purana code dhundo:
+  <div class="footer-links">
+    <a href="#" onclick="openStaticModal('privacy')">Privacy Policy</a>
+    <a href="#" onclick="openStaticModal('terms')">Terms & Conditions</a>
+    <a href="#" onclick="openStaticModal('disclaimer')">Disclaimer</a>
+  </div>
+
+Naya code lagao:
+  <div class="footer-links">
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+
+
+=== CHANGE 2: Nav links update karo ===
+Purana nav code mein About aur Docs links hain:
+  <a class="nav-link" onclick="openStaticModal('about')">About</a>
+  <a class="nav-link" href="#" onclick="openStaticModal('docs')">Docs</a>
+
+Yeh replace karo:
+  <a class="nav-link" href="about.html">About</a>
+  <a class="nav-link" href="contact.html">Contact</a>
+
+
+=== CHANGE 3: Mobile nav bhi update karo ===
+Purana:
+  <a onclick="openStaticModal('about');toggleMobileNav()">About</a>
+  <a href="#" onclick="openStaticModal('docs')">Docs</a>
+
+Naya:
+  <a href="about.html" onclick="toggleMobileNav()">About</a>
+  <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+
+==============================================
+-->

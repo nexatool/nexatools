@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60">
+  <!-- Icon — centred at 30,30 -->
+  <polygon points="30,6 52,18 52,42 30,54 8,42 8,18"
+    fill="none" stroke="#00e5ff" stroke-width="1.8"/>
+  <polygon points="30,16 46,25 46,41 30,50 14,41 14,25"
+    fill="#00e5ff" opacity="0.18"/>
+  <polygon points="30,16 46,25 46,41 30,50 14,41 14,25"
+    fill="none" stroke="#00e5ff" stroke-width="1.2"/>
+  <text x="30" y="39" text-anchor="middle"
+    font-family="'Clash Display','Inter',sans-serif"
+    font-weight="700" font-size="20" fill="#00e5ff">N</text>
+  <circle cx="30" cy="6"  r="2" fill="#00e5ff"/>
+  <circle cx="52" cy="18" r="2" fill="#00e5ff"/>
+  <circle cx="52" cy="42" r="2" fill="#00e5ff"/>
+  <circle cx="30" cy="54" r="2" fill="#00e5ff"/>
+  <circle cx="8"  cy="42" r="2" fill="#00e5ff"/>
+  <circle cx="8"  cy="18" r="2" fill="#00e5ff"/>
+
+  <!-- Wordmark -->
+  <text x="66" y="38"
+    font-family="'Clash Display','Inter',sans-serif"
+    font-weight="700" font-size="26" fill="#ffffff" letter-spacing="-0.5">Nexa<tspan fill="#00e5ff">Tools</tspan><tspan fill="rgba(255,255,255,0.3)" font-size="15" dy="-4">.io</tspan></text>
+</svg>

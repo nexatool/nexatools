@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<meta name="author" content="NexaTools.io">
+
+<!-- ✅ SEO TITLE — Line 7 -->
+<title>Free Resume Builder Online — Create Professional CV in Minutes | NexaTools.io</title>
+
+<!-- ✅ SEO META DESCRIPTION — Line 10 -->
+<meta name="description" content="Create a professional resume or CV online for free. No signup required. Choose from 7 AI-powered templates — Classic, Modern, Minimal, Bold, Executive, Creative & Neon. Download as PDF instantly.">
+
+<!-- ✅ SEO KEYWORDS — Line 14 -->
+<meta name="keywords" content="free resume builder, resume builder online, CV maker free, professional resume template, AI resume builder, resume without signup, free CV builder 2026">
+
+<meta name="robots" content="index, follow">
+
+<!-- ✅ CANONICAL URL — Line 20 -->
+<link rel="canonical" href="https://nexatools.io/resume-builder.html">
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- ✅ OPEN GRAPH — Lines 28-34 -->
+<meta property="og:title" content="Free Resume Builder Online NexaTools.io">
+<meta property="og:description" content="Build a professional resume for free. 7 AI-powered templates. No login needed. Download as PDF instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexatools.io/resume-builder.html">
+<meta property="og:image" content="https://nexatools.io/og-image.png">
+
+<!-- ✅ TWITTER CARD — Lines 36-40 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Resume Builder Online NexaTools.io">
+<meta name="twitter:description" content="Create a professional resume free. No login. Download PDF instantly.">
+<meta name="twitter:image" content="https://nexatools.io/og-image.png">
+
+<!-- ✅ SCHEMA MARKUP — Lines 43-100 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free Resume Builder — NexaTools.io",
+  "url": "https://nexatools.io/resume-builder.html",
+  "description": "Free online resume builder with AI writing assistance. Create professional CVs with 7 templates. No signup required.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "7 professional resume templates",
+    "AI-powered summary writer",
+    "PDF download",
+    "No signup required",
+    "100% free"
+  ],
+  "screenshot": "https://nexatools.io/og-image.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "NexaTools.io",
+    "url": "https://nexatools.io"
+  }
+}
+</script>
+
+<!-- ✅ FAQ SCHEMA — Lines 103-160 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this resume builder really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! NexaTools Resume Builder is 100% free. No credit card, no signup, no hidden charges. Create and download your resume as PDF for free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to create an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No account needed. Just open the page and start building your resume instantly. No login, no email required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many resume templates are available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NexaTools offers 7 resume templates: Classic, Modern, Minimal, Bold, Executive, Creative, and Neon Dark. All are free to use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I download my resume as PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Click the Download/Print button and your resume will save as a PDF directly to your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my resume pass ATS systems?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Classic and Minimal templates are the most ATS-friendly. They use clean structure without heavy graphics, which works best with applicant tracking systems."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ✅ SAME CSS AS YOUR MAIN SITE -->
+<link rel="stylesheet" href="style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+
+<style>
+  /* ===== PAGE HERO ===== */
+  .tool-page-hero {
+    position: relative;
+    z-index: 1;
+    padding: calc(var(--nav-h) + 50px) 32px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tool-page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .tool-page-hero p {
+    color: var(--text2);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto 28px;
+  }
+  .hero-feature-pills {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .feature-pill {
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-size: 0.78rem;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-weight: 500;
+  }
+
+  /* ===== TOOL SECTION ===== */
+  .tool-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
+  }
+
+  /* ===== SEO CONTENT SECTIONS ===== */
+  .seo-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 32px;
+    border-top: 1px solid var(--border);
+  }
+  .seo-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text), var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .seo-section p {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .seo-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cyan);
+    margin: 28px 0 10px;
+  }
+
+  /* ===== TEMPLATES SHOWCASE ===== */
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .template-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .template-pill:hover {
+    border-color: var(--border3);
+    transform: translateY(-3px);
+  }
+  .template-pill .tp-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .template-pill .tp-name { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+  .template-pill .tp-desc { font-size: 0.7rem; color: var(--muted2); margin-top: 3px; }
+
+  /* ===== STEPS HOW TO USE ===== */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .step-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+  }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--cyan);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+  .step-card h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .step-card p {
+    font-size: 0.82rem;
+    color: var(--text2);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ===== BENEFITS LIST ===== */
+  .benefits-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .benefit-item .bi-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .benefit-item p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin: 0; }
+  .benefit-item strong { color: var(--text); }
+
+  /* ===== FAQ SECTION ===== */
+  .faq-section-tool {
+    margin-top: 0;
+  }
+  .faq-list-tool { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item-tool { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .faq-q-tool { width: 100%; background: none; border: none; color: var(--text); font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; padding: 16px 20px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+  .faq-q-tool:hover { color: var(--cyan); }
+  .faq-arrow-tool { font-size: 1rem; color: var(--cyan); transition: transform 0.3s; }
+  .faq-q-tool.open .faq-arrow-tool { transform: rotate(180deg); }
+  .faq-a-tool { color: var(--text2); font-size: 0.87rem; line-height: 1.8; padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.35s ease; }
+  .faq-a-tool.open { max-height: 200px; padding: 0 20px 16px; }
+
+  /* ===== RELATED TOOLS ===== */
+  .related-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .related-tool-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: var(--transition);
+  }
+  .related-tool-card:hover {
+    border-color: var(--border3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,229,255,0.08);
+  }
+  .related-tool-card .rt-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+  .related-tool-card .rt-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .related-tool-card .rt-desc { font-size: 0.72rem; color: var(--muted2); }
+
+  /* ===== CTA BOX ===== */
+  .page-cta-box {
+    background: linear-gradient(135deg, var(--cyan-dim), var(--purple-dim));
+    border: 1px solid var(--border3);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    text-align: center;
+    margin: 40px 0;
+  }
+  .page-cta-box h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+  .page-cta-box p { color: var(--text2); font-size: 0.92rem; margin-bottom: 22px; }
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: calc(var(--nav-h) + 16px) 32px 0;
+    font-size: 0.8rem;
+    color: var(--muted2);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--cyan); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { color: var(--muted2); }
+
+  /* ===== AD SLOTS ===== */
+  .ad-slot {
+    text-align: center;
+    margin: 32px 0;
+    min-height: 90px;
+  }
+
+  @media (max-width: 768px) {
+    .tool-page-hero { padding: calc(var(--nav-h) + 30px) 20px 30px; }
+    .tool-section { padding: 0 20px 40px; }
+    .seo-section { padding: 40px 20px; }
+    .benefits-list { grid-template-columns: 1fr; }
+    .page-cta-box { padding: 28px 20px; }
+    .breadcrumb { padding: calc(var(--nav-h) + 12px) 20px 0; }
+  }
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools">Tools</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+      <a class="nav-link" href="privacy-policy.html">Privacy</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+      <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="index.html" class="btn-nav-pro">⚡ Try Free Tools</a>
+  </div>
+</nav>
+
+<!-- ===== BREADCRUMB — SEO Important ===== -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="index.html#tools">Tools</a>
+  <span>›</span>
+  <span style="color:var(--text);">Resume Builder</span>
+</div>
+
+<!-- ===== HERO SECTION ===== -->
+<div class="tool-page-hero">
+  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
+    <span class="badge-dot"></span>Free Resume Builder — No Signup Required
+  </div>
+  <h1>Free Resume Builder Online<br><span class="title-gradient">Create Professional CVs in Minutes</span></h1>
+  <p>Build a job-ready resume with AI assistance. Choose from 7 professional templates, customize colors and fonts, and download as PDF instantly — completely free.</p>
+  <div class="hero-feature-pills">
+    <span class="feature-pill">✅ 100% Free</span>
+    <span class="feature-pill">🤖 AI Summary Writer</span>
+    <span class="feature-pill">📄 7 Templates</span>
+    <span class="feature-pill">⬇️ PDF Download</span>
+    <span class="feature-pill">🔒 No Login Needed</span>
+    <span class="feature-pill">🌍 Works Worldwide</span>
+  </div>
+</div>
+
+<!-- ===== AD SLOT TOP ===== -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ===== RESUME BUILDER TOOL ===== -->
+<div class="tool-section">
+  <div class="glass-card">
+    <div class="card-header">
+      <h3>📄 Resume / CV Builder</h3>
+      <span class="ai-badge">✦ AI Write</span>
+    </div>
+
+    <!-- TEMPLATE SELECT -->
+    <div class="form-group">
+      <label class="form-label">Template Style</label>
+      <div class="shape-opts">
+        <button class="shape-opt active" onclick="setResumeTemplate('classic',this)">📄 Classic</button>
+        <button class="shape-opt" onclick="setResumeTemplate('modern',this)">⚡ Modern</button>
+        <button class="shape-opt" onclick="setResumeTemplate('minimal',this)">✦ Minimal</button>
+        <button class="shape-opt" onclick="setResumeTemplate('bold',this)">🔥 Bold</button>
+        <button class="shape-opt" onclick="setResumeTemplate('executive',this)">👔 Executive</button>
+        <button class="shape-opt" onclick="setResumeTemplate('creative',this)">🎨 Creative</button>
+        <button class="shape-opt" onclick="setResumeTemplate('neon',this)">🌟 Neon Dark</button>
+      </div>
+    </div>
+
+    <!-- ACCENT COLOR -->
+    <div class="form-group">
+      <label class="form-label">Accent Color</label>
+      <div class="swatch-row" id="r-accent-row"></div>
+    </div>
+
+    <!-- FONT -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Font Family</label>
+        <select id="r-font-family" onchange="buildResume()">
+          <option value="Georgia">Georgia (Serif)</option>
+          <option value="Arial">Arial (Sans)</option>
+          <option value="Courier New">Courier New (Mono)</option>
+          <option value="Arial Black">Arial Black</option>
+          <option value="Trebuchet MS">Trebuchet MS</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Font Style</label>
+        <select id="r-font-style" onchange="buildResume()">
+          <option value="normal">Regular</option>
+          <option value="bold">Bold</option>
+          <option value="italic">Italic</option>
+          <option value="bold italic">Bold Italic</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PERSONAL INFO -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input id="r-name" placeholder="John Smith" oninput="buildResume()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Job Title</label>
+        <input id="r-title" placeholder="Senior Product Designer" oninput="buildResume()">
+      </div>
+    </div>
+
+    <div class="form-grid-3">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input id="r-email" placeholder="john@yourdomain.com" oninput="buildResume()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input id="r-phone" placeholder="+1 234 567 8900" oninput="buildResume()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input id="r-city" placeholder="New York, USA" oninput="buildResume()">
+      </div>
+    </div>
+
+    <div class="form-grid-3">
+      <div class="form-group">
+        <label class="form-label">LinkedIn</label>
+        <input id="r-linkedin" placeholder="linkedin.com/in/username" oninput="buildResume()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">GitHub</label>
+        <input id="r-github" placeholder="github.com/username" oninput="buildResume()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Languages</label>
+        <input id="r-lang" placeholder="English, Urdu" oninput="buildResume()">
+      </div>
+    </div>
+
+    <!-- ABOUT + AI -->
+    <div class="form-group">
+      <label class="form-label">About / Summary</label>
+      <textarea id="r-about" placeholder="Write your summary or generate with AI..." oninput="buildResume()"></textarea>
+    </div>
+    <div class="ai-row">
+      <button class="btn btn-purple" onclick="aiWriteResume()">✨ AI Write Summary</button>
+      <div id="ai-resume-thinking" class="ai-thinking" style="display:none;">
+        <div class="ai-dots"><span></span><span></span><span></span></div> AI is writing...
+      </div>
+    </div>
+
+    <!-- SKILLS + EXP -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Skills</label>
+        <textarea id="r-skills" placeholder="React, Node.js, Python, Figma" oninput="buildResume()"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Experience</label>
+        <textarea id="r-exp" placeholder="Company – Role (2022–2024)&#10;Key achievement here" oninput="buildResume()"></textarea>
+      </div>
+    </div>
+
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label class="form-label">Education</label>
+        <textarea id="r-edu" placeholder="BSCS — University Name (2020–2024)" oninput="buildResume()"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Projects</label>
+        <textarea id="r-proj" placeholder="Project Name — Tech Stack&#10;What it does" oninput="buildResume()"></textarea>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="output-wrap">
+      <div class="output-label">Live Preview</div>
+      <div id="resume-out">
+        <p class="empty-state">Fill the form above — your resume will appear here ✨</p>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-row">
+      <button class="btn btn-cyan" onclick="printResume()">⬇️ Download / Print PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AD SLOT MIDDLE ===== -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ===== SEO CONTENT: TEMPLATES ===== -->
+<div class="seo-section">
+  <h2>7 Free Professional Resume Templates</h2>
+  <p>NexaTools Resume Builder offers 7 carefully designed templates for every professional need. All templates are free to use and fully customizable with your choice of colors and fonts.</p>
+
+  <div class="templates-grid">
+    <div class="template-pill">
+      <div class="tp-icon">📄</div>
+      <div class="tp-name">Classic</div>
+      <div class="tp-desc">Clean & professional. Best for corporate jobs.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">⚡</div>
+      <div class="tp-name">Modern</div>
+      <div class="tp-desc">Two-column dark header. Tech & startup roles.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">✦</div>
+      <div class="tp-name">Minimal</div>
+      <div class="tp-desc">Swiss clean style. Best for ATS systems.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">🔥</div>
+      <div class="tp-name">Bold</div>
+      <div class="tp-desc">Dark impact style. Creative industries.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">👔</div>
+      <div class="tp-name">Executive</div>
+      <div class="tp-desc">Luxury centered. Senior & leadership roles.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">🎨</div>
+      <div class="tp-name">Creative</div>
+      <div class="tp-desc">Sidebar design. Designers & artists.</div>
+    </div>
+    <div class="template-pill">
+      <div class="tp-icon">🌟</div>
+      <div class="tp-name">Neon Dark</div>
+      <div class="tp-desc">Developer terminal look. Tech & dev roles.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: HOW TO USE ===== -->
+<div class="seo-section">
+  <h2>How to Create a Free Resume Online Step by Step</h2>
+  <p>Creating a professional resume with NexaTools takes less than 5 minutes. Follow these simple steps:</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Choose a Template</h4>
+      <p>Select from 7 professional templates — Classic, Modern, Minimal, Bold, Executive, Creative, or Neon Dark.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Fill Your Details</h4>
+      <p>Enter your name, job title, contact info, skills, experience, and education. Preview updates live.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Use AI Summary</h4>
+      <p>Click "AI Write Summary" to automatically generate a professional summary based on your job title.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Customize Design</h4>
+      <p>Pick your accent color, font family, and font style. See changes instantly in the live preview.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <h4>Download as PDF</h4>
+      <p>Click "Download / Print PDF" to save your completed resume directly to your device.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: BENEFITS ===== -->
+<div class="seo-section">
+  <h2>Why Use NexaTools Free Resume Builder?</h2>
+  <p>There are many resume builders online — here is why thousands of users choose NexaTools every day:</p>
+
+  <div class="benefits-list">
+    <div class="benefit-item">
+      <span class="bi-icon">🆓</span>
+      <p><strong>Completely Free</strong> — No credit card, no hidden fees, no premium tier required for basic use. All 7 templates are free.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🔒</span>
+      <p><strong>100% Private</strong> — Your resume data never leaves your browser. We never store or share your personal information.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🤖</span>
+      <p><strong>AI-Powered Writing</strong> — Our AI summary generator creates professional summaries based on your job title in seconds.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">⚡</span>
+      <p><strong>Instant Download</strong> — No waiting, no email required. Click download and your PDF is ready immediately.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🌍</span>
+      <p><strong>Works Everywhere</strong> — Fully responsive on desktop, tablet, and mobile. Works in any modern browser.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">✏️</span>
+      <p><strong>Live Preview</strong> — See your resume update in real-time as you type. No refresh needed.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🎨</span>
+      <p><strong>Fully Customizable</strong> — Choose accent colors, fonts, and styles to match your personal brand.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">📱</span>
+      <p><strong>No App Needed</strong> — Works directly in your browser. No software to download or install.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: TIPS ===== -->
+<div class="seo-section">
+  <h2>Resume Writing Tips for 2026</h2>
+  <p>A great resume builder is only as good as the content you put in it. Here are the most important tips to make your resume stand out:</p>
+
+  <h3>1. Write a Strong Summary First</h3>
+  <p>Your summary or objective statement is the first thing recruiters read. Be specific about your skills and what you offer. Use our AI Summary Writer to generate a professional starting point, then customize it with your unique experience.</p>
+
+  <h3>2. Use Action Verbs</h3>
+  <p>Every bullet point should start with a strong action verb: Built, Designed, Led, Increased, Reduced, Launched, Managed. Avoid passive language like "was responsible for."</p>
+
+  <h3>3. Quantify Your Achievements</h3>
+  <p>Numbers make your experience real. "Increased sales by 30%" is far more powerful than "helped improve sales." Add percentages, dollar amounts, or time saved wherever possible.</p>
+
+  <h3>4. Choose the Right Template for Your Industry</h3>
+  <p>For corporate and traditional roles, use Classic or Executive. For tech and developer roles, Modern or Neon Dark work best. For creative roles, Creative or Bold templates make a strong impression. For ATS systems, stick to Minimal or Classic.</p>
+
+  <h3>5. Keep It to One Page</h3>
+  <p>Fresh graduates and professionals with under 7 years of experience should keep their resume to one page. Be concise — every line should earn its place.</p>
+
+  <h3>6. Add LinkedIn and GitHub Links</h3>
+  <p>Use the LinkedIn and GitHub fields to add your profile URLs. Recruiters will visit these links to learn more about you. Make sure your profiles are up to date before applying.</p>
+</div>
+
+<!-- ===== AD SLOT ===== -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ===== FAQ SECTION ===== -->
+<div class="seo-section faq-section-tool">
+  <h2>Frequently Asked Questions</h2>
+  <p>Everything you need to know about the NexaTools free resume builder.</p>
+
+  <div class="faq-list-tool">
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        Is the NexaTools resume builder really free? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">Yes, completely free. You can create unlimited resumes, use all 7 templates, and download as PDF without paying anything or creating an account.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        Do I need to sign up or create an account? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">No signup required. Open the page, fill in your details, and download your resume. It is that simple. No email, no password, no account.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        Is my resume data safe and private? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">100% private. All resume processing happens in your browser. Your personal information, work history, and contact details are never sent to or stored on our servers.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        Which template is best for ATS systems? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">The Classic and Minimal templates are the most ATS-friendly. They use clean text structure without heavy graphics or tables that can confuse applicant tracking systems.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        How does the AI summary writer work? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">Enter your job title, then click "AI Write Summary." The tool automatically generates a professional summary paragraph tailored to your role. You can edit it freely after generation.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">
+        Can I use this resume for commercial or freelance work? <span class="faq-arrow-tool">▾</span>
+      </button>
+      <div class="faq-a-tool">Yes. Resumes created with NexaTools can be used for any purpose — job applications, freelance profiles, LinkedIn, or any professional use. There are no restrictions.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RELATED TOOLS ===== -->
+<div class="seo-section">
+  <h2>More Free Tools You Might Need</h2>
+  <p>Complete your professional toolkit with these free tools from NexaTools:</p>
+
+  <div class="related-tools-grid">
+    <a href="invoice-generator.html" class="related-tool-card">
+      <span class="rt-icon">🧾</span>
+      <div class="rt-name">Invoice Generator</div>
+      <div class="rt-desc">Free professional invoices</div>
+    </a>
+    <a href="logo-maker.html" class="related-tool-card">
+      <span class="rt-icon">🎨</span>
+      <div class="rt-name">Logo Maker</div>
+      <div class="rt-desc">Create your brand logo free</div>
+    </a>
+    <a href="qr-code-generator.html" class="related-tool-card">
+      <span class="rt-icon">📱</span>
+      <div class="rt-name">QR Code Generator</div>
+      <div class="rt-desc">URL, WiFi, UPI & more</div>
+    </a>
+    <a href="business-card-maker.html" class="related-tool-card">
+      <span class="rt-icon">💼</span>
+      <div class="rt-name">Business Card Maker</div>
+      <div class="rt-desc">Professional cards free</div>
+    </a>
+    <a href="password-generator.html" class="related-tool-card">
+      <span class="rt-icon">🔐</span>
+      <div class="rt-name">Password Generator</div>
+      <div class="rt-desc">Strong passwords free</div>
+    </a>
+  </div>
+</div>
+
+<!-- ===== CTA BOX ===== -->
+<div style="max-width:1000px;margin:0 auto;padding:0 32px 80px;">
+  <div class="page-cta-box">
+    <h2>Ready to Build Your Resume?</h2>
+    <p>Join thousands of professionals who create their resumes with NexaTools every day. Free, fast, and professional.</p>
+    <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:14px 36px;font-size:1rem;">
+      ⬆️ Start Building Free Now
+    </button>
+  </div>
+</div>
+
+<!-- ===== AD SLOT BOTTOM ===== -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px 40px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io — Worldwide 🌍</p>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="script.js"></script>
+
+<script>
+// ✅ Navbar scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ✅ FAQ toggle for this page
+function toggleToolFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q-tool').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// ✅ Init resume tool on page load
+window.addEventListener('DOMContentLoaded', () => {
+  initResume();
+});
+</script>
+
+</body>
+</html>

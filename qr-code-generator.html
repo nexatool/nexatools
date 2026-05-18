@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<meta name="author" content="NexaTools.io">
+
+<title>Free QR Code Generator Online  URL, WiFi, UPI & More | NexaTools.io</title>
+<meta name="description" content="Generate free QR codes online for URLs, WiFi, UPI payments, email, phone and text. No signup required. Download as PNG instantly.Perfect for businesses, restaurants & freelancers.">
+<meta name="keywords" content="free QR code generator, QR code maker online, WiFi QR code, UPI QR code, URL QR code, QR code download PNG, free QR code 2026, nexatools">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nexatools.io/qr-code-generator.html">
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<meta property="og:title" content="Free QR Code Generator Online  NexaTools.io">
+<meta property="og:description" content="Generate QR codes for URL, WiFi, UPI, Email & more. Free, instant download. No login needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexatools.io/qr-code-generator.html">
+<meta property="og:image" content="https://nexatools.io/og-image.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free QR Code Generator Online NexaTools.io">
+<meta name="twitter:description" content="Free QR codes for URL, WiFi, UPI & more. Download PNG instantly. No login needed.">
+<meta name="twitter:image" content="https://nexatools.io/og-image.png">
+
+<!-- SCHEMA: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free QR Code Generator NexaTools.io",
+  "url": "https://nexatools.io/qr-code-generator.html",
+  "description": "Free online QR code generator. Create QR codes for URLs, WiFi, UPI payments, email, phone and text. Download as PNG instantly. No signup required.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "URL QR codes",
+    "WiFi QR codes",
+    "UPI payment QR codes",
+    "Email and phone QR codes",
+    "Custom colors",
+    "PNG download",
+    "No signup required",
+    "100% free"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "NexaTools.io",
+    "url": "https://nexatools.io"
+  }
+}
+</script>
+
+<!-- SCHEMA: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this QR code generator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100% free. Generate unlimited QR codes for any type and download as PNG without any payment or signup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of QR codes can I create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can create QR codes for URLs, text messages, phone numbers, email addresses, WiFi networks, and UPI payment IDs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use these QR codes for my business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. QR codes created with NexaTools can be used for personal and commercial purposes including restaurant menus, business cards, payment links, and marketing materials."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I create a WiFi QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Select the WiFi tab, then enter your network name and password in the format NetworkName:Password. The QR code will be generated automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I customize QR code colors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Choose from several preset colors including cyan, purple, green, red, blue, and more. The QR code updates instantly as you pick a color."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+
+<style>
+  .tool-page-hero {
+    position: relative;
+    z-index: 1;
+    padding: calc(var(--nav-h) + 50px) 32px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tool-page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .tool-page-hero p {
+    color: var(--text2);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto 28px;
+  }
+  .hero-feature-pills {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .feature-pill {
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-size: 0.78rem;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-weight: 500;
+  }
+  .tool-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
+  }
+  .seo-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 32px;
+    border-top: 1px solid var(--border);
+  }
+  .seo-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text), var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .seo-section p { color: var(--text2); font-size: 0.95rem; line-height: 1.85; margin-bottom: 16px; }
+  .seo-section h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--cyan); margin: 28px 0 10px; }
+
+  .qr-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .qr-type-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: var(--transition);
+  }
+  .qr-type-pill:hover { border-color: var(--border3); transform: translateY(-3px); }
+  .qr-type-pill .tp-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .qr-type-pill .tp-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+  .qr-type-pill .tp-desc { font-size: 0.72rem; color: var(--muted2); margin-top: 3px; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .step-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .step-num { width: 32px; height: 32px; background: var(--cyan); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.88rem; margin-bottom: 12px; }
+  .step-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .step-card p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; margin: 0; }
+
+  .benefits-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .benefit-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .benefit-item .bi-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .benefit-item p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin: 0; }
+  .benefit-item strong { color: var(--text); }
+
+  .faq-list-tool { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item-tool { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .faq-q-tool { width: 100%; background: none; border: none; color: var(--text); font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; padding: 16px 20px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+  .faq-q-tool:hover { color: var(--cyan); }
+  .faq-arrow-tool { font-size: 1rem; color: var(--cyan); transition: transform 0.3s; }
+  .faq-q-tool.open .faq-arrow-tool { transform: rotate(180deg); }
+  .faq-a-tool { color: var(--text2); font-size: 0.87rem; line-height: 1.8; padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.35s ease; }
+  .faq-a-tool.open { max-height: 200px; padding: 0 20px 16px; }
+
+  .related-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .related-tool-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; text-decoration: none; display: block; transition: var(--transition); }
+  .related-tool-card:hover { border-color: var(--border3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,229,255,0.08); }
+  .related-tool-card .rt-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+  .related-tool-card .rt-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .related-tool-card .rt-desc { font-size: 0.72rem; color: var(--muted2); }
+
+  .page-cta-box { background: linear-gradient(135deg, var(--cyan-dim), var(--purple-dim)); border: 1px solid var(--border3); border-radius: var(--radius-lg); padding: 40px; text-align: center; margin: 40px 0; }
+  .page-cta-box h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+  .page-cta-box p { color: var(--text2); font-size: 0.92rem; margin-bottom: 22px; }
+
+  .breadcrumb { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: calc(var(--nav-h) + 16px) 32px 0; font-size: 0.8rem; color: var(--muted2); display: flex; gap: 8px; align-items: center; }
+  .breadcrumb a { color: var(--cyan); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .ad-slot { text-align: center; margin: 32px 0; min-height: 90px; }
+
+  /* Tool tabs nav */
+  .tool-tabs-nav {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 32px 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tool-tabs-nav .tab-btn {
+    text-decoration: none;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 768px) {
+    .tool-page-hero { padding: calc(var(--nav-h) + 30px) 20px 30px; }
+    .tool-section { padding: 0 20px 40px; }
+    .seo-section { padding: 40px 20px; }
+    .benefits-list { grid-template-columns: 1fr; }
+    .page-cta-box { padding: 28px 20px; }
+    .breadcrumb { padding: calc(var(--nav-h) + 12px) 20px 0; }
+    .tool-tabs-nav { padding: 12px 16px 0; gap: 6px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+      <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="this.closest('nav').querySelector('.mobile-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#tools-section">Tools</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+</nav>
+
+<!-- TOOL TABS NAV -->
+<div class="tool-tabs-nav">
+  <a href="resume-builder.html" class="tab-btn">📄 Resume Builder</a>
+  <a href="invoice-generator.html" class="tab-btn">🧾 Billing</a>
+  <a href="scheduler.html" class="tab-btn">📅 Scheduler</a>
+  <a href="logo-maker.html" class="tab-btn">🎨 Branding</a>
+  <a href="qr-code-generator.html" class="tab-btn active">📱 QR Code</a>
+  <a href="business-card-maker.html" class="tab-btn">💼 Business Card</a>
+  <a href="password-generator.html" class="tab-btn">🔐 Password</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="index.html#tools-section">Tools</a>
+  <span>›</span>
+  <span style="color:var(--text);">QR Code Generator</span>
+</div>
+
+<!-- HERO -->
+<div class="tool-page-hero">
+  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
+    <span class="badge-dot"></span>Free QR Code Generator  No Signup Required
+  </div>
+  <h1>Free QR Code Generator<br><span class="title-gradient">URL · WiFi · UPI · Email & More</span></h1>
+  <p>Generate professional QR codes in seconds. Choose your type, customize the color, and download as PNG instantly completely free, no account needed.</p>
+  <div class="hero-feature-pills">
+    <span class="feature-pill">✅ 100% Free</span>
+    <span class="feature-pill">📱 6 QR Types</span>
+    <span class="feature-pill">🎨 Custom Colors</span>
+    <span class="feature-pill">⬇️ PNG Download</span>
+    <span class="feature-pill">🔒 No Login Needed</span>
+    <span class="feature-pill">🌍 Works Worldwide</span>
+  </div>
+</div>
+
+<!-- AD TOP -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="2845731096" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- QR CODE TOOL -->
+<div class="tool-section">
+  <div class="glass-card">
+    <div class="card-header"><h3>📱 QR Code Generator</h3></div>
+
+    <!-- QR TYPE TABS -->
+    <div class="qr-type-tabs">
+      <button class="qr-tab active" onclick="setQT('url',this)">🔗 URL</button>
+      <button class="qr-tab" onclick="setQT('text',this)">📝 Text</button>
+      <button class="qr-tab" onclick="setQT('phone',this)">📞 Phone</button>
+      <button class="qr-tab" onclick="setQT('email',this)">📧 Email</button>
+      <button class="qr-tab" onclick="setQT('wifi',this)">📶 WiFi</button>
+      <button class="qr-tab" onclick="setQT('upi',this)">💳 UPI</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:20px;">
+      <div>
+        <div class="form-group">
+          <label class="form-label" id="qr-lbl">Website URL</label>
+          <input id="qr-inp" placeholder="https://nexatools.io" oninput="genQR()" style="width:100%;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">QR Color</label>
+          <div class="swatch-row" id="qr-clr-row"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Size</label>
+          <select id="qr-sz" onchange="genQR()">
+            <option value="200">Small (200px)</option>
+            <option value="280" selected>Medium (280px)</option>
+            <option value="360">Large (360px)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">QR Style</label>
+          <div class="shape-opts">
+            <button class="shape-opt active" onclick="setQRStyle('basic',this)">⬛ Basic</button>
+            <button class="shape-opt" onclick="setQRStyle('rounded',this)">🔵 Rounded</button>
+            <button class="shape-opt" onclick="setQRStyle('gradient',this)">🌈 Gradient</button>
+            <button class="shape-opt" onclick="setQRStyle('logo',this)">🖼️ Logo Center</button>
+          </div>
+        </div>
+
+        <!-- WiFi helper tip -->
+        <div id="wifi-tip" style="display:none;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.2);border-radius:10px;padding:12px 14px;font-size:0.8rem;color:var(--text2);margin-top:8px;">
+          💡 <strong style="color:var(--cyan);">WiFi format:</strong> Enter as <code style="color:var(--cyan);">NetworkName:Password</code><br>
+          Example: <code style="color:var(--cyan);">MyWiFi:password123</code>
+        </div>
+
+        <!-- UPI helper tip -->
+        <div id="upi-tip" style="display:none;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.2);border-radius:10px;padding:12px 14px;font-size:0.8rem;color:var(--text2);margin-top:8px;">
+          💡 <strong style="color:var(--cyan);">UPI format:</strong> Enter your UPI ID<br>
+          Example: <code style="color:var(--cyan);">yourname@upi</code> or <code style="color:var(--cyan);">9876543210@paytm</code>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:320px;">
+        <div id="qr-canvas" style="background:white;padding:12px;border-radius:16px;"></div>
+        <p id="qr-ph" class="empty-state">Enter value — QR will appear ✨</p>
+        <button id="qr-dl-btn" class="btn btn-green" style="display:none;margin-top:16px;" onclick="dlQR()">⬇️ Download QR PNG</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD MIDDLE -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="3956842107" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- SEO: QR TYPES -->
+<div class="seo-section">
+  <h2>6 Types of Free QR Codes You Can Create</h2>
+  <p>NexaTools QR Code Generator supports 6 different QR code types  all free to generate and download as PNG.</p>
+  <div class="qr-types-grid">
+    <div class="qr-type-pill">
+      <div class="tp-icon">🔗</div>
+      <div class="tp-name">URL / Website</div>
+      <div class="tp-desc">Link to any website or landing page instantly.</div>
+    </div>
+    <div class="qr-type-pill">
+      <div class="tp-icon">📝</div>
+      <div class="tp-name">Text</div>
+      <div class="tp-desc">Share any message, note, or information.</div>
+    </div>
+    <div class="qr-type-pill">
+      <div class="tp-icon">📞</div>
+      <div class="tp-name">Phone Number</div>
+      <div class="tp-desc">Let people call you with one scan.</div>
+    </div>
+    <div class="qr-type-pill">
+      <div class="tp-icon">📧</div>
+      <div class="tp-name">Email Address</div>
+      <div class="tp-desc">Open email compose with your address pre-filled.</div>
+    </div>
+    <div class="qr-type-pill">
+      <div class="tp-icon">📶</div>
+      <div class="tp-name">WiFi Network</div>
+      <div class="tp-desc">Connect guests to WiFi without typing passwords.</div>
+    </div>
+    <div class="qr-type-pill">
+      <div class="tp-icon">💳</div>
+      <div class="tp-name">UPI Payment</div>
+      <div class="tp-desc">Accept payments via Paytm, PhonePe, GPay & more.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO: HOW TO USE -->
+<div class="seo-section">
+  <h2>How to Create a Free QR Code Step by Step</h2>
+  <p>Generating a QR code with NexaTools takes less than 30 seconds. No design skills or software needed.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Choose QR Type</h4>
+      <p>Select the type of QR code URL, WiFi, UPI, Email, Phone, or Text.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Enter Your Value</h4>
+      <p>Type your website link, WiFi details, UPI ID, or any other value.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Pick a Color</h4>
+      <p>Choose from preset colors to match your brand or preference.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Choose Size & Style</h4>
+      <p>Select small, medium, or large. Apply rounded or gradient style.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <h4>Download PNG</h4>
+      <p>Click Download QR PNG. Your file saves directly to your device.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SEO: BENEFITS -->
+<div class="seo-section">
+  <h2>Why Use NexaTools Free QR Code Generator?</h2>
+  <p>There are many QR code tools online here is why NexaTools is the better choice for businesses and freelancers.</p>
+  <div class="benefits-list">
+    <div class="benefit-item">
+      <span class="bi-icon">🆓</span>
+      <p><strong>Completely Free</strong> No subscription, no watermark, no credit card needed. Generate unlimited QR codes.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🔒</span>
+      <p><strong>100% Private</strong> Your QR data stays in your browser. We never see or store your URLs, WiFi passwords, or UPI IDs.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">⚡</span>
+      <p><strong>Instant Generation</strong>  QR code appears as you type. No button clicks, no loading screens.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🎨</span>
+      <p><strong>Custom Colors</strong> Match QR color to your brand identity. Multiple color options available.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">📱</span>
+      <p><strong>Mobile Friendly</strong> Works on phones and tablets. Generate QR codes on the go.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="bi-icon">🌍</span>
+      <p><strong>Works Worldwide</strong>Used by businesses in 50+ countries. Works with all QR scanner apps.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SEO: USE CASES -->
+<div class="seo-section">
+  <h2>Who Uses QR Codes and Why</h2>
+  <p>QR codes have become an essential tool for businesses, freelancers, and individuals worldwide. Here are the most common use cases:</p>
+
+  <h3>Restaurant & Café Menus</h3>
+  <p>Many restaurants now use QR codes instead of printed menus. Create a URL QR code linking to your digital menu on Google Docs, Canva, or your website. Place it on tables and let customers scan to view the full menu on their phones.</p>
+
+  <h3>Business Cards & Networking</h3>
+  <p>Add a QR code to your business card that links to your LinkedIn profile, portfolio website, or contact page. When someone scans it, they immediately land on your professional profile — far more effective than typing a long URL.</p>
+
+  <h3>WiFi Access in Hotels & Offices</h3>
+  <p>Print a WiFi QR code at your reception or on room walls. Guests scan once and connect automatically  no password typing required. Works with all Android and iOS devices.</p>
+
+  <h3>UPI Payment Collection</h3>
+  <p>Freelancers and small business owners in Pakistan and India use UPI QR codes to accept instant payments via Paytm, PhonePe, and Google Pay. Generate your QR code and display it at your counter or send it digitally.</p>
+
+  <h3>Marketing Materials & Events</h3>
+  <p>Add QR codes to flyers, posters, banners, and presentations. Link to your registration form, product page, YouTube video, or Instagram profile. Track engagement by using a URL shortener with analytics before generating the QR code.</p>
+</div>
+
+<!-- AD -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="4067953218" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- FAQ -->
+<div class="seo-section">
+  <h2>Frequently Asked Questions</h2>
+  <p>Everything you need to know about the NexaTools free QR code generator.</p>
+  <div class="faq-list-tool">
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is this QR code generator really free? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes, completely free. Generate unlimited QR codes for any type URL, WiFi, UPI, Email, Phone, or Text — and download as PNG without any payment, signup, or watermark.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">How do I create a WiFi QR code? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Click the WiFi tab, then enter your network name and password in the format: NetworkName:Password (for example: MyHomeWiFi:password123). The QR code is generated automatically. Guests scan it to connect without typing the password.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I use these QR codes for my business? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. QR codes generated with NexaTools can be used for personal and commercial purposes — restaurant menus, business cards, flyers, payment links, product packaging, and more. There are no usage restrictions.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is my WiFi password and UPI ID safe? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">100% safe. All QR code generation happens entirely in your browser using JavaScript. Your WiFi password, UPI ID, and all other data are never sent to or stored on our servers.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">What format does the QR code download in? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">QR codes download as PNG image files. PNG is the best format for printing and digital use — it supports transparent backgrounds and maintains quality at any size.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Do the QR codes expire? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. QR codes generated by NexaTools never expire. The QR code contains the data you entered directly — there is no server or tracking link involved, so it works forever as long as the destination (like your website URL) remains active.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED TOOLS -->
+<div class="seo-section">
+  <h2>More Free Tools You Might Need</h2>
+  <p>Complete your toolkit with these free tools from NexaTools:</p>
+  <div class="related-tools-grid">
+    <a href="resume-builder.html" class="related-tool-card">
+      <span class="rt-icon">📄</span>
+      <div class="rt-name">Resume Builder</div>
+      <div class="rt-desc">AI-powered, 7 templates free</div>
+    </a>
+    <a href="invoice-generator.html" class="related-tool-card">
+      <span class="rt-icon">🧾</span>
+      <div class="rt-name">Invoice Generator</div>
+      <div class="rt-desc">Professional invoices free</div>
+    </a>
+    <a href="logo-maker.html" class="related-tool-card">
+      <span class="rt-icon">🎨</span>
+      <div class="rt-name">Logo Maker</div>
+      <div class="rt-desc">Create your brand logo free</div>
+    </a>
+    <a href="business-card-maker.html" class="related-tool-card">
+      <span class="rt-icon">💼</span>
+      <div class="rt-name">Business Card Maker</div>
+      <div class="rt-desc">Professional cards free</div>
+    </a>
+    <a href="password-generator.html" class="related-tool-card">
+      <span class="rt-icon">🔐</span>
+      <div class="rt-name">Password Generator</div>
+      <div class="rt-desc">Strong passwords free</div>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="max-width:1000px;margin:0 auto;padding:0 32px 80px;">
+  <div class="page-cta-box">
+    <h2>Ready to Create Your QR Code?</h2>
+    <p>Join thousands of businesses and freelancers who use NexaTools to generate QR codes every day — free, fast, and no login needed.</p>
+    <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:14px 36px;font-size:1rem;">
+      ⬆️ Create QR Code Free Now
+    </button>
+  </div>
+</div>
+
+<!-- AD BOTTOM -->
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px 40px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="5178064329" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// FAQ toggle
+function toggleToolFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q-tool').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// Override setQT to also show/hide tips
+const _origSetQT = setQT;
+function setQT(type, el) {
+  _origSetQT(type, el);
+  document.getElementById('wifi-tip').style.display = type === 'wifi' ? 'block' : 'none';
+  document.getElementById('upi-tip').style.display  = type === 'upi'  ? 'block' : 'none';
+}
+
+// Init on load
+window.addEventListener('DOMContentLoaded', () => {
+  initQR();
+});
+</script>
+</body>
+</html>
