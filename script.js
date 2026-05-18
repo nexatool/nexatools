@@ -6,7 +6,7 @@ function requirePro(feature) {
   return true; // All features free
 }
 // ---------- Global State ----------
-let invoiceItems = [{ desc: 'Web Development', qty: 1, rate: 150 }];
+let invoiceItems = [{ desc: 'Professional Services', qty: 1, rate: 0 }];
 let scheduledPosts = [];
 let currentResumeTemplate = 'classic';
 let resumeAccent = '#bf5af2';
@@ -912,13 +912,18 @@ function setInvTemplate(tpl, el) {
   const old = $('inv-template');
   if (old) old.remove();
   document.body.appendChild(inp);
-  document.querySelectorAll('#panel-invoice .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
+ el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
   generateInvoice();
 }
 function generateInvoice() {
-     const invFont  = $('inv-font-family')?.value || 'Arial';
+  if (!invoiceGenerated) return;
+  const invFont  = $('inv-font-family')?.value || 'Arial';
   const invStyle = $('inv-font-style')?.value  || 'normal';
+  const fontWeight  = invStyle.includes('bold')   ? 'bold'   : 'normal';
+  const fontStyle   = invStyle.includes('italic') ? 'italic' : 'normal';
+  const fontCSS = `font-family:'${invFont}',sans-serif;font-weight:${fontWeight};font-style:${fontStyle};`;
+
   const from  = $('inv-from')?.value?.trim() || 'Your Company';
   const email = $('inv-email')?.value?.trim() || '';
   const phone = $('inv-phone')?.value?.trim() || '';
@@ -939,10 +944,9 @@ function generateInvoice() {
 
   let html = '';
 
-  // ==================== BASIC WHITE (FREE) ====================
   if (invTpl === 'basic') {
     html = `
-    <div style="font-family:Arial,sans-serif;background:#fff;color:#111;padding:32px;border-radius:8px;">
+    <div style="${fontCSS}background:#fff;color:#111;padding:32px;border-radius:8px;">
       <div style="display:flex;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:20px;">
         <div>
           <div style="font-size:2rem;font-weight:800;color:#6a0dad;">Billing</div>
@@ -966,14 +970,13 @@ function generateInvoice() {
       </table>
       <div style="text-align:right;font-size:1.4rem;font-weight:800;color:#6a0dad;">Total: $${subtotal.toFixed(2)}</div>
       <div style="margin-top:24px;font-size:0.78rem;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:12px;">
-        Thank you for your business! • ${isPro ? '' : 'Created with NexaTools.io'}
+        Thank you for your business! ${isPro ? '' : '• Created with NexaTools.io'}
       </div>
     </div>`;
 
-  // ==================== CORPORATE DARK (PRO) ====================
   } else if (invTpl === 'corporate') {
     html = `
-    <div style="font-family:Arial,sans-serif;background:#0a0a1a;color:#fff;padding:36px;border-radius:8px;">
+    <div style="${fontCSS}background:#0a0a1a;color:#fff;padding:36px;border-radius:8px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;flex-wrap:wrap;gap:20px;">
         <div>
           <div style="font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#00e5ff,#bf5af2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">INVOICE</div>
@@ -1016,10 +1019,9 @@ function generateInvoice() {
       </div>
     </div>`;
 
-  // ==================== GRADIENT PREMIUM (PRO) ====================
   } else if (invTpl === 'gradient') {
     html = `
-    <div style="font-family:Georgia,serif;background:#fff;color:#111;border-radius:8px;overflow:hidden;">
+    <div style="${fontCSS}background:#fff;color:#111;border-radius:8px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:36px;color:#fff;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;">
           <div>
@@ -1057,10 +1059,9 @@ function generateInvoice() {
       </div>
     </div>`;
 
-  // ==================== MINIMAL LUXURY (PRO) ====================
   } else if (invTpl === 'luxury') {
     html = `
-    <div style="font-family:'Georgia',serif;background:#fafaf8;color:#1a1a1a;padding:48px;border-radius:8px;border:1px solid #e8e8e0;">
+    <div style="${fontCSS}background:#fafaf8;color:#1a1a1a;padding:48px;border-radius:8px;border:1px solid #e8e8e0;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap;gap:20px;">
         <div>
           <div style="font-size:0.7rem;letter-spacing:6px;text-transform:uppercase;color:#999;margin-bottom:12px;">Invoice</div>
@@ -1103,8 +1104,8 @@ function generateInvoice() {
     </div>`;
   }
 
-const out = $('invoice-out');
-  if (out && invoiceGenerated) out.innerHTML = html || '<p class="empty-state">Fill details and click Generate ✨</p>';
+  const out = $('invoice-out');
+  if (out) out.innerHTML = html || '<p class="empty-state">Fill details and click Generate ✨</p>';
 }
 let invoiceGenerated = false;
 function triggerGenerateInvoice() {
@@ -1565,7 +1566,7 @@ function initQR() {
 
 function setQT(type,el) {
   qrType=type;
-  el?.closest('.qr-type-tabs')?.querySelectorAll('.qr-tab').forEach(t => t.classList.remove('active'));
+document.querySelectorAll('.qr-tab').forEach(t => t.classList.remove('active'));
   if(el) el.classList.add('active');
   const labels={url:'Website URL',text:'Text Message',phone:'Phone Number',email:'Email Address',wifi:'WiFi (Name:Password)',upi:'UPI ID'};
   const placeholders={url:'https://nexatools.io',text:'Your message here...',phone:'+1 233 4567899',email:'hello@nexatools.io',wifi:'NetworkName:Password',upi:'merchant@upi'};
@@ -1946,10 +1947,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const today = new Date().toISOString().slice(0,10);
   if($('inv-date')) $('inv-date').value=today;
   if($('sch-date')) $('sch-date').value=today;
-  initResume(); renderItems(); generateInvoice();
+  initResume(); renderItems(); gen
   renderCalendar(); renderSchedList();
   initLogo(); initQR(); drawBCard(); genPass();
-  initParticles(); initCursor();
+  initParticles(); initCursor(); initResume(); renderItems();
 });
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
