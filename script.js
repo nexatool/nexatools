@@ -1231,7 +1231,7 @@ function initLogo() {
 
 function setLogoBg(c,el){ logoBg=c; document.querySelectorAll('#lbg-row .swatch').forEach(s=>s.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoTxt(c,el){ logoTxt=c; document.querySelectorAll('#ltxt-row .swatch').forEach(s=>s.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
-function setLS(shape,el){ logoShape=shape; el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
+function setLS(shape,el){ logoShape=shape; el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoIcon(ic,el){ logoIcon=ic; document.querySelectorAll('#l-icons .icon-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoFontStyle(style,el){ logoFontStyle=style; drawLogo(); }
 function setLogoStyle(style, el) {
