@@ -437,7 +437,7 @@ function initResume() {
 
 function setResumeTemplate(tpl, el) {
   currentResumeTemplate = tpl;
-  document.querySelectorAll('#resume-tpl-grid .resume-tpl-card').forEach(b => b.classList.remove('active'));
+  el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
   // Sync accent color with template accent color in preview
   const accentMap = { classic:'#bf5af2', modern:'#00e5ff', minimal:'#30d158', bold:'#ff453a', executive:'#ffd60a', creative:'#00e5ff', neon:'#00e5ff' };
@@ -1231,7 +1231,7 @@ function initLogo() {
 
 function setLogoBg(c,el){ logoBg=c; document.querySelectorAll('#lbg-row .swatch').forEach(s=>s.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoTxt(c,el){ logoTxt=c; document.querySelectorAll('#ltxt-row .swatch').forEach(s=>s.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
-function setLS(shape,el){ logoShape=shape; document.querySelectorAll('#panel-logo .shape-opts .shape-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
+function setLS(shape,el){ logoShape=shape; el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
 function setLogoIcon(ic,el){ logoIcon=ic; document.querySelectorAll('#l-icons .icon-opt').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); drawLogo(); }
 function setLogoFontStyle(style,el){ logoFontStyle=style; drawLogo(); }
 function setLogoStyle(style, el) {
@@ -1242,7 +1242,7 @@ function setLogoStyle(style, el) {
   inp.type = 'hidden';
   inp.value = style;
   if (!$('logo-style')) document.body.appendChild(inp);
-  document.querySelectorAll('#panel-logo .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
+  el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
   drawLogo();
 }
@@ -1565,7 +1565,7 @@ function initQR() {
 
 function setQT(type,el) {
   qrType=type;
-  document.querySelectorAll('.qr-tab').forEach(t=>t.classList.remove('active'));
+  el?.closest('.qr-type-tabs')?.querySelectorAll('.qr-tab').forEach(t => t.classList.remove('active'));
   if(el) el.classList.add('active');
   const labels={url:'Website URL',text:'Text Message',phone:'Phone Number',email:'Email Address',wifi:'WiFi (Name:Password)',upi:'UPI ID'};
   const placeholders={url:'https://nexatools.io',text:'Your message here...',phone:'+1 233 4567899',email:'hello@nexatools.io',wifi:'NetworkName:Password',upi:'merchant@upi'};
@@ -1675,7 +1675,7 @@ function genQR() {
 function setQRStyle(style, el) {
   if (style !== 'basic' && style !== 'rounded' && !requirePro('Pro QR Styles')) return;
   qrStyle = style;
-  document.querySelectorAll('#panel-qr .shape-opts .shape-opt').forEach(b => b.classList.remove('active'));
+  el?.closest('.shape-opts')?.querySelectorAll('.shape-opt').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
   genQR();
 }
