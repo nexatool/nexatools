@@ -3,6 +3,7 @@
 INDEX.HTML MEIN YEH 2 CHANGES KARO:
 ==============================================
 
+
 === CHANGE 1: Footer links replace karo ===
 Purana code dhundo:
   <div class="footer-links">
