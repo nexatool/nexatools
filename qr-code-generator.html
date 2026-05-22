@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<title>Free QR Code Generator Online | NexaTools.io</title>
+<meta name="description" content="Generate free QR codes online for URLs, WiFi, UPI, JazzCash, EasyPaisa, PayPal, WhatsApp, Instagram and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* Matching style.css variables */
+  --cyan: #00e5ff;
+  --purple: #bf5af2;
+  --bg: #050714;
+  --bg-light: #0a0c1a;
+  --surface: #0c0e1a;
+  --surface2: #101426;
+  --surface3: #161930;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.12);
+  --border3: rgba(0,229,255,0.25);
+  --cyan-dim: rgba(0,229,255,0.12);
+  --cyan-glow: rgba(0,229,255,0.3);
+  --purple-dim: rgba(191,90,242,0.12);
+  --green: #30d158;
+  --text: #eeeeff;
+  --text2: #b0b0cc;
+  --text3: #707090;
+  --nav-h: 68px;
+  --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'General Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), -apple-system, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button { cursor: pointer; }
+
+/* NAV */
+#topnav{display:none}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: #fff; text-decoration: none;
+}
+.nav-logo em { color: var(--cyan); font-style: normal; }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: 0.86rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--cyan); }
+.btn-try {
+  background: var(--cyan); color: #000;
+  padding: 8px 18px; border-radius: 8px;
+  font-size: 0.8rem; font-weight: 700; text-decoration: none;
+}
+
+/* TOOL TABS */
+.tool-tabs{display:none}
+.ttab {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 13px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text2); text-decoration: none; transition: var(--transition);
+}
+.ttab:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+.ttab.active { background: rgba(0,229,255,0.1); border-color: var(--cyan); color: var(--cyan); }
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding: calc(var(--nav-h) + 10px) 32px 0;
+  font-size: 0.78rem; color: var(--text2);
+  display: flex; gap: 8px; align-items: center;
+}
+.breadcrumb a { color: var(--cyan); text-decoration: none; }
+
+/* ===== INVOICE-STYLE PAGE LAYOUT ===== */
+.tool-page-hero {
+  position: relative; z-index: 1;
+  padding: calc(var(--nav-h) + 50px) 32px 40px;
+  max-width: 1000px; margin: 0 auto; text-align: center;
+}
+.tool-page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
+}
+.tool-page-hero p { color: var(--text2); font-size: 1rem; line-height: 1.7; max-width: 620px; margin: 0 auto 28px; }
+.hero-feature-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.feature-pill {
+  background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+  color: var(--cyan); font-size: 0.78rem; padding: 6px 16px; border-radius: 30px; font-weight: 500;
+}
+.tool-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 32px 60px; }
+.seo-section {
+  position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
+  padding: 52px 32px; border-top: 1px solid var(--border);
+}
+.seo-section h2 {
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--text), var(--cyan));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.seo-section p { color: var(--text2); font-size: 0.92rem; line-height: 1.85; margin-bottom: 14px; }
+.seo-section h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--cyan); margin: 26px 0 8px; }
+
+/* Templates grid (QR types) */
+.templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0; }
+.template-pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; transition: var(--transition); }
+.template-pill:hover { border-color: var(--border3); transform: translateY(-3px); }
+.template-pill .tp-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.template-pill .tp-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.template-pill .tp-desc { font-size: 0.72rem; color: var(--text2); margin-top: 3px; }
+
+/* Steps grid */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 14px; margin: 22px 0; }
+.step-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+.step-num { width: 32px; height: 32px; background: var(--cyan); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.88rem; margin-bottom: 12px; }
+.step-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.step-card p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; margin: 0; }
+
+/* Benefits grid */
+.benefits-list { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 20px 0; }
+.benefit-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.benefit-item .bi-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.benefit-item p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin: 0; }
+.benefit-item strong { color: var(--text); }
+
+/* FAQ */
+.faq-list-tool { display: flex; flex-direction: column; gap: 10px; }
+.faq-item-tool { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.faq-q-tool { width: 100%; background: none; border: none; color: var(--text); font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; padding: 16px 20px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+.faq-q-tool:hover { color: var(--cyan); }
+.faq-arrow-tool { font-size: 1rem; color: var(--cyan); transition: transform 0.3s; flex-shrink: 0; }
+.faq-q-tool.open .faq-arrow-tool { transform: rotate(180deg); }
+.faq-a-tool { color: var(--text2); font-size: 0.87rem; line-height: 1.8; padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.35s ease; }
+.faq-a-tool.open { max-height: 220px; padding: 0 20px 16px; }
+
+/* Related tools */
+.related-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 22px 0; }
+.related-tool-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; text-decoration: none; display: block; transition: var(--transition); }
+.related-tool-card:hover { border-color: var(--border3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,229,255,0.08); }
+.related-tool-card .rt-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+.related-tool-card .rt-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.related-tool-card .rt-desc { font-size: 0.72rem; color: var(--text2); }
+
+/* CTA Box */
+.page-cta-box { background: linear-gradient(135deg, var(--cyan-dim), var(--purple-dim)); border: 1px solid var(--border3); border-radius: var(--radius-lg); padding: 40px; text-align: center; margin: 40px 0; }
+.page-cta-box h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+.page-cta-box p { color: var(--text2); font-size: 0.92rem; margin-bottom: 22px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tool-page-hero { padding: calc(var(--nav-h) + 30px) 20px 30px; }
+  .tool-section { padding: 0 20px 40px; }
+  .seo-section { padding: 36px 20px; }
+  .benefits-list { grid-template-columns: 1fr; }
+  .page-cta-box { padding: 28px 20px; }
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 0.74rem; font-weight: 600; color: var(--cyan); margin-bottom: 24px;
+}
+.bdot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: bpulse 2s infinite; }
+@keyframes bpulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+h1 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -1.5px; margin-bottom: 16px;
+}
+.gtxt {
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub { color: var(--text2); font-size: 1rem; line-height: 1.7; margin-bottom: 24px; max-width: 600px; }
+.pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 4px; }
+.pill {
+  background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+  color: var(--cyan); font-size: 0.78rem; font-weight: 500;
+  padding: 6px 16px; border-radius: 30px;
+}
+
+/* TOOL CARD */
+.tool-wrap { margin: 8px auto 60px; }
+.tool-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+.card-head {
+  padding: 18px 26px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.card-head h2 { font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 600; }
+.card-body { padding: 26px; }
+
+/* QR TYPE TABS */
+.qr-type-tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 26px; }
+.qtype-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 9px; padding: 9px 15px;
+  font-size: 0.81rem; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: var(--transition); font-family: inherit; white-space: nowrap;
+}
+.qtype-btn:hover { border-color: rgba(0,229,255,0.3); color: var(--cyan); }
+.qtype-btn.active { background: rgba(0,229,255,0.1); border-color: var(--cyan); color: var(--cyan); }
+
+/* SUB-METHOD SELECTOR (Payment & Social) */
+.sub-method-wrap {
+  display: none; margin-bottom: 20px;
+  background: rgba(0,229,255,0.04);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 12px; padding: 14px 16px;
+}
+.sub-method-wrap.show { display: block; }
+.sub-method-label {
+  font-size: 0.72rem; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
+}
+.sub-method-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.smethod-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 13px;
+  font-size: 0.78rem; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.smethod-btn:hover { border-color: rgba(0,229,255,0.3); color: var(--text); }
+.smethod-btn.active { background: rgba(0,229,255,0.12); border-color: var(--cyan); color: var(--cyan); }
+
+/* GRID */
+.qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 640px) { .qr-grid { grid-template-columns: 1fr; } }
+
+/* FORM */
+.fgrp { margin-bottom: 18px; }
+.flbl { display: block; font-size: 0.76rem; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 7px; }
+.finp {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); border-radius: 9px;
+  padding: 11px 13px; color: var(--text); font-size: 0.88rem;
+  font-family: inherit; outline: none; transition: border-color 0.2s;
+}
+.finp:focus { border-color: var(--border3); background: rgba(0,229,255,0.03); box-shadow: 0 0 0 3px rgba(0,229,255,0.08); }
+.finp::placeholder { color: var(--text3); }
+select.finp { cursor: pointer; }
+select.finp option { background: var(--surface); color: var(--text); }
+
+/* SWATCHES */
+.sw-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.sw { width: 28px; height: 28px; border-radius: 7px; cursor: pointer; border: 2px solid transparent; transition: var(--transition); flex-shrink: 0; }
+.sw:hover { transform: scale(1.12); }
+.sw.active { border-color: #fff; transform: scale(1.18); box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+
+/* STYLE BTNS */
+.style-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.style-btn {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 13px;
+  font-size: 0.77rem; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.style-btn:hover { border-color: rgba(0,229,255,0.3); color: var(--text); }
+.style-btn.active { background: rgba(0,229,255,0.1); border-color: var(--cyan); color: var(--cyan); }
+
+/* TIPS */
+.tip { background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.18); border-radius: 9px; padding: 11px 13px; font-size: 0.79rem; color: var(--text2); line-height: 1.65; margin-top: 4px; margin-bottom: 14px; display: none; }
+.tip.show { display: block; }
+.tip strong { color: var(--cyan); }
+.tip code { color: var(--cyan); background: rgba(0,229,255,0.1); padding: 1px 5px; border-radius: 4px; font-size: 0.8rem; }
+
+/* PREVIEW */
+.qr-preview { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 6px; gap: 10px; min-height: 300px; }
+.qr-btn-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.qr-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text2); font-size: 0.86rem; text-align: center; min-height: 200px; border: 2px dashed var(--border); border-radius: 13px; padding: 26px; width: 100%; }
+.qr-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.35; }
+.qr-box { background: #fff; padding: 12px; border-radius: 14px; box-shadow: 0 6px 28px rgba(0,0,0,0.25); display: none; }
+.qr-box.show { display: block; }
+#qrCanvas { display: block; }
+.dl-btn {
+  display: none; align-items: center; gap: 7px;
+  background: var(--cyan); color: #000;
+  font-weight: 700; font-size: 0.86rem;
+  padding: 10px 22px; border-radius: 9px;
+  border: none; cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.dl-btn.show { display: inline-flex; }
+.dl-btn:hover { background: #00ccee; transform: translateY(-1px); }
+
+/* SEO */
+.seo-wrap { margin: 0 auto; padding: 0 24px 80px; }
+.seo-sec { border-top: 1px solid var(--border); padding: 44px 0; }
+.seo-sec h2 { font-family: 'Clash Display', sans-serif; font-size: 1.55rem; font-weight: 700; margin-bottom: 12px; background: linear-gradient(135deg, #fff, var(--cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.seo-sec h3 { font-family: 'Clash Display', sans-serif; font-size: 0.98rem; color: var(--cyan); margin: 22px 0 7px; }
+.seo-sec p { color: var(--text2); font-size: 0.9rem; line-height: 1.85; margin-bottom: 14px; }
+
+.types-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 11px; margin: 18px 0; }
+.tcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 15px; text-align: center; transition: var(--transition); }
+.tcard:hover { border-color: rgba(0,229,255,0.28); transform: translateY(-2px); }
+.tcard .tic { font-size: 1.5rem; margin-bottom: 7px; }
+.tcard .tnm { font-size: 0.8rem; font-weight: 600; }
+.tcard .tdc { font-size: 0.7rem; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+
+.steps-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(155px,1fr)); gap: 12px; margin: 18px 0; }
+.scard { background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 16px; }
+.snum { width: 28px; height: 28px; background: var(--cyan); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; margin-bottom: 9px; }
+.scard h4 { font-size: 0.86rem; font-weight: 600; margin-bottom: 4px; }
+.scard p { font-size: 0.78rem; color: var(--text2); line-height: 1.6; }
+
+.bens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 18px 0; }
+@media(max-width:560px){ .bens-grid{grid-template-columns:1fr;} }
+.ben { display: flex; align-items: flex-start; gap: 9px; background: var(--surface2); border: 1px solid var(--border); border-radius: 9px; padding: 13px; }
+.ben .bic { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.ben p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+.ben strong { color: var(--text); }
+
+.faq-list { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+.faq-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; overflow: hidden; }
+.faq-q { width: 100%; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.88rem; font-weight: 600; padding: 15px 18px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+.faq-q:hover { color: var(--cyan); }
+.faq-arr { color: var(--cyan); transition: transform 0.3s; font-size: 0.95rem; flex-shrink: 0; }
+.faq-q.open .faq-arr { transform: rotate(180deg); }
+.faq-a { color: var(--text2); font-size: 0.84rem; line-height: 1.8; max-height: 0; overflow: hidden; padding: 0 18px; transition: max-height 0.35s ease, padding 0.3s; }
+.faq-a.open { max-height: 220px; padding: 0 18px 15px; }
+
+/* COPY BUTTON */
+.copy-btn {
+  display: none; align-items: center; gap: 7px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); font-weight: 600; font-size: 0.83rem;
+  padding: 9px 18px; border-radius: 9px;
+  cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.copy-btn.show { display: inline-flex; }
+.copy-btn:hover { border-color: rgba(0,229,255,0.4); color: var(--cyan); }
+.copy-toast {
+  display: none; background: rgba(48,209,88,0.12); border: 1px solid rgba(48,209,88,0.3);
+  color: #30d158; font-size: 0.78rem; font-weight: 600;
+  padding: 6px 14px; border-radius: 7px; animation: fadeInUp 0.3s ease;
+}
+.copy-toast.show { display: block; }
+@keyframes fadeInUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* COLOR PICKER ROW */
+.color-picker-row {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.color-picker-label {
+  display: flex; flex-direction: column; gap: 5px;
+  font-size: 0.72rem; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.7px;
+}
+.custom-color-wrap {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 10px; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.custom-color-wrap:hover { border-color: rgba(0,229,255,0.4); }
+.custom-color-wrap input[type="color"] {
+  width: 22px; height: 22px; border: none; background: none;
+  padding: 0; cursor: pointer; border-radius: 4px;
+}
+.color-hex-val { font-size: 0.78rem; font-family: monospace; color: var(--text2); }
+
+/* TRANSPARENT BG CHECKBOX */
+.transparent-row { margin-top: 9px; }
+.check-label {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  font-size: 0.8rem; color: var(--text2);
+}
+.check-label input[type="checkbox"] { display: none; }
+.checkmark {
+  width: 17px; height: 17px; border: 1.5px solid var(--border);
+  border-radius: 4px; background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition); flex-shrink: 0;
+}
+.check-label input:checked ~ .checkmark {
+  background: rgba(0,229,255,0.15); border-color: var(--cyan);
+}
+.check-label input:checked ~ .checkmark::after {
+  content: '✓'; font-size: 0.7rem; color: var(--cyan); font-weight: 800;
+}
+
+/* SIZE SLIDER */
+.size-slider {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 4px; border-radius: 4px; outline: none; cursor: pointer;
+  background: linear-gradient(to right, var(--cyan) 0%, var(--cyan) 20%, var(--border) 20%);
+  margin: 8px 0 4px;
+}
+.size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0,229,255,0.5); cursor: pointer;
+}
+.size-slider::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--cyan); border: none; cursor: pointer;
+}
+.size-labels {
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; color: var(--text2); margin-top: 2px;
+}
+
+/* LOGO UPLOAD */
+.logo-upload-wrap { display: flex; align-items: center; gap: 8px; }
+.logo-upload-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--surface2); border: 1.5px dashed var(--border);
+  border-radius: 9px; padding: 9px 15px;
+  font-size: 0.8rem; font-weight: 600; color: var(--text2);
+  cursor: pointer; transition: var(--transition); font-family: inherit;
+  flex: 1;
+}
+.logo-upload-btn:hover { border-color: rgba(0,229,255,0.4); color: var(--cyan); }
+.logo-upload-btn.has-logo { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,0.06); }
+.logo-clear-btn {
+  background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.3);
+  color: #ff453a; border-radius: 8px; padding: 9px 11px;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  transition: var(--transition); font-family: inherit;
+}
+.logo-clear-btn:hover { background: rgba(255,69,58,0.18); }
+.logo-hint { font-size: 0.72rem; color: var(--text2); margin-top: 5px; }
+.rcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 16px 13px; text-align: center; text-decoration: none; display: block; transition: var(--transition); }
+.rcard:hover { border-color: rgba(0,229,255,0.28); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,229,255,0.05); }
+.rcard .ri { font-size: 1.7rem; margin-bottom: 7px; display: block; }
+.rcard .rn { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.rcard .rd { font-size: 0.68rem; color: var(--text2); margin-top: 2px; }
+
+.cta-box { background: linear-gradient(135deg,rgba(0,229,255,0.05),rgba(191,90,242,0.05)); border: 1px solid rgba(191,90,242,0.18); border-radius: 17px; padding: 38px; text-align: center; margin-top: 44px; }
+.cta-box h2 { font-family: 'Clash Display',sans-serif; font-size: 1.45rem; margin-bottom: 9px; }
+.cta-box p { color: var(--text2); font-size: 0.88rem; margin-bottom: 18px; }
+.cta-btn { background: linear-gradient(135deg,var(--cyan),var(--purple)); color: #fff; border: none; padding: 12px 30px; border-radius: 9px; font-size: 0.92rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+.cta-btn:hover { opacity: 0.87; }
+
+footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-align: center; }
+.fl { font-family: 'Clash Display',sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; }
+.fl em { color: var(--cyan); font-style: normal; }
+.flinks { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+.flinks a { color: var(--text2); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+.flinks a:hover { color: var(--cyan); }
+.fcopy { font-size: 0.74rem; color: rgba(255,255,255,0.18); }
+</style>
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em>.io</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="blog-section.html">Blog</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+      <a class="btn-nav-pro" href="index.html#tools-section">⚡ Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="index.html#tools-section" onclick="toggleMobileNav()">Tools</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+    <a href="index.html#tools-section" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
+  </div>
+</nav>
+
+<!-- TOOL TABS NAV -->
+<div class="tool-tabs-bar">
+  <a href="resume-builder.html" class="ttab">📄 Resume</a>
+  <a href="invoice-generator.html" class="ttab">🧾 Billing</a>
+  <a href="scheduler.html" class="ttab">📅 Scheduler</a>
+  <a href="logo-maker.html" class="ttab">🎨 Logo</a>
+  <a href="qr-code-generator.html" class="ttab active">📱 QR Code</a>
+  <a href="business-card-maker.html" class="ttab">💼 Business Card</a>
+  <a href="password-generator.html" class="ttab">🔐 Password</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="index.html#tools-section">Tools</a>
+  <span>›</span>
+  <span>QR Code Generator</span>
+</div>
+
+<!-- HERO -->
+<div class="tool-page-hero">
+  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
+    <span class="badge-dot"></span>Free QR Code Generator · No Signup Required
+  </div>
+  <h1>Free QR Code Generator<br>
+    <span class="title-gradient">URL · Payment · Social · WiFi &amp; More</span>
+  </h1>
+  <p>Generate professional QR codes in seconds. UPI, JazzCash, EasyPaisa, PayPal, WhatsApp, Instagram and more completely free, no account needed.</p>
+  <div class="hero-feature-pills">
+    <span class="feature-pill">✅ 100% Free</span>
+    <span class="feature-pill">📱 12+ QR Types</span>
+    <span class="feature-pill">🎨 Custom Colors</span>
+    <span class="feature-pill">⬇️ PNG Download</span>
+    <span class="feature-pill">🔒 No Login</span>
+    <span class="feature-pill">🌍 PK · IN · Worldwide</span>
+  </div>
+</div>
+<!-- TOOL -->
+<div class="tool-section">
+  <div class="glass-card">
+    <div class="card-header">
+      <h3>📱 QR Code Generator</h3>
+    </div>
+
+      <!-- MAIN TYPE TABS -->
+      <div class="qr-type-tabs" id="typeTabs">
+        <button class="qtype-btn active" data-type="url">🔗 URL</button>
+        <button class="qtype-btn" data-type="text">📝 Text</button>
+        <button class="qtype-btn" data-type="phone">📞 Phone</button>
+        <button class="qtype-btn" data-type="email">📧 Email</button>
+        <button class="qtype-btn" data-type="wifi">📶 WiFi</button>
+        <button class="qtype-btn" data-type="payment">💳 Payment</button>
+        <button class="qtype-btn" data-type="social">📲 Social</button>
+      </div>
+
+      <!-- PAYMENT SUB-METHODS -->
+      <div class="sub-method-wrap" id="paymentMethods">
+        <div class="sub-method-label">Choose Payment Method</div>
+        <div class="sub-method-row" id="paymentRow">
+          <button class="smethod-btn active" data-method="upi">🇮🇳 UPI</button>
+          <button class="smethod-btn" data-method="jazzcash">🇵🇰 JazzCash</button>
+          <button class="smethod-btn" data-method="easypaisa">🇵🇰 EasyPaisa</button>
+          <button class="smethod-btn" data-method="paypal">🌍 PayPal</button>
+          <button class="smethod-btn" data-method="bank">🏦 Bank Transfer</button>
+        </div>
+      </div>
+
+      <!-- SOCIAL SUB-METHODS -->
+      <div class="sub-method-wrap" id="socialMethods">
+        <div class="sub-method-label">Choose Platform</div>
+        <div class="sub-method-row" id="socialRow">
+          <button class="smethod-btn active" data-method="whatsapp">💬 WhatsApp</button>
+          <button class="smethod-btn" data-method="facebook">📘 Facebook</button>
+          <button class="smethod-btn" data-method="instagram">📸 Instagram</button>
+          <button class="smethod-btn" data-method="youtube">▶️ YouTube</button>
+          <button class="smethod-btn" data-method="tiktok">🎵 TikTok</button>
+          <button class="smethod-btn" data-method="twitter">🐦 Twitter/X</button>
+          <button class="smethod-btn" data-method="linkedin">💼 LinkedIn</button>
+        </div>
+      </div>
+
+      <!-- GRID -->
+      <div class="qr-grid">
+        <!-- CONTROLS -->
+        <div>
+          <div class="fgrp">
+            <label class="flbl" id="inpLabel">Website URL</label>
+            <input type="text" class="finp" id="qrInp" placeholder="https://nexatools.io" autocomplete="off" spellcheck="false">
+          </div>
+
+          <!-- TIPS -->
+          <div class="tip" id="wifiTip">
+            💡 <strong>WiFi format:</strong> <code>NetworkName:Password</code><br>
+            Example: <code>MyWiFi:password123</code>
+          </div>
+          <div class="tip" id="upiTip">
+            💡 <strong>UPI format:</strong> Enter your UPI ID<br>
+            Example: <code>yourname@upi</code> or <code>9876543210@paytm</code>
+          </div>
+          <div class="tip" id="jazzcashTip">
+            💡 <strong>JazzCash:</strong> Enter your JazzCash mobile number<br>
+            Example: <code>03001234567</code>
+          </div>
+          <div class="tip" id="easypaisaTip">
+            💡 <strong>EasyPaisa:</strong> Enter your EasyPaisa mobile number<br>
+            Example: <code>03001234567</code>
+          </div>
+          <div class="tip" id="paypalTip">
+            💡 <strong>PayPal:</strong> Enter your PayPal.me link or email<br>
+            Example: <code>paypal.me/yourname</code>
+          </div>
+          <div class="tip" id="bankTip">
+            💡 <strong>Bank Transfer:</strong> Enter account details to display<br>
+            Example: <code>Bank: HBL | IBAN: PK36SCBL0000001123456702</code>
+          </div>
+          <div class="tip" id="whatsappTip">
+            💡 <strong>WhatsApp:</strong> Enter phone number with country code<br>
+            Example: <code>923001234567</code> (no + sign, no spaces)
+          </div>
+          <div class="tip" id="socialTip">
+            💡 <strong>Social Link:</strong> Enter the full profile URL<br>
+            Example: <code>https://instagram.com/yourhandle</code>
+          </div>
+
+          <div class="fgrp">
+            <label class="flbl">QR Color</label>
+            <div class="sw-row" id="colorRow"></div>
+            <div class="color-picker-row">
+              <label class="color-picker-label">
+                <span>Custom Color</span>
+                <div class="custom-color-wrap">
+                  <input type="color" id="customColor" value="#000000" title="Pick custom QR color">
+                  <span class="color-hex-val" id="customColorHex">#000000</span>
+                </div>
+              </label>
+              <label class="color-picker-label">
+                <span>Background</span>
+                <div class="custom-color-wrap">
+                  <input type="color" id="bgColor" value="#ffffff" title="Pick background color">
+                  <span class="color-hex-val" id="bgColorHex">#ffffff</span>
+                </div>
+              </label>
+            </div>
+            <div class="transparent-row">
+              <label class="check-label">
+                <input type="checkbox" id="transparentBg">
+                <span class="checkmark"></span>
+                <span>Transparent Background (PNG)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label class="flbl">Size <span id="sizeVal">280</span>px</label>
+            <input type="range" class="size-slider" id="qrSize" min="200" max="600" step="20" value="280">
+            <div class="size-labels"><span>200</span><span>400</span><span>600</span></div>
+          </div>
+
+          <div class="fgrp">
+            <label class="flbl">QR Style</label>
+            <div class="style-row" id="styleRow">
+              <button class="style-btn active" data-style="basic">⬛ Basic</button>
+              <button class="style-btn" data-style="rounded">🔵 Rounded</button>
+              <button class="style-btn" data-style="gradient">🌈 Gradient</button>
+              <button class="style-btn" data-style="logo">🖼️ Logo Center</button>
+            </div>
+          </div>
+
+          <div class="fgrp">
+            <label class="flbl">Custom Logo (optional)</label>
+            <div class="logo-upload-wrap" id="logoUploadWrap">
+              <label class="logo-upload-btn" for="logoUpload">
+                <span id="logoUploadTxt">📁 Upload Logo / Image</span>
+                <input type="file" id="logoUpload" accept="image/*" style="display:none">
+              </label>
+              <button class="logo-clear-btn" id="logoClearBtn" style="display:none" onclick="clearLogo()">✕ Remove</button>
+            </div>
+            <p class="logo-hint">Logo will appear at QR center (works with any style)</p>
+          </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="qr-preview">
+          <div class="qr-placeholder" id="qrPlaceholder">
+            <span class="ph-icon">📱</span>
+            <span>Enter value QR will appear ✨</span>
+          </div>
+          <div class="qr-box" id="qrBox">
+            <div id="qrCanvas"></div>
+          </div>
+          <div class="qr-btn-row">
+            <button class="dl-btn" id="dlBtn" onclick="downloadQR()">
+              ⬇️ Download PNG
+            </button>
+            <button class="copy-btn" id="copyBtn" onclick="copyQR()">
+              📋 Copy to Clipboard
+            </button>
+          </div>
+          <div class="copy-toast" id="copyToast">✅ Copied!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SEO CONTENT -->
+<div class="seo-section">
+  <h2>12+ Types of Free QR Codes You Can Create</h2>
+  <p>NexaTools supports URL, WiFi, Payment (UPI, JazzCash, EasyPaisa, PayPal, Bank), Social Media (WhatsApp, Instagram, Facebook, YouTube, TikTok) and more all completely free.</p>
+  <div class="templates-grid">
+    <div class="template-pill"><div class="tp-icon">🔗</div><div class="tp-name">URL / Website</div><div class="tp-desc">Link to any website instantly</div></div>
+    <div class="template-pill"><div class="tp-icon">📝</div><div class="tp-name">Text Message</div><div class="tp-desc">Share any message or note</div></div>
+    <div class="template-pill"><div class="tp-icon">📞</div><div class="tp-name">Phone Number</div><div class="tp-desc">One scan to call you</div></div>
+    <div class="template-pill"><div class="tp-icon">📧</div><div class="tp-name">Email Address</div><div class="tp-desc">Pre-filled email compose</div></div>
+    <div class="template-pill"><div class="tp-icon">📶</div><div class="tp-name">WiFi Network</div><div class="tp-desc">Connect guests instantly</div></div>
+    <div class="template-pill"><div class="tp-icon">🇮🇳</div><div class="tp-name">UPI Payment</div><div class="tp-desc">GPay, PhonePe, Paytm</div></div>
+    <div class="template-pill"><div class="tp-icon">🇵🇰</div><div class="tp-name">JazzCash</div><div class="tp-desc">Pakistan mobile payments</div></div>
+    <div class="template-pill"><div class="tp-icon">🇵🇰</div><div class="tp-name">EasyPaisa</div><div class="tp-desc">Pakistan mobile payments</div></div>
+    <div class="template-pill"><div class="tp-icon">🌍</div><div class="tp-name">PayPal</div><div class="tp-desc">International payments</div></div>
+    <div class="template-pill"><div class="tp-icon">💬</div><div class="tp-name">WhatsApp</div><div class="tp-desc">Direct chat link</div></div>
+    <div class="template-pill"><div class="tp-icon">📸</div><div class="tp-name">Instagram</div><div class="tp-desc">Link to your profile</div></div>
+    <div class="template-pill"><div class="tp-icon">▶️</div><div class="tp-name">YouTube</div><div class="tp-desc">Channel or video link</div></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>How to Create a Free QR Code — Step by Step</h2>
+  <p>Generating a QR code with NexaTools takes less than 30 seconds. No account, no payment, no watermark.</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">1</div><h4>Choose QR Type</h4><p>Select URL, Payment, Social, WiFi, or other types from the tabs.</p></div>
+    <div class="step-card"><div class="step-num">2</div><h4>Pick Sub-Method</h4><p>Payment: UPI/JazzCash/EasyPaisa/PayPal. Social: WhatsApp/Instagram etc.</p></div>
+    <div class="step-card"><div class="step-num">3</div><h4>Enter Your Value</h4><p>Type your link, mobile number, UPI ID, or WiFi password.</p></div>
+    <div class="step-card"><div class="step-num">4</div><h4>Customize Design</h4><p>Pick color, background, size, and QR style to match your brand.</p></div>
+    <div class="step-card"><div class="step-num">5</div><h4>Download PNG</h4><p>Click Download aved directly to your device instantly.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Why Use NexaTools Free QR Code Generator?</h2>
+  <p>Here is why NexaTools is the better choice for businesses and freelancers in Pakistan, India and worldwide.</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Completely Free</strong>No subscription, no watermark, no credit card needed. Ever.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🇵🇰</span><p><strong>Pakistan Support</strong>JazzCash and EasyPaisa QR codes built right in.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🇮🇳</span><p><strong>India Support</strong>UPI QR for GPay, PhonePe, and Paytm users.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🌍</span><p><strong>International</strong>PayPal, Bank Transfer, WhatsApp supported worldwide.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>100% Private</strong>Your data stays in your browser. Never sent to our servers.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant Generation</strong>QR code appears live as you type. Zero loading time.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Who Uses QR Codes and Why</h2>
+  <p>QR codes are essential for businesses, freelancers, and individuals in Pakistan, India and worldwide.</p>
+  <h3>🇵🇰 JazzCash &amp; EasyPaisa for Pakistani Businesses</h3>
+  <p>Print a JazzCash or EasyPaisa QR code at your shop counter. Customers scan and pay instantly no cash handling, no waiting. Perfect for dukaans, food stalls, and small businesses across Pakistan.</p>
+  <h3>🇮🇳 UPI Payment for Indian Businesses</h3>
+  <p>Create a UPI QR code linked to your GPay, PhonePe, or Paytm ID. Display it at your shop or share it digitally to accept instant payments from any UPI app.</p>
+  <h3>💬 WhatsApp Business QR</h3>
+  <p>Add a WhatsApp QR code to your shop, business card, or flyer. Customers scan once and land directly in a chat with you no need to save your number first.</p>
+  <h3>🍽️ Restaurant &amp; Café Menus</h3>
+  <p>Create a URL QR code linking to your digital menu. Place it on tables and let customers browse on their phones no printing costs, always up to date.</p>
+  <h3>📱 Social Media Growth</h3>
+  <p>Add Instagram, Facebook, TikTok or YouTube QR codes to your packaging, receipts, or shop signage. Customers scan to follow you instantly grow your audience offline.</p>
+</div>
+
+<div class="seo-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list-tool">
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">Is this QR code generator really free? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes, completely free. Generate unlimited QR codes for any type URL, WiFi, UPI, JazzCash, EasyPaisa, PayPal, WhatsApp, Instagram and more and download as PNG without any payment, signup, or watermark.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">How do I create a JazzCash QR code? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Click the Payment tab, then select JazzCash. Enter your JazzCash mobile number (e.g. 03001234567). The QR code generates automatically. Customers scan it and send you money directly via JazzCash.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">How do I create a WhatsApp QR code? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Click the Social tab, then select WhatsApp. Enter your phone number with country code but without the + sign (e.g. 923001234567 for Pakistan). When someone scans this QR, they are taken directly to a WhatsApp chat with you.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">Can I use these QR codes for my business? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. QR codes from NexaTools can be used for personal and commercial purposes shop counters, business cards, flyers, payment links, social media, and more. No restrictions.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">Is my payment info and data safe? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">100% safe. All QR code generation happens entirely in your browser using JavaScript. Your UPI ID, JazzCash number, EasyPaisa number, or any other data is never sent to or stored on our servers.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleFaq(this)">Do the QR codes expire? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. QR codes from NexaTools never expire. The QR contains your data directly — no server or tracking link. It works forever as long as the destination remains active.</div>
+    </div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>More Free Tools You Might Need</h2>
+  <div class="related-tools-grid">
+    <a href="resume-builder.html" class="related-tool-card"><span class="rt-icon">📄</span><div class="rt-name">Resume Builder</div><div class="rt-desc">AI-powered, 7 templates</div></a>
+    <a href="invoice-generator.html" class="related-tool-card"><span class="rt-icon">🧾</span><div class="rt-name">Invoice Generator</div><div class="rt-desc">Professional invoices free</div></a>
+    <a href="logo-maker.html" class="related-tool-card"><span class="rt-icon">🎨</span><div class="rt-name">Logo Maker</div><div class="rt-desc">Create your brand logo</div></a>
+    <a href="business-card-maker.html" class="related-tool-card"><span class="rt-icon">💼</span><div class="rt-name">Business Card</div><div class="rt-desc">Professional cards free</div></a>
+    <a href="password-generator.html" class="related-tool-card"><span class="rt-icon">🔐</span><div class="rt-name">Password Generator</div><div class="rt-desc">Strong passwords free</div></a>
+  </div>
+
+  <div class="page-cta-box">
+    <h2>Ready to Create Your QR Code?</h2>
+    <p>Join thousands of businesses and freelancers from Pakistan, India and worldwide who use NexaTools every day free, fast, no login needed.</p>
+    <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ Create QR Code Free Now</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">Nexa<em>Tools</em>.io</div> 
+  <div class="flinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+  <p class="fcopy">© 2026 NexaTools.io Free AI Tools for Everyone 🌍</p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ---- STATE ----
+  var state = {
+    type: 'url',
+    paymentMethod: 'upi',
+    socialMethod: 'whatsapp',
+    color: '#000000',
+    bgColor: '#ffffff',
+    transparentBg: false,
+    style: 'basic',
+    qrObj: null,
+    logoDataUrl: null,
+  };
+
+  // ---- COLOR OPTIONS ----
+  var COLORS = [
+    '#000000','#00e5ff','#bf5af2','#30d158',
+    '#ff453a','#6a9fff','#ffd60a','#ff6b9d',
+  ];
+
+  // ---- TYPE CONFIG ----
+  var TYPE_CFG = {
+    url:       { label: 'Website URL',            ph: 'https://nexatools.io' },
+    text:      { label: 'Text Message',            ph: 'Type your message here...' },
+    phone:     { label: 'Phone Number',            ph: '+92 300 1234567' },
+    email:     { label: 'Email Address',           ph: 'hello@example.com' },
+    wifi:      { label: 'WiFi (Name:Password)',    ph: 'NetworkName:Password' },
+    // Payment sub-types
+    upi:       { label: 'UPI ID',                  ph: 'yourname@upi' },
+    jazzcash:  { label: 'JazzCash Mobile Number',  ph: '03001234567' },
+    easypaisa: { label: 'EasyPaisa Mobile Number', ph: '03001234567' },
+    paypal:    { label: 'PayPal.me Link or Email', ph: 'paypal.me/yourname' },
+    bank:      { label: 'Bank Account Details',    ph: 'Bank: HBL | Account: 1234567890' },
+    // Social sub-types
+    whatsapp:  { label: 'WhatsApp Number (with country code)', ph: '923001234567' },
+    facebook:  { label: 'Facebook Profile/Page URL',  ph: 'https://facebook.com/yourpage' },
+    instagram: { label: 'Instagram Profile URL',       ph: 'https://instagram.com/yourhandle' },
+    youtube:   { label: 'YouTube Channel/Video URL',   ph: 'https://youtube.com/c/yourchannel' },
+    tiktok:    { label: 'TikTok Profile URL',          ph: 'https://tiktok.com/@yourhandle' },
+    twitter:   { label: 'Twitter/X Profile URL',       ph: 'https://twitter.com/yourhandle' },
+    linkedin:  { label: 'LinkedIn Profile URL',        ph: 'https://linkedin.com/in/yourname' },
+  };
+
+  // ---- DOM HELPERS ----
+  function $id(id) { return document.getElementById(id); }
+  function qsa(sel) { return document.querySelectorAll(sel); }
+
+  // ---- BUILD COLOR SWATCHES ----
+  function buildSwatches() {
+    var row = $id('colorRow');
+    if (!row) return;
+    row.innerHTML = '';
+    COLORS.forEach(function(hex, i) {
+      var div = document.createElement('div');
+      div.className = 'sw' + (i === 0 ? ' active' : '');
+      div.style.background = hex;
+      div.title = hex;
+      div.addEventListener('click', function() { pickColor(hex, div); });
+      row.appendChild(div);
+    });
+  }
+
+  function pickColor(hex, el) {
+    state.color = hex;
+    qsa('#colorRow .sw').forEach(function(s) { s.classList.remove('active'); });
+    if (el) el.classList.add('active');
+    var cc = $id('customColor');
+    var ch = $id('customColorHex');
+    if (cc) cc.value = hex;
+    if (ch) ch.textContent = hex;
+    generateQR();
+  }
+
+  // ---- SHOW/HIDE ALL TIPS ----
+  function hideAllTips() {
+    var tips = ['wifiTip','upiTip','jazzcashTip','easypaisaTip','paypalTip','bankTip','whatsappTip','socialTip'];
+    tips.forEach(function(id) {
+      var el = $id(id);
+      if (el) el.className = 'tip';
+    });
+  }
+
+  function showTip(id) {
+    var el = $id(id);
+    if (el) el.className = 'tip show';
+  }
+
+  // ---- GET ACTIVE SUB-TYPE ----
+  function getActiveSubType() {
+    if (state.type === 'payment') return state.paymentMethod;
+    if (state.type === 'social')  return state.socialMethod;
+    return state.type;
+  }
+
+  // ---- UPDATE INPUT LABEL/PLACEHOLDER & TIPS ----
+  function updateInputForType() {
+    var subType = getActiveSubType();
+    var cfg = TYPE_CFG[subType] || TYPE_CFG['url'];
+    var lbl = $id('inpLabel');
+    var inp = $id('qrInp');
+
+    if (lbl) lbl.textContent = cfg.label;
+    if (inp) { inp.placeholder = cfg.ph; inp.value = ''; }
+
+    // Show/hide sub-method panels
+    var pm = $id('paymentMethods');
+    var sm = $id('socialMethods');
+    if (pm) pm.className = 'sub-method-wrap' + (state.type === 'payment' ? ' show' : '');
+    if (sm) sm.className = 'sub-method-wrap' + (state.type === 'social'  ? ' show' : '');
+
+    // Tips
+    hideAllTips();
+    if (state.type === 'wifi')           showTip('wifiTip');
+    else if (subType === 'upi')          showTip('upiTip');
+    else if (subType === 'jazzcash')     showTip('jazzcashTip');
+    else if (subType === 'easypaisa')    showTip('easypaisaTip');
+    else if (subType === 'paypal')       showTip('paypalTip');
+    else if (subType === 'bank')         showTip('bankTip');
+    else if (subType === 'whatsapp')     showTip('whatsappTip');
+    else if (state.type === 'social')    showTip('socialTip');
+  }
+
+  // ---- BIND MAIN TYPE TABS ----
+  function bindTypeTabs() {
+    var tabs = qsa('#typeTabs .qtype-btn');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        state.type = tab.getAttribute('data-type');
+        updateInputForType();
+        generateQR();
+      });
+    });
+  }
+
+  // ---- BIND PAYMENT SUB-METHODS ----
+  function bindPaymentMethods() {
+    var btns = qsa('#paymentRow .smethod-btn');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.paymentMethod = btn.getAttribute('data-method');
+        updateInputForType();
+        generateQR();
+      });
+    });
+  }
+
+  // ---- BIND SOCIAL SUB-METHODS ----
+  function bindSocialMethods() {
+    var btns = qsa('#socialRow .smethod-btn');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.socialMethod = btn.getAttribute('data-method');
+        updateInputForType();
+        generateQR();
+      });
+    });
+  }
+
+  // ---- BIND STYLE BUTTONS ----
+  function bindStyleBtns() {
+    var btns = qsa('#styleRow .style-btn');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.style = btn.getAttribute('data-style');
+        generateQR();
+      });
+    });
+  }
+
+  // ---- BUILD QR DATA STRING ----
+  function buildData(value) {
+    var v = value.trim();
+    var subType = getActiveSubType();
+
+    switch (subType) {
+      case 'phone':     return 'tel:' + v;
+      case 'email':     return 'mailto:' + v;
+      case 'wifi': {
+        var idx  = v.indexOf(':');
+        var ssid = idx >= 0 ? v.substring(0, idx) : v;
+        var pass = idx >= 0 ? v.substring(idx + 1) : '';
+        return 'WIFI:T:WPA;S:' + ssid + ';P:' + pass + ';;';
+      }
+      case 'upi':
+        return 'upi://pay?pa=' + encodeURIComponent(v) + '&pn=Merchant&cu=INR';
+      case 'jazzcash':
+        return 'jazzcash://pay?to=' + v;
+      case 'easypaisa':
+        return 'easypaisa://pay?to=' + v;
+      case 'paypal':
+        if (v.indexOf('http') === 0) return v;
+        if (v.indexOf('paypal.me') === 0) return 'https://' + v;
+        return 'https://paypal.me/' + v;
+      case 'bank':
+        return v;
+      case 'whatsapp':
+        var num = v.replace(/\D/g,'');
+        return 'https://wa.me/' + num;
+      case 'facebook':
+      case 'instagram':
+      case 'youtube':
+      case 'tiktok':
+      case 'twitter':
+      case 'linkedin':
+        if (v.indexOf('http') === 0) return v;
+        return 'https://' + v;
+      default:
+        return v;
+    }
+  }
+
+  // ---- GENERATE QR ----
+  function generateQR() {
+    var inp      = $id('qrInp');
+    var value    = inp ? inp.value.trim() : '';
+    var phEl     = $id('qrPlaceholder');
+    var boxEl    = $id('qrBox');
+    var canvasEl = $id('qrCanvas');
+    var dlBtn    = $id('dlBtn');
+
+    if (!value) {
+      if (phEl)  phEl.style.display = 'flex';
+      if (boxEl) boxEl.classList.remove('show');
+      if (dlBtn) dlBtn.classList.remove('show');
+      var cpBtn = $id('copyBtn');
+      if (cpBtn) cpBtn.classList.remove('show');
+      state.qrObj = null;
+      return;
+    }
+
+    if (phEl)  phEl.style.display = 'none';
+    if (boxEl) boxEl.classList.add('show');
+    if (dlBtn) dlBtn.classList.add('show');
+    var cpBtn = $id('copyBtn');
+    if (cpBtn) cpBtn.classList.add('show');
+
+    if (canvasEl) canvasEl.innerHTML = '';
+    state.qrObj = null;
+
+    var size = parseInt($id('qrSize') ? $id('qrSize').value : 280) || 280;
+    var data = buildData(value);
+    var bgColorVal = state.transparentBg ? '#ffffff' : state.bgColor;
+
+    try {
+      state.qrObj = new QRCode(canvasEl, {
+        text: data,
+        width: size, height: size,
+        colorDark: state.color,
+        colorLight: bgColorVal,
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+    } catch(e) { console.error('QRCode error:', e); return; }
+
+    // Update qr-box background to match
+    if (boxEl) boxEl.style.background = state.transparentBg ? 'transparent' : state.bgColor;
+
+    setTimeout(function() { applyStyle(canvasEl, size); }, 130);
+  }
+
+  // ---- APPLY STYLE ----
+  function applyStyle(canvasEl, size) {
+    if (!canvasEl) return;
+    var cvs = canvasEl.querySelector('canvas');
+    var img = canvasEl.querySelector('img');
+    var el  = cvs || img;
+    if (!el) return;
+
+    el.style.borderRadius = '0';
+    if (state.style === 'rounded') el.style.borderRadius = '14px';
+    if (state.style === 'gradient' && cvs) applyGradient(cvs);
+    if (state.style === 'logo' && cvs) applyLogo(cvs);
+  }
+
+  function hexToRgb(hex) {
+    var h = hex.replace('#','');
+    return { r: parseInt(h.substring(0,2),16), g: parseInt(h.substring(2,4),16), b: parseInt(h.substring(4,6),16) };
+  }
+
+  function applyGradient(cvs) {
+    try {
+      var ctx = cvs.getContext('2d');
+      var imageData = ctx.getImageData(0,0,cvs.width,cvs.height);
+      var d = imageData.data;
+      var c1 = hexToRgb(state.color);
+      var c2 = hexToRgb('#bf5af2');
+      for (var i = 0; i < d.length; i += 4) {
+        if (d[i] < 60 && d[i+1] < 60 && d[i+2] < 60) {
+          var x = (i/4) % cvs.width;
+          var y = Math.floor((i/4) / cvs.width);
+          var t = (x+y) / (cvs.width+cvs.height);
+          d[i]   = Math.round(c1.r + (c2.r-c1.r)*t);
+          d[i+1] = Math.round(c1.g + (c2.g-c1.g)*t);
+          d[i+2] = Math.round(c1.b + (c2.b-c1.b)*t);
+        }
+      }
+      ctx.putImageData(imageData,0,0);
+    } catch(e) {}
+  }
+
+  function applyLogo(cvs) {
+    try {
+      var ctx = cvs.getContext('2d');
+      var cx = cvs.width/2, cy = cvs.height/2, r = cvs.width*0.13;
+      // White circle background
+      ctx.beginPath();
+      ctx.arc(cx, cy, r+5, 0, Math.PI*2);
+      ctx.fillStyle = state.transparentBg ? (state.bgColor || '#ffffff') : state.bgColor;
+      ctx.fill();
+
+      if (state.logoDataUrl) {
+        var img = new Image();
+        img.onload = function() {
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI*2);
+          ctx.clip();
+          ctx.drawImage(img, cx-r, cy-r, r*2, r*2);
+          ctx.restore();
+        };
+        img.src = state.logoDataUrl;
+      } else {
+        ctx.font = 'bold ' + Math.round(r*1.4) + 'px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = (state.color === '#ffffff') ? '#000000' : state.color;
+        ctx.fillText('N', cx, cy);
+      }
+    } catch(e) {}
+  }
+
+  // ---- DOWNLOAD ----
+  window.downloadQR = function() {
+    var canvasEl = $id('qrCanvas');
+    var cvs = canvasEl ? canvasEl.querySelector('canvas') : null;
+    var img = canvasEl ? canvasEl.querySelector('img') : null;
+
+    if (cvs) {
+      try {
+        var exportCvs = document.createElement('canvas');
+        exportCvs.width = cvs.width;
+        exportCvs.height = cvs.height;
+        var ctx = exportCvs.getContext('2d');
+        if (!state.transparentBg) {
+          ctx.fillStyle = state.bgColor;
+          ctx.fillRect(0, 0, exportCvs.width, exportCvs.height);
+        }
+        ctx.drawImage(cvs, 0, 0);
+        var a = document.createElement('a');
+        a.download = 'qrcode-nexatools.png';
+        a.href = exportCvs.toDataURL('image/png');
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      } catch(e) {}
+    } else if (img) {
+      var a = document.createElement('a');
+      a.download = 'qrcode-nexatools.png';
+      a.href = img.src;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+  };
+
+  // ---- COPY TO CLIPBOARD ----
+  window.copyQR = function() {
+    var canvasEl = $id('qrCanvas');
+    var cvs = canvasEl ? canvasEl.querySelector('canvas') : null;
+    if (!cvs) return;
+    try {
+      var exportCvs = document.createElement('canvas');
+      exportCvs.width = cvs.width;
+      exportCvs.height = cvs.height;
+      var ctx = exportCvs.getContext('2d');
+      if (!state.transparentBg) {
+        ctx.fillStyle = state.bgColor;
+        ctx.fillRect(0, 0, exportCvs.width, exportCvs.height);
+      }
+      ctx.drawImage(cvs, 0, 0);
+      exportCvs.toBlob(function(blob) {
+        try {
+          navigator.clipboard.write([new ClipboardItem({'image/png': blob})]).then(function() {
+            showCopyToast();
+          }).catch(function() { fallbackCopy(exportCvs); });
+        } catch(e) { fallbackCopy(exportCvs); }
+      });
+    } catch(e) {}
+  };
+
+  function fallbackCopy(cvs) {
+    // Fallback: open image in new tab
+    var w = window.open('');
+    if (w) { w.document.write('<img src="' + cvs.toDataURL() + '">'); }
+    showCopyToast();
+  }
+
+  function showCopyToast() {
+    var t = $id('copyToast');
+    if (!t) return;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  }
+
+  // ---- CLEAR LOGO ----
+  window.clearLogo = function() {
+    state.logoDataUrl = null;
+    var inp = $id('logoUpload');
+    var txt = $id('logoUploadTxt');
+    var btn = $id('logoClearBtn');
+    var lbl = inp ? inp.closest('label') || inp.parentElement.querySelector('label') : null;
+    if (inp) inp.value = '';
+    if (txt) txt.textContent = '📁 Upload Logo / Image';
+    if (btn) btn.style.display = 'none';
+    var uploadLabel = document.querySelector('.logo-upload-btn');
+    if (uploadLabel) uploadLabel.classList.remove('has-logo');
+    generateQR();
+  };
+
+  // ---- FAQ ----
+  window.toggleFaq = function(btn) {
+    var ans = btn ? btn.nextElementSibling : null;
+    var isOpen = btn && btn.classList.contains('open');
+    document.querySelectorAll('.faq-q-tool').forEach(function(b) {
+      b.classList.remove('open');
+      var a = b.nextElementSibling;
+      if (a) a.classList.remove('open');
+    });
+    if (!isOpen && btn && ans) { btn.classList.add('open'); ans.classList.add('open'); }
+  };
+
+  // ---- INIT ----
+  function init() {
+    buildSwatches();
+    bindTypeTabs();
+    bindPaymentMethods();
+    bindSocialMethods();
+    bindStyleBtns();
+
+    var inp = $id('qrInp');
+    if (inp) {
+      inp.addEventListener('input', generateQR);
+      inp.addEventListener('paste', function() { setTimeout(generateQR, 20); });
+    }
+
+    // SIZE SLIDER
+    var sz = $id('qrSize');
+    if (sz) {
+      sz.addEventListener('input', function() {
+        var v = sz.value;
+        var lbl = $id('sizeVal');
+        if (lbl) lbl.textContent = v;
+        // Update slider fill %
+        var pct = ((v - 200) / (600 - 200)) * 100;
+        sz.style.background = 'linear-gradient(to right, var(--cyan) 0%, var(--cyan) ' + pct + '%, var(--border) ' + pct + '%)';
+        generateQR();
+      });
+      // Init fill
+      var initPct = ((sz.value - 200) / (600 - 200)) * 100;
+      sz.style.background = 'linear-gradient(to right, var(--cyan) 0%, var(--cyan) ' + initPct + '%, var(--border) ' + initPct + '%)';
+    }
+
+    // CUSTOM QR COLOR PICKER
+    var cc = $id('customColor');
+    if (cc) {
+      cc.addEventListener('input', function() {
+        state.color = cc.value;
+        var ch = $id('customColorHex');
+        if (ch) ch.textContent = cc.value;
+        // Deselect swatches
+        qsa('#colorRow .sw').forEach(function(s) { s.classList.remove('active'); });
+        generateQR();
+      });
+    }
+
+    // BG COLOR PICKER
+    var bc = $id('bgColor');
+    if (bc) {
+      bc.addEventListener('input', function() {
+        state.bgColor = bc.value;
+        var bh = $id('bgColorHex');
+        if (bh) bh.textContent = bc.value;
+        generateQR();
+      });
+    }
+
+    // TRANSPARENT BG CHECKBOX
+    var tb = $id('transparentBg');
+    if (tb) {
+      tb.addEventListener('change', function() {
+        state.transparentBg = tb.checked;
+        var bc = $id('bgColor');
+        if (bc) bc.parentElement.parentElement.style.opacity = tb.checked ? '0.4' : '1';
+        generateQR();
+      });
+    }
+
+    // LOGO UPLOAD
+    var logoInp = $id('logoUpload');
+    if (logoInp) {
+      logoInp.addEventListener('change', function() {
+        var file = logoInp.files && logoInp.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          state.logoDataUrl = e.target.result;
+          var txt = $id('logoUploadTxt');
+          if (txt) txt.textContent = '✅ ' + file.name.substring(0, 20) + (file.name.length > 20 ? '…' : '');
+          var btn = $id('logoClearBtn');
+          if (btn) btn.style.display = 'inline-flex';
+          var uploadLabel = document.querySelector('.logo-upload-btn');
+          if (uploadLabel) uploadLabel.classList.add('has-logo');
+          // Force logo style
+          state.style = 'logo';
+          qsa('#styleRow .style-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-style') === 'logo');
+          });
+          generateQR();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+</body>
+</html>
