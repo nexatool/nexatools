@@ -2302,3 +2302,604 @@ footer {
   background: rgba(255, 69, 58, 0.25);
   border-color: #ff453a;
 }
+/* ============================================================
+   NEXATOOLS — BLOG READING EXPERIENCE ENHANCEMENTS
+   Paste this entire block at the END of your style.css file.
+   All blog pages will auto-upgrade — no HTML changes needed.
+   ============================================================ */
+
+/* ── Reading Progress Bar ───────────────────────────────── */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), #a78bfa);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* ── Blog Page Layout ───────────────────────────────────── */
+.blog-page {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h, 64px) + 56px) 24px 120px;
+}
+
+/* ── Article Header ─────────────────────────────────────── */
+.blog-page-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--cyan, #00d4ff);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+  animation: fadeSlideUp 0.5s ease both;
+}
+
+.blog-page h1 {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+  animation: fadeSlideUp 0.5s 0.05s ease both;
+  background: linear-gradient(135deg, var(--text, #fff) 60%, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-page-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  color: var(--text3, #6b7280);
+  font-size: 0.8rem;
+  margin-bottom: 44px;
+  animation: fadeSlideUp 0.5s 0.1s ease both;
+}
+
+.blog-page-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
+.blog-page-meta span:hover {
+  background: rgba(255,255,255,0.07);
+}
+
+/* Reading time highlight */
+.blog-page-meta span:nth-child(2) {
+  border-color: rgba(0, 212, 255, 0.2);
+  color: var(--cyan, #00d4ff);
+}
+
+/* ── Blog Body Typography ───────────────────────────────── */
+.blog-body {
+  font-size: 1.025rem;
+  line-height: 1.9;
+  color: var(--text2, #a0aec0);
+  animation: fadeSlideUp 0.6s 0.15s ease both;
+}
+
+.blog-body > p:first-child {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text, #e2e8f0);
+  border-left: 3px solid var(--cyan, #00d4ff);
+  padding-left: 20px;
+  margin-bottom: 28px;
+}
+
+.blog-body p {
+  margin-bottom: 20px;
+}
+
+.blog-body strong {
+  color: var(--text, #e2e8f0);
+  font-weight: 600;
+}
+
+.blog-body a {
+  color: var(--cyan, #00d4ff);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  transition: border-color 0.2s;
+}
+
+.blog-body a:hover {
+  border-color: var(--cyan, #00d4ff);
+}
+
+/* ── Headings ───────────────────────────────────────────── */
+.blog-body h2 {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text, #e2e8f0);
+  margin: 52px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.blog-body h2::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--cyan, #00d4ff);
+  border-radius: 2px;
+}
+
+.blog-body h3 {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--cyan, #00d4ff);
+  margin: 32px 0 10px;
+  letter-spacing: 0.2px;
+}
+
+/* ── Lists ──────────────────────────────────────────────── */
+.blog-body ul,
+.blog-body ol {
+  padding-left: 0;
+  margin-bottom: 24px;
+  list-style: none;
+  counter-reset: blog-counter;
+}
+
+.blog-body ul li,
+.blog-body ol li {
+  position: relative;
+  padding: 10px 14px 10px 42px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.blog-body ul li:hover,
+.blog-body ol li:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.12);
+}
+
+.blog-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan, #00d4ff);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.5);
+}
+
+.blog-body ol li {
+  counter-increment: blog-counter;
+}
+
+.blog-body ol li::before {
+  content: counter(blog-counter);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--cyan, #00d4ff);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Tip / Callout Box ──────────────────────────────────── */
+.blog-tip {
+  position: relative;
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-left: 3px solid var(--cyan, #00d4ff);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 32px 0;
+  overflow: hidden;
+}
+
+.blog-tip::after {
+  content: '✦';
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  font-size: 1.2rem;
+  color: var(--cyan, #00d4ff);
+  opacity: 0.15;
+}
+
+.blog-tip .tip-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan, #00d4ff);
+  font-weight: 800;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blog-tip p,
+.blog-tip div:not(.tip-label) {
+  color: var(--text2, #a0aec0);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Invoice Field Rows ─────────────────────────────────── */
+.invoice-field {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+
+.invoice-field:hover {
+  background: rgba(255,255,255,0.025);
+}
+
+.invoice-field .field-name {
+  font-weight: 600;
+  color: var(--text, #e2e8f0);
+  font-size: 0.87rem;
+  padding-top: 2px;
+}
+
+.invoice-field .field-desc {
+  color: var(--text2, #a0aec0);
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+/* ── CTA Box ────────────────────────────────────────────── */
+.blog-cta-box {
+  position: relative;
+  background: linear-gradient(135deg,
+    rgba(0, 212, 255, 0.06) 0%,
+    rgba(139, 92, 246, 0.06) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 20px;
+  padding: 44px 36px;
+  text-align: center;
+  margin: 56px 0;
+  overflow: hidden;
+}
+
+.blog-cta-box::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.blog-cta-box h3 {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text, #e2e8f0);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.blog-cta-box p {
+  color: var(--text2, #a0aec0);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Style Grid (Logo Guide) ────────────────────────────── */
+.style-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.style-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.style-card:hover {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.style-card .sc-name {
+  font-weight: 700;
+  color: var(--text, #e2e8f0);
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+
+.style-card .sc-desc {
+  color: var(--text2, #a0aec0);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+/* ── QR Use Cards ───────────────────────────────────────── */
+.qr-use-card {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 16px;
+  align-items: start;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 20px;
+  margin: 12px 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.qr-use-card:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.12);
+}
+
+.qr-use-card .qu-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.qr-use-card .qu-title {
+  font-weight: 600;
+  color: var(--text, #e2e8f0);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.qr-use-card .qu-desc {
+  color: var(--text2, #a0aec0);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+/* ── Student Tool Cards ─────────────────────────────────── */
+.student-tool {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px;
+  align-items: start;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.student-tool:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.student-tool .st-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.student-tool .st-title {
+  font-family: var(--font-display, sans-serif);
+  font-weight: 600;
+  color: var(--text, #e2e8f0);
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.student-tool .st-why {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan, #00d4ff);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.student-tool p {
+  color: var(--text2, #a0aec0);
+  font-size: 0.87rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Tool Cards (AI Tools Guide) ───────────────────────── */
+.tool-card-blog {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin: 16px 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.tool-card-blog:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.tool-card-blog .tc-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tool-card-blog .tc-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.tool-card-blog .tc-name {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text, #e2e8f0);
+  flex: 1;
+}
+
+.tool-card-blog .tc-badge {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.3);
+  color: var(--green, #30d158);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tool-card-blog p {
+  color: var(--text2, #a0aec0);
+  font-size: 0.87rem;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Blog Nav (More Articles) ───────────────────────────── */
+.blog-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.blog-nav a {
+  color: var(--text2, #a0aec0);
+  font-size: 0.83rem;
+  text-decoration: none;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.blog-nav a:hover {
+  background: rgba(0, 212, 255, 0.07);
+  border-color: rgba(0, 212, 255, 0.2);
+  color: var(--cyan, #00d4ff);
+  transform: translateY(-1px);
+}
+
+/* ── Scroll-Reveal Animation ────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blog-body h2,
+.blog-body h3,
+.blog-tip,
+.blog-cta-box,
+.invoice-field,
+.style-card,
+.qr-use-card,
+.student-tool,
+.tool-card-blog {
+  animation: fadeSlideUp 0.5s ease both;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .blog-page {
+    padding: calc(var(--nav-h, 64px) + 36px) 18px 80px;
+  }
+
+  .blog-page h1 {
+    font-size: 1.7rem;
+    letter-spacing: -0.8px;
+  }
+
+  .invoice-field {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .style-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-use-card,
+  .student-tool {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-cta-box {
+    padding: 32px 20px;
+  }
+}
