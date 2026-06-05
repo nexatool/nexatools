@@ -658,14 +658,13 @@ footer {
     </a>
   </div>
 </section>
-<!-- ===== BLOG SECTION ===== -->
 <section class="blog-section section">
   <div class="section-header">
     <div class="section-eyebrow">Blog</div>
     <h2 class="section-title"><span class="tools-title-gradient">Tips, Guides & Resources</span></h2>
     <p class="section-sub">Learn how to get the most out of free AI tools.</p>
   </div>
- <div class="blog-grid">
+  <div class="blog-grid">
     <div class="blog-card">
       <div class="blog-tag">Resume</div>
       <div class="blog-title">Top 10 Resume Tips for Students & Fresh Graduates</div>
@@ -676,61 +675,44 @@ footer {
     <div class="blog-card">
       <div class="blog-tag">Invoice</div>
       <div class="blog-title">Free Billing Generator for Freelancers in Pakistan</div>
-      <p class="blog-desc">Send professional invoices to clients worldwide no software needed. Step by step guide for Pakistani freelancers.</p>
+      <p class="blog-desc">Send professional invoices to clients worldwide — no software needed. Step by step guide for Pakistani freelancers.</p>
       <div class="blog-meta"><span>📅 May 17, 2026</span><span>8 min read</span></div>
       <a class="blog-btn" href="blog-invoice-guide.html">Read More →</a>
     </div>
     <div class="blog-card">
       <div class="blog-tag">AI Tools</div>
       <div class="blog-title">Best Free AI Tools for Freelancers in 2026</div>
-      <p class="blog-desc">Discover the top free AI-powered tools that every freelancer needs resume, logo, billing and more.</p>
+      <p class="blog-desc">Discover the top free AI-powered tools that every freelancer needs — resume, logo, billing and more.</p>
       <div class="blog-meta"><span>📅 May 20, 2026</span><span>6 min read</span></div>
       <a class="blog-btn" href="blog-ai-tools.html">Read More →</a>
     </div>
-    <div class="blog-card">
-      <div class="blog-tag">QR Code</div>
-      <div class="blog-title">How to Create QR Codes for Your Business Free</div>
-      <p class="blog-desc">QR codes for websites, WiFi, UPI payments and menus. Complete guide to creating and using QR codes for free.</p>
-      <div class="blog-meta"><span>📅 May 23, 2026</span><span>4 min read</span></div>
-      <a class="blog-btn" href="blog-qr-guide.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Branding</div>
-      <div class="blog-title">How to Create a Professional Logo for Free in 2026</div>
-      <p class="blog-desc">No designer needed. Create a stunning logo for your business or startup in under 5 minutes completely free.</p>
-      <div class="blog-meta"><span>📅 May 27, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-logo-guide.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Branding</div>
-      <div class="blog-title">How to Make a Free Business Card Online in 2026</div>
-      <p class="blog-desc">Design a print-ready business card in minutes no designer needed. 7 themes, custom fonts, PNG export for free.</p>
-      <div class="blog-meta"><span>📅 May 30, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-business-card.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Security</div>
-      <div class="blog-title">How to Generate Strong Passwords for Free Complete Guide</div>
-      <p class="blog-desc">Why weak passwords are dangerous and how to create unbreakable ones instantly 100% free, nothing stored.</p>
-      <div class="blog-meta"><span>📅 June 2, 2026</span><span>4 min read</span></div>
-      <a class="blog-btn" href="blog-password-guide.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Social Media</div>
-      <div class="blog-title">Free Social Media Scheduler for Small Businesses in 2026</div>
-      <p class="blog-desc">Schedule Instagram, Facebook, LinkedIn & Twitter posts for free. Perfect for freelancers and small business owners.</p>
-      <div class="blog-meta"><span>📅 June 4, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-scheduler-guide.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Productivity</div>
-      <div class="blog-title">Top Free Tools Every Student Needs in 2026</div>
-      <p class="blog-desc">From resume building to password management here are the must-have free tools for every student worldwide.</p>
-      <div class="blog-meta"><span>📅 June 5, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-student-tools.html">Read More →</a>
-    </div>
+  </div>
+
+  <!-- View All Button -->
+  <div style="text-align:center; margin-top:40px;">
+    <a href="blog-section.html" style="
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(0,229,255,0.35);
+      color: #00e5ff;
+      padding: 13px 36px;
+      border-radius: 100px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+    "
+    onmouseover="this.style.background='rgba(0,229,255,0.08)';this.style.borderColor='rgba(0,229,255,0.6)'"
+    onmouseout="this.style.background='transparent';this.style.borderColor='rgba(0,229,255,0.35)'"
+    >
+      View All 9 Posts →
+    </a>
   </div>
 </section>
+
 
 <!-- ===== FAQ SECTION ===== -->
 <section class="faq-section section">
@@ -855,7 +837,7 @@ footer {
   <!-- CTA Block -->
   <div class="cta-block">
     <p class="cta-join-text">
-      ⚡ Professional tools for <strong>students, freelancers & businesses</strong> — free forever.
+      ⚡ Professional tools for <strong>students, freelancers & businesses</strong> free forever.
     </p>
     <button class="btn-primary cta-btn" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})">
       <span>🚀 Try Free Now</span>
