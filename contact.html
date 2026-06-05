@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1117">
 <meta name="author" content="NexaTools.io">
-<title>Contact Us NexaTools.io | Get in Touch</title>
-<meta name="description" content="Contact NexaTools.io for support, feedback, bug reports. We respond within 24 to 48 hours. Email: pro@nexatools.io">
+<title>Contact Us | NexaTools.io Get in Touch</title>
+<meta name="description" content="Contact NexaTools.io for support, feedback, or bug reports. Email: pro@nexatools.io We respond within 24 to 48 hours.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.nexatools.io/contact.html">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta property="og:title" content="Contact NexaTools.io">
-<meta property="og:description" content="Get in touch with NexaTools.io support, feedback">
+<meta property="og:title" content="Contact NexaTools.io Get in Touch">
+<meta property="og:description" content="Have a question or found a bug? Contact NexaTools.io support team. We respond within 24–48 hours.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexatools.io/contact.html">
 <script type="application/ld+json">
@@ -23,7 +23,7 @@
   "@type": "ContactPage",
   "name": "Contact NexaTools.io",
   "url": "https://www.nexatools.io/contact.html",
-  "description": "Contact page for NexaTools.io",
+  "description": "Contact page for NexaTools.io support, feedback, and bug reports.",
   "publisher": {
     "@type": "Organization",
     "name": "NexaTools.io",
@@ -41,19 +41,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 <style>
-  /* ── Page Layout ── */
   .page-hero {
     position: relative;
     z-index: 1;
-    padding: calc(var(--nav-h) + 60px) 32px 60px;
-    max-width: 900px;
+    padding: calc(var(--nav-h) + 70px) 32px 60px;
+    max-width: 860px;
     margin: 0 auto;
     text-align: center;
   }
   .page-hero h1 {
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 700;
     letter-spacing: -1.5px;
     line-height: 1.1;
@@ -62,10 +62,11 @@
   .page-hero p {
     color: var(--text2);
     font-size: 1.05rem;
-    line-height: 1.7;
-    max-width: 560px;
+    line-height: 1.75;
+    max-width: 540px;
     margin: 0 auto;
   }
+
   .contact-content {
     position: relative;
     z-index: 1;
@@ -73,164 +74,200 @@
     margin: 0 auto;
     padding: 0 32px 100px;
   }
+
+  /* ── Contact Grid ── */
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 32px;
-    margin-bottom: 48px;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 28px;
+    margin-bottom: 32px;
   }
 
-  /* ── Contact Info Cards ── */
-  .contact-info { display: flex; flex-direction: column; gap: 16px; }
+  /* ── Info Cards ── */
+  .contact-info { display: flex; flex-direction: column; gap: 14px; }
   .contact-card {
-    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: var(--transition);
+    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 22px 24px;
     text-decoration: none;
     display: block;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
   .contact-card:hover {
-    border-color: var(--border3);
-    transform: translateX(6px);
-    box-shadow: 0 8px 30px rgba(0,229,255,0.08);
+    border-color: rgba(0,229,255,0.25);
+    transform: translateX(5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
   }
-  .contact-card .cc-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
-  .contact-card .cc-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); margin-bottom: 6px; }
-  .contact-card .cc-value { font-size: 0.95rem; font-weight: 600; color: var(--cyan); }
-  .contact-card .cc-desc { font-size: 0.8rem; color: var(--text2); margin-top: 6px; line-height: 1.6; }
+  .contact-card:hover::before { opacity: 1; }
+  .contact-card .cc-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+  .contact-card .cc-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  .contact-card .cc-value { font-size: 0.9rem; font-weight: 700; color: var(--cyan); margin-bottom: 5px; }
+  .contact-card .cc-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+
   .response-card {
-    background: rgba(0,229,255,0.05);
-    border: 1px solid var(--border3);
-    border-radius: var(--radius);
-    padding: 20px 24px;
+    background: rgba(0,229,255,0.04);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 16px;
+    padding: 18px 20px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
-  .response-card .rc-icon { font-size: 1.8rem; flex-shrink: 0; }
-  .response-card .rc-text { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
-  .response-card .rc-text strong { color: var(--cyan); display: block; margin-bottom: 4px; }
+  .response-card .rc-icon { font-size: 1.7rem; flex-shrink: 0; }
+  .response-card .rc-text { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .response-card .rc-text strong { color: var(--cyan); display: block; margin-bottom: 3px; font-size: 0.85rem; }
 
   /* ── Contact Form ── */
   .contact-form-wrap {
-    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 36px;
+    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 22px;
+    padding: 38px;
   }
   .contact-form-wrap h2 {
     font-family: var(--font-display);
     font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    background: linear-gradient(135deg, var(--text), var(--cyan));
+    font-weight: 700;
+    margin-bottom: 26px;
+    background: linear-gradient(135deg, #fff 40%, var(--cyan));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .form-group-cf { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group-cf { margin-bottom: 18px; }
   .form-label-cf {
-    font-size: 0.7rem;
-    color: var(--muted2);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.4);
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-weight: 700;
     margin-bottom: 8px;
     display: block;
   }
   .form-input-cf {
     background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
     padding: 12px 16px;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     font-family: var(--font-body);
     font-size: 0.88rem;
     outline: none;
-    transition: var(--transition);
+    transition: all 0.2s ease;
     width: 100%;
     box-sizing: border-box;
   }
+  .form-input-cf::placeholder { color: rgba(255,255,255,0.2); }
   .form-input-cf:focus {
-    border-color: var(--cyan);
-    background: rgba(0,229,255,0.05);
-    box-shadow: 0 0 0 3px rgba(0,229,255,0.1);
+    border-color: rgba(0,229,255,0.4);
+    background: rgba(0,229,255,0.04);
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
   }
   textarea.form-input-cf { resize: vertical; min-height: 120px; }
-  select.form-input-cf option { background: #0a0c1a; }
+  select.form-input-cf option { background: #0a0c1a; color: #fff; }
   .submit-btn {
     width: 100%;
     background: var(--cyan);
     color: #000;
     border: none;
     padding: 14px 24px;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     font-family: var(--font-display);
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    letter-spacing: 0.2px;
   }
-  .submit-btn:hover { box-shadow: 0 8px 28px var(--cyan-glow); transform: translateY(-2px); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .submit-btn:hover {
+    box-shadow: 0 8px 28px rgba(0,229,255,0.35);
+    transform: translateY(-2px);
+  }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
   .success-msg {
     display: none;
-    background: rgba(48,209,88,0.1);
-    border: 1px solid rgba(48,209,88,0.3);
-    border-radius: var(--radius-sm);
+    background: rgba(48,209,88,0.08);
+    border: 1px solid rgba(48,209,88,0.25);
+    border-radius: 12px;
     padding: 16px 20px;
-    color: var(--green);
-    font-size: 0.9rem;
+    color: #4ade80;
+    font-size: 0.88rem;
     text-align: center;
     margin-top: 16px;
+    line-height: 1.6;
   }
+  .form-note {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.72rem;
+    margin-top: 14px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .form-note a { color: var(--cyan); text-decoration: none; }
 
-  /* ── FAQ Box — FIXED ── */
+  /* ── FAQ ── */
   .faq-box {
-    background: linear-gradient(145deg, rgba(16,20,38,0.95), rgba(12,14,26,0.98));
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 36px;
-    margin-bottom: 32px;
+    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 22px;
+    padding: 40px;
+    margin-bottom: 28px;
   }
   .faq-box h2 {
     font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: 28px;
-    background: linear-gradient(135deg, var(--text), var(--cyan));
+    background: linear-gradient(135deg, #fff 40%, var(--cyan));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .faq-item-cf {
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     padding: 20px 0;
   }
   .faq-item-cf:first-of-type { padding-top: 0; }
   .faq-item-cf:last-child { border-bottom: none; padding-bottom: 0; }
   .faq-q-cf {
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     font-weight: 600;
-    color: #e2e8f0;
+    color: rgba(255,255,255,0.9);
     margin-bottom: 10px;
     display: flex;
     align-items: flex-start;
     gap: 12px;
     line-height: 1.5;
   }
-  .faq-q-cf .faq-badge {
+  .faq-badge {
     flex-shrink: 0;
-    background: rgba(0,212,255,0.1);
-    border: 1px solid rgba(0,212,255,0.3);
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.25);
     color: var(--cyan);
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     font-weight: 800;
     letter-spacing: 1px;
     padding: 3px 8px;
@@ -239,20 +276,40 @@
     text-transform: uppercase;
   }
   .faq-a-cf {
-    color: #a0aec0;
-    font-size: 0.875rem;
-    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.87rem;
+    line-height: 1.8;
     padding-left: 44px;
   }
-  .faq-a-cf a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(0,212,255,0.3); }
+  .faq-a-cf a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.3); }
   .faq-a-cf a:hover { border-color: var(--cyan); }
 
-  /* ── Mobile ── */
+  /* ── CTA ── */
+  .cta-bottom {
+    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(139,92,246,0.05));
+    border: 1px solid rgba(139,92,246,0.18);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .cta-bottom .cta-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .cta-bottom h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .cta-bottom p { color: rgba(255,255,255,0.5); font-size: 0.92rem; margin-bottom: 24px; }
+
+  /* ── Responsive ── */
   @media (max-width: 768px) {
     .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
     .contact-content { padding: 0 20px 60px; }
     .page-hero { padding: calc(var(--nav-h) + 40px) 20px 40px; }
     .contact-form-wrap, .faq-box { padding: 24px; }
+    .cta-bottom { padding: 32px 20px; }
   }
 </style>
 </head>
@@ -264,7 +321,7 @@
 
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo" onclick="window.location.href='index.html'">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
       <div class="logo-icon">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
@@ -275,32 +332,32 @@
     </div>
     <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="index.html">Tools</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
-      <a class="nav-link" href="contact.html" style="color:var(--cyan);">Contact</a>
-      <a class="nav-link" href="privacy-policy.html">Privacy</a>
+      <a class="nav-link active" href="contact.html" style="color:var(--cyan);">Contact</a>
     </div>
     <div class="nav-right">
       <a class="btn-nav-ghost" href="about.html">About Us</a>
-      <a class="btn-nav-pro" href="index.html"><span class="btn-glow"></span>⚡Try Free</a>
+      <a class="btn-nav-pro" href="index.html"><span class="btn-glow"></span>⚡ Try Free</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="index.html">Tools</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="index.html" class="btn-nav-pro">⚡Try Free Tools</a>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="index.html#tools-section" onclick="toggleMobileNav()">Tools</a>
+    <a href="about.html" onclick="toggleMobileNav()">About Us</a>
+    <a href="blog-section.html" onclick="toggleMobileNav()">Blog</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact Us</a>
+    <a href="index.html" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="page-hero">
   <div class="hero-badge" style="margin-bottom:24px;display:inline-flex;"><span class="badge-dot"></span>We'd Love to Hear From You</div>
   <h1>Get in <span class="title-gradient">Touch With Us</span></h1>
-  <p>Have a question, found a bug, or want to share feedback? We’d love to hear from you. Our support team typically responds within 24 to 48 hours..</p>
+  <p>Have a question, found a bug, or want to share feedback? Our support team typically responds within 24 to 48 hours.</p>
 </div>
 
 <div class="contact-content">
@@ -313,7 +370,7 @@
         <span class="cc-icon">✉️</span>
         <div class="cc-label">General & Pro Support</div>
         <div class="cc-value">pro@nexatools.io</div>
-        <div class="cc-desc">feature requests, and general support.</div>
+        <div class="cc-desc">Feature requests, general questions, and support inquiries.</div>
       </a>
       <a href="mailto:bugs@nexatools.io" class="contact-card">
         <span class="cc-icon">🐛</span>
@@ -325,20 +382,29 @@
         <span class="cc-icon">🤝</span>
         <div class="cc-label">Business & Partnerships</div>
         <div class="cc-value">business@nexatools.io</div>
-        <div class="cc-desc">Collaboration, sponsorships, and business inquiries.</div>
+        <div class="cc-desc">Collaborations, sponsorships, and business inquiries.</div>
       </a>
+      <div class="response-card">
+        <div class="rc-icon">⏱️</div>
+        <div class="rc-text">
+          <strong>Response Time</strong>
+          We typically reply within 24–48 hours on business days.
+        </div>
+      </div>
     </div>
 
     <!-- Right: Contact Form -->
     <div class="contact-form-wrap">
       <h2>📬 Send Us a Message</h2>
-      <div class="form-group-cf">
-        <label class="form-label-cf">Your Name</label>
-        <input id="cf-name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name">
-      </div>
-      <div class="form-group-cf">
-        <label class="form-label-cf">Email Address</label>
-        <input id="cf-email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email">
+      <div class="form-row">
+        <div class="form-group-cf">
+          <label class="form-label-cf">Your Name</label>
+          <input id="cf-name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name">
+        </div>
+        <div class="form-group-cf">
+          <label class="form-label-cf">Email Address</label>
+          <input id="cf-email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email">
+        </div>
       </div>
       <div class="form-group-cf">
         <label class="form-label-cf">Subject</label>
@@ -361,22 +427,21 @@
       <div class="success-msg" id="success-msg">
         ✅ Message received! We'll get back to you within 24–48 hours. Thank you!
       </div>
-      <p style="color:var(--text3);font-size:0.75rem;margin-top:16px;text-align:center;line-height:1.6;">
-        By submitting this form, you agree to our <a href="privacy-policy.html" style="color:var(--cyan);">Privacy Policy</a>. We never share your information.
+      <p class="form-note">
+        By submitting this form, you agree to our <a href="privacy-policy.html">Privacy Policy</a>. We never share your information.
       </p>
     </div>
   </div>
 
-  <!-- FAQ Section — Fixed Design -->
+  <!-- FAQ -->
   <div class="faq-box">
-    <h2>Frequently Asked Questions❓ </h2>
-
+    <h2>❓ Frequently Asked Questions</h2>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
         <span class="faq-badge">Q</span>
         Is NexaTools.io really 100% free?
       </div>
-      <div class="faq-a-cf">Yes! All tools are completely free to use no credit card, no signup, no hidden charges. premium templates, and removes watermarks.</div>
+      <div class="faq-a-cf">Yes! All tools are completely free to use no credit card, no signup, no hidden charges. Every feature including AI writing, all templates, and watermark-free exports is free.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
@@ -385,7 +450,6 @@
       </div>
       <div class="faq-a-cf">Absolutely. All tools run entirely in your browser. We never collect, store, or transmit any of your personal data or documents to our servers.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">
         <span class="faq-badge">Q</span>
@@ -393,23 +457,21 @@
       </div>
       <div class="faq-a-cf">Yes! Resumes, invoices, logos, QR codes, and business cards created with NexaTools can all be used for personal and commercial purposes freely.</div>
     </div>
-
     <div class="faq-item-cf">
       <div class="faq-q-cf">
         <span class="faq-badge">Q</span>
         How do I report a bug or request a feature?
       </div>
-      <div class="faq-a-cf">Email us at <a href="mailto:bugs@nexatools.io">bugs@nexatools.io</a> for bugs, or use the contact form above for feature requests. We read every message.</div>
+      <div class="faq-a-cf">Email us at <a href="mailto:bugs@nexatools.io">bugs@nexatools.io</a> for bugs, or use the contact form above for feature requests. We read every single message.</div>
     </div>
-
   </div>
 
   <!-- CTA -->
-  <div style="background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;">
-    <div style="font-size:2rem;margin-bottom:12px;">🚀</div>
-    <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:12px;">Start Using NexaTools Free</h2>
-    <p style="color:var(--text2);font-size:0.95rem;margin-bottom:24px;">No account needed. Just open and start building.</p>
-    <a href="index.html" class="btn-primary" style="text-decoration:none;display:inline-flex;"><span>⚡ Go to Tools</span></a>
+  <div class="cta-bottom">
+    <div class="cta-icon">🚀</div>
+    <h2>Start Using NexaTools Free</h2>
+    <p>No account needed. Just open any tool and start building right away.</p>
+    <a href="index.html" class="btn-primary" style="text-decoration:none;display:inline-flex;"><span>⚡ Go to Free Tools</span></a>
   </div>
 
 </div>
@@ -428,17 +490,22 @@
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
+    <a href="blog-section.html">Blog</a>
     <a href="contact.html">Contact Us</a>
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms &amp; Conditions</a>
   </div>
-  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
+  <p class="footer-copy">© 2026 NexaTools.io — Free AI Tools for Everyone, Worldwide 🌍</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
 function submitForm() {
   const name    = document.getElementById('cf-name').value.trim();
   const email   = document.getElementById('cf-email').value.trim();
