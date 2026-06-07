@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+ 
   <!-- HOMEPAGE -->
   <url>
     <loc>https://www.nexatools.io/</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
+ 
   <!-- TOOL PAGES -->
   <url>
     <loc>https://www.nexatools.io/resume-builder.html</loc>
@@ -52,61 +52,87 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- BLOG PAGES -->
+ 
+  <!-- BLOG INDEX -->
   <url>
     <loc>https://www.nexatools.io/blog-section.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+ 
+  <!-- BLOG POSTS -->
+  <url>
+    <loc>https://www.nexatools.io/blog-no-experience-resume.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.nexatools.io/blog-resume-tips.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nexatools.io/blog-qr-guide.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nexatools.io/blog-logo-guide.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.nexatools.io/blog-invoice-guide.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.nexatools.io/blog-ai-tools.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nexatools.io/blog-qr-guide.html</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nexatools.io/blog-logo-guide.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nexatools.io/blog-business-card-guide.html</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nexatools.io/blog-password-guide.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nexatools.io/blog-scheduler-guide.html</loc>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.nexatools.io/blog-student-tools.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
+ 
   <!-- STATIC PAGES -->
   <url>
     <loc>https://www.nexatools.io/about.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.nexatools.io/contact.html</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -122,16 +148,5 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-<url>
-  <loc>https://www.nexatools.io/blog-business-card-guide.html</loc>
-  <lastmod>2026-05-22</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://www.nexatools.io/blog-scheduler-guide.html</loc>
-  <lastmod>2026-05-22</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
+ 
 </urlset>
