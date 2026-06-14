@@ -10,11 +10,11 @@
 
 ## 🚀 About NexaTools
 
-> **Free AI-powered tools for students, freelancers & businesses — no login needed.**
+> **Free AI-powered tools for students, freelancers & businesses no login needed.**
 
 🌐 **Website:** [nexatools.io](https://www.nexatools.io)  
 🛠️ **Tools:** Resume Builder · Invoice Generator · QR Code · Logo Maker · Business Card · Password Generator · Social Media Scheduler  
-🆓 **Price:** $0 — Free Forever  
+🆓 **Price:** $0 Free Forever  
 📍 **Users:** Worldwide 🌍  
 
 ---
