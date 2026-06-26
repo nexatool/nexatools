@@ -1947,7 +1947,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const today = new Date().toISOString().slice(0,10);
   if($('inv-date')) $('inv-date').value=today;
   if($('sch-date')) $('sch-date').value=today;
-  initResume(); renderItems(); gen
+  initResume(); renderItems();
   renderCalendar(); renderSchedList();
   initLogo(); initQR(); drawBCard(); genPass();
   initParticles(); initCursor(); initResume(); renderItems();
