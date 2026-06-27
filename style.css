@@ -862,11 +862,11 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
 .nav-logo { color:#0f172a !important; font-size:1.3rem !important; }
 .nav-logo em { color:#2563eb !important; }
 .logo-icon { background:rgba(37,99,235,0.08) !important; border-color:rgba(37,99,235,0.2) !important; }
-.nav-links { display:flex; gap:40px !important; margin-left:40px !important; }
-.nav-link { color:#334155 !important; font-size:0.95rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
+.nav-links { display:flex; gap:130px !important; margin-left:70px !important; }
+.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
 .nav-link:hover { color:#2563eb !important; background:transparent !important; }
-.btn-nav-ghost { border-color:rgba(0,0,0,0.15) !important; color:#475569 !important; padding:8px 18px !important; font-size:0.95rem !important; font-weight:700 !important; white-space:nowrap !important; }
-.btn-nav-pro { background:linear-gradient(135deg,#2563eb,#7c3aed) !important; color:#fff !important; padding:10px 22px !important; font-size:0.95rem !important; font-weight:700 !important; border-radius:11px !important; white-space:nowrap !important; }
+.btn-nav-ghost { border-color:rgba(0,0,0,0.15) !important; color:#475569 !important; padding:8px 18px !important; font-size:1.00rem !important; font-weight:700 !important; white-space:nowrap !important; }
+.btn-nav-pro { background:linear-gradient(135deg,#2563eb,#7c3aed) !important; color:#fff !important; padding:10px 22px !important; font-size:1.00rem !important; font-weight:700 !important; border-radius:11px !important; white-space:nowrap !important; }
 .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto !important; }
 .mobile-nav { background:rgba(255,255,255,0.98) !important; border-top-color:rgba(0,0,0,0.08) !important; }
 .mobile-nav a { color:#475569 !important; }
