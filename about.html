@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f8fafc">
 <meta name="author" content="NexaTools.io">
@@ -62,7 +61,6 @@
     max-width: 580px;
     margin: 0 auto;
   }
-
   .about-content {
     position: relative;
     z-index: 1;
@@ -70,8 +68,6 @@
     margin: 0 auto;
     padding: 0 32px 100px;
   }
-
-  /* ── Mission Block ── */
   .mission-block {
     background: #ffffff;
     border: 1px solid rgba(37,99,235,0.15);
@@ -100,16 +96,9 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .mission-block p {
-    color: #475569;
-    font-size: 0.93rem;
-    line-height: 1.9;
-    margin-bottom: 16px;
-  }
+  .mission-block p { color: #475569; font-size: 0.93rem; line-height: 1.9; margin-bottom: 16px; }
   .mission-block p:last-child { margin-bottom: 0; }
   .mission-block p strong { color: #0f172a; }
-
-  /* ── Values Grid ── */
   .values-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -125,23 +114,10 @@
     transition: all 0.25s ease;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
-  .value-card:hover {
-    border-color: rgba(37,99,235,0.28);
-    background: rgba(37,99,235,0.03);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  }
+  .value-card:hover { border-color: rgba(37,99,235,0.28); background: rgba(37,99,235,0.03); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
   .value-card .v-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-  .value-card h4 {
-    font-family: var(--font-display);
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #2563eb;
-    margin-bottom: 8px;
-  }
+  .value-card h4 { font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; color: #2563eb; margin-bottom: 8px; }
   .value-card p { color: #64748b; font-size: 0.8rem; line-height: 1.7; }
-
-  /* ── Tools Offered ── */
   .tools-block {
     background: #ffffff;
     border: 1px solid rgba(0,0,0,0.09);
@@ -150,46 +126,14 @@
     margin-bottom: 32px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
-  .tools-block h2 {
-    font-family: var(--font-display);
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #0f172a 40%, #2563eb);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .tools-block > p {
-    color: #64748b;
-    font-size: 0.88rem;
-    margin-bottom: 28px;
-  }
-  .tools-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .tool-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: rgba(37,99,235,0.04);
-    border: 1px solid rgba(37,99,235,0.12);
-    border-radius: 14px;
-    padding: 16px 18px;
-    transition: all 0.2s ease;
-  }
-  .tool-item:hover {
-    background: rgba(37,99,235,0.08);
-    border-color: rgba(37,99,235,0.28);
-    transform: translateX(4px);
-  }
+  .tools-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #0f172a 40%, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .tools-block > p { color: #64748b; font-size: 0.88rem; margin-bottom: 28px; }
+  .tools-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tool-item { display: flex; align-items: center; gap: 14px; background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.12); border-radius: 14px; padding: 16px 18px; transition: all 0.2s ease; }
+  .tool-item:hover { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.28); transform: translateX(4px); }
   .tool-item .t-icon { font-size: 1.4rem; flex-shrink: 0; }
   .tool-item strong { font-size: 0.88rem; color: #0f172a; display: block; margin-bottom: 2px; }
   .tool-item span { font-size: 0.76rem; color: #64748b; line-height: 1.4; }
-
-  /* ── Who We Are ── */
   .team-block {
     background: linear-gradient(135deg, rgba(37,99,235,0.04), rgba(124,58,237,0.04));
     border: 1px solid rgba(124,58,237,0.15);
@@ -198,71 +142,19 @@
     text-align: center;
     margin-bottom: 32px;
   }
-  .team-block h2 {
-    font-family: var(--font-display);
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #0f172a;
-  }
-  .team-block p {
-    color: #475569;
-    font-size: 0.92rem;
-    line-height: 1.85;
-    max-width: 620px;
-    margin: 0 auto 16px;
-  }
+  .team-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; color: #0f172a; }
+  .team-block p { color: #475569; font-size: 0.92rem; line-height: 1.85; max-width: 620px; margin: 0 auto 16px; }
   .team-block p:last-of-type { margin-bottom: 28px; }
-
-  /* ── About Grid ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-  .about-card {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 20px;
-    padding: 30px;
-    transition: all 0.25s ease;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  }
-  .about-card:hover {
-    border-color: rgba(37,99,235,0.22);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .about-card { background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 20px; padding: 30px; transition: all 0.25s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .about-card:hover { border-color: rgba(37,99,235,0.22); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
   .about-card .card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-  .about-card h3 {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #2563eb;
-    margin-bottom: 10px;
-  }
+  .about-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: #2563eb; margin-bottom: 10px; }
   .about-card p { color: #475569; font-size: 0.87rem; line-height: 1.8; }
-
-  /* ── CTA ── */
-  .cta-box {
-    background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.05));
-    border: 1px solid rgba(124,58,237,0.18);
-    border-radius: 24px;
-    padding: 52px 40px;
-    text-align: center;
-  }
-  .cta-box h2 {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #0f172a;
-  }
+  .cta-box { background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.05)); border: 1px solid rgba(124,58,237,0.18); border-radius: 24px; padding: 52px 40px; text-align: center; }
+  .cta-box h2 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; margin-bottom: 12px; color: #0f172a; }
   .cta-box p { color: #475569; font-size: 0.95rem; margin-bottom: 28px; }
   .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-  /* ── Responsive ── */
   @media (max-width: 768px) {
     .values-grid { grid-template-columns: 1fr 1fr; }
     .tools-list { grid-template-columns: 1fr; }
@@ -278,31 +170,34 @@
   }
 </style>
 <link rel="stylesheet" href="style.css?v=2">
-  
 </head>
 <body>
 <div class="bg-grid"></div>
 <div class="bg-orb orb-1"></div>
 <div class="bg-orb orb-2"></div>
 <div class="bg-orb orb-3"></div>
-<style>
-.nav-link { font-weight: 700 !important; font-size: 1.00rem !important; }
-.btn-nav-ghost { font-weight: 700 !important; }
-.nav-links { gap:130px !important; margin-left:70px !important; }
-.nav-inner { justify-content:flex-start !important; }
-</style>
-</body>
-</body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
     <div class="nav-links">
-  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
-  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
-  <a class="nav-link active" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
-  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
-  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
-</div>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="about.html" style="color:var(--cyan);">About</a>
+      <a class="nav-link" href="blog-section.html">Blog</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
     <div class="nav-right">
       <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
-      <a class="btn-nav-pro" href="index.html"><span class="btn-glow"></span>⚡ Try Free</a>
+      <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
     </div>
     <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
@@ -325,7 +220,6 @@
 
 <div class="about-content">
 
-  <!-- Mission -->
   <div class="mission-block">
     <h2>💡 Our Mission</h2>
     <p>NexaTools.io was built with one clear mission: give every person whether a student in Lahore, a freelancer in Nairobi, or a small business owner in Toronto access to <strong>professional-grade tools without spending a single dollar.</strong></p>
@@ -333,81 +227,30 @@
     <p>Today, NexaTools.io offers <strong>7 free AI-powered tools</strong> that anyone can use instantly, with no account required, no hidden fees, and no technical knowledge needed. Everything runs directly in your browser <strong>your data never leaves your device.</strong></p>
   </div>
 
-  <!-- Values -->
   <div class="values-grid">
-    <div class="value-card">
-      <span class="v-icon">🆓</span>
-      <h4>100% Free</h4>
-      <p>All tools are completely free. No credit card, no signup, no hidden limits. Free forever.</p>
-    </div>
-    <div class="value-card">
-      <span class="v-icon">🔒</span>
-      <h4>Privacy First</h4>
-      <p>Everything runs in your browser. We never store, collect, or transmit your personal data.</p>
-    </div>
-    <div class="value-card">
-      <span class="v-icon">⚡</span>
-      <h4>AI Powered</h4>
-      <p>Our tools use AI to help you create professional content in seconds, not hours.</p>
-    </div>
-    <div class="value-card">
-      <span class="v-icon">🌍</span>
-      <h4>Built for Everyone</h4>
-      <p>Designed for students, freelancers, and small businesses regardless of budget or location.</p>
-    </div>
-    <div class="value-card">
-      <span class="v-icon">📱</span>
-      <h4>Works Everywhere</h4>
-      <p>Fully responsive works perfectly on desktop, tablet, and mobile devices.</p>
-    </div>
-    <div class="value-card">
-      <span class="v-icon">🔄</span>
-      <h4>Always Improving</h4>
-      <p>We constantly update our tools based on user feedback, adding new features regularly.</p>
-    </div>
+    <div class="value-card"><span class="v-icon">🆓</span><h4>100% Free</h4><p>All tools are completely free. No credit card, no signup, no hidden limits. Free forever.</p></div>
+    <div class="value-card"><span class="v-icon">🔒</span><h4>Privacy First</h4><p>Everything runs in your browser. We never store, collect, or transmit your personal data.</p></div>
+    <div class="value-card"><span class="v-icon">⚡</span><h4>AI Powered</h4><p>Our tools use AI to help you create professional content in seconds, not hours.</p></div>
+    <div class="value-card"><span class="v-icon">🌍</span><h4>Built for Everyone</h4><p>Designed for students, freelancers, and small businesses regardless of budget or location.</p></div>
+    <div class="value-card"><span class="v-icon">📱</span><h4>Works Everywhere</h4><p>Fully responsive works perfectly on desktop, tablet, and mobile devices.</p></div>
+    <div class="value-card"><span class="v-icon">🔄</span><h4>Always Improving</h4><p>We constantly update our tools based on user feedback, adding new features regularly.</p></div>
   </div>
 
-  <!-- What We Offer -->
   <div class="tools-block">
     <h2>🛠️ What We Offer</h2>
     <p>NexaTools.io currently provides 7 powerful free tools with more on the way:</p>
     <div class="tools-list">
-      <div class="tool-item">
-        <span class="t-icon">📄</span>
-        <div><strong>AI Resume Builder</strong><span>Create job-ready resumes with AI writing assistance</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">🧾</span>
-        <div><strong>Invoice Generator</strong><span>Professional invoices for freelancers and businesses</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">🎨</span>
-        <div><strong>Logo Maker</strong><span>Design stunning logos and brand identities instantly</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">📱</span>
-        <div><strong>QR Code Generator</strong><span>URL, WiFi, UPI, Email and more download as PNG</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">💼</span>
-        <div><strong>Business Card Maker</strong><span>Professional cards with multiple themes and fonts</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">📅</span>
-        <div><strong>Social Media Scheduler</strong><span>Plan and organize your social media content calendar</span></div>
-      </div>
-      <div class="tool-item">
-        <span class="t-icon">🔐</span>
-        <div><strong>Password Generator</strong><span>Generate ultra-secure passwords with strength analysis</span></div>
-      </div>
-      <div class="tool-item" style="opacity:0.5;border-style:dashed;">
-        <span class="t-icon">✨</span>
-        <div><strong>More Coming Soon</strong><span>We're always building new tools for our community</span></div>
-      </div>
+      <div class="tool-item"><span class="t-icon">📄</span><div><strong>AI Resume Builder</strong><span>Create job-ready resumes with AI writing assistance</span></div></div>
+      <div class="tool-item"><span class="t-icon">🧾</span><div><strong>Invoice Generator</strong><span>Professional invoices for freelancers and businesses</span></div></div>
+      <div class="tool-item"><span class="t-icon">🎨</span><div><strong>Logo Maker</strong><span>Design stunning logos and brand identities instantly</span></div></div>
+      <div class="tool-item"><span class="t-icon">📱</span><div><strong>QR Code Generator</strong><span>URL, WiFi, UPI, Email and more download as PNG</span></div></div>
+      <div class="tool-item"><span class="t-icon">💼</span><div><strong>Business Card Maker</strong><span>Professional cards with multiple themes and fonts</span></div></div>
+      <div class="tool-item"><span class="t-icon">📅</span><div><strong>Social Media Scheduler</strong><span>Plan and organize your social media content calendar</span></div></div>
+      <div class="tool-item"><span class="t-icon">🔐</span><div><strong>Password Generator</strong><span>Generate ultra-secure passwords with strength analysis</span></div></div>
+      <div class="tool-item" style="opacity:0.5;border-style:dashed;"><span class="t-icon">✨</span><div><strong>More Coming Soon</strong><span>We're always building new tools for our community</span></div></div>
     </div>
   </div>
 
-  <!-- Who We Are -->
   <div class="team-block">
     <h2>🌍 Who We Are</h2>
     <p>NexaTools.io is an independent project created by a passionate developer who believes that geography and budget should never be barriers to accessing professional tools.</p>
@@ -415,31 +258,13 @@
     <a href="contact.html" class="btn-primary" style="display:inline-flex;text-decoration:none;"><span>✉️ Get in Touch</span></a>
   </div>
 
-  <!-- About Grid -->
   <div class="about-grid">
-    <div class="about-card">
-      <span class="card-icon">🎯</span>
-      <h3>Our Vision</h3>
-      <p>To become the world's most trusted free productivity platform where anyone, anywhere can create professional documents, branding, and tools without barriers.</p>
-    </div>
-    <div class="about-card">
-      <span class="card-icon">📈</span>
-      <h3>Our Growth</h3>
-      <p>Since launching, NexaTools has been used by students, freelancers, and small businesses across multiple countries. Our tools have helped create thousands of resumes, invoices, logos, and business cards.</p>
-    </div>
-    <div class="about-card">
-      <span class="card-icon">💬</span>
-      <h3>Community Driven</h3>
-      <p>We listen to our users. Every new feature, template, and tool comes from real feedback from our community. Your suggestions shape what we build next.</p>
-    </div>
-    <div class="about-card">
-      <span class="card-icon">🔮</span>
-      <h3>What's Next</h3>
-      <p>We're working on more AI tools, new templates, and dedicated mobile apps. The roadmap is big and it's all free for our community.</p>
-    </div>
+    <div class="about-card"><span class="card-icon">🎯</span><h3>Our Vision</h3><p>To become the world's most trusted free productivity platform where anyone, anywhere can create professional documents, branding, and tools without barriers.</p></div>
+    <div class="about-card"><span class="card-icon">📈</span><h3>Our Growth</h3><p>Since launching, NexaTools has been used by students, freelancers, and small businesses across multiple countries. Our tools have helped create thousands of resumes, invoices, logos, and business cards.</p></div>
+    <div class="about-card"><span class="card-icon">💬</span><h3>Community Driven</h3><p>We listen to our users. Every new feature, template, and tool comes from real feedback from our community. Your suggestions shape what we build next.</p></div>
+    <div class="about-card"><span class="card-icon">🔮</span><h3>What's Next</h3><p>We're working on more AI tools, new templates, and dedicated mobile apps. The roadmap is big and it's all free for our community.</p></div>
   </div>
 
-  <!-- CTA -->
   <div class="cta-box">
     <h2>Ready to Try NexaTools?</h2>
     <p>Free AI-powered tools for students, freelancers, and businesses no signup needed.</p>
@@ -482,9 +307,10 @@ function toggleMobileNav() {
   document.getElementById('mobileNav').classList.toggle('open');
 }
 </script>
-  <style>
+<style>
 .nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
 .btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:130px !important; margin-left:70px !important; }
 </style>
 </body>
 </html>
