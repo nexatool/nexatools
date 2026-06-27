@@ -3505,7 +3505,7 @@ nav.scrolled {
 footer {
   padding: 52px 32px 40px !important;
 }
-.nav-link {
-  color: #1e293b !important;
-  font-weight: 500 !important;
+nav .nav-links a {
+  color: #0f172a !important;
+  font-weight: 600 !important;
 }
