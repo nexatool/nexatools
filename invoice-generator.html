@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+V<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d1117">
+<meta name="theme-color" content="#f8fafc">
 <meta name="author" content="NexaTools.io">
 
 <title>Free Invoice/Billing Generator Online Create Professional Invoices Instantly | NexaTools.io</title>
@@ -95,7 +95,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 
 <style>
@@ -112,8 +112,8 @@
   }
   .tool-page-hero p { color: var(--text2); font-size: 1rem; line-height: 1.7; max-width: 620px; margin: 0 auto 28px; }
   .hero-feature-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
-  .feature-pill {
-    background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+.feature-pill {
+    background: var(--cyan-dim); border: 1px solid var(--border3);
     color: var(--cyan); font-size: 0.78rem; padding: 6px 16px; border-radius: 30px; font-weight: 500;
   }
   .tool-section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 32px 60px; }
@@ -144,15 +144,14 @@
 
   /* Payment methods */
   .payment-methods-wrap { margin-bottom: 16px; }
-  .payment-methods-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
-  .payment-note { font-size: 0.78rem; color: var(--text2); margin-bottom: 12px; }
+  .pay-toggle.active { border-color: var(--cyan); background: rgba(0,229,255,0.06); }
   .payment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
   .pay-toggle {
     background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
     padding: 10px 14px; cursor: pointer; transition: all 0.2s ease; text-align: left;
   }
   .pay-toggle:hover { border-color: var(--border3); }
-  .pay-toggle.active { border-color: var(--cyan); background: rgba(0,229,255,0.06); }
+.pay-toggle.active { border-color: var(--cyan); background: var(--cyan-dim); }
   .pay-toggle .pt-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
   .pay-toggle.active .pt-name { color: var(--cyan); }
   .pay-toggle .pt-sub { font-size: 0.72rem; color: var(--muted2); margin-top: 2px; }
@@ -163,7 +162,7 @@
     display: grid; grid-template-columns: 1fr 80px 110px 80px 36px;
     gap: 8px; padding: 0 4px 8px;
     font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1.5px; color: rgba(255,255,255,0.3);
+    letter-spacing: 1.5px; color: var(--muted2);
   }
   .item-row {
     display: grid; grid-template-columns: 1fr 80px 110px 80px 36px;
@@ -172,7 +171,7 @@
   .item-row input { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; color: var(--text); font-size: 0.85rem; width: 100%; font-family: var(--font-body); }
   .item-row input:focus { outline: none; border-color: var(--cyan); }
   .item-amt { font-size: 0.85rem; color: var(--text2); text-align: right; padding-right: 4px; }
-  .item-del { background: none; border: none; color: rgba(255,255,255,0.25); cursor: pointer; font-size: 1.1rem; padding: 4px; border-radius: 6px; transition: color 0.2s; text-align: center; }
+  .item-del { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 1.1rem; padding: 4px; border-radius: 6px; transition: color 0.2s; text-align: center; }
   .item-del:hover { color: #ff6b6b; }
 
   /* GST row */
@@ -200,7 +199,7 @@
     color: var(--text2); transition: all 0.2s ease; font-family: var(--font-body);
   }
   .tmpl-opt:hover { border-color: var(--border3); color: var(--text); }
-  .tmpl-opt.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,0.06); }
+.tmpl-opt.active { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
   .tmpl-opt .to-icon { font-size: 1.2rem; margin-bottom: 4px; display: block; }
 
   /* SEO sections */
@@ -234,7 +233,7 @@
 
   .related-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 24px 0; }
   .related-tool-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; text-decoration: none; display: block; transition: var(--transition); }
-  .related-tool-card:hover { border-color: var(--border3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,229,255,0.08); }
+.related-tool-card:hover { border-color: var(--border3); transform: translateY(-4px); box-shadow: 0 12px 32px var(--cyan-glow); }
   .related-tool-card .rt-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
   .related-tool-card .rt-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
   .related-tool-card .rt-desc { font-size: 0.72rem; color: var(--muted2); }
@@ -249,7 +248,7 @@
 
   .pk-feature-badge {
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+    background: var(--cyan-dim); border: 1px solid var(--border3);
     border-radius: 100px; padding: 5px 14px; font-size: 0.72rem; font-weight: 700;
     letter-spacing: 0.8px; color: var(--cyan); margin-bottom: 14px;
   }
