@@ -309,14 +309,19 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
 @media (max-width: 400px) {
   .how-grid { grid-template-columns: 1fr; }
 }
-/* ===== HERO FLOATS ===== */
+/* ===== HERO FLOATS SCROLL ===== */
 .hero-floats {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  flex: 1;
-  max-width: 360px;
-  margin-top: 60px;
+  max-height: 320px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+.hero-floats .float-card {
+  animation: scrollCards 8s linear infinite;
+}
+@keyframes scrollCards {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 .float-card {
   background: rgba(255,255,255,0.95);
@@ -347,6 +352,20 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
 @media (max-width: 768px) {
   .hero-floats { display: none; }
 }
+/* ===== HERO TITLE FIX ===== */
+.hero-title {
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+}
+
+/* ===== NAVBAR FIX ===== */
+:root { --nav-h: 72px; }
+.nav-inner { height: 72px; }
+.nav-links { gap: 36px; }
+.nav-link { font-size: 0.95rem; padding: 8px 14px; }
+.btn-nav-pro { padding: 11px 26px; font-size: 0.9rem; }
+.btn-nav-ghost { padding: 9px 22px; font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -405,7 +424,8 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge"><span class="badge-dot"></span>100% Free &nbsp;•&nbsp; No Login &nbsp;•&nbsp; 7 Tools</div>
-    <h1 class="hero-title">Free Online Tools for<br><span class="title-gradient">Resumes, Invoices, Logos & More</span></h1>
+   <h1 class="hero-title">Your Free <span class="title-gradient">Professional Toolkit</span></h1>
+</h1>
     <p class="hero-sub">NexaTools.io gives students, freelancers and small businesses in Pakistan and worldwide access to professional-grade tools completely free. Build your resume, generate invoices, create logos, make QR codes and more. No account required.</p>
     <div class="hero-ctas">
       <button class="btn-primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Start Using Free Tools</span></button>
@@ -420,11 +440,14 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
       <div class="stat-item"><div class="stat-num">0<span>$</span></div><div class="stat-label">No Signup</div></div>
     </div>
   </div>
-  <div class="hero-floats">
-    <div class="float-card float-1"><div class="fc-icon">📄</div><div class="fc-text"><div class="fc-title">Resume Ready</div><div class="fc-sub">AI-generated in 3s</div></div><div class="fc-dot green"></div></div>
-    <div class="float-card float-2"><div class="fc-icon">🎨</div><div class="fc-text"><div class="fc-title">Branding Created</div><div class="fc-sub">Exported as PNG</div></div><div class="fc-dot cyan"></div></div>
-    <div class="float-card float-3"><div class="fc-icon">🔐</div><div class="fc-text"><div class="fc-title">Password: Strong</div><div class="fc-sub">256-bit entropy</div></div><div class="fc-dot gold"></div></div>
-  </div>
+ <div class="hero-floats">
+  <div class="float-card float-1"><div class="fc-icon">📄</div><div class="fc-text"><div class="fc-title">Resume Builder</div><div class="fc-sub">AI-generated in 3s</div></div><div class="fc-dot green"></div></div>
+  <div class="float-card float-2"><div class="fc-icon">🎨</div><div class="fc-text"><div class="fc-title">Logo Maker</div><div class="fc-sub">5 styles · PNG export</div></div><div class="fc-dot cyan"></div></div>
+  <div class="float-card float-3"><div class="fc-icon">📱</div><div class="fc-text"><div class="fc-title">QR Code Generator</div><div class="fc-sub">URL · WiFi · UPI · Free</div></div><div class="fc-dot gold"></div></div>
+  <div class="float-card float-1"><div class="fc-icon">🧾</div><div class="fc-text"><div class="fc-title">Invoice Generator</div><div class="fc-sub">PDF export · No watermark</div></div><div class="fc-dot green"></div></div>
+  <div class="float-card float-2"><div class="fc-icon">💼</div><div class="fc-text"><div class="fc-title">Business Card Maker</div><div class="fc-sub">7 themes · PNG download</div></div><div class="fc-dot cyan"></div></div>
+  <div class="float-card float-3"><div class="fc-icon">🔐</div><div class="fc-text"><div class="fc-title">Password Generator</div><div class="fc-sub">Strong · 256-bit entropy</div></div><div class="fc-dot gold"></div></div>
+</div>
 </section>
 
 <!-- ===== TOOLS SECTION ===== -->
