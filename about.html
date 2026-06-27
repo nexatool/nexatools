@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#f8fafc">
 <meta name="author" content="NexaTools.io">
 <title>About Us | NexaTools.io Free AI Tools for Everyone</title>
-  
 <meta name="description" content="Learn about NexaTools.io  who we are, our mission, and why we built free AI-powered tools for students, freelancers, and small businesses worldwide.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.nexatools.io/about.html">
@@ -36,13 +35,12 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 <style>
   .page-hero {
     position: relative;
     z-index: 1;
-    padding: calc(var(--nav-h) + 70px) 32px 64px;
+    padding: calc(var(--nav-h, 68px) + 70px) 32px 64px;
     max-width: 860px;
     margin: 0 auto;
     text-align: center;
@@ -54,9 +52,10 @@
     letter-spacing: -1.5px;
     line-height: 1.1;
     margin-bottom: 20px;
+    color: #0f172a;
   }
   .page-hero p {
-    color: var(--text2);
+    color: #475569;
     font-size: 1.08rem;
     line-height: 1.75;
     max-width: 580px;
@@ -73,20 +72,21 @@
 
   /* ── Mission Block ── */
   .mission-block {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(0,229,255,0.12);
+    background: #ffffff;
+    border: 1px solid rgba(37,99,235,0.15);
     border-radius: 24px;
     padding: 48px;
     margin-bottom: 32px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .mission-block::before {
     content: '';
     position: absolute;
     top: -80px; right: -80px;
     width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%);
     pointer-events: none;
   }
   .mission-block h2 {
@@ -94,19 +94,19 @@
     font-size: 1.7rem;
     font-weight: 700;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #fff 40%, var(--cyan));
+    background: linear-gradient(135deg, #0f172a 40%, #2563eb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .mission-block p {
-    color: rgba(255,255,255,0.62);
+    color: #475569;
     font-size: 0.93rem;
     line-height: 1.9;
     margin-bottom: 16px;
   }
   .mission-block p:last-child { margin-bottom: 0; }
-  .mission-block p strong { color: rgba(255,255,255,0.85); }
+  .mission-block p strong { color: #0f172a; }
 
   /* ── Values Grid ── */
   .values-grid {
@@ -116,50 +116,51 @@
     margin-bottom: 32px;
   }
   .value-card {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 18px;
     padding: 26px 22px;
     text-align: center;
     transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   .value-card:hover {
-    border-color: rgba(0,229,255,0.25);
-    background: rgba(0,229,255,0.04);
+    border-color: rgba(37,99,235,0.28);
+    background: rgba(37,99,235,0.03);
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
   }
   .value-card .v-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
   .value-card h4 {
     font-family: var(--font-display);
     font-size: 0.92rem;
     font-weight: 700;
-    color: var(--cyan);
+    color: #2563eb;
     margin-bottom: 8px;
-    letter-spacing: 0.2px;
   }
-  .value-card p { color: rgba(255,255,255,0.5); font-size: 0.8rem; line-height: 1.7; }
+  .value-card p { color: #64748b; font-size: 0.8rem; line-height: 1.7; }
 
   /* ── Tools Offered ── */
   .tools-block {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 24px;
     padding: 48px;
     margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .tools-block h2 {
     font-family: var(--font-display);
     font-size: 1.7rem;
     font-weight: 700;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #fff 40%, var(--cyan));
+    background: linear-gradient(135deg, #0f172a 40%, #2563eb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .tools-block > p {
-    color: rgba(255,255,255,0.5);
+    color: #64748b;
     font-size: 0.88rem;
     margin-bottom: 28px;
   }
@@ -172,25 +173,25 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    background: rgba(0,229,255,0.04);
-    border: 1px solid rgba(0,229,255,0.12);
+    background: rgba(37,99,235,0.04);
+    border: 1px solid rgba(37,99,235,0.12);
     border-radius: 14px;
     padding: 16px 18px;
     transition: all 0.2s ease;
   }
   .tool-item:hover {
-    background: rgba(0,229,255,0.08);
-    border-color: rgba(0,229,255,0.25);
+    background: rgba(37,99,235,0.08);
+    border-color: rgba(37,99,235,0.28);
     transform: translateX(4px);
   }
   .tool-item .t-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .tool-item strong { font-size: 0.88rem; color: #fff; display: block; margin-bottom: 2px; }
-  .tool-item span { font-size: 0.76rem; color: rgba(255,255,255,0.45); line-height: 1.4; }
+  .tool-item strong { font-size: 0.88rem; color: #0f172a; display: block; margin-bottom: 2px; }
+  .tool-item span { font-size: 0.76rem; color: #64748b; line-height: 1.4; }
 
   /* ── Who We Are ── */
   .team-block {
-    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(139,92,246,0.05));
-    border: 1px solid rgba(139,92,246,0.18);
+    background: linear-gradient(135deg, rgba(37,99,235,0.04), rgba(124,58,237,0.04));
+    border: 1px solid rgba(124,58,237,0.15);
     border-radius: 24px;
     padding: 48px;
     text-align: center;
@@ -201,10 +202,10 @@
     font-size: 1.7rem;
     font-weight: 700;
     margin-bottom: 16px;
-    color: #fff;
+    color: #0f172a;
   }
   .team-block p {
-    color: rgba(255,255,255,0.58);
+    color: #475569;
     font-size: 0.92rem;
     line-height: 1.85;
     max-width: 620px;
@@ -220,31 +221,32 @@
     margin-bottom: 32px;
   }
   .about-card {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 20px;
     padding: 30px;
     transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   .about-card:hover {
-    border-color: rgba(0,229,255,0.2);
+    border-color: rgba(37,99,235,0.22);
     transform: translateY(-4px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
   }
   .about-card .card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
   .about-card h3 {
     font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--cyan);
+    color: #2563eb;
     margin-bottom: 10px;
   }
-  .about-card p { color: rgba(255,255,255,0.55); font-size: 0.87rem; line-height: 1.8; }
+  .about-card p { color: #475569; font-size: 0.87rem; line-height: 1.8; }
 
   /* ── CTA ── */
   .cta-box {
-    background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(139,92,246,0.06));
-    border: 1px solid rgba(139,92,246,0.2);
+    background: linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.05));
+    border: 1px solid rgba(124,58,237,0.18);
     border-radius: 24px;
     padding: 52px 40px;
     text-align: center;
@@ -254,9 +256,9 @@
     font-size: 1.9rem;
     font-weight: 700;
     margin-bottom: 12px;
-    color: #fff;
+    color: #0f172a;
   }
-  .cta-box p { color: rgba(255,255,255,0.55); font-size: 0.95rem; margin-bottom: 28px; }
+  .cta-box p { color: #475569; font-size: 0.95rem; margin-bottom: 28px; }
   .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
   /* ── Responsive ── */
@@ -265,7 +267,7 @@
     .tools-list { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; }
     .about-content { padding: 0 20px 60px; }
-    .page-hero { padding: calc(var(--nav-h) + 40px) 20px 40px; }
+    .page-hero { padding: calc(var(--nav-h, 68px) + 40px) 20px 40px; }
     .mission-block, .tools-block, .team-block { padding: 28px 24px; }
     .cta-box { padding: 36px 24px; }
     .cta-buttons { flex-direction: column; align-items: center; }
@@ -274,6 +276,7 @@
     .values-grid { grid-template-columns: 1fr; }
   }
 </style>
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -319,7 +322,7 @@
 <div class="page-hero">
   <div class="hero-badge" style="margin-bottom:24px;display:inline-flex;"><span class="badge-dot"></span>About NexaTools.io</div>
   <h1>Built for the Future.<br><span class="title-gradient">Free for Everyone.</span></h1>
-  <p>We believe powerful tools should be accessible to everyone  not just those who can afford expensive software subscriptions.</p>
+  <p>We believe powerful tools should be accessible to everyone not just those who can afford expensive software subscriptions.</p>
 </div>
 
 <div class="about-content">
@@ -327,8 +330,8 @@
   <!-- Mission -->
   <div class="mission-block">
     <h2>💡 Our Mission</h2>
-    <p>NexaTools.io was built with one clear mission: give every person  whether a student in Lahore, a freelancer in Nairobi, or a small business owner in Toronto access to <strong>professional-grade tools without spending a single dollar.</strong></p>
-    <p>We noticed that the tools professionals use every day resume builders, invoice generators, logo makers  were either locked behind expensive subscriptions or required technical skills most people simply don't have. We decided to change that.</p>
+    <p>NexaTools.io was built with one clear mission: give every person whether a student in Lahore, a freelancer in Nairobi, or a small business owner in Toronto — access to <strong>professional-grade tools without spending a single dollar.</strong></p>
+    <p>We noticed that the tools professionals use every day resume builders, invoice generators, logo makers were either locked behind expensive subscriptions or required technical skills most people simply don't have. We decided to change that.</p>
     <p>Today, NexaTools.io offers <strong>7 free AI-powered tools</strong> that anyone can use instantly, with no account required, no hidden fees, and no technical knowledge needed. Everything runs directly in your browser — <strong>your data never leaves your device.</strong></p>
   </div>
 
@@ -357,7 +360,7 @@
     <div class="value-card">
       <span class="v-icon">📱</span>
       <h4>Works Everywhere</h4>
-      <p>Fully responsive — works perfectly on desktop, tablet, and mobile devices.</p>
+      <p>Fully responsive works perfectly on desktop, tablet, and mobile devices.</p>
     </div>
     <div class="value-card">
       <span class="v-icon">🔄</span>
@@ -369,7 +372,7 @@
   <!-- What We Offer -->
   <div class="tools-block">
     <h2>🛠️ What We Offer</h2>
-    <p>NexaTools.io currently provides 7 powerful free tools  with more on the way:</p>
+    <p>NexaTools.io currently provides 7 powerful free tools with more on the way:</p>
     <div class="tools-list">
       <div class="tool-item">
         <span class="t-icon">📄</span>
@@ -385,7 +388,7 @@
       </div>
       <div class="tool-item">
         <span class="t-icon">📱</span>
-        <div><strong>QR Code Generator</strong><span>URL, WiFi, UPI, Email and more — download as PNG</span></div>
+        <div><strong>QR Code Generator</strong><span>URL, WiFi, UPI, Email and more download as PNG</span></div>
       </div>
       <div class="tool-item">
         <span class="t-icon">💼</span>
@@ -410,7 +413,7 @@
   <div class="team-block">
     <h2>🌍 Who We Are</h2>
     <p>NexaTools.io is an independent project created by a passionate developer who believes that geography and budget should never be barriers to accessing professional tools.</p>
-    <p>Our users include fresh graduates looking for their first job, freelancers sending invoices to international clients, restaurant owners creating QR menus, and students building their first startup — all using NexaTools completely free.</p>
+    <p>Our users include fresh graduates looking for their first job, freelancers sending invoices to international clients, restaurant owners creating QR menus, and students building their first startup all using NexaTools completely free.</p>
     <a href="contact.html" class="btn-primary" style="display:inline-flex;text-decoration:none;"><span>✉️ Get in Touch</span></a>
   </div>
 
@@ -419,7 +422,7 @@
     <div class="about-card">
       <span class="card-icon">🎯</span>
       <h3>Our Vision</h3>
-      <p>To become the world's most trusted free productivity platform  where anyone, anywhere can create professional documents, branding, and tools without barriers.</p>
+      <p>To become the world's most trusted free productivity platform where anyone, anywhere can create professional documents, branding, and tools without barriers.</p>
     </div>
     <div class="about-card">
       <span class="card-icon">📈</span>
@@ -441,7 +444,7 @@
   <!-- CTA -->
   <div class="cta-box">
     <h2>Ready to Try NexaTools?</h2>
-    <p>Free AI-powered tools for students, freelancers, and businesses  no signup needed.</p>
+    <p>Free AI-powered tools for students, freelancers, and businesses no signup needed.</p>
     <div class="cta-buttons">
       <a href="index.html" class="btn-primary" style="text-decoration:none;"><span>🚀 Start Using Free Tools</span></a>
       <a href="contact.html" class="btn-secondary" style="text-decoration:none;"><span>✉️ Contact Us</span></a>
