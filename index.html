@@ -309,6 +309,44 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
 @media (max-width: 400px) {
   .how-grid { grid-template-columns: 1fr; }
 }
+/* ===== HERO FLOATS ===== */
+.hero-floats {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1;
+  max-width: 360px;
+  margin-top: 60px;
+}
+.float-card {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.float-1 { margin-left: 30px; }
+.float-2 { margin-left: 0; }
+.float-3 { margin-left: 50px; }
+.fc-icon { font-size: 1.8rem; }
+.fc-text { flex: 1; }
+.fc-title { font-size: 0.9rem; font-weight: 600; color: #0f172a; }
+.fc-sub { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+.fc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.fc-dot.green { background: #059669; }
+.fc-dot.cyan { background: #2563eb; }
+.fc-dot.gold { background: #d97706; }
+
+@media (max-width: 900px) {
+  .hero-floats { max-width: 420px; margin: 32px auto 0; }
+  .float-1, .float-2, .float-3 { margin-left: 0; }
+}
+@media (max-width: 768px) {
+  .hero-floats { display: none; }
+}
 </style>
 </head>
 <body>
@@ -367,7 +405,7 @@ footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid rgba(0
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge"><span class="badge-dot"></span>100% Free &nbsp;•&nbsp; No Login &nbsp;•&nbsp; 7 Tools</div>
-    <h1 class="hero-title">Free Online Tools for Resumes<span class="title-gradient">Invoices Logos & more... </span></h1>
+    <h1 class="hero-title">Free Online Tools for<br><span class="title-gradient">Resumes, Invoices, Logos & More</span></h1>
     <p class="hero-sub">NexaTools.io gives students, freelancers and small businesses in Pakistan and worldwide access to professional-grade tools completely free. Build your resume, generate invoices, create logos, make QR codes and more. No account required.</p>
     <div class="hero-ctas">
       <button class="btn-primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Start Using Free Tools</span></button>
