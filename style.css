@@ -836,3 +836,5 @@ footer { text-align:center; padding:60px 32px 40px; border-top:1px solid rgba(0,
   .glass-card { background:white; color:black; padding:0; }
   #resume-out,#invoice-out { box-shadow:none; padding:20px; }
 }
+.blog-body a.btn-primary,
+.blog-body a.btn-primary span { color: #ffffff !important; }
