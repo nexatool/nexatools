@@ -94,44 +94,46 @@ nav.scrolled {
   padding: 0 32px;
 }
 .nav-logo {
-  font-family: var(--font-display); font-size:1.25rem; font-weight:700;
+  font-family: var(--font-display); font-size:1.5rem; font-weight:700;
   display:flex; align-items:center; gap:10px;
   cursor:pointer; letter-spacing:-0.5px; color: #0f172a;
-  text-decoration: none;
+  text-decoration: none; flex-shrink:0;
 }
 .nav-logo em { color: #2563eb; font-style:normal; }
 .logo-icon {
-  width:26px; height:26px;
+  width:38px; height:38px;
   background: rgba(37,99,235,0.08);
   border: 1px solid rgba(37,99,235,0.2);
-  border-radius:9px; display:flex; align-items:center;
+  border-radius:10px; display:flex; align-items:center;
   justify-content:center; transition:var(--transition);
+  flex-shrink:0;
 }
+.logo-icon svg { width:26px; height:26px; }
 .nav-logo:hover .logo-icon {
   background: rgba(37,99,235,0.15);
   box-shadow: 0 0 16px rgba(37,99,235,0.2);
 }
-.nav-links { display:flex; gap:48px; }
+.nav-links { display:flex; align-items:center; gap:32px; margin-left:50px; }
 .nav-link {
-  color: #475569; font-size:0.95rem; font-weight:500;
-  padding:8px 16px; border-radius:10px;
+  color: #334155; font-size:17.5px; font-weight:600;
+  padding:8px 4px; border-radius:8px;
   cursor:pointer; transition:var(--transition);
   text-decoration:none;
 }
-.nav-link:hover { color:#0f172a; background:rgba(0,0,0,0.04); }
-.nav-right { display:flex; align-items:center; gap:12px; }
+.nav-link:hover { color:#2563eb; background:transparent; }
+.nav-right { display:flex; align-items:center; gap:12px; margin-left:auto; }
 .btn-nav-ghost {
   background:none; border:1px solid rgba(0,0,0,0.15);
-  color:#475569; padding:8px 20px; border-radius:10px;
-  font-family:var(--font-body); font-size:0.85rem;
-  font-weight:500; cursor:pointer; transition:var(--transition);
+  color:#475569; padding:10px 24px; border-radius:10px;
+  font-family:var(--font-body); font-size:0.92rem;
+  font-weight:600; cursor:pointer; transition:var(--transition);
   text-decoration:none; display:inline-flex; align-items:center;
 }
 .btn-nav-ghost:hover { background:rgba(0,0,0,0.04); color:#0f172a; }
 .btn-nav-pro {
   background: linear-gradient(135deg,#2563eb,#7c3aed);
-  color:#fff; border:none; padding:10px 24px; border-radius:10px;
-  font-family:var(--font-display); font-size:0.88rem; font-weight:600;
+  color:#fff; border:none; padding:12px 28px; border-radius:10px;
+  font-family:var(--font-display); font-size:0.95rem; font-weight:700;
   cursor:pointer; transition:var(--transition); text-decoration:none;
   display:inline-flex; align-items:center;
 }
