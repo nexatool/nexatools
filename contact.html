@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d1117">
+<meta name="theme-color" content="#f8fafc">
 <meta name="author" content="NexaTools.io">
 <title>Contact Us | NexaTools.io Get in Touch</title>
 <meta name="description" content="Contact NexaTools.io for support, feedback, or bug reports. Email: pro@nexatools.io We respond within 24 to 48 hours.">
@@ -40,7 +40,6 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 <style>
   .page-hero {
@@ -58,6 +57,7 @@
     letter-spacing: -1.5px;
     line-height: 1.1;
     margin-bottom: 20px;
+    color: #0f172a;
   }
   .page-hero p {
     color: var(--text2);
@@ -86,8 +86,8 @@
   /* ── Info Cards ── */
   .contact-info { display: flex; flex-direction: column; gap: 14px; }
   .contact-card {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 18px;
     padding: 22px 24px;
     text-decoration: none;
@@ -95,19 +95,20 @@
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   .contact-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
+    background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent);
     opacity: 0;
     transition: opacity 0.25s ease;
   }
   .contact-card:hover {
-    border-color: rgba(0,229,255,0.25);
+    border-color: rgba(37,99,235,0.28);
     transform: translateX(5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.09);
   }
   .contact-card:hover::before { opacity: 1; }
   .contact-card .cc-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
@@ -115,16 +116,16 @@
     font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 1.8px;
-    color: rgba(255,255,255,0.3);
+    color: #94a3b8;
     margin-bottom: 5px;
     font-weight: 700;
   }
-  .contact-card .cc-value { font-size: 0.9rem; font-weight: 700; color: var(--cyan); margin-bottom: 5px; }
-  .contact-card .cc-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+  .contact-card .cc-value { font-size: 0.9rem; font-weight: 700; color: #2563eb; margin-bottom: 5px; }
+  .contact-card .cc-desc { font-size: 0.78rem; color: #64748b; line-height: 1.55; }
 
   .response-card {
-    background: rgba(0,229,255,0.04);
-    border: 1px solid rgba(0,229,255,0.15);
+    background: rgba(37,99,235,0.04);
+    border: 1px solid rgba(37,99,235,0.15);
     border-radius: 16px;
     padding: 18px 20px;
     display: flex;
@@ -132,22 +133,23 @@
     gap: 14px;
   }
   .response-card .rc-icon { font-size: 1.7rem; flex-shrink: 0; }
-  .response-card .rc-text { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
-  .response-card .rc-text strong { color: var(--cyan); display: block; margin-bottom: 3px; font-size: 0.85rem; }
+  .response-card .rc-text { font-size: 0.82rem; color: #64748b; line-height: 1.6; }
+  .response-card .rc-text strong { color: #2563eb; display: block; margin-bottom: 3px; font-size: 0.85rem; }
 
   /* ── Contact Form ── */
   .contact-form-wrap {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 22px;
     padding: 38px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
   .contact-form-wrap h2 {
     font-family: var(--font-display);
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 26px;
-    background: linear-gradient(135deg, #fff 40%, var(--cyan));
+    background: linear-gradient(135deg, #0f172a 40%, #2563eb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -156,7 +158,7 @@
   .form-group-cf { margin-bottom: 18px; }
   .form-label-cf {
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.4);
+    color: #64748b;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 700;
@@ -164,9 +166,9 @@
     display: block;
   }
   .form-input-cf {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #fff;
+    background: #f8fafc;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #0f172a;
     padding: 12px 16px;
     border-radius: 12px;
     font-family: var(--font-body);
@@ -176,18 +178,18 @@
     width: 100%;
     box-sizing: border-box;
   }
-  .form-input-cf::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input-cf::placeholder { color: #94a3b8; }
   .form-input-cf:focus {
-    border-color: rgba(0,229,255,0.4);
-    background: rgba(0,229,255,0.04);
-    box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+    border-color: rgba(37,99,235,0.4);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
   }
   textarea.form-input-cf { resize: vertical; min-height: 120px; }
-  select.form-input-cf option { background: #0a0c1a; color: #fff; }
+  select.form-input-cf option { background: #ffffff; color: #0f172a; }
   .submit-btn {
     width: 100%;
-    background: var(--cyan);
-    color: #000;
+    background: #2563eb;
+    color: #fff;
     border: none;
     padding: 14px 24px;
     border-radius: 12px;
@@ -203,51 +205,52 @@
     letter-spacing: 0.2px;
   }
   .submit-btn:hover {
-    box-shadow: 0 8px 28px rgba(0,229,255,0.35);
+    box-shadow: 0 8px 28px rgba(37,99,235,0.3);
     transform: translateY(-2px);
   }
   .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
   .success-msg {
     display: none;
-    background: rgba(48,209,88,0.08);
-    border: 1px solid rgba(48,209,88,0.25);
+    background: rgba(5,150,105,0.06);
+    border: 1px solid rgba(5,150,105,0.25);
     border-radius: 12px;
     padding: 16px 20px;
-    color: #4ade80;
+    color: #059669;
     font-size: 0.88rem;
     text-align: center;
     margin-top: 16px;
     line-height: 1.6;
   }
   .form-note {
-    color: rgba(255,255,255,0.25);
+    color: #94a3b8;
     font-size: 0.72rem;
     margin-top: 14px;
     text-align: center;
     line-height: 1.6;
   }
-  .form-note a { color: var(--cyan); text-decoration: none; }
+  .form-note a { color: #2563eb; text-decoration: none; }
 
   /* ── FAQ ── */
   .faq-box {
-    background: linear-gradient(145deg, rgba(16,20,38,0.97), rgba(10,12,24,0.99));
-    border: 1px solid rgba(255,255,255,0.07);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.09);
     border-radius: 22px;
     padding: 40px;
     margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
   .faq-box h2 {
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 28px;
-    background: linear-gradient(135deg, #fff 40%, var(--cyan));
+    background: linear-gradient(135deg, #0f172a 40%, #2563eb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .faq-item-cf {
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
     padding: 20px 0;
   }
   .faq-item-cf:first-of-type { padding-top: 0; }
@@ -255,7 +258,7 @@
   .faq-q-cf {
     font-size: 0.93rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.9);
+    color: #0f172a;
     margin-bottom: 10px;
     display: flex;
     align-items: flex-start;
@@ -264,9 +267,9 @@
   }
   .faq-badge {
     flex-shrink: 0;
-    background: rgba(0,229,255,0.1);
-    border: 1px solid rgba(0,229,255,0.25);
-    color: var(--cyan);
+    background: rgba(37,99,235,0.08);
+    border: 1px solid rgba(37,99,235,0.25);
+    color: #2563eb;
     font-size: 0.58rem;
     font-weight: 800;
     letter-spacing: 1px;
@@ -276,18 +279,18 @@
     text-transform: uppercase;
   }
   .faq-a-cf {
-    color: rgba(255,255,255,0.5);
+    color: #475569;
     font-size: 0.87rem;
     line-height: 1.8;
     padding-left: 44px;
   }
-  .faq-a-cf a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(0,229,255,0.3); }
-  .faq-a-cf a:hover { border-color: var(--cyan); }
+  .faq-a-cf a { color: #2563eb; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.3); }
+  .faq-a-cf a:hover { border-color: #2563eb; }
 
   /* ── CTA ── */
   .cta-bottom {
-    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(139,92,246,0.05));
-    border: 1px solid rgba(139,92,246,0.18);
+    background: linear-gradient(135deg, rgba(37,99,235,0.04), rgba(124,58,237,0.04));
+    border: 1px solid rgba(124,58,237,0.15);
     border-radius: 24px;
     padding: 48px 40px;
     text-align: center;
@@ -298,9 +301,9 @@
     font-size: 1.7rem;
     font-weight: 700;
     margin-bottom: 10px;
-    color: #fff;
+    color: #0f172a;
   }
-  .cta-bottom p { color: rgba(255,255,255,0.5); font-size: 0.92rem; margin-bottom: 24px; }
+  .cta-bottom p { color: #64748b; font-size: 0.92rem; margin-bottom: 24px; }
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
@@ -312,6 +315,7 @@
     .cta-bottom { padding: 32px 20px; }
   }
 </style>
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="bg-grid"></div>
