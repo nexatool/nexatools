@@ -58,16 +58,17 @@
       </div>
       <span>Nexa<em>Tools</em></span>
     </div>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="about.html">About</a>
-      <a class="nav-link" href="blog-section.html">Blog</a>
-      <a class="nav-link" href="contact.html">Contact</a>
-      <a class="nav-link" href="privacy-policy.html">Privacy</a>
-      <a class="nav-link" href="terms.html" style="color:var(--cyan);">Terms</a>
-    </div>
-    <div class="nav-right">
-      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+     <div class="nav-links">
+  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
+  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
+  <a class="nav-link" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
+  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
+  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
+  <a class="nav-link" href="privacy-policy.html">Privacy</a>
+  <a class="nav-link" href="terms.html" style="color:var(--cyan);">Terms</a>
+</div>
+<div class="nav-right">
+  <a class="btn-nav-ghost" href="contact.html" style="font-weight:700;">Contact Us</a>
       <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
     </div>
     <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
@@ -190,5 +191,10 @@ window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 </script>
+   <style>
+.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+.btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:100px !important; margin-left:70px !important; }
+</style>
 </body>
 </html>
