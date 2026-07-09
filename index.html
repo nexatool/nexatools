@@ -30,7 +30,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"NexaTools.io","url":"https://www.nexatools.io","description":"Free AI-powered productivity tools including Resume Builder, QR Code Generator, Logo Maker, Invoice Generator, Business Card Maker and Password Generator.","applicationCategory":"ProductivityApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Resume Builder","Invoice Generator","QR Code Generator","Logo Maker","Business Card Maker","Password Generator","Social Media Scheduler"]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is NexaTools.io completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes! All 7 tools are 100% free to use. No login, no credit card, no hidden charges."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Just open the website and start using any tool instantly."}},{"@type":"Question","name":"Is my data safe on NexaTools?","acceptedAnswer":{"@type":"Answer","text":"100% safe. All tools run directly in your browser. We never store or collect your data."}},{"@type":"Question","name":"Can I use these tools for commercial projects?","acceptedAnswer":{"@type":"Answer","text":"Yes! You can use resumes, invoices, logos and QR codes for personal and commercial use freely."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is NexaTools.io completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes! All 7 tools are 100% free to use. No login, no credit card, no hidden charges."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Just open the website and start using any tool instantly."}},{"@type":"Question","name":"Is my data safe on NexaTools?","acceptedAnswer":{"@type":"Answer","text":"All tools run directly in your browser. We never store or collect the information you enter."}},{"@type":"Question","name":"Can I use these tools for commercial projects?","acceptedAnswer":{"@type":"Answer","text":"Yes! You can use resumes, invoices, logos and QR codes for personal and commercial use freely."}}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -256,11 +256,11 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
 <canvas class="bg-particles" id="particleCanvas"></canvas>
 
 <!-- NAVBAR -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
     <div class="nav-logo" onclick="window.location.href='index.html'">
       <div class="logo-icon">
-        <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexaTools logo">
           <polygon points="48,6 80,24 80,60 48,78 16,60 16,24" fill="none" stroke="var(--cyan)" stroke-width="4"/>
           <polygon points="48,20 68,31 68,53 48,64 28,53 28,31" fill="var(--cyan)" opacity="0.18"/>
           <polygon points="48,20 68,31 68,53 48,64 28,53 28,31" fill="none" stroke="var(--cyan)" stroke-width="3"/>
@@ -283,7 +283,7 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
       <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
       <a class="btn-nav-pro" href="#tools-section">⚡Try Free</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
@@ -299,8 +299,8 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge"><span class="badge-dot"></span>100% Free &nbsp;•&nbsp; No Login &nbsp;•&nbsp; 7 Tools</div>
-    <h1 class="hero-title">Your Free <span class="title-gradient">Professional Toolkit</span></h1>
-    <p class="hero-sub">NexaTools.io gives students, freelancers and small businesses in Pakistan and worldwide access to professional-grade tools completely free. Build your resume, generate invoices, create logos, make QR codes and more. No account required.</p>
+    <h1 class="hero-title">Free Online Tools for <span class="title-gradient">Resumes, Invoices & Branding</span></h1>
+    <p class="hero-sub">NexaTools.io is a free, browser-based toolkit built for students, freelancers and small businesses. Create a resume, generate an invoice, design a logo or QR code, all directly in your browser, with no login and no downloads. Just open a tool and get started.</p>
     <div class="hero-ctas">
       <button class="btn-primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Start Using Free Tools</span></button>
     </div>
@@ -377,12 +377,12 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
   <div class="section-header">
     <div class="section-eyebrow">✦ About NexaTools</div>
     <h2 class="section-title"><span class="tools-title-gradient">What is NexaTools.io?</span></h2>
-    <p class="section-sub">A free productivity platform built for students, freelancers and small businesses.</p>
+    <p class="section-sub">A free, browser-based toolkit for everyday productivity.</p>
   </div>
   <div style="max-width:760px;margin:0 auto;text-align:left;">
-    <p style="font-size:1rem;line-height:1.9;color:#475569;margin-bottom:20px;">NexaTools.io is a free, browser-based productivity platform that gives everyone access to professional tools no account, no payment, no software installation required. Whether you are a student building your first CV, a freelancer sending invoices to international clients, or a small business owner creating a brand logo, NexaTools has the right tool for you.</p>
-    <p style="font-size:1rem;line-height:1.9;color:#475569;margin-bottom:20px;">All tools run entirely inside your web browser. Your data never leaves your device we do not store, collect or share any information you enter. This makes NexaTools one of the most private and secure free tool platforms available online.</p>
-    <p style="font-size:1rem;line-height:1.9;color:#475569;">NexaTools.io is especially popular among Pakistani freelancers on platforms like Upwork, Fiverr, and Rozee.pk who need professional documents without paying expensive subscription fees. Our tools are also used by students at universities across Pakistan, India, and worldwide.</p>
+    <p style="font-size:1rem;line-height:1.9;color:#475569;margin-bottom:20px;">NexaTools.io started as a simple idea: professional tools shouldn't require a subscription, a signup form, or a credit card. A student writing their first resume, a freelancer sending an invoice to a client, or a small business owner who needs a logo shouldn't have to pay a monthly fee or hand over their email just to get the job done. That's the gap NexaTools was built to close.</p>
+    <p style="font-size:1rem;line-height:1.9;color:#475569;margin-bottom:20px;">Every tool on this site runs directly in your web browser. When you type your details into the Resume Builder or the Invoice Generator, that information stays on your device we don't collect it, store it, or send it to a server. You can open a tool, use it, download your file, and close the tab, without ever creating an account.</p>
+    <p style="font-size:1rem;line-height:1.9;color:#475569;">NexaTools is built and maintained by a small team focused on keeping these tools free, fast, and genuinely useful. If something is broken or missing, we'd rather hear about it and fix it than add features nobody asked for. If you run into an issue or have a suggestion, the <a href="contact.html" style="color:#2563eb;font-weight:600;">contact page</a> is the fastest way to reach us.</p>
   </div>
 </section>
 
@@ -397,7 +397,7 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <div class="how-card"><div class="how-step">1</div><div class="how-icon">🖱️</div><div class="how-title">Choose Your Tool</div><div class="how-desc">Click any of the 7 free tools above. Opens instantly in your browser no download needed.</div></div>
     <div class="how-card"><div class="how-step">2</div><div class="how-icon">✏️</div><div class="how-title">Fill Your Details</div><div class="how-desc">Enter your information in the simple form. The tool generates a professional preview in real time.</div></div>
     <div class="how-card"><div class="how-step">3</div><div class="how-icon">⬇️</div><div class="how-title">Download & Use</div><div class="how-desc">Download your resume as PDF, your logo as PNG, or your QR code as an image instantly, for free.</div></div>
-    <div class="how-card"><div class="how-step">4</div><div class="how-icon">🔒</div><div class="how-title">100% Private</div><div class="how-desc">Everything runs in your browser. We never see or store your data. Completely safe to use.</div></div>
+    <div class="how-card"><div class="how-step">4</div><div class="how-icon">🔒</div><div class="how-title">Stays On Your Device</div><div class="how-desc">Everything runs locally in your browser, so the details you enter are never uploaded to our servers.</div></div>
   </div>
 </section>
 
@@ -405,16 +405,16 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
 <section class="section" style="max-width:1100px;margin:0 auto;">
   <div class="section-header">
     <div class="section-eyebrow">✦ Why Choose Us</div>
-    <h2 class="section-title"><span class="tools-title-gradient">Why 500+ People Use NexaTools</span></h2>
-    <p class="section-sub">Built for real people with real needs not for profit.</p>
+    <h2 class="section-title"><span class="tools-title-gradient">Why People Choose NexaTools</span></h2>
+    <p class="section-sub">Built to be useful first, everything else second.</p>
   </div>
   <div class="why-grid">
-    <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Completely Free Forever</div><div class="why-desc">No hidden fees, no trial period, no credit card. Every tool is free to use as many times as you want.</div></div></div>
-    <div class="why-card"><div class="why-icon">🚀</div><div><div class="why-title">No Account Needed</div><div class="why-desc">Open any tool and start immediately. No email signup, no password, no wasted time.</div></div></div>
-    <div class="why-card"><div class="why-icon">🤖</div><div><div class="why-title">AI-Powered Resume Writing</div><div class="why-desc">Our AI automatically writes professional resume summaries based on your job title saving you hours.</div></div></div>
-    <div class="why-card"><div class="why-icon">📱</div><div><div class="why-title">Works on Any Device</div><div class="why-desc">Whether you are on a phone, tablet or laptop NexaTools works perfectly on any screen size.</div></div></div>
-    <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Your Data Stays Private</div><div class="why-desc">All tools run inside your browser only. Nothing you type is sent to or stored on our servers.</div></div></div>
-    <div class="why-card"><div class="why-icon">🌍</div><div><div class="why-title">Built for Pakistan & Beyond</div><div class="why-desc">Designed with Pakistani freelancers, students, and small businesses in mind but used worldwide.</div></div></div>
+    <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Free, No Catch</div><div class="why-desc">There's no trial period and no premium tier hiding behind a paywall. Every tool here is free to use, as many times as you need.</div></div></div>
+    <div class="why-card"><div class="why-icon">🚀</div><div><div class="why-title">No Account Needed</div><div class="why-desc">Open a tool and start working right away. No email signup, no password to remember, no verification step in the way.</div></div></div>
+    <div class="why-card"><div class="why-icon">🤖</div><div><div class="why-title">AI-Assisted Resume Writing</div><div class="why-desc">The Resume Builder can suggest a professional summary based on your job title, giving you a starting point instead of a blank page.</div></div></div>
+    <div class="why-card"><div class="why-icon">📱</div><div><div class="why-title">Works on Any Device</div><div class="why-desc">Whether you're on a phone, tablet, or laptop, the layout adjusts so each tool stays easy to use.</div></div></div>
+    <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Runs in Your Browser</div><div class="why-desc">Your inputs are processed locally. We don't ask for personal details we don't need, and we don't store what you type.</div></div></div>
+    <div class="why-card"><div class="why-icon">🌍</div><div><div class="why-title">Built for Everyday Use</div><div class="why-desc">Made with students, freelancers, and small business owners in mind, and useful to anyone who needs a quick professional document.</div></div></div>
   </div>
 </section>
 
@@ -429,21 +429,21 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <div class="blog-card">
       <div class="blog-tag">Invoice</div>
       <div class="blog-title">How to Send a Professional Invoice as a Freelancer in Pakistan 2026</div>
-      <p class="blog-desc">Get paid faster from local and international clients. Payment methods, tax tips, and complete invoicing guide for Pakistani freelancers.</p>
+      <p class="blog-desc">Get paid faster from local and international clients. Payment methods, tax tips, and a complete invoicing guide for freelancers in Pakistan.</p>
       <div class="blog-meta"><span>📅 June 14, 2026</span><span>8 min read</span></div>
       <a class="blog-btn" href="blog-freelancer-invoice-pakistan.html">Read More →</a>
     </div>
     <div class="blog-card">
       <div class="blog-tag">Resume</div>
       <div class="blog-title">How to Make a Resume With No Experience in Pakistan 2026</div>
-      <p class="blog-desc">Fresh graduate or student? Build a professional resume with zero work experience that gets you hired. Complete step-by-step guide.</p>
+      <p class="blog-desc">Fresh graduate or student? Build a professional resume with zero work experience that gets you hired. A complete step-by-step guide.</p>
       <div class="blog-meta"><span>📅 June 7, 2026</span><span>7 min read</span></div>
       <a class="blog-btn" href="blog-no-experience-resume.html">Read More →</a>
     </div>
     <div class="blog-card">
       <div class="blog-tag">Productivity</div>
       <div class="blog-title">Top Free Tools Every Student Needs in 2026</div>
-      <p class="blog-desc">From resume building to password management here are the must-have free tools for every student worldwide.</p>
+      <p class="blog-desc">From building a resume to managing passwords, here are the free tools worth having as a student, wherever you're studying.</p>
       <div class="blog-meta"><span>📅 June 5, 2026</span><span>5 min read</span></div>
       <a class="blog-btn" href="blog-student-tools.html">Read More →</a>
     </div>
@@ -461,20 +461,20 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <p class="section-sub">Everything you need to know about NexaTools clear and simple.</p>
   </div>
   <div class="faq-list">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is NexaTools.io completely free to use? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes! All 7 tools on NexaTools.io are 100% free to use. There is no login required, no credit card needed, and no hidden charges. Every tool is free forever for personal and commercial use.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need to create an account to use the tools? <span class="faq-arrow">▾</span></button><div class="faq-a">No account is needed. Simply open NexaTools.io in any web browser and start using any tool instantly. No email address, no password, and no registration required at any point.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is my personal data safe on NexaTools? <span class="faq-arrow">▾</span></button><div class="faq-a">Your data is completely safe. All tools run entirely inside your web browser. Nothing you type your name, email, resume details, invoice data is ever sent to or stored on our servers. We have no access to your information.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use NexaTools for my business or freelance work? <span class="faq-arrow">▾</span></button><div class="faq-a">Absolutely. NexaTools is specifically designed for freelancers, small businesses, and professionals. You can create invoices for clients, design business logos, generate QR codes for payments, and build professional resumes all completely free for commercial use.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I download my resume or invoice as a PDF? <span class="faq-arrow">▾</span></button><div class="faq-a">Fill in your details on the Resume Builder or Invoice Generator page, then click the Print or Download button. Your browser will open a print dialog select "Save as PDF" to download your document. Completely free with no watermark.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What tools are available on NexaTools.io? <span class="faq-arrow">▾</span></button><div class="faq-a">NexaTools offers 7 free tools: AI Resume Builder, Invoice & Billing Generator, QR Code Generator, Logo Maker, Business Card Maker, Password Generator, and Social Media Post Scheduler. All are free with no login required.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does NexaTools work on mobile phones? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes! NexaTools.io is fully responsive and works on smartphones, tablets, and desktop computers. You can build your resume, generate a QR code, or create a logo directly from your mobile browser without any app download.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is NexaTools.io completely free to use? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes! All 7 tools on NexaTools.io are 100% free to use. There is no login required, no credit card needed, and no hidden charges. Every tool is free forever for personal and commercial use.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Do I need to create an account to use the tools? <span class="faq-arrow">▾</span></button><div class="faq-a">No account is needed. Simply open NexaTools.io in any web browser and start using any tool instantly. No email address, no password, and no registration required at any point.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is my personal data safe on NexaTools? <span class="faq-arrow">▾</span></button><div class="faq-a">Your data stays on your device. All tools run entirely inside your web browser. Nothing you type your name, email, resume details, invoice data is sent to or stored on our servers.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can I use NexaTools for my business or freelance work? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes. NexaTools is built with freelancers, small businesses, and everyday professionals in mind. You can create invoices for clients, design a business logo, generate QR codes for payments, and build resumes all free for commercial use.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How do I download my resume or invoice as a PDF? <span class="faq-arrow">▾</span></button><div class="faq-a">Fill in your details on the Resume Builder or Invoice Generator page, then click the Print or Download button. Your browser will open a print dialog select "Save as PDF" to download your document, with no watermark.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What tools are available on NexaTools.io? <span class="faq-arrow">▾</span></button><div class="faq-a">NexaTools offers 7 free tools: AI Resume Builder, Invoice & Billing Generator, QR Code Generator, Logo Maker, Business Card Maker, Password Generator, and Social Media Post Scheduler. All are free with no login required.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Does NexaTools work on mobile phones? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes. NexaTools.io is fully responsive and works on smartphones, tablets, and desktop computers. You can build a resume, generate a QR code, or create a logo directly from your mobile browser, without any app download.</div></div>
   </div>
 </section>
 
 <!-- TRUST & CTA -->
 <section class="section">
   <div class="trust-bar">
-    <div class="trust-stat"><div class="trust-num">500+</div><div class="trust-label">Users Worldwide</div></div>
+    <div class="trust-stat"><div class="trust-num">🔒</div><div class="trust-label">Privacy Focused</div></div>
     <div class="trust-divider"></div>
     <div class="trust-stat"><div class="trust-num">7</div><div class="trust-label">Free Tools</div></div>
     <div class="trust-divider"></div>
@@ -483,8 +483,8 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <div class="trust-stat"><div class="trust-num">$0</div><div class="trust-label">Forever Free</div></div>
   </div>
   <div class="cta-block">
-    <p class="cta-join-text">⭐ Join <strong>500+</strong> users worldwide who trust NexaTools.io for free professional tools</p>
-    <button class="btn-primary cta-btn" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Try Free Tools Now</span></button>
+    <p class="cta-join-text">⭐ <strong>NexaTools.io</strong> free, browser-based tools with no signup and no cost, ever</p>
+    <button class="btn-primary cta-btn" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Start Using Free Tools Today</span></button>
   </div>
 </section>
 
@@ -499,7 +499,7 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     </div>
     <span>Nexa<em>Tools</em>.io</span>
   </div>
-  <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free AI-powered tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
   <div class="footer-links">
     <a href="about.html">About</a><span class="footer-sep">·</span>
     <a href="contact.html">Contact</a><span class="footer-sep">·</span>
@@ -507,12 +507,12 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <a href="terms.html">Terms &amp; Conditions</a><span class="footer-sep">·</span>
     <a href="blog-section.html">Blog</a>
   </div>
-  <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍</p>
+  <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
 </footer>
 
 <div class="modal-overlay" id="blog-modal" onclick="closeBlogModalOutside(event)">
   <div class="modal" style="max-width:640px;">
-    <button class="modal-close" onclick="closeBlogModal()">✕</button>
+    <button class="modal-close" onclick="closeBlogModal()" aria-label="Close">✕</button>
     <div id="blog-modal-content"></div>
   </div>
 </div>
@@ -529,8 +529,8 @@ function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
   const isOpen = answer.classList.contains('open');
   document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
-  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+  document.querySelectorAll('.faq-q').forEach(q => { q.classList.remove('open'); q.setAttribute('aria-expanded','false'); });
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
 </script>
 </body>
