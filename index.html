@@ -134,6 +134,9 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
 .float-2 { margin-left:0 !important; }
 .float-3 { margin-left:48px !important; }
 @keyframes scrollFloat { 0%{transform:translateY(0);} 100%{transform:translateY(-50%);} }
+@media (prefers-reduced-motion: reduce) {
+  .float-card { animation:none !important; }
+}
 .fc-icon { font-size:1.6rem; flex-shrink:0; width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:rgba(37,99,235,0.06); border-radius:10px; }
 .fc-text { flex:1; }
 .fc-title { font-size:0.88rem; font-weight:700; color:#0f172a; }
@@ -183,13 +186,50 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 }
 .tool-card-link:hover .tc-icon { transform:scale(1.08) rotate(-4deg); }
 .tc-text { flex:1; }
-.tc-name { font-size:0.98rem; font-weight:700; color:#0f172a; margin-bottom:5px; display:block; letter-spacing:-0.2px; }
+.tc-name { font-size:0.98rem; font-weight:700; color:#0f172a; margin:0 0 5px 0; display:block; letter-spacing:-0.2px; }
 .tc-desc { font-size:0.79rem; color:#64748b; line-height:1.5; }
 .tc-arrow { font-size:1.05rem; opacity:0; transform:translateX(-6px); transition:all 0.25s ease; flex-shrink:0; }
 .tool-card-link:hover .tc-arrow { opacity:1; transform:translateX(0); }
 .tc-badge { position:absolute; top:14px; right:14px; font-size:0.62rem; font-weight:800; padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:0.5px; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
 .tools-title-gradient { background:linear-gradient(90deg,#2563eb 0%,#7c3aed 50%,#059669 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .tools-count-pill { display:inline-flex; align-items:center; gap:6px; background:rgba(124,58,237,0.06); border:1px solid rgba(124,58,237,0.2); border-radius:100px; padding:5px 14px; font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#7c3aed; margin-bottom:16px; }
+
+/* ===== CATEGORY CARDS ===== */
+.category-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; margin-top:44px; }
+.category-card {
+  background:#ffffff; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:26px 22px;
+  display:flex; flex-direction:column; gap:12px; box-shadow:0 1px 2px rgba(15,23,42,0.04);
+  transition:transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.category-card:hover { transform:translateY(-4px); box-shadow:0 14px 30px -8px rgba(15,23,42,0.14); border-color:var(--cat-color,rgba(37,99,235,0.25)); }
+.category-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+.category-title { font-size:0.98rem; font-weight:700; color:#0f172a; }
+.category-desc { font-size:0.82rem; color:#64748b; line-height:1.55; flex:1; }
+.category-link { display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:var(--cat-color,#2563eb); text-decoration:none; margin-top:4px; }
+.category-link:hover { text-decoration:underline; }
+
+/* ===== MINI TOOL CARDS (PDF / Image sections) ===== */
+.mini-tools-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:36px; }
+.mini-tool-card {
+  background:#ffffff; border:1px solid rgba(0,0,0,0.07); border-radius:16px; padding:20px;
+  display:flex; flex-direction:column; gap:10px; box-shadow:0 1px 2px rgba(15,23,42,0.04);
+  transition:transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.mini-tool-card:hover { transform:translateY(-3px); box-shadow:0 10px 24px -6px rgba(15,23,42,0.13); border-color:rgba(37,99,235,0.25); }
+.mini-tool-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; background:rgba(37,99,235,0.07); }
+.mini-tool-name { font-size:0.9rem; font-weight:700; color:#0f172a; }
+.mini-tool-desc { font-size:0.76rem; color:#64748b; line-height:1.5; flex:1; }
+.mini-tool-open { display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:0.8rem; font-weight:700; color:#2563eb; text-decoration:none; border:1px solid rgba(37,99,235,0.2); border-radius:9px; padding:8px 12px; transition:all 0.2s ease; }
+.mini-tool-open:hover { background:rgba(37,99,235,0.06); border-color:rgba(37,99,235,0.4); }
+.view-all-row { text-align:center; margin-top:28px; }
+.view-all-link { display:inline-flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:700; color:#2563eb; text-decoration:none; padding:10px 20px; border:1px solid rgba(37,99,235,0.2); border-radius:10px; transition:all 0.2s ease; }
+.view-all-link:hover { background:rgba(37,99,235,0.06); border-color:rgba(37,99,235,0.4); }
+
+/* ===== RELATED CATEGORIES ===== */
+.related-categories { max-width:1100px; margin:0 auto; }
+.related-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; justify-content:center; }
+.related-chip { display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:#475569; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:100px; padding:8px 16px; text-decoration:none; transition:all 0.2s ease; }
+.related-chip:hover { color:#2563eb; border-color:rgba(37,99,235,0.3); background:rgba(37,99,235,0.04); }
 
 /* ===== FAQ ===== */
 .faq-section { max-width:780px; margin:0 auto; }
@@ -218,7 +258,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 .blog-card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:12px; transition:all 0.25s ease; text-decoration:none; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
 .blog-card:hover { border-color:rgba(37,99,235,0.25); transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.08); }
 .blog-tag { display:inline-block; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.2); color:#2563eb; font-size:0.68rem; font-weight:700; padding:3px 12px; border-radius:20px; letter-spacing:0.8px; text-transform:uppercase; width:fit-content; }
-.blog-title { font-size:0.97rem; font-weight:700; color:#0f172a; line-height:1.45; }
+.blog-title { font-size:0.97rem; font-weight:700; color:#0f172a; line-height:1.45; margin:0; }
 .blog-desc { color:#475569; font-size:0.83rem; line-height:1.7; flex:1; }
 .blog-meta { display:flex; gap:14px; font-size:0.72rem; color:#94a3b8; }
 .blog-btn { display:inline-flex; align-items:center; gap:6px; background:none; border:1px solid rgba(37,99,235,0.25); color:#2563eb; padding:8px 16px; border-radius:8px; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; width:fit-content; text-decoration:none; font-family:inherit; }
@@ -271,7 +311,8 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
 @media (max-width:400px) {
   .how-grid { grid-template-columns:1fr; }
   .hero-floats { display:none !important; }
-
+  .tools-grid, .category-grid, .mini-tools-grid, .blog-grid, .why-grid { grid-template-columns:1fr !important; }
+  body { overflow-x:hidden; }
 }
 </style>
 </head>
@@ -304,6 +345,7 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="#tools-section">Tools</a>
+      <a class="nav-link" href="#categories-section">Categories</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -312,7 +354,7 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
       <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
       <a class="btn-nav-pro" href="#tools-section">⚡Try Free</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
@@ -350,67 +392,204 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     </div>
   </div>
   <div class="hero-floats">
-    <div class="float-card float-1"><div class="fc-icon">📄</div><div class="fc-text"><div class="fc-title">Resume Builder</div><div class="fc-sub">AI-generated in 3s</div></div><div class="fc-dot green"></div></div>
-    <div class="float-card float-2"><div class="fc-icon">🎨</div><div class="fc-text"><div class="fc-title">Logo Maker</div><div class="fc-sub">5 styles · PNG export</div></div><div class="fc-dot cyan"></div></div>
-    <div class="float-card float-3"><div class="fc-icon">📱</div><div class="fc-text"><div class="fc-title">QR Code Generator</div><div class="fc-sub">URL · WiFi · UPI · Free</div></div><div class="fc-dot gold"></div></div>
-    <div class="float-card float-1"><div class="fc-icon">🧾</div><div class="fc-text"><div class="fc-title">Invoice Generator</div><div class="fc-sub">PDF export · No watermark</div></div><div class="fc-dot green"></div></div>
-    <div class="float-card float-2"><div class="fc-icon">💼</div><div class="fc-text"><div class="fc-title">Business Card Maker</div><div class="fc-sub">7 themes · PNG download</div></div><div class="fc-dot cyan"></div></div>
-    <div class="float-card float-3"><div class="fc-icon">🔐</div><div class="fc-text"><div class="fc-title">Password Generator</div><div class="fc-sub">Strong · 256-bit entropy</div></div><div class="fc-dot gold"></div></div>
+    <div class="float-card float-1"><div class="fc-icon" aria-hidden="true">📄</div><div class="fc-text"><div class="fc-title">Resume Builder</div><div class="fc-sub">AI-generated in 3s</div></div><div class="fc-dot green"></div></div>
+    <div class="float-card float-2"><div class="fc-icon" aria-hidden="true">🎨</div><div class="fc-text"><div class="fc-title">Logo Maker</div><div class="fc-sub">5 styles · PNG export</div></div><div class="fc-dot cyan"></div></div>
+    <div class="float-card float-3"><div class="fc-icon" aria-hidden="true">📱</div><div class="fc-text"><div class="fc-title">QR Code Generator</div><div class="fc-sub">URL · WiFi · UPI · Free</div></div><div class="fc-dot gold"></div></div>
+    <div class="float-card float-1"><div class="fc-icon" aria-hidden="true">🧾</div><div class="fc-text"><div class="fc-title">Invoice Generator</div><div class="fc-sub">PDF export · No watermark</div></div><div class="fc-dot green"></div></div>
+    <div class="float-card float-2"><div class="fc-icon" aria-hidden="true">💼</div><div class="fc-text"><div class="fc-title">Business Card Maker</div><div class="fc-sub">7 themes · PNG download</div></div><div class="fc-dot cyan"></div></div>
+    <div class="float-card float-3"><div class="fc-icon" aria-hidden="true">🔐</div><div class="fc-text"><div class="fc-title">Password Generator</div><div class="fc-sub">Strong · 256-bit entropy</div></div><div class="fc-dot gold"></div></div>
   </div>
 </section>
 
 <!-- TOOLS SECTION -->
 <section class="tools-section section tools-section-wrap" id="tools-section">
   <div class="section-header">
-    <div class="tools-count-pill">✦ &nbsp;All 7 Tools</div>
+    <div class="tools-count-pill"><span aria-hidden="true">✦</span> &nbsp;All 7 Tools</div>
     <h2 class="section-title"><span class="tools-title-gradient">7 Free AI-Powered Tools All in One Place</span></h2>
     <p class="section-sub">Click any tool below to open it instantly. No login, no signup, 100% free forever.</p>
   </div>
   <div class="tools-grid">
     <a href="resume-builder.html" class="tool-card-link" style="--card-color:#2563eb;">
-      <div class="tc-icon" style="background:rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.15);">📄</div>
-      <div class="tc-text"><span class="tc-name">Resume Builder</span><span class="tc-desc">7 templates · AI summary writer · PDF download</span></div>
+      <div class="tc-icon" style="background:rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.15);" aria-hidden="true">📄</div>
+      <div class="tc-text"><h3 class="tc-name">Resume Builder</h3><span class="tc-desc">7 templates · AI summary writer · PDF download</span></div>
       <span class="tc-arrow" style="color:#2563eb;">→</span>
       <span class="tc-badge" style="background:#2563eb;color:#fff;">AI</span>
     </a>
     <a href="invoice-generator.html" class="tool-card-link" style="--card-color:#7c3aed;">
-      <div class="tc-icon" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.15);">🧾</div>
-      <div class="tc-text"><span class="tc-name">Invoice / Billing Generator</span><span class="tc-desc">4 templates · unlimited items · PDF export</span></div>
+      <div class="tc-icon" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.15);" aria-hidden="true">🧾</div>
+      <div class="tc-text"><h3 class="tc-name">Invoice / Billing Generator</h3><span class="tc-desc">4 templates · unlimited items · PDF export</span></div>
       <span class="tc-arrow" style="color:#7c3aed;">→</span>
     </a>
     <a href="qr-code-generator.html" class="tool-card-link" style="--card-color:#059669;">
-      <div class="tc-icon" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.15);">📱</div>
-      <div class="tc-text"><span class="tc-name">QR Code Generator</span><span class="tc-desc">URL · WiFi · UPI · Email · Phone · Text</span></div>
+      <div class="tc-icon" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.15);" aria-hidden="true">📱</div>
+      <div class="tc-text"><h3 class="tc-name">QR Code Generator</h3><span class="tc-desc">URL · WiFi · UPI · Email · Phone · Text</span></div>
       <span class="tc-arrow" style="color:#059669;">→</span>
     </a>
     <a href="logo-maker.html" class="tool-card-link" style="--card-color:#db2777;">
-      <div class="tc-icon" style="background:rgba(219,39,119,0.08);border-color:rgba(219,39,119,0.15);">🎨</div>
-      <div class="tc-text"><span class="tc-name">Logo Maker</span><span class="tc-desc">5 styles · custom colors · PNG download</span></div>
+      <div class="tc-icon" style="background:rgba(219,39,119,0.08);border-color:rgba(219,39,119,0.15);" aria-hidden="true">🎨</div>
+      <div class="tc-text"><h3 class="tc-name">Logo Maker</h3><span class="tc-desc">5 styles · custom colors · PNG download</span></div>
       <span class="tc-arrow" style="color:#db2777;">→</span>
     </a>
     <a href="business-card-maker.html" class="tool-card-link" style="--card-color:#ea580c;">
-      <div class="tc-icon" style="background:rgba(234,88,12,0.08);border-color:rgba(234,88,12,0.15);">💼</div>
-      <div class="tc-text"><span class="tc-name">Business Card Maker</span><span class="tc-desc">7 themes · custom fonts · PNG export</span></div>
+      <div class="tc-icon" style="background:rgba(234,88,12,0.08);border-color:rgba(234,88,12,0.15);" aria-hidden="true">💼</div>
+      <div class="tc-text"><h3 class="tc-name">Business Card Maker</h3><span class="tc-desc">7 themes · custom fonts · PNG export</span></div>
       <span class="tc-arrow" style="color:#ea580c;">→</span>
     </a>
     <a href="password-generator.html" class="tool-card-link" style="--card-color:#b45309;">
-      <div class="tc-icon" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.15);">🔐</div>
-      <div class="tc-text"><span class="tc-name">Password Generator</span><span class="tc-desc">Strong · bulk generate · copy instantly</span></div>
+      <div class="tc-icon" style="background:rgba(180,83,9,0.08);border-color:rgba(180,83,9,0.15);" aria-hidden="true">🔐</div>
+      <div class="tc-text"><h3 class="tc-name">Password Generator</h3><span class="tc-desc">Strong · bulk generate · copy instantly</span></div>
       <span class="tc-arrow" style="color:#b45309;">→</span>
       <span class="tc-badge" style="background:#059669;color:#fff;">FREE</span>
     </a>
     <a href="scheduler.html" class="tool-card-link" style="--card-color:#2563eb;">
-      <div class="tc-icon" style="background:rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.15);">📅</div>
-      <div class="tc-text"><span class="tc-name">Social Media Scheduler</span><span class="tc-desc">Instagram · Facebook · LinkedIn · Twitter</span></div>
+      <div class="tc-icon" style="background:rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.15);" aria-hidden="true">📅</div>
+      <div class="tc-text"><h3 class="tc-name">Social Media Scheduler</h3><span class="tc-desc">Instagram · Facebook · LinkedIn · Twitter</span></div>
       <span class="tc-arrow" style="color:#2563eb;">→</span>
     </a>
   </div>
 </section>
 
+<!-- POPULAR CATEGORIES -->
+<section class="section" id="categories-section" aria-labelledby="categories-heading" style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> Browse by Category</div>
+    <h2 class="section-title" id="categories-heading"><span class="tools-title-gradient">Popular Categories</span></h2>
+    <p class="section-sub">Find the right tool faster by browsing what you need it for.</p>
+  </div>
+  <div class="category-grid">
+    <div class="category-card" style="--cat-color:#2563eb;">
+      <div class="category-icon" style="background:rgba(37,99,235,0.08);" aria-hidden="true">📄</div>
+      <h3 class="category-title">Resume Tools</h3>
+      <p class="category-desc">Build and format resumes with AI-assisted summaries and ready-made templates.</p>
+      <a class="category-link" href="resume-tools.html" style="color:#2563eb;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#dc2626;">
+      <div class="category-icon" style="background:rgba(220,38,38,0.08);" aria-hidden="true">📑</div>
+      <h3 class="category-title">PDF Tools</h3>
+      <p class="category-desc">Convert, merge, split and compress PDF files directly in your browser.</p>
+      <a class="category-link" href="pdf-tools.html" style="color:#dc2626;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#db2777;">
+      <div class="category-icon" style="background:rgba(219,39,119,0.08);" aria-hidden="true">🖼️</div>
+      <h3 class="category-title">Image Tools</h3>
+      <p class="category-desc">Compress, resize and convert images between formats with no quality loss.</p>
+      <a class="category-link" href="image-tools.html" style="color:#db2777;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#ea580c;">
+      <div class="category-icon" style="background:rgba(234,88,12,0.08);" aria-hidden="true">💼</div>
+      <h3 class="category-title">Business Tools</h3>
+      <p class="category-desc">Invoices, business cards and branding assets for freelancers and small teams.</p>
+      <a class="category-link" href="business-tools.html" style="color:#ea580c;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#7c3aed;">
+      <div class="category-icon" style="background:rgba(124,58,237,0.08);" aria-hidden="true">🤖</div>
+      <h3 class="category-title">AI Tools</h3>
+      <p class="category-desc">AI-assisted writing and generation tools built into the resume and content tools.</p>
+      <a class="category-link" href="ai-tools.html" style="color:#7c3aed;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#0891b2;">
+      <div class="category-icon" style="background:rgba(8,145,178,0.08);" aria-hidden="true">⌨️</div>
+      <h3 class="category-title">Developer Tools</h3>
+      <p class="category-desc">Everyday utilities like password generators and QR codes for builders.</p>
+      <a class="category-link" href="developer-tools.html" style="color:#0891b2;">View Tools →</a>
+    </div>
+    <div class="category-card" style="--cat-color:#059669;">
+      <div class="category-icon" style="background:rgba(5,150,105,0.08);" aria-hidden="true">📈</div>
+      <h3 class="category-title">SEO Tools</h3>
+      <p class="category-desc">Lightweight utilities to help content and pages perform better in search.</p>
+      <a class="category-link" href="seo-tools.html" style="color:#059669;">View Tools →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR PDF TOOLS -->
+<section class="section" id="pdf-tools-preview" aria-labelledby="pdf-tools-heading" style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> PDF Tools</div>
+    <h2 class="section-title" id="pdf-tools-heading"><span class="tools-title-gradient">Popular PDF Tools</span></h2>
+    <p class="section-sub">Convert and manage PDF files in seconds, no software required.</p>
+  </div>
+  <div class="mini-tools-grid">
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">📝</div>
+      <div class="mini-tool-name">PDF to Word</div>
+      <div class="mini-tool-desc">Convert PDF documents into editable Word files.</div>
+      <a class="mini-tool-open" href="pdf-to-word.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">📄</div>
+      <div class="mini-tool-name">Word to PDF</div>
+      <div class="mini-tool-desc">Turn Word documents into shareable PDF files.</div>
+      <a class="mini-tool-open" href="word-to-pdf.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">📚</div>
+      <div class="mini-tool-name">Merge PDF</div>
+      <div class="mini-tool-desc">Combine multiple PDF files into a single document.</div>
+      <a class="mini-tool-open" href="merge-pdf.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">✂️</div>
+      <div class="mini-tool-name">Split PDF</div>
+      <div class="mini-tool-desc">Extract or separate pages from a PDF file.</div>
+      <a class="mini-tool-open" href="split-pdf.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">🗜️</div>
+      <div class="mini-tool-name">Compress PDF</div>
+      <div class="mini-tool-desc">Reduce PDF file size while keeping quality intact.</div>
+      <a class="mini-tool-open" href="compress-pdf.html">Open Tool</a>
+    </div>
+  </div>
+  <div class="view-all-row"><a class="view-all-link" href="pdf-tools.html">View All PDF Tools →</a></div>
+</section>
+
+<!-- POPULAR IMAGE TOOLS -->
+<section class="section" id="image-tools-preview" aria-labelledby="image-tools-heading" style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> Image Tools</div>
+    <h2 class="section-title" id="image-tools-heading"><span class="tools-title-gradient">Popular Image Tools</span></h2>
+    <p class="section-sub">Optimize and convert images for web, print or social media.</p>
+  </div>
+  <div class="mini-tools-grid">
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">🗜️</div>
+      <div class="mini-tool-name">Image Compressor</div>
+      <div class="mini-tool-desc">Shrink image file size without losing visible quality.</div>
+      <a class="mini-tool-open" href="image-compressor.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">📐</div>
+      <div class="mini-tool-name">Image Resizer</div>
+      <div class="mini-tool-desc">Resize images to exact dimensions in one click.</div>
+      <a class="mini-tool-open" href="image-resizer.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">🔄</div>
+      <div class="mini-tool-name">PNG to JPG</div>
+      <div class="mini-tool-desc">Convert PNG images to compressed JPG format.</div>
+      <a class="mini-tool-open" href="png-to-jpg.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">🔁</div>
+      <div class="mini-tool-name">JPG to PNG</div>
+      <div class="mini-tool-desc">Convert JPG images to PNG with transparency support.</div>
+      <a class="mini-tool-open" href="jpg-to-png.html">Open Tool</a>
+    </div>
+    <div class="mini-tool-card">
+      <div class="mini-tool-icon" aria-hidden="true">🌐</div>
+      <div class="mini-tool-name">WebP Converter</div>
+      <div class="mini-tool-desc">Convert images to and from the modern WebP format.</div>
+      <a class="mini-tool-open" href="webp-converter.html">Open Tool</a>
+    </div>
+  </div>
+  <div class="view-all-row"><a class="view-all-link" href="image-tools.html">View All Image Tools →</a></div>
+</section>
+
 <!-- ABOUT -->
 <section class="section" style="max-width:1100px;margin:0 auto;">
   <div class="section-header">
-    <div class="section-eyebrow">✦ About NexaTools</div>
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> About NexaTools</div>
     <h2 class="section-title"><span class="tools-title-gradient">What is NexaTools.io?</span></h2>
     <p class="section-sub">A free, browser-based toolkit for everyday productivity.</p>
   </div>
@@ -424,67 +603,67 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
 <!-- HOW IT WORKS -->
 <section class="section" style="max-width:1100px;margin:0 auto;">
   <div class="section-header">
-    <div class="section-eyebrow">✦ How It Works</div>
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> How It Works</div>
     <h2 class="section-title"><span class="tools-title-gradient">Ready in 3 Simple Steps</span></h2>
     <p class="section-sub">No signup. No software. Works on any device.</p>
   </div>
   <div class="how-grid">
-    <div class="how-card"><div class="how-step">1</div><div class="how-icon">🖱️</div><div class="how-title">Choose Your Tool</div><div class="how-desc">Click any of the 7 free tools above. Opens instantly in your browser no download needed.</div></div>
-    <div class="how-card"><div class="how-step">2</div><div class="how-icon">✏️</div><div class="how-title">Fill Your Details</div><div class="how-desc">Enter your information in the simple form. The tool generates a professional preview in real time.</div></div>
-    <div class="how-card"><div class="how-step">3</div><div class="how-icon">⬇️</div><div class="how-title">Download & Use</div><div class="how-desc">Download your resume as PDF, your logo as PNG, or your QR code as an image instantly, for free.</div></div>
-    <div class="how-card"><div class="how-step">4</div><div class="how-icon">🔒</div><div class="how-title">Stays On Your Device</div><div class="how-desc">Everything runs locally in your browser, so the details you enter are never uploaded to our servers.</div></div>
+    <div class="how-card"><div class="how-step">1</div><div class="how-icon" aria-hidden="true">🖱️</div><div class="how-title">Choose Your Tool</div><div class="how-desc">Click any of the 7 free tools above. Opens instantly in your browser no download needed.</div></div>
+    <div class="how-card"><div class="how-step">2</div><div class="how-icon" aria-hidden="true">✏️</div><div class="how-title">Fill Your Details</div><div class="how-desc">Enter your information in the simple form. The tool generates a professional preview in real time.</div></div>
+    <div class="how-card"><div class="how-step">3</div><div class="how-icon" aria-hidden="true">⬇️</div><div class="how-title">Download & Use</div><div class="how-desc">Download your resume as PDF, your logo as PNG, or your QR code as an image instantly, for free.</div></div>
+    <div class="how-card"><div class="how-step">4</div><div class="how-icon" aria-hidden="true">🔒</div><div class="how-title">Stays On Your Device</div><div class="how-desc">Everything runs locally in your browser, so the details you enter are never uploaded to our servers.</div></div>
   </div>
 </section>
 
 <!-- WHY NEXATOOLS -->
 <section class="section" style="max-width:1100px;margin:0 auto;">
   <div class="section-header">
-    <div class="section-eyebrow">✦ Why Choose Us</div>
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> Why Choose Us</div>
     <h2 class="section-title"><span class="tools-title-gradient">Why People Choose NexaTools</span></h2>
     <p class="section-sub">Built to be useful first, everything else second.</p>
   </div>
   <div class="why-grid">
-    <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Free, No Catch</div><div class="why-desc">There's no trial period and no premium tier hiding behind a paywall. Every tool here is free to use, as many times as you need.</div></div></div>
-    <div class="why-card"><div class="why-icon">🚀</div><div><div class="why-title">No Account Needed</div><div class="why-desc">Open a tool and start working right away. No email signup, no password to remember, no verification step in the way.</div></div></div>
-    <div class="why-card"><div class="why-icon">🤖</div><div><div class="why-title">AI-Assisted Resume Writing</div><div class="why-desc">The Resume Builder can suggest a professional summary based on your job title, giving you a starting point instead of a blank page.</div></div></div>
-    <div class="why-card"><div class="why-icon">📱</div><div><div class="why-title">Works on Any Device</div><div class="why-desc">Whether you're on a phone, tablet, or laptop, the layout adjusts so each tool stays easy to use.</div></div></div>
-    <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Runs in Your Browser</div><div class="why-desc">Your inputs are processed locally. We don't ask for personal details we don't need, and we don't store what you type.</div></div></div>
-    <div class="why-card"><div class="why-icon">🌍</div><div><div class="why-title">Built for Everyday Use</div><div class="why-desc">Made with students, freelancers, and small business owners in mind, and useful to anyone who needs a quick professional document.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">💰</div><div><div class="why-title">Free, No Catch</div><div class="why-desc">There's no trial period and no premium tier hiding behind a paywall. Every tool here is free to use, as many times as you need.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">🚀</div><div><div class="why-title">No Account Needed</div><div class="why-desc">Open a tool and start working right away. No email signup, no password to remember, no verification step in the way.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">🤖</div><div><div class="why-title">AI-Assisted Resume Writing</div><div class="why-desc">The Resume Builder can suggest a professional summary based on your job title, giving you a starting point instead of a blank page.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">📱</div><div><div class="why-title">Works on Any Device</div><div class="why-desc">Whether you're on a phone, tablet, or laptop, the layout adjusts so each tool stays easy to use.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">🔒</div><div><div class="why-title">Runs in Your Browser</div><div class="why-desc">Your inputs are processed locally. We don't ask for personal details we don't need, and we don't store what you type.</div></div></div>
+    <div class="why-card"><div class="why-icon" aria-hidden="true">🌍</div><div><div class="why-title">Built for Everyday Use</div><div class="why-desc">Made with students, freelancers, and small business owners in mind, and useful to anyone who needs a quick professional document.</div></div></div>
   </div>
 </section>
 
 <!-- BLOG -->
 <section class="blog-section section">
   <div class="section-header">
-    <div class="section-eyebrow">✦ Blog</div>
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> Blog</div>
     <h2 class="section-title"><span class="tools-title-gradient">Tips, Guides & Resources</span></h2>
     <p class="section-sub">Practical guides to help you get more done for free.</p>
   </div>
   <div class="blog-grid">
-    <div class="blog-card">
-      <div class="blog-tag">Invoice</div>
-      <div class="blog-title">How to Send a Professional Invoice as a Freelancer in Pakistan 2026</div>
+    <a class="blog-card" href="blog-freelancer-invoice-pakistan.html">
+      <div class="blog-tag" aria-hidden="true">Invoice</div>
+      <h3 class="blog-title">How to Send a Professional Invoice as a Freelancer in Pakistan 2026</h3>
       <p class="blog-desc">Get paid faster from local and international clients. Payment methods, tax tips, and a complete invoicing guide for freelancers in Pakistan.</p>
-      <div class="blog-meta"><span>📅 June 14, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-freelancer-invoice-pakistan.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Resume</div>
-      <div class="blog-title">How to Make a Resume With No Experience in Pakistan 2026</div>
+      <div class="blog-meta"><span><span aria-hidden="true">📅</span> <time datetime="2026-06-14">June 14, 2026</time></span><span>8 min read</span></div>
+      <span class="blog-btn">Read More <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="blog-card" href="blog-no-experience-resume.html">
+      <div class="blog-tag" aria-hidden="true">Resume</div>
+      <h3 class="blog-title">How to Make a Resume With No Experience in Pakistan 2026</h3>
       <p class="blog-desc">Fresh graduate or student? Build a professional resume with zero work experience that gets you hired. A complete step-by-step guide.</p>
-      <div class="blog-meta"><span>📅 June 7, 2026</span><span>7 min read</span></div>
-      <a class="blog-btn" href="blog-no-experience-resume.html">Read More →</a>
-    </div>
-    <div class="blog-card">
-      <div class="blog-tag">Productivity</div>
-      <div class="blog-title">Top Free Tools Every Student Needs in 2026</div>
+      <div class="blog-meta"><span><span aria-hidden="true">📅</span> <time datetime="2026-06-07">June 7, 2026</time></span><span>7 min read</span></div>
+      <span class="blog-btn">Read More <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="blog-card" href="blog-student-tools.html">
+      <div class="blog-tag" aria-hidden="true">Productivity</div>
+      <h3 class="blog-title">Top Free Tools Every Student Needs in 2026</h3>
       <p class="blog-desc">From building a resume to managing passwords, here are the free tools worth having as a student, wherever you're studying.</p>
-      <div class="blog-meta"><span>📅 June 5, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-student-tools.html">Read More →</a>
-    </div>
+      <div class="blog-meta"><span><span aria-hidden="true">📅</span> <time datetime="2026-06-05">June 5, 2026</time></span><span>5 min read</span></div>
+      <span class="blog-btn">Read More <span aria-hidden="true">→</span></span>
+    </a>
   </div>
   <div style="text-align:center;margin-top:36px;">
-    <a href="blog-section.html" class="btn-primary" style="display:inline-flex;text-decoration:none;"><span>📚 View All Blogs</span></a>
+    <a href="blog-section.html" class="btn-primary" style="display:inline-flex;text-decoration:none;"><span><span aria-hidden="true">📚</span> View All Blogs</span></a>
   </div>
 </section>
 
@@ -496,30 +675,50 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
     <p class="section-sub">Everything you need to know about NexaTools clear and simple.</p>
   </div>
   <div class="faq-list">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is NexaTools.io completely free to use? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes! All 7 tools on NexaTools.io are 100% free to use. There is no login required, no credit card needed, and no hidden charges. Every tool is free forever for personal and commercial use.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Do I need to create an account to use the tools? <span class="faq-arrow">▾</span></button><div class="faq-a">No account is needed. Simply open NexaTools.io in any web browser and start using any tool instantly. No email address, no password, and no registration required at any point.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is my personal data safe on NexaTools? <span class="faq-arrow">▾</span></button><div class="faq-a">Your data stays on your device. All tools run entirely inside your web browser. Nothing you type your name, email, resume details, invoice data is sent to or stored on our servers.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can I use NexaTools for my business or freelance work? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes. NexaTools is built with freelancers, small businesses, and everyday professionals in mind. You can create invoices for clients, design a business logo, generate QR codes for payments, and build resumes all free for commercial use.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How do I download my resume or invoice as a PDF? <span class="faq-arrow">▾</span></button><div class="faq-a">Fill in your details on the Resume Builder or Invoice Generator page, then click the Print or Download button. Your browser will open a print dialog select "Save as PDF" to download your document, with no watermark.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">What tools are available on NexaTools.io? <span class="faq-arrow">▾</span></button><div class="faq-a">NexaTools offers 7 free tools: AI Resume Builder, Invoice & Billing Generator, QR Code Generator, Logo Maker, Business Card Maker, Password Generator, and Social Media Post Scheduler. All are free with no login required.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Does NexaTools work on mobile phones? <span class="faq-arrow">▾</span></button><div class="faq-a">Yes. NexaTools.io is fully responsive and works on smartphones, tablets, and desktop computers. You can build a resume, generate a QR code, or create a logo directly from your mobile browser, without any app download.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-1" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-1">Is NexaTools.io completely free to use? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1">Yes! All 7 tools on NexaTools.io are 100% free to use. There is no login required, no credit card needed, and no hidden charges. Every tool is free forever for personal and commercial use.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-2" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-2">Do I need to create an account to use the tools? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2">No account is needed. Simply open NexaTools.io in any web browser and start using any tool instantly. No email address, no password, and no registration required at any point.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-3" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-3">Is my personal data safe on NexaTools? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3">Your data stays on your device. All tools run entirely inside your web browser. Nothing you type your name, email, resume details, invoice data is sent to or stored on our servers.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-4" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-4">Can I use NexaTools for my business or freelance work? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4">Yes. NexaTools is built with freelancers, small businesses, and everyday professionals in mind. You can create invoices for clients, design a business logo, generate QR codes for payments, and build resumes all free for commercial use.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-5" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-5">How do I download my resume or invoice as a PDF? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5">Fill in your details on the Resume Builder or Invoice Generator page, then click the Print or Download button. Your browser will open a print dialog select "Save as PDF" to download your document, with no watermark.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-6" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-6">What tools are available on NexaTools.io? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-6" role="region" aria-labelledby="faq-q-6">NexaTools offers 7 free tools: AI Resume Builder, Invoice & Billing Generator, QR Code Generator, Logo Maker, Business Card Maker, Password Generator, and Social Media Post Scheduler. All are free with no login required.</div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-q-7" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-7">Does NexaTools work on mobile phones? <span class="faq-arrow" aria-hidden="true">▾</span></button><div class="faq-a" id="faq-a-7" role="region" aria-labelledby="faq-q-7">Yes. NexaTools.io is fully responsive and works on smartphones, tablets, and desktop computers. You can build a resume, generate a QR code, or create a logo directly from your mobile browser, without any app download.</div></div>
   </div>
 </section>
 
 <!-- TRUST & CTA -->
 <section class="section">
   <div class="trust-bar">
-    <div class="trust-stat"><div class="trust-num">🔒</div><div class="trust-label">Privacy Focused</div></div>
+    <div class="trust-stat"><div class="trust-num" aria-hidden="true">🌐</div><div class="trust-label">Browser Based</div></div>
     <div class="trust-divider"></div>
-    <div class="trust-stat"><div class="trust-num">7</div><div class="trust-label">Free Tools</div></div>
+    <div class="trust-stat"><div class="trust-num" aria-hidden="true">⚡</div><div class="trust-label">Fast Processing</div></div>
     <div class="trust-divider"></div>
-    <div class="trust-stat"><div class="trust-num">100%</div><div class="trust-label">No Login Required</div></div>
+    <div class="trust-stat"><div class="trust-num" aria-hidden="true">🔒</div><div class="trust-label">Privacy Focused</div></div>
     <div class="trust-divider"></div>
-    <div class="trust-stat"><div class="trust-num">$0</div><div class="trust-label">Forever Free</div></div>
+    <div class="trust-stat"><div class="trust-num" aria-hidden="true">🚫</div><div class="trust-label">No Installation</div></div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat"><div class="trust-num" aria-hidden="true">$0</div><div class="trust-label">Free to Use</div></div>
   </div>
   <div class="cta-block">
     <p class="cta-join-text">⭐ <strong>NexaTools.io</strong> free, browser-based tools with no signup and no cost, ever</p>
     <button class="btn-primary cta-btn" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Start Using Free Tools Today</span></button>
+  </div>
+</section>
+
+<!-- RELATED CATEGORIES -->
+<section class="section related-categories" aria-labelledby="related-heading">
+  <div class="section-header">
+    <div class="section-eyebrow"><span aria-hidden="true">✦</span> Explore More</div>
+    <h2 class="section-title" id="related-heading"><span class="tools-title-gradient">Related Categories</span></h2>
+    <p class="section-sub">Jump to another category of free tools.</p>
+  </div>
+  <div class="related-list">
+    <a class="related-chip" href="resume-tools.html">📄 Resume Tools</a>
+    <a class="related-chip" href="pdf-tools.html">📑 PDF Tools</a>
+    <a class="related-chip" href="image-tools.html">🖼️ Image Tools</a>
+    <a class="related-chip" href="business-tools.html">💼 Business Tools</a>
+    <a class="related-chip" href="ai-tools.html">🤖 AI Tools</a>
+    <a class="related-chip" href="developer-tools.html">⌨️ Developer Tools</a>
+    <a class="related-chip" href="seo-tools.html">📈 SEO Tools</a>
   </div>
 </section>
 
@@ -558,7 +757,10 @@ window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 function toggleMobileNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
+  const nav = document.getElementById('mobileNav');
+  const toggle = document.getElementById('navMobileToggle');
+  const isOpen = nav.classList.toggle('open');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
