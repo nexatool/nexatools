@@ -129,7 +129,7 @@
 .ad-slot{text-align:center;margin:32px 0;min-height:90px}
 
 /* ===== TOOL SPECIFIC: UPLOAD ZONE (reused) ===== */
-.upload-zone{border:2px dashed var(--border3);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;background:var(--surface2);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;isolation:isolate}
+.upload-zone{display:block;width:100%;box-sizing:border-box;border:2px dashed var(--border3);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;background:var(--surface2);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;isolation:isolate;clip-path:inset(0 round var(--radius-lg))}
 .upload-zone:hover,.upload-zone.dragover{border-color:var(--cyan);background:var(--cyan-dim)}
 .upload-zone input[type="file"]{
   position:absolute;inset:0;
