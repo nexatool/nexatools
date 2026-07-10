@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8fafc">
+<title>CSS Minifier vs Gzip: Do You Need Both? | NexaTools.io</title>
+<meta name="description" content="Understand the difference between CSS minification and Gzip compression, how they work together, and whether you actually need both for a fast website.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexatools.io/blog-css-minifier-vs-gzip.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:title" content="CSS Minifier vs Gzip: Do You Need Both?">
+<meta property="og:description" content="Understand the difference between CSS minification and Gzip compression, how they work together, and whether you actually need both for a fast website.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nexatools.io/blog-css-minifier-vs-gzip.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CSS Minifier vs Gzip: Do You Need Both?",
+  "author": {"@type": "Organization", "name": "NexaTools.io"},
+  "publisher": {"@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io"},
+  "datePublished": "2026-06-30",
+  "description": "Understand the difference between CSS minification and Gzip compression, how they work together, and whether you actually need both for a fast website."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .blog-page { max-width: 780px; margin: 0 auto; padding: calc(var(--nav-h, 70px) + 60px) 32px 100px; }
+  .blog-page-tag { display: inline-block; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .blog-page h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; color: #0f172a; }
+  .blog-page-meta { color: #64748b; font-size: 0.82rem; margin-bottom: 40px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .blog-body { color: #475569; font-size: 1rem; line-height: 1.85; }
+  .blog-body h2 { font-family: 'Clash Display', sans-serif; font-size: 1.35rem; font-weight: 600; color: #0f172a; margin: 40px 0 14px; }
+  .blog-body p { margin-bottom: 18px; }
+  .blog-body ul, .blog-body ol { padding-left: 20px; margin-bottom: 18px; }
+  .blog-body ul li, .blog-body ol li { margin-bottom: 10px; }
+  .blog-body strong { color: #0f172a; }
+  .blog-body a { color: #2563eb; }
+
+  .invoice-field { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin: 14px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .field-name { font-weight: 700; color: #2563eb; font-size: 0.9rem; margin-bottom: 6px; }
+  .field-desc { color: #475569; font-size: 0.87rem; line-height: 1.7; }
+
+  .blog-tip { background: #ffffff; border-left: 3px solid #2563eb; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); color: #475569; font-size: 0.88rem; line-height: 1.7; }
+  .blog-tip .tip-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #2563eb; font-weight: 700; margin-bottom: 6px; }
+
+  .blog-cta-box { background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(99,102,241,0.06)); border: 1px solid rgba(37,99,235,0.2); border-radius: 20px; padding: 36px; text-align: center; margin: 48px 0; }
+  .blog-cta-box h3 { font-family: 'Clash Display', sans-serif; font-size: 1.4rem; color: #0f172a; margin-bottom: 10px; }
+  .blog-cta-box p { color: #475569; margin-bottom: 22px; font-size: 0.92rem; }
+
+  .blog-cta-box .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #2563eb;
+    color: #ffffff !important;
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 14px 36px;
+    border-radius: 100px;
+    text-decoration: none !important;
+    letter-spacing: 0.3px;
+  }
+  .blog-cta-box .btn-primary span { color: #ffffff !important; }
+
+  .blog-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+  .blog-nav a { color: #2563eb; font-size: 0.88rem; text-decoration: none; }
+  .blog-nav a:hover { text-decoration: underline; }
+
+  footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid #e2e8f0; text-align: center; background: #f8fafc; }
+  .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .footer-logo span { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; color: #0f172a; }
+  .footer-logo em { color: #2563eb; font-style: normal; }
+  .footer-tagline { color: #64748b; font-size: 0.82rem; margin-bottom: 16px; }
+  .footer-links { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+  .footer-links a { color: #64748b; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #2563eb; }
+  .footer-copy { font-size: 0.78rem; color: #94a3b8; }
+
+  @media(max-width: 768px) {
+    .blog-page { padding: calc(var(--nav-h, 70px) + 40px) 20px 60px; }
+  }
+</style>
+<link rel="stylesheet" href="style.css?v=2">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
+  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
+  <a class="nav-link" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
+  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
+  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
+</div>
+<div class="nav-right">
+  <a class="btn-nav-ghost" href="contact.html" style="font-weight:700;">Contact Us</a>
+  <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+</div>
+</nav>
+
+<div class="blog-page">
+  <div class="blog-page-tag">Developer Tools</div>
+  <h1>CSS Minifier vs Gzip: Do You Need Both?</h1>
+  <div class="blog-page-meta">
+    <span>📅 June 30, 2026</span>
+    <span>⏱ 9 min read</span>
+    <span>✍️ NexaTools Team</span>
+  </div>
+
+  <div style="text-align:center;margin-bottom:32px;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="blog-body">
+
+    <p>Website performance advice often lists "minify your CSS" and "enable Gzip compression" back to back as if they were interchangeable steps toward the same goal. They are related, but they are not the same technique, and understanding exactly how they differ helps explain why the fastest websites use both together rather than treating one as a substitute for the other.</p>
+
+    <p>This guide breaks down what CSS minification actually does, what Gzip compression actually does, how much each one saves on its own, and why combining them produces better results than either technique alone.</p>
+
+    <h2>What CSS Minification Does</h2>
+    <p>Minification is a source-level transformation. It takes your original CSS file, written with comments, indentation, and line breaks for human readability, and removes everything that a browser's rendering engine does not actually need to apply the styles correctly. Whitespace between selectors and properties disappears. Comments are stripped entirely. Redundant semicolons before closing braces are removed. In more aggressive minifiers, color values may be shortened to their most compact hexadecimal form and duplicate rules may be merged.</p>
+
+    <p>The result is a CSS file that is functionally identical to the original but noticeably smaller in raw byte size, because a meaningful percentage of a typical stylesheet is whitespace and comments that exist purely for the benefit of the developer reading the file, not for the browser parsing it.</p>
+
+    <p>Crucially, minification happens once, ahead of time, as part of your build or deployment process. The minified file is what actually gets served to visitors, and it stays in that compact form regardless of how many times it is requested.</p>
+
+    <h2>What Gzip Compression Does</h2>
+    <p>Gzip is a general-purpose compression algorithm applied at the web server or CDN level, not to the source code itself. When a browser requests a file and indicates it can accept compressed content, the server compresses the response on the fly, or serves a pre-compressed version, and the browser decompresses it automatically after download. This happens transparently to both the developer and the end user; no code needs to change for Gzip to work, only server configuration.</p>
+
+    <p>Gzip works by finding repeated patterns in the data and replacing them with shorter references, which is why it is extremely effective on text-based files like CSS, HTML, and JavaScript that naturally contain a lot of repetition selectors, property names, and common values appear over and over throughout a typical stylesheet. The more repetitive the content, the more Gzip can shrink it.</p>
+
+    <p>Unlike minification, Gzip does not change the actual content of the file in any permanent way. It compresses the file during transmission and the browser reverses that compression immediately upon receipt, so from the perspective of your codebase, nothing about the CSS itself has changed.</p>
+
+    <div class="invoice-field">
+      <div class="field-name">Minification</div>
+      <div class="field-desc">A one-time, source-level transformation that permanently removes unnecessary characters from your CSS file before it is deployed.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Gzip Compression</div>
+      <div class="field-desc">A server-side, transport-level compression applied every time the file is requested, then automatically reversed by the browser after download.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Used Together</div>
+      <div class="field-desc">Minifying first and then serving the minified file with Gzip enabled produces a smaller final result than either technique applied alone.</div>
+    </div>
+
+    <h2>Why You Need Both, Not Just One</h2>
+    <p>A natural question is whether Gzip alone makes minification pointless, since Gzip is so effective at compressing repetitive text. In practice, minification still matters for a few concrete reasons. First, not every environment serving your CSS has Gzip enabled or configured correctly some CDNs, proxies, or misconfigured servers fail to apply compression, and in that case an unminified file is transferred at its full, bloated size with no compression safety net at all.</p>
+
+    <p>Second, even when Gzip is active, minifying first still produces a smaller final compressed size than compressing the unminified original. This is because comments and long, descriptive whitespace patterns do not compress as efficiently as the tighter, more uniform structure of minified code. Testing consistently shows that minified-then-gzipped CSS outperforms unminified-then-gzipped CSS, even though the gap is smaller than the improvement from minification or Gzip individually.</p>
+
+    <p>Third, some CSS is used in contexts where Gzip is not applied at all, such as CSS embedded directly inline in an HTML document via a style tag, or CSS injected dynamically by JavaScript. In these cases, minification is the only size-reduction technique available, since there is no separate file transfer for a server to compress.</p>
+
+    <h2>Step-by-Step: Minifying CSS with NexaTools</h2>
+    <ol>
+      <li>Open the <a href="index.html">NexaTools CSS Minifier tool</a></li>
+      <li>Paste your CSS source code or upload your stylesheet file</li>
+      <li>Click minify to strip whitespace, comments, and unnecessary characters</li>
+      <li>Review the size reduction shown in the result panel</li>
+      <li>Deploy the minified file to production and confirm Gzip compression is enabled at the server level for an additional layer of savings</li>
+    </ol>
+
+    <div class="blog-tip">
+      <div class="tip-label">✦ Check That Gzip Is Actually Enabled</div>
+      Many developers assume Gzip is automatically active on their hosting provider, but this is not always the case. Use your browser's network inspection tools to check the response headers of your CSS file and confirm a content-encoding value is present before assuming compression is working.
+    </div>
+
+    <h2>Typical Savings From Each Technique</h2>
+    <ul>
+      <li><strong>Minification alone</strong> commonly reduces CSS file size by roughly 20 to 60 percent, depending on how many comments and how much whitespace the original file contained</li>
+      <li><strong>Gzip alone</strong> commonly reduces text-based file size by 60 to 80 percent due to how effectively it compresses repetitive patterns</li>
+      <li><strong>Minification plus Gzip together</strong> typically produces the smallest possible result, since minifying first removes content that would otherwise still be transmitted, compressed or not</li>
+      <li><strong>Brotli as an alternative</strong> a newer compression algorithm supported by most modern browsers, Brotli often slightly outperforms Gzip on text assets and is worth enabling if your server supports it</li>
+    </ul>
+
+    <p>These figures vary depending on the specific content of a given stylesheet, but the general pattern holds consistently across real-world projects: each technique compounds the other's benefit rather than making it redundant.</p>
+
+    <h2>A Practical Example</h2>
+    <p>Imagine a stylesheet totaling 100 kilobytes in its original, heavily commented, indented form. Minifying it alone might bring that down to roughly 60 kilobytes by removing whitespace and comments. Serving that unminified 100 kilobyte file with Gzip compression enabled might bring the transferred size down to around 20 kilobytes, since Gzip is compressing a larger amount of repetitive content. But minifying first and then applying Gzip to the resulting 60 kilobyte file typically produces a final transferred size smaller than 20 kilobytes, because there is simply less redundant content for Gzip to work through, and what remains compresses just as efficiently.</p>
+
+    <p>This is the core argument for using both: minification and compression are not competing solutions to the same problem, they are complementary techniques that address file size from two different angles, one at the source level and one at the transport level.</p>
+
+    <h2>When Minification Matters Even Without Gzip</h2>
+    <p>There are legitimate situations where Gzip is unavailable or impractical. CSS delivered through certain embedded contexts, some legacy hosting environments, and CSS injected inline through JavaScript frameworks for critical rendering path optimization are all cases where compression at the transport level either does not apply or is handled differently. In every one of these situations, minification remains valuable on its own, since it is the only technique actively reducing the number of bytes the browser has to process, regardless of what happens during transmission.</p>
+
+    <h2>CSS Optimization vs Other Performance Techniques</h2>
+    <p>Minifying and compressing CSS is just one piece of a broader performance strategy. Pairing it with <a href="blog-html-minification-guide.html">HTML minification</a> and <a href="blog-javascript-minification-guide.html">JavaScript minification</a> addresses the other major text-based assets on a typical page. For a wider view of the tools worth having on hand for this kind of optimization work, see the <a href="blog-best-free-developer-tools.html">Best Free Developer Tools roundup</a>.</p>
+
+    <h2>How Gzip Compression Actually Works</h2>
+    <p>Gzip is based on a compression method that identifies repeated sequences of characters within a file and replaces later occurrences of those sequences with much shorter references back to the first occurrence. In a typical CSS file, property names like "background-color" or "margin" and common values like "0" or "auto" appear dozens or hundreds of times throughout the document. Gzip builds an internal dictionary of these repeated patterns as it scans through the file, and every repeat after the first gets replaced with a compact reference rather than the full text, sometimes reducing eight or ten characters down to just a couple of bits.</p>
+
+    <p>This is precisely why Gzip performs so well on CSS, HTML, and JavaScript specifically: these formats are inherently repetitive by nature, reusing the same keywords, punctuation patterns, and common values constantly throughout a file. Binary formats like images or videos, by contrast, often see little to no benefit from Gzip because they do not contain the same kind of repeating textual patterns, and many image formats are already compressed in a way that leaves little further room for Gzip to improve on.</p>
+
+    <h2>Server Configuration for Gzip</h2>
+    <p>Enabling Gzip compression is a server-level configuration change rather than something handled in your CSS source code at all. Most modern web servers and content delivery networks support Gzip out of the box, but it sometimes needs to be explicitly turned on or configured to apply to the correct file types. A common mistake is enabling Gzip only for HTML responses while forgetting to include CSS, JavaScript, and other text-based assets in the configuration, leaving significant potential savings on the table for exactly the kinds of files that benefit most.</p>
+
+    <p>Checking whether Gzip is actually active for your CSS files is straightforward using any browser's built-in developer tools. Opening the Network panel, reloading the page, and inspecting the response headers for a stylesheet request will reveal a content-encoding header set to gzip or br if compression is working correctly. If that header is missing entirely, the file is being transferred at its full uncompressed size regardless of whether it has been minified, which represents an easy, meaningful optimization being left unused.</p>
+
+    <h2>Brotli as a Modern Alternative</h2>
+    <p>Brotli is a newer compression algorithm developed specifically with web content in mind, and it is now supported by all major modern browsers. In most real-world tests, Brotli achieves somewhat better compression ratios than Gzip on the same text-based content, particularly at higher compression levels, though it can require slightly more processing time to compress on the server side. Because Brotli support is now so widespread, many performance-conscious sites configure their servers to serve Brotli-compressed assets to browsers that support it, falling back to Gzip for the small remaining share of older browsers that do not.</p>
+
+    <p>The relationship between minification and Brotli mirrors the relationship between minification and Gzip precisely: minifying first and then compressing with Brotli produces a smaller final result than compressing an unminified file, for the same underlying reason that there is simply less redundant content for the algorithm to work through once whitespace and comments have already been removed.</p>
+
+    <h2>Measuring the Real-World Impact</h2>
+    <p>It is worth actually measuring the effect of these techniques on your own project rather than relying purely on general estimates, since the exact savings depend heavily on how your particular CSS is written. A stylesheet with heavy commenting and generous whitespace will see a larger relative improvement from minification than one that is already fairly compact. Browser developer tools make this easy to check directly: load your page, open the Network panel, and compare the reported transferred size against the actual file size to see exactly how much compression is currently saving on each request.</p>
+
+    <p>Running this kind of check periodically, especially after significant changes to a stylesheet, helps catch situations where a build process has silently stopped minifying correctly, or where a server configuration change has accidentally disabled compression for certain file types. Performance regressions in this area tend to be invisible without deliberately checking, since a page with disabled compression still works correctly for visitors, it just loads somewhat slower than it should.</p>
+
+    <div class="blog-tip">
+      <div class="tip-label">✦ Privacy Note</div>
+      When minifying CSS from a private or unreleased project, use a tool that processes your code without storing it permanently after the session ends.
+    </div>
+
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="invoice-field">
+      <div class="field-name">If Gzip is enabled, do I still need to minify my CSS?</div>
+      <div class="field-desc">Yes. Minifying before Gzip compression still produces a smaller final transferred size than compressing the unminified file, and minification also helps in situations where Gzip is unavailable or misconfigured.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Does minifying CSS affect how Gzip compresses it?</div>
+      <div class="field-desc">Minified CSS generally compresses just as efficiently as unminified CSS under Gzip, and because there is less redundant content to begin with, the combined result is smaller than compressing the original file alone.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Is Brotli better than Gzip for CSS?</div>
+      <div class="field-desc">Brotli often achieves slightly better compression ratios than Gzip on text-based assets like CSS, and most modern browsers support it, so enabling it alongside or instead of Gzip can provide a small additional improvement.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">How do I check if Gzip is enabled on my server?</div>
+      <div class="field-desc">Open your browser's developer tools, go to the Network panel, reload the page, and check the response headers for your CSS file. A content-encoding value such as gzip or br confirms compression is active.</div>
+    </div>
+
+
+    <div class="blog-cta-box">
+      <h3>🗜️ Minify Your CSS Free</h3>
+      <p>No signup required. Shrink your stylesheet before deployment and pair it with server-side compression for the best results.</p>
+      <a href="index.html" class="btn-primary">⚡ Open CSS Minifier</a>
+    </div>
+
+    <div style="text-align:center;margin:32px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="blog-nav">
+      <strong style="color:#94a3b8;font-size:0.8rem;">MORE ARTICLES:</strong>
+      <a href="blog-minify-css-guide.html">Minify CSS Guide →</a>
+      <a href="blog-html-minification-guide.html">HTML Minification →</a>
+      <a href="blog-javascript-minification-guide.html">JS Minification →</a>
+      <a href="blog-best-free-developer-tools.html">Best Dev Tools →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+(function(){
+  var bar = document.createElement('div');
+  bar.className = 'reading-progress';
+  document.body.appendChild(bar);
+  window.addEventListener('scroll', function(){
+    var s = document.documentElement;
+    var pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+</script>
+  <style>
+.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+.btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:120px !important; margin-left:70px !important; }
+</style>
+</body>
+</html>
