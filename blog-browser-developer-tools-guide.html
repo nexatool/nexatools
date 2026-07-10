@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8fafc">
+<title>A Beginner's Guide to Browser Developer Tools | NexaTools.io</title>
+<meta name="description" content="Learn how to use browser developer tools to inspect elements, debug JavaScript, and monitor network requests. A beginner-friendly guide.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexatools.io/blog-browser-developer-tools-guide.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:title" content="A Beginner's Guide to Browser Developer Tools">
+<meta property="og:description" content="Learn how to use browser developer tools to inspect elements, debug JavaScript, and monitor network requests. A beginner-friendly guide.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nexatools.io/blog-browser-developer-tools-guide.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "A Beginner's Guide to Browser Developer Tools",
+  "author": {"@type": "Organization", "name": "NexaTools.io"},
+  "publisher": {"@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io"},
+  "datePublished": "2026-06-27",
+  "description": "Learn how to use browser developer tools to inspect elements, debug JavaScript, and monitor network requests. A beginner-friendly guide."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .blog-page { max-width: 780px; margin: 0 auto; padding: calc(var(--nav-h, 70px) + 60px) 32px 100px; }
+  .blog-page-tag { display: inline-block; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .blog-page h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; color: #0f172a; }
+  .blog-page-meta { color: #64748b; font-size: 0.82rem; margin-bottom: 40px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .blog-body { color: #475569; font-size: 1rem; line-height: 1.85; }
+  .blog-body h2 { font-family: 'Clash Display', sans-serif; font-size: 1.35rem; font-weight: 600; color: #0f172a; margin: 40px 0 14px; }
+  .blog-body p { margin-bottom: 18px; }
+  .blog-body ul, .blog-body ol { padding-left: 20px; margin-bottom: 18px; }
+  .blog-body ul li, .blog-body ol li { margin-bottom: 10px; }
+  .blog-body strong { color: #0f172a; }
+  .blog-body a { color: #2563eb; }
+
+  .invoice-field { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin: 14px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .field-name { font-weight: 700; color: #2563eb; font-size: 0.9rem; margin-bottom: 6px; }
+  .field-desc { color: #475569; font-size: 0.87rem; line-height: 1.7; }
+
+  .blog-tip { background: #ffffff; border-left: 3px solid #2563eb; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); color: #475569; font-size: 0.88rem; line-height: 1.7; }
+  .blog-tip .tip-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #2563eb; font-weight: 700; margin-bottom: 6px; }
+
+  .blog-cta-box { background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(99,102,241,0.06)); border: 1px solid rgba(37,99,235,0.2); border-radius: 20px; padding: 36px; text-align: center; margin: 48px 0; }
+  .blog-cta-box h3 { font-family: 'Clash Display', sans-serif; font-size: 1.4rem; color: #0f172a; margin-bottom: 10px; }
+  .blog-cta-box p { color: #475569; margin-bottom: 22px; font-size: 0.92rem; }
+
+  .blog-cta-box .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #2563eb;
+    color: #ffffff !important;
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 14px 36px;
+    border-radius: 100px;
+    text-decoration: none !important;
+    letter-spacing: 0.3px;
+  }
+  .blog-cta-box .btn-primary span { color: #ffffff !important; }
+
+  .blog-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+  .blog-nav a { color: #2563eb; font-size: 0.88rem; text-decoration: none; }
+  .blog-nav a:hover { text-decoration: underline; }
+
+  footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid #e2e8f0; text-align: center; background: #f8fafc; }
+  .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .footer-logo span { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; color: #0f172a; }
+  .footer-logo em { color: #2563eb; font-style: normal; }
+  .footer-tagline { color: #64748b; font-size: 0.82rem; margin-bottom: 16px; }
+  .footer-links { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+  .footer-links a { color: #64748b; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #2563eb; }
+  .footer-copy { font-size: 0.78rem; color: #94a3b8; }
+
+  @media(max-width: 768px) {
+    .blog-page { padding: calc(var(--nav-h, 70px) + 40px) 20px 60px; }
+  }
+</style>
+<link rel="stylesheet" href="style.css?v=2">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
+  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
+  <a class="nav-link" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
+  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
+  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
+</div>
+<div class="nav-right">
+  <a class="btn-nav-ghost" href="contact.html" style="font-weight:700;">Contact Us</a>
+  <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+</div>
+</nav>
+
+<div class="blog-page">
+  <div class="blog-page-tag">Developer Tools</div>
+  <h1>A Beginner's Guide to Browser Developer Tools</h1>
+  <div class="blog-page-meta">
+    <span>📅 June 27, 2026</span>
+    <span>⏱ 7 min read</span>
+    <span>✍️ NexaTools Team</span>
+  </div>
+
+  <div style="text-align:center;margin-bottom:32px;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="blog-body">
+
+    <p>Every modern browser ships with a full set of developer tools built directly into it, yet many beginners only ever open them by accident and close the panel immediately. Learning to navigate the Elements, Console, and Network panels turns troubleshooting a broken page from guesswork into a straightforward process.</p>
+
+    <p>This guide walks through the core panels of browser developer tools and how to use them to inspect, debug, and monitor a live web page.</p>
+
+    <h2>Why Browser DevTools Matter More Than You Think</h2>
+    <p>Whether you are fixing a layout bug, tracking down a failed API call, or checking why a script is not running, the browser's built-in tools are usually the fastest way to see exactly what is happening on the page in real time, without adding a single line of debugging code.</p>
+
+    <div class="invoice-field">
+      <div class="field-name">Elements Panel</div>
+      <div class="field-desc">Inspect and live-edit the HTML and CSS of any element on the page to test layout and style changes instantly.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Console Panel</div>
+      <div class="field-desc">View JavaScript errors and logs, and run code directly against the current page to test behavior on the fly.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Network Panel</div>
+      <div class="field-desc">Monitor every request the page makes, including API calls, and inspect their headers, payloads, and responses.</div>
+    </div>
+
+    <h2>Step-by-Step: Opening and Navigating DevTools</h2>
+    <ol>
+      <li>Right-click any element on a page and choose "Inspect" to open developer tools directly at that element</li>
+      <li>Switch to the Console panel to view any JavaScript errors currently logged</li>
+      <li>Open the Network panel and reload the page to see every request it makes</li>
+      <li>Click on individual requests to inspect their headers, payload, and response data</li>
+      <li>Use the Elements panel to test CSS changes live before editing your actual stylesheet</li>
+    </ol>
+
+    <div class="blog-tip">
+      <div class="tip-label">✦ Preserve Log on Navigation</div>
+      Enable "Preserve log" in the Network or Console panel before testing a page that redirects or reloads, or your logged requests and errors will disappear the moment the page changes.
+    </div>
+
+    <h2>Panels Worth Learning Beyond the Basics</h2>
+    <ul>
+      <li><strong>Sources panel</strong> set breakpoints directly in your JavaScript to pause execution and step through code line by line</li>
+      <li><strong>Application panel</strong> inspect cookies, local storage, and cached data stored by the current site</li>
+      <li><strong>Performance panel</strong> record and analyze what is slowing down a page during load or interaction</li>
+      <li><strong>Lighthouse panel</strong> run an automated audit covering performance, accessibility, and SEO in one report</li>
+      <li><strong>Device toolbar</strong> simulate different screen sizes to test responsive layouts without a physical device</li>
+    </ul>
+
+    <h2>DevTools vs Online Utilities: Know the Difference</h2>
+    <p>Browser developer tools are for inspecting and debugging a live page in real time, while standalone online utilities handle one-off tasks like formatting a JSON file or minifying a script. See the <a href="blog-best-free-developer-tools.html">Best Free Developer Tools guide</a> for the utilities worth pairing with your browser's built-in panels.</p>
+
+    <div class="blog-tip">
+      <div class="tip-label">✦ Privacy Note</div>
+      The Network and Application panels can reveal cookies, tokens, and personal data on pages you are logged into avoid sharing screenshots of these panels without reviewing them first.
+    </div>
+
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="invoice-field">
+      <div class="field-name">How do I open developer tools in my browser?</div>
+      <div class="field-desc">Right-click anywhere on a page and select Inspect, or use a keyboard shortcut such as F12 or Ctrl+Shift+I on most desktop browsers.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">What is the difference between the Console and Sources panels?</div>
+      <div class="field-desc">The Console shows logged messages and lets you run one-off code, while the Sources panel lets you view the full script files and set breakpoints to step through code execution.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Can I edit a website's code using developer tools?</div>
+      <div class="field-desc">You can edit the HTML and CSS live in the Elements panel, but these changes only apply to your local view of the page and are not saved to the actual website.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">Why would I use the Network panel?</div>
+      <div class="field-desc">The Network panel shows every request a page makes, which is useful for diagnosing slow-loading resources or checking the exact data sent and received from an API.</div>
+    </div>
+
+
+    <div class="blog-cta-box">
+      <h3>🧪 Explore More Developer Tools</h3>
+      <p>No signup required. Access the full NexaTools toolkit alongside your browser's DevTools.</p>
+      <a href="index.html" class="btn-primary">⚡ Browse All Tools</a>
+    </div>
+
+    <div style="text-align:center;margin:32px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="blog-nav">
+      <strong style="color:#94a3b8;font-size:0.8rem;">MORE ARTICLES:</strong>
+      <a href="blog-best-free-developer-tools.html">Best Dev Tools →</a>
+      <a href="blog-format-json-online.html">Format JSON →</a>
+      <a href="blog-json-parse-error.html">JSON Parse Error →</a>
+      <a href="blog-decode-jwt-guide.html">Decode JWT →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+(function(){
+  var bar = document.createElement('div');
+  bar.className = 'reading-progress';
+  document.body.appendChild(bar);
+  window.addEventListener('scroll', function(){
+    var s = document.documentElement;
+    var pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+</script>
+  <style>
+.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+.btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:120px !important; margin-left:70px !important; }
+</style>
+</body>
+</html>
