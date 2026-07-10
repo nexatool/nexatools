@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8fafc">
+<title>JWT for Beginners: How JSON Web Tokens Actually Work | NexaTools.io</title>
+<meta name="description" content="A beginner-friendly explanation of what a JWT is, how its three parts work, and how to decode one yourself for free with the NexaTools JWT Decoder.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexatools.io/blog-jwt-for-beginners.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:title" content="JWT for Beginners: How JSON Web Tokens Actually Work">
+<meta property="og:description" content="A beginner-friendly explanation of what a JWT is, how its three parts work, and how to decode one yourself for free with the NexaTools JWT Decoder.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nexatools.io/blog-jwt-for-beginners.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JWT for Beginners: How JSON Web Tokens Actually Work",
+  "author": {"@type": "Organization", "name": "NexaTools.io"},
+  "publisher": {"@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io"},
+  "datePublished": "2026-06-17",
+  "description": "A beginner-friendly explanation of what a JWT is, how its three parts work, and how to decode one yourself for free with the NexaTools JWT Decoder."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .blog-page { max-width: 780px; margin: 0 auto; padding: calc(var(--nav-h, 70px) + 60px) 32px 100px; }
+  .blog-page-tag { display: inline-block; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .blog-page h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; color: #0f172a; }
+  .blog-page-meta { color: #64748b; font-size: 0.82rem; margin-bottom: 40px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .blog-body { color: #475569; font-size: 1rem; line-height: 1.85; }
+  .blog-body h2 { font-family: 'Clash Display', sans-serif; font-size: 1.35rem; font-weight: 600; color: #0f172a; margin: 40px 0 14px; }
+  .blog-body h3 { font-family: 'Clash Display', sans-serif; font-size: 1.1rem; font-weight: 600; color: #0f172a; margin: 28px 0 12px; }
+  .blog-body p { margin-bottom: 18px; }
+  .blog-body ul, .blog-body ol { padding-left: 20px; margin-bottom: 18px; }
+  .blog-body ul li, .blog-body ol li { margin-bottom: 10px; }
+  .blog-body strong { color: #0f172a; }
+  .blog-body a { color: #2563eb; }
+  .blog-body code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 2px 6px; font-size: 0.88em; color: #0f172a; }
+  .blog-body pre { background: #0f172a; color: #e2e8f0; border-radius: 12px; padding: 18px 20px; overflow-x: auto; margin: 18px 0; font-size: 0.85rem; line-height: 1.6; }
+  .blog-body pre code { background: none; border: none; padding: 0; color: inherit; }
+
+  .invoice-field { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin: 14px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .field-name { font-weight: 700; color: #2563eb; font-size: 0.9rem; margin-bottom: 6px; }
+  .field-desc { color: #475569; font-size: 0.87rem; line-height: 1.7; }
+
+  .blog-tip { background: #ffffff; border-left: 3px solid #2563eb; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); color: #475569; font-size: 0.88rem; line-height: 1.7; }
+  .blog-tip .tip-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #2563eb; font-weight: 700; margin-bottom: 6px; }
+
+  .blog-cta-box { background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(99,102,241,0.06)); border: 1px solid rgba(37,99,235,0.2); border-radius: 20px; padding: 36px; text-align: center; margin: 48px 0; }
+  .blog-cta-box h3 { font-family: 'Clash Display', sans-serif; font-size: 1.4rem; color: #0f172a; margin-bottom: 10px; }
+  .blog-cta-box p { color: #475569; margin-bottom: 22px; font-size: 0.92rem; }
+
+  .blog-cta-box .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #2563eb;
+    color: #ffffff !important;
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 14px 36px;
+    border-radius: 100px;
+    text-decoration: none !important;
+    letter-spacing: 0.3px;
+  }
+  .blog-cta-box .btn-primary span { color: #ffffff !important; }
+
+  .blog-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid #e2e8f0; }
+  .blog-nav a { color: #2563eb; font-size: 0.88rem; text-decoration: none; }
+  .blog-nav a:hover { text-decoration: underline; }
+
+  .blog-faq { margin: 14px 0; }
+  .blog-faq h3 { font-size: 1rem; color: #0f172a; margin: 22px 0 8px; }
+
+  footer { margin-top: 80px; padding: 48px 24px 32px; border-top: 1px solid #e2e8f0; text-align: center; background: #f8fafc; }
+  .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .footer-logo span { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; color: #0f172a; }
+  .footer-logo em { color: #2563eb; font-style: normal; }
+  .footer-tagline { color: #64748b; font-size: 0.82rem; margin-bottom: 16px; }
+  .footer-links { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+  .footer-links a { color: #64748b; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #2563eb; }
+  .footer-copy { font-size: 0.78rem; color: #94a3b8; }
+
+  @media(max-width: 768px) {
+    .blog-page { padding: calc(var(--nav-h, 70px) + 40px) 20px 60px; }
+  }
+</style>
+<link rel="stylesheet" href="style.css?v=2">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
+  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
+  <a class="nav-link" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
+  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
+  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
+</div>
+<div class="nav-right">
+  <a class="btn-nav-ghost" href="contact.html" style="font-weight:700;">Contact Us</a>
+  <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+</div>
+</nav>
+
+<div class="blog-page">
+  <div class="blog-page-tag">Developer Tools</div>
+  <h1>JWT for Beginners: How JSON Web Tokens Actually Work</h1>
+  <div class="blog-page-meta">
+    <span>📅 June 17, 2026</span>
+    <span>⏱ 10 min read</span>
+    <span>✍️ NexaTools Team</span>
+  </div>
+
+  <div style="text-align:center;margin-bottom:32px;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="blog-body">
+
+
+    <p>If you have started working with login systems, APIs, or any kind of user authentication, you have almost certainly run into the term JWT. It shows up in tutorials, framework documentation, and error messages, often without much explanation of what it actually is. This guide breaks it down from the ground up, with no assumed prior knowledge of tokens or cryptography.</p>
+
+    <p>By the end, you will understand what a JWT actually contains, why it is structured the way it is, and how to inspect one yourself using the free <a href="index.html">NexaTools JWT Decoder</a>.</p>
+
+    <h2>What Problem Does a JWT Solve?</h2>
+    <p>Websites need a way to remember that you are logged in as you move between pages, since each request to a server is otherwise independent and stateless. Historically, this was solved with session identifiers stored server-side, but as applications grew into distributed systems with multiple servers and services, checking a central session store on every request became a bottleneck. A JWT solves this differently: instead of the server looking up your session, the token itself carries the information needed to confirm who you are, cryptographically signed so it cannot be tampered with along the way.</p>
+
+    <h2>Breaking Down the Name</h2>
+    <p>JSON Web Token. It is called that because the data inside it is formatted as JSON, and it is designed specifically to be passed around the web, most commonly inside an HTTP header or a cookie. Once you know it is just structured, signed JSON, the rest of the concept becomes much less intimidating.</p>
+
+    <h2>The Three Parts of Every JWT</h2>
+    <p>Every JWT is a single string made of three sections separated by periods. Written out, it looks something like <code>header.payload.signature</code>. Each section serves a distinct purpose.</p>
+
+    <div class="invoice-field">
+      <div class="field-name">1. Header</div>
+      <div class="field-desc">A small JSON object describing the token itself, most importantly which algorithm was used to sign it, such as HS256. This section is Base64 URL-encoded, not encrypted.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">2. Payload</div>
+      <div class="field-desc">The actual data, called claims, such as a user ID, an expiration timestamp, or custom fields like a role or permission level. This is also just Base64 URL-encoded JSON, readable by anyone who has the token.</div>
+    </div>
+    <div class="invoice-field">
+      <div class="field-name">3. Signature</div>
+      <div class="field-desc">A cryptographic value created by combining the header, the payload, and a secret key known only to the server. This is what makes the token tamper-evident.</div>
+    </div>
+
+    <div class="blog-tip">
+      <div class="tip-label">✦ The Most Common Beginner Misconception</div>
+      A JWT is not encrypted. The header and payload are only encoded, meaning anyone who has the token can read every field inside it without needing any secret. What the signature protects against is tampering, not visibility. Never put highly sensitive data like a raw password inside a JWT payload.
+    </div>
+
+    <h2>How a Server Actually Verifies a JWT</h2>
+    <p>When a server receives a JWT, it does not trust the payload blindly. It recomputes the signature using the header, the payload, and its own secret key, then compares that result to the signature included in the token. If they match, the server can be confident the token has not been altered since it was issued if a single character in the header or payload changed, the recomputed signature would come out completely different, and the token would be rejected.</p>
+
+    <h2>What a Typical Payload Looks Like</h2>
+    <p>Once decoded, a JWT payload is just a JSON object. A simple example might include a subject field identifying the user, an issued-at timestamp, an expiration timestamp, and whatever custom claims the application needs, like a role or account tier. There is no fixed list of required fields beyond a small set of common conventions applications are free to include whatever claims make sense for their own authorization logic.</p>
+
+    <h3>Reading Expiration Correctly</h3>
+    <p>The expiration claim, commonly labeled <code>exp</code>, is a Unix timestamp representing a specific point in time. If that time has already passed relative to the current moment, most systems will reject the token even though it decodes and reads just fine. This is one of the single most common causes of confusing "unauthorized" errors during development a token that looks completely valid when decoded but has simply expired.</p>
+
+    <h2>Why Developers Decode JWTs During Debugging</h2>
+    <ul>
+      <li><strong>Confirming the expiration time</strong> to check if a token has genuinely expired versus a different authentication bug entirely</li>
+      <li><strong>Checking which claims are present</strong> to see if an expected role or permission field is actually being included</li>
+      <li><strong>Verifying the issuer</strong> to confirm a token came from the expected authentication system, especially when integrating with a third-party identity provider</li>
+      <li><strong>Comparing tokens across environments</strong> to spot differences between a working token in staging and a failing one in production</li>
+    </ul>
+
+    <h2>How to Decode a JWT with NexaTools</h2>
+    <ol>
+      <li>Open the <a href="index.html">NexaTools JWT Decoder</a></li>
+      <li>Paste the complete token string, including all three sections</li>
+      <li>The header and payload are instantly decoded and displayed as readable JSON</li>
+      <li>Check the expiration timestamp and claims to diagnose the issue you're debugging</li>
+    </ol>
+
+    <p>If you want to understand the underlying encoding format a JWT's header and payload actually use, the <a href="blog-base64-vs-url-encoding.html">Base64 vs URL Encoding guide</a> explains the specific variant of Base64 that JWTs rely on and why.</p>
+
+    <h2>A Note on Handling Real Tokens Safely</h2>
+    <p>Because a JWT payload is readable by anyone who has the string, treat real production tokens the same way you would treat a password or API key. Avoid pasting live tokens into tools you do not trust, and prefer using test tokens from a development environment whenever you are just trying to understand the format rather than debug a specific live issue.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="blog-faq">
+      <h3>Is a JWT the same as an API key?</h3>
+      <p>No. An API key is typically a static, opaque string with no embedded data. A JWT carries structured, readable claims and has a built-in expiration mechanism, making it better suited for representing a temporary, verifiable identity.</p>
+      <h3>Can anyone read the contents of my JWT?</h3>
+      <p>Yes, anyone with the token string can decode and read the header and payload, since they are only Base64 encoded, not encrypted. Never store highly sensitive data directly in a JWT payload.</p>
+      <h3>What happens when a JWT expires?</h3>
+      <p>The token itself does not disappear it will still decode successfully. However, a properly configured server should reject it once the current time is past the expiration claim, requiring the user to log in again or refresh their token.</p>
+      <h3>Do I need to understand cryptography to use JWTs?</h3>
+      <p>No. Most frameworks and libraries handle signing and verification internally. Understanding the three-part structure and the difference between encoding and encryption is generally enough for day-to-day debugging.</p>
+    </div>
+
+
+    <div class="blog-cta-box">
+      <h3>🛠️ Decode a JWT Free</h3>
+      <p>No signup, no limits. Paste any token and instantly see its header and payload.</p>
+      <a href="index.html" class="btn-primary">⚡ Open JWT Decoder</a>
+    </div>
+
+    <div style="text-align:center;margin:32px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600" data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="blog-nav">
+      <strong style="color:#94a3b8;font-size:0.8rem;">MORE ARTICLES:</strong>
+      <a href="blog-json-formatter-guide.html">JSON Formatter →</a>
+      <a href="blog-json-validator-guide.html">JSON Validator →</a>
+      <a href="blog-html-minifier-guide.html">HTML Minifier →</a>
+      <a href="blog-css-minifier-guide.html">CSS Minifier →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+(function(){
+  var bar = document.createElement('div');
+  bar.className = 'reading-progress';
+  document.body.appendChild(bar);
+  window.addEventListener('scroll', function(){
+    var s = document.documentElement;
+    var pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+</script>
+  <style>
+.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+.btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:120px !important; margin-left:70px !important; }
+</style>
+</body>
+</html>
