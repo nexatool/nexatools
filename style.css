@@ -1015,7 +1015,6 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
 .size-arrow{font-size:1.2rem;color:var(--cyan)}
 .size-box.saved .sb-value{color:#059669}
 
-/* ---- Tool-specific: Split PDF ---- */
 /* ===== SPLIT PDF SPECIFIC: RANGE INPUT ===== */
 .range-field-wrap{margin-top:18px}
 .range-field-wrap label{display:block;font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:8px}
