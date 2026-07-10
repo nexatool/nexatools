@@ -128,9 +128,28 @@
 .ad-slot{text-align:center;margin:32px 0;min-height:90px}
 
 /* ===== TOOL SPECIFIC: UPLOAD ZONE ===== */
-.upload-zone{border:2px dashed var(--border3);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;background:var(--surface2);cursor:pointer;transition:var(--transition);position:relative}
+.upload-zone{border:2px dashed var(--border3);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;background:var(--surface2);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;isolation:isolate}
 .upload-zone:hover,.upload-zone.dragover{border-color:var(--cyan);background:var(--cyan-dim)}
-.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone input[type="file"]{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  margin:0;padding:0;
+  opacity:0;
+  cursor:pointer;
+  -webkit-appearance:none;
+  appearance:none;
+  -webkit-tap-highlight-color:transparent;
+  outline:none;
+  border:none;
+  background:transparent;
+  font-size:16px;
+}
+.upload-zone input[type="file"]::-webkit-file-upload-button{
+  visibility:hidden;
+  width:0;height:0;
+  position:absolute;
+}
+.upload-zone input[type="file"]:focus{outline:none;box-shadow:none}
 .upload-icon{font-size:2.4rem;margin-bottom:10px}
 .upload-zone h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:6px}
 .upload-zone p{font-size:0.82rem;color:var(--muted2);margin:0}
@@ -228,7 +247,7 @@
 <!-- ===== HERO ===== -->
 <div class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
-    <span class="badge-dot"></span>Free PDF to Word Converter No Signup Required
+    <span class="badge-dot"></span>Free PDF to Word Converter — No Signup Required
   </div>
   <h1>Free PDF to Word Converter<br><span class="title-gradient">Convert PDF to Editable DOCX</span></h1>
   <p>Turn any text-based PDF into an editable Microsoft Word document in seconds. Everything happens inside your browser your file is never uploaded to a server. 100% free, no watermark.</p>
@@ -315,7 +334,7 @@
 
 <!-- ===== SEO CONTENT: HOW TO USE ===== -->
 <div class="seo-section">
-  <h2>How to Convert PDF to Word Online  Step by Step</h2>
+  <h2>How to Convert PDF to Word Online — Step by Step</h2>
   <p>Converting a PDF into an editable Word document takes less than a minute. Follow these steps:</p>
   <div class="steps-grid">
     <div class="step-card"><div class="step-num">1</div><h4>Upload Your PDF</h4><p>Drag and drop your PDF file into the upload area, or click to browse your device.</p></div>
