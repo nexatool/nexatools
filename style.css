@@ -878,7 +878,6 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
    word-to-pdf.html, pdf-to-word.html
    Consolidated here from per-page duplicated <style> blocks.
    ============================================================ */
-<style>
 /* ===== PAGE HERO (reused from Split PDF template) ===== */
 .tool-page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 50px) 32px 40px;max-width:1000px;margin:0 auto;text-align:center}
 .tool-page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
