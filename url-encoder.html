@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="author" content="NexaTools.io">
+<title>Free URL Encoder & Decoder Online | NexaTools.io</title>
+<meta name="description" content="Encode or decode URLs and query strings instantly in your browser. Component and full-URL modes. 100% free, no signup, no backend.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexatools.io/url-encoder.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<style>
+body { background: #f8fafc !important; color: #0f172a !important; }
+nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
+nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
+.nav-inner { max-width:1400px; margin:0 auto; height:64px !important; display:flex; align-items:center; justify-content:flex-start !important; padding:0 24px !important; }
+.nav-logo { color:#0f172a !important; font-size:1.3rem !important; }
+.nav-logo em { color:#2563eb !important; }
+.logo-icon { background:rgba(37,99,235,0.08) !important; border-color:rgba(37,99,235,0.2) !important; }
+.nav-links { display:flex; gap:120px !important; margin-left:70px !important; }
+.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
+.nav-link:hover { color:#2563eb !important; background:transparent !important; }
+.btn-nav-ghost { border-color:rgba(0,0,0,0.15) !important; color:#475569 !important; padding:9px 22px !important; font-size:0.88rem !important; font-weight:700 !important; }
+.btn-nav-pro { background:linear-gradient(135deg,#2563eb,#7c3aed) !important; color:#fff !important; padding:10px 22px !important; font-size:1.00rem !important; font-weight:700 !important; border-radius:11px !important; white-space:nowrap !important; }
+.nav-right { display:flex; align-items:center; gap:10px; margin-left:auto !important; }
+.mobile-nav { background:rgba(255,255,255,0.98) !important; border-top-color:rgba(0,0,0,0.08) !important; }
+.mobile-nav a { color:#475569 !important; }
+.nav-mobile-toggle span { background:#475569 !important; }
+footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !important; }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexaTools logo">
+          <polygon points="48,6 80,24 80,60 48,78 16,60 16,24" fill="none" stroke="var(--cyan)" stroke-width="4"/>
+          <polygon points="48,20 68,31 68,53 48,64 28,53 28,31" fill="var(--cyan)" opacity="0.18"/>
+          <polygon points="48,20 68,31 68,53 48,64 28,53 28,31" fill="none" stroke="var(--cyan)" stroke-width="3"/>
+          <text x="48" y="57" text-anchor="middle" font-family="'Clash Display','Inter',sans-serif" font-weight="700" font-size="30" fill="var(--cyan)" letter-spacing="-1">N</text>
+          <circle cx="48" cy="6" r="4" fill="var(--cyan)"/><circle cx="80" cy="24" r="4" fill="var(--cyan)"/>
+          <circle cx="80" cy="60" r="4" fill="var(--cyan)"/><circle cx="48" cy="78" r="4" fill="var(--cyan)"/>
+          <circle cx="16" cy="60" r="4" fill="var(--cyan)"/><circle cx="16" cy="24" r="4" fill="var(--cyan)"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="index.html#categories-section">Categories</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="blog-section.html">Blog</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+      <a class="btn-nav-pro" href="index.html#tools-section">⚡Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMobileNav()">Home</a>
+    <a href="index.html#tools-section" onclick="toggleMobileNav()">Tools</a>
+    <a href="about.html" onclick="toggleMobileNav()">About</a>
+    <a href="blog-section.html" onclick="toggleMobileNav()">Blog</a>
+    <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
+    <a href="index.html#tools-section" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="developer-tools.html">Developer Tools</a>
+  <span>›</span>
+  <span style="color:#0f172a;">URL Encoder</span>
+</div>
+
+<!-- TOOL HERO -->
+<div class="tool-page-hero">
+  <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🔗</div>
+  <h1>URL Encoder & Decoder</h1>
+  <p>Percent-encode or decode URLs and query strings instantly, right in your browser, with component or full-URL modes.</p>
+  <div class="hero-feature-pills">
+    <span class="feature-pill">🔒 100% Private</span>
+    <span class="feature-pill">⚡ Instant Results</span>
+    <span class="feature-pill">🆓 Always Free</span>
+  </div>
+</div>
+
+<!-- TOOL SECTION -->
+<section class="tool-section">
+  <div class="tool-container">
+
+    <div class="glass-card">
+      <div class="card-header">
+        <h3>Text / URL Input</h3>
+        <span class="ai-badge">🔗 Client-Side Only</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="url-input">Text or URL</label>
+        <textarea id="url-input" placeholder="https://example.com/search?q=hello world&lang=en" style="min-height:140px;font-family:monospace;font-size:0.85rem;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="url-mode">Encoding Mode</label>
+        <select id="url-mode" style="max-width:320px;">
+          <option value="component" selected>Component (encodeURIComponent) encodes ?, &amp;, /, =</option>
+          <option value="full">Full URL (encodeURI) keeps ?, &amp;, /, =</option>
+        </select>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-cyan" onclick="urlEncode()">➡️ Encode</button>
+        <button class="btn btn-purple" onclick="urlDecode()">⬅️ Decode</button>
+        <button class="btn btn-ghost" onclick="urlSwap()">🔁 Swap</button>
+        <button class="btn btn-ghost" onclick="urlClear()">🗑️ Clear</button>
+      </div>
+
+      <div class="error-box" id="url-error"></div>
+
+      <div class="output-wrap" id="url-output-wrap" style="display:none;">
+        <div class="output-label" id="url-output-label">Result</div>
+        <pre id="url-output" style="white-space:pre-wrap;word-break:break-all;font-family:monospace;font-size:0.85rem;line-height:1.6;max-height:300px;overflow:auto;"></pre>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="url-copy-btn" onclick="copyURL()">📋 Copy Result</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEO SECTION -->
+<section class="seo-section">
+  <h2>Free Online URL Encoder &amp; Decoder</h2>
+  <p>The NexaTools URL Encoder converts text and links into a safe, percent-encoded format, or decodes an encoded URL back into readable text. It's built for developers handling query parameters, form submissions, or links containing spaces and special characters.</p>
+  <p>Choose between Component mode, which escapes every reserved character including &amp; and = for safe use inside a single query parameter, or Full URL mode, which leaves the URL structure intact while encoding only unsafe characters like spaces.</p>
+  <h3>How to Encode or Decode a URL</h3>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">1</div><h4>Paste your text or URL</h4><p>Add the link or string you want to convert.</p></div>
+    <div class="step-card"><div class="step-num">2</div><h4>Pick a mode</h4><p>Component for query values, Full URL for whole links.</p></div>
+    <div class="step-card"><div class="step-num">3</div><h4>Encode or decode</h4><p>Click the matching button and copy your result.</p></div>
+  </div>
+  <h3>Why Use This URL Tool</h3>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Runs locally.</strong> URLs and query strings never leave your browser.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant results.</strong> No server round trip, no delay.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎯</span><p><strong>Two modes.</strong> Component or full-URL encoding, whichever you need.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Completely free.</strong> No login, no limits.</p></div>
+  </div>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-list-tool">
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" id="faq-q-url-1" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-1">What's the difference between the two encoding modes?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-url-1" role="region" aria-labelledby="faq-q-url-1">Component mode (encodeURIComponent) escapes every special character, ideal for a single query parameter value. Full URL mode (encodeURI) leaves URL structure characters like /, ?, and & untouched, ideal for encoding an entire link.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" id="faq-q-url-2" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-2">Is my URL sent to a server when I encode it?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-url-2" role="region" aria-labelledby="faq-q-url-2">No. Encoding and decoding both happen locally in your browser using standard JavaScript functions.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" id="faq-q-url-3" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-3">Why do I get an error when decoding?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-url-3" role="region" aria-labelledby="faq-q-url-3">This usually means the text contains a malformed percent sequence, like a stray % not followed by two hex digits. Double-check the string and try again.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" id="faq-q-url-4" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-4">Can I use this for form data or API query strings?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-url-4" role="region" aria-labelledby="faq-q-url-4">Yes, this is exactly what URL component encoding is designed for, safely escaping values before adding them to a query string.</div>
+    </div>
+  </div>
+
+  <div class="page-cta-box">
+    <h2>Encode or Decode a URL in Seconds</h2>
+    <p>Paste your link or text copy the safe, encoded result instantly.</p>
+    <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
+  </div>
+
+  <h3>More Developer Tools</h3>
+  <div class="related-tools-grid">
+    <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc">Beautify, minify & validate JSON</span></a>
+    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc">Encode & decode Base64 text/files</span></a>
+    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc">MD5, SHA-1, SHA-256 & more</span></a>
+    <a href="uuid-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🆔</span><span class="rt-name">UUID Generator</span><span class="rt-desc">Generate v4 UUIDs in bulk</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <div class="footer-links">
+    <a href="about.html">About</a><span class="footer-sep">·</span>
+    <a href="contact.html">Contact</a><span class="footer-sep">·</span>
+    <a href="privacy-policy.html">Privacy Policy</a><span class="footer-sep">·</span>
+    <a href="terms.html">Terms &amp; Conditions</a><span class="footer-sep">·</span>
+    <a href="blog-section.html">Blog</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const toggle = document.getElementById('navMobileToggle');
+  const isOpen = nav.classList.toggle('open');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function toggleFaqTool(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+</script>
