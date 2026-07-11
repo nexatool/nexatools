@@ -191,7 +191,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
   <div class="page-cta-box">
     <h2>Generate UUIDs in Seconds</h2>
-    <p>Set your quantity and format copy the whole batch instantly.</p>
+    <p>Set your quantity and format — copy the whole batch instantly.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
@@ -242,5 +242,55 @@ function toggleFaqTool(btn) {
   const isOpen = btn.classList.contains('open');
   document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
   if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+
+function makeUUIDv4() {
+  if (window.crypto && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = [...bytes].map(b => b.toString(16).padStart(2, '0'));
+  return `${hex[0]}${hex[1]}${hex[2]}${hex[3]}-${hex[4]}${hex[5]}-${hex[6]}${hex[7]}-${hex[8]}${hex[9]}-${hex[10]}${hex[11]}${hex[12]}${hex[13]}${hex[14]}${hex[15]}`;
+}
+
+function generateUUIDs() {
+  const countInput = document.getElementById('uuid-count');
+  let count = parseInt(countInput.value, 10);
+  if (isNaN(count) || count < 1) count = 1;
+  if (count > 500) count = 500;
+  countInput.value = count;
+
+  const caseMode = document.getElementById('uuid-case').value;
+  const hyphenMode = document.getElementById('uuid-hyphens').value;
+
+  const uuids = [];
+  for (let i = 0; i < count; i++) {
+    let id = makeUUIDv4();
+    if (hyphenMode === 'no') id = id.replace(/-/g, '');
+    if (caseMode === 'upper') id = id.toUpperCase();
+    uuids.push(id);
+  }
+
+  document.getElementById('uuid-output').textContent = uuids.join('\n');
+  document.getElementById('uuid-output-wrap').style.display = 'block';
+}
+
+function clearUUIDs() {
+  document.getElementById('uuid-output').textContent = '';
+  document.getElementById('uuid-output-wrap').style.display = 'none';
+}
+
+function copyUUIDs() {
+  const text = document.getElementById('uuid-output').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('uuid-copy-btn');
+    const original = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
 }
 </script>
