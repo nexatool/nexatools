@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8fafc">
+<meta name="author" content="NexaTools.io">
+<title>Free PNG to JPG Converter Online Convert Multiple Images | NexaTools.io</title>
+<meta name="description" content="Convert PNG images to JPG online for free. Upload multiple images, preview before and after, and download individually or as a ZIP. No signup, 100% browser based.">
+<meta name="keywords" content="png to jpg converter, convert png to jpg online, batch png to jpg, free image converter no signup, png to jpeg">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexatools.io/png-to-jpg.html">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta property="og:title" content="Free PNG to JPG Converter NexaTools.io">
+<meta property="og:description" content="Convert PNG images to JPG for free. Batch convert multiple images, preview before/after, download individually or as a ZIP.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nexatools.io/png-to-jpg.html">
+<meta property="og:image" content="https://www.nexatools.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free PNG to JPG Converter NexaTools.io">
+<meta name="twitter:description" content="Convert PNG images to JPG for free. No login, no server upload.">
+<meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free PNG to JPG Converter NexaTools.io",
+  "url": "https://www.nexatools.io/png-to-jpg.html",
+  "description": "Free online PNG to JPG converter. Batch convert multiple PNG images to JPG directly in your browser.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": ["Batch PNG to JPG conversion","Before and after preview","Download individually or as ZIP","Runs entirely in your browser","No signup required","100% free"],
+  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is this PNG to JPG converter really free?","acceptedAnswer":{"@type":"Answer","text":"Yes! NexaTools PNG to JPG Converter is 100% free. No credit card, no signup, no hidden charges."}},
+    {"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs entirely inside your browser using the Canvas API. Your images are never uploaded or stored anywhere."}},
+    {"@type":"Question","name":"Can I convert multiple images at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload as many PNG images as you like and convert them all to JPG in one batch."}},
+    {"@type":"Question","name":"What happens to transparent areas in my PNG?","acceptedAnswer":{"@type":"Answer","text":"JPG does not support transparency, so any transparent areas in your PNG are filled with white in the converted image."}},
+    {"@type":"Question","name":"Can I download all my converted images at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once your images are converted, use the 'Download All as ZIP' button to get every JPG file in a single download, or download files individually."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+
+<style>
+.tool-page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 50px) 32px 40px;max-width:1000px;margin:0 auto;text-align:center}
+.tool-page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.tool-page-hero p{color:var(--text2);font-size:1rem;line-height:1.7;max-width:620px;margin:0 auto 28px}
+.hero-feature-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.feature-pill{background:var(--cyan-dim);border:1px solid var(--border3);color:var(--cyan);font-size:0.78rem;padding:6px 16px;border-radius:30px;font-weight:500}
+.tool-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 32px 60px}
+.seo-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:60px 32px;border-top:1px solid var(--border)}
+.seo-section h2{font-family:var(--font-display);font-size:1.7rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,var(--text),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.seo-section p{color:var(--text2);font-size:0.95rem;line-height:1.85;margin-bottom:16px}
+.seo-section h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--cyan);margin:28px 0 10px}
+.section-divider{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--cyan);padding:14px 0 8px;border-bottom:1px solid var(--border);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-divider span{background:var(--cyan);color:#000;padding:2px 8px;border-radius:6px;font-size:0.7rem}
+.optional-tag{font-size:0.68rem;color:var(--muted2);font-weight:400;margin-left:6px;text-transform:none;letter-spacing:0}
+.form-note{font-size:0.75rem;color:var(--muted2);margin-top:-6px;margin-bottom:10px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}
+.step-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative}
+.step-num{width:32px;height:32px;background:var(--cyan);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.88rem;margin-bottom:12px}
+.step-card h4{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.step-card p{font-size:0.82rem;color:var(--text2);line-height:1.6;margin:0}
+.benefits-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.benefit-item{display:flex;align-items:flex-start;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.benefit-item .bi-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.benefit-item p{font-size:0.85rem;color:var(--text2);line-height:1.6;margin:0}
+.benefit-item strong{color:var(--text)}
+.faq-list-tool{display:flex;flex-direction:column;gap:10px}
+.faq-item-tool{background:var(--surface2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q-tool{width:100%;background:none;border:none;color:var(--text);font-family:var(--font-body);font-size:0.92rem;font-weight:600;padding:16px 20px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:var(--transition)}
+.faq-q-tool:hover{color:var(--cyan)}
+.faq-arrow-tool{font-size:1rem;color:var(--cyan);transition:transform 0.3s}
+.faq-q-tool.open .faq-arrow-tool{transform:rotate(180deg)}
+.faq-a-tool{color:var(--text2);font-size:0.87rem;line-height:1.8;padding:0 20px;max-height:0;overflow:hidden;transition:all 0.35s ease}
+.faq-a-tool.open{max-height:260px;padding:0 20px 16px}
+.related-tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
+.related-tool-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;text-decoration:none;display:block;transition:var(--transition)}
+.related-tool-card:hover{border-color:var(--border3);transform:translateY(-4px);box-shadow:0 12px 32px var(--cyan-glow)}
+.related-tool-card .rt-icon{font-size:1.8rem;margin-bottom:8px;display:block}
+.related-tool-card .rt-name{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.related-tool-card .rt-desc{font-size:0.72rem;color:var(--muted2)}
+.page-cta-box{background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;margin:40px 0}
+.page-cta-box h2{font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:10px}
+.page-cta-box p{color:var(--text2);font-size:0.92rem;margin-bottom:22px}
+.breadcrumb{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:calc(var(--nav-h) + 16px) 32px 0;font-size:0.8rem;color:var(--muted2);display:flex;gap:8px;align-items:center}
+.breadcrumb a{color:var(--cyan);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{color:var(--muted2)}
+.ad-slot{text-align:center;margin:32px 0;min-height:90px}
+.upload-zone{display:block;width:100%;box-sizing:border-box;border:2px dashed var(--border3);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;background:var(--surface2);cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;isolation:isolate;clip-path:inset(0 round var(--radius-lg))}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--cyan);background:var(--cyan-dim)}
+.upload-zone input[type="file"]{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;outline:none;border:none;background:transparent;font-size:16px;}
+.upload-zone input[type="file"]::-webkit-file-upload-button{visibility:hidden;width:0;height:0;position:absolute;}
+.upload-zone input[type="file"]:focus{outline:none;box-shadow:none}
+.upload-icon{font-size:2.4rem;margin-bottom:10px}
+.upload-zone h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.upload-zone p{font-size:0.82rem;color:var(--muted2);margin:0}
+.progress-wrap{margin-top:18px;display:none}
+.progress-wrap.active{display:block}
+.progress-label{font-size:0.8rem;color:var(--text2);margin-bottom:8px;display:flex;justify-content:space-between}
+.progress-track{width:100%;height:8px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:20px;transition:width 0.25s ease}
+.error-box{display:none;margin-top:18px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.3);border-radius:14px;padding:16px 18px;font-size:0.85rem;color:#b91c1c}
+.error-box.active{display:block}
+.limitation-note{display:flex;gap:10px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:0.8rem;color:var(--text2);line-height:1.6}
+.limitation-note .ln-icon{flex-shrink:0}
+.batch-summary{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.batch-summary .bs-count{font-size:0.85rem;color:var(--text2)}
+.batch-summary .bs-count strong{color:var(--text)}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:16px}
+.image-card{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px;transition:var(--transition)}
+.image-card.done{border-color:rgba(5,150,105,0.35)}
+.image-card.errored{border-color:rgba(220,38,38,0.35)}
+.ic-previews{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:12px}
+.ic-thumb{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:repeating-conic-gradient(#e5e7eb 0% 25%, #f3f4f6 0% 50%) 50% / 14px 14px;border:1px solid var(--border)}
+.ic-thumb img{width:100%;height:100%;object-fit:contain}
+.ic-arrow{color:var(--cyan);font-size:1.1rem}
+.ic-labels{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;margin-bottom:10px}
+.ic-labels span{font-size:0.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.05em;text-align:center}
+.ic-name{font-size:0.83rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px}
+.ic-sizes{display:flex;justify-content:space-between;align-items:center;font-size:0.76rem;color:var(--text2);margin-bottom:10px}
+.ic-sizes .ic-new-size{color:var(--green);font-weight:700}
+.ic-status{font-size:0.75rem;color:var(--muted2);margin-bottom:10px}
+.ic-actions{display:flex;gap:8px}
+.ic-actions .btn{flex:1;font-size:0.8rem;padding:9px 10px}
+.ic-remove-mini{background:none;border:none;color:var(--muted2);font-size:0.95rem;cursor:pointer;padding:4px}
+.ic-remove-mini:hover{color:var(--text)}
+.ic-top-row{display:flex;justify-content:flex-end;margin-bottom:-6px}
+@media(max-width:768px){
+  .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
+  .tool-section{padding:0 20px 40px}
+  .seo-section{padding:40px 20px}
+  .benefits-list{grid-template-columns:1fr}
+  .page-cta-box{padding:28px 20px}
+  .breadcrumb{padding:calc(var(--nav-h) + 12px) 20px 0}
+  .upload-zone{padding:32px 16px}
+  .image-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+}
+.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+.btn-nav-ghost { font-weight: 700 !important; }
+.nav-links { gap:120px !important; margin-left:70px !important; }
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em></span>
+    </div>
+    <div class="nav-links">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="index.html#tools-section">Tools</a>
+  <a class="nav-link" href="image-tools.html" style="color:var(--cyan);">Image Tools</a>
+  <a class="nav-link" href="blog-section.html">Blog</a>
+  <a class="nav-link" href="contact.html">Contact</a>
+</div>
+    <div class="nav-right">
+      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
+      <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="index.html" class="btn-nav-pro">⚡Try Free Tools</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="image-tools.html">Image Tools</a>
+  <span>›</span>
+  <span style="color:var(--text);">PNG to JPG Converter</span>
+</div>
+
+<div class="tool-page-hero">
+  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
+    <span class="badge-dot"></span>Free PNG to JPG Converter — No Signup Required
+  </div>
+  <h1>Free PNG to JPG Converter<br><span class="title-gradient">Convert Multiple Images at Once</span></h1>
+  <p>Convert PNG images to JPG in seconds. Upload several images at once, preview before and after, then download individually or as a single ZIP. Everything happens inside your browser — your images are never uploaded to a server.</p>
+  <div class="hero-feature-pills">
+    <span class="feature-pill">✅ 100% Free</span>
+    <span class="feature-pill">🔒 Runs In Your Browser</span>
+    <span class="feature-pill">🗂️ Batch Convert</span>
+    <span class="feature-pill">🖼️ Before/After Preview</span>
+    <span class="feature-pill">📦 Download as ZIP</span>
+  </div>
+</div>
+
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="tool-section">
+  <div class="glass-card">
+    <div class="card-header">
+      <h3>🖼️ PNG to JPG Converter</h3>
+    </div>
+
+    <div class="section-divider">Upload PNG Images</div>
+
+    <label class="upload-zone" id="upload-zone">
+      <input type="file" id="img-input" accept="image/png,.png" multiple aria-label="Upload PNG images">
+      <div class="upload-icon">📤</div>
+      <h3>Drag &amp; drop PNG images here</h3>
+      <p>or click to browse — select one or many PNG files — max 20 MB each — images never leave your device</p>
+    </label>
+
+    <div class="batch-summary" id="batch-summary" style="display:none">
+      <span class="bs-count" id="bs-count"></span>
+      <div class="add-more-row">
+        <label class="btn btn-nav-ghost" for="img-input-more" style="cursor:pointer;display:inline-block">➕ Add More Images</label>
+        <input type="file" id="img-input-more" accept="image/png,.png" multiple style="display:none">
+      </div>
+    </div>
+
+    <div class="range-field-wrap" id="quality-wrap" style="display:none;">
+      <div class="section-divider">JPG Quality<span class="optional-tag">higher = better quality, larger file</span></div>
+      <input type="range" id="quality-slider" min="10" max="100" value="90" style="width:100%;accent-color:var(--cyan);">
+      <div class="form-note" id="quality-label">Quality: 90%</div>
+    </div>
+
+    <div class="image-grid" id="image-grid"></div>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-label"><span id="progress-text">Converting images…</span><span id="progress-pct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="error-box" id="error-box"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-cyan" id="convert-btn" disabled>⚡ Convert All to JPG</button>
+      <button class="btn btn-nav-ghost" id="download-zip-btn" style="display:none">📦 Download All as ZIP</button>
+    </div>
+
+    <div class="limitation-note">
+      <span class="ln-icon">ℹ️</span>
+      <span>Each PNG is decoded and redrawn onto a canvas, then exported as JPG — your browser's Canvas API does the conversion, so nothing is uploaded anywhere. Since JPG does not support transparency, any transparent areas are filled with white.</span>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="seo-section">
+  <h2>Why NexaTools PNG to JPG Converter</h2>
+  <p>Convert PNG images to JPG without installing software or creating an account. Everything runs locally in your browser using the Canvas API, so your images stay private.</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">🔒</div><h4>100% Private</h4><p>Your images are processed entirely on your device. Nothing is uploaded to any server.</p></div>
+    <div class="step-card"><div class="step-num">🗂️</div><h4>Batch Conversion</h4><p>Upload and convert many PNG images in one go, instead of one at a time.</p></div>
+    <div class="step-card"><div class="step-num">🆓</div><h4>Completely Free</h4><p>No subscription, no watermark, no file limits, and no signup required.</p></div>
+    <div class="step-card"><div class="step-num">📱</div><h4>Works Everywhere</h4><p>Use it on desktop, tablet, or mobile in any modern browser.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>How to Convert PNG to JPG Online — Step by Step</h2>
+  <p>Converting PNG images to JPG takes less than a minute. Follow these steps:</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">1</div><h4>Upload Your PNGs</h4><p>Drag and drop one or more PNG images into the upload area, or click to browse.</p></div>
+    <div class="step-card"><div class="step-num">2</div><h4>Set Quality</h4><p>Adjust the JPG quality slider to balance file size and image quality.</p></div>
+    <div class="step-card"><div class="step-num">3</div><h4>Click Convert All</h4><p>Press "Convert All to JPG" — every image is converted locally in your browser.</p></div>
+    <div class="step-card"><div class="step-num">4</div><h4>Download</h4><p>Download JPGs individually, or click "Download All as ZIP" to get everything at once.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Benefits of Converting PNG to JPG with NexaTools</h2>
+  <p>There are many image converters online — here is why people choose the NexaTools browser-based converter:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>100% Private</strong> — Your images never leave your device. There is no server upload involved.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Completely Free</strong> — No credit card, no hidden fees, no premium tier. Unlimited conversions.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🗂️</span><p><strong>True Batch Support</strong> — Convert dozens of PNGs together instead of repeating the process one file at a time.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🖼️</span><p><strong>Adjustable Quality</strong> — Control the JPG quality to get the file size you need.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📦</span><p><strong>One-Click ZIP</strong> — Download every converted JPG together in a single ZIP file.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Works on Mobile</strong> — Fully responsive on desktop, tablet, and mobile browsers.</p></div>
+  </div>
+</div>
+
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="seo-section">
+  <h2>Tips for Getting the Best Results</h2>
+  <h3>1. Transparent Areas Become White</h3>
+  <p>JPG does not support transparency. Any transparent parts of your PNG will be filled with a white background after conversion.</p>
+  <h3>2. Best for Photos, Not Graphics</h3>
+  <p>JPG works great for photographs. For logos, icons, or images with sharp text, PNG usually looks cleaner since JPG uses lossy compression.</p>
+  <h3>3. Lower Quality for Smaller Files</h3>
+  <p>If file size matters more than crispness, lower the quality slider — JPG files shrink significantly with a small quality trade-off.</p>
+  <h3>4. Use Batch Mode for Large Sets</h3>
+  <p>Uploading multiple images at once and using "Download All as ZIP" saves time when converting a whole folder of photos.</p>
+</div>
+
+<div class="seo-section">
+  <h2>Frequently Asked Questions</h2>
+  <p>Everything you need to know about the NexaTools free PNG to JPG converter.</p>
+  <div class="faq-list-tool">
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is this PNG to JPG converter really free? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes, completely free. Convert unlimited PNG images to JPG without paying anything or creating an account.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Are my images uploaded to a server? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. Conversion runs entirely inside your browser using the Canvas API. Your images are never uploaded or stored anywhere.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I convert multiple images at once? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. Upload as many PNG images as you like and convert them all to JPG in one batch.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">What happens to transparent areas in my PNG? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">JPG does not support transparency, so any transparent areas in your PNG are filled with white in the converted image.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I download all my converted images at once? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. Once your images are converted, use the "Download All as ZIP" button to get every JPG file in a single download, or download files individually.</div>
+    </div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>More Free Image Tools You Might Need</h2>
+  <p>Complete your image workflow with these free tools from NexaTools:</p>
+  <div class="related-tools-grid">
+    <a href="image-resizer.html" class="related-tool-card"><span class="rt-icon">📐</span><div class="rt-name">Image Resizer</div><div class="rt-desc">Resize by pixels or %</div></a>
+    <a href="image-compressor.html" class="related-tool-card"><span class="rt-icon">🗜️</span><div class="rt-name">Image Compressor</div><div class="rt-desc">Reduce image file size</div></a>
+    <a href="jpg-to-png.html" class="related-tool-card"><span class="rt-icon">🖼️</span><div class="rt-name">JPG to PNG</div><div class="rt-desc">Convert JPG to PNG</div></a>
+    <a href="webp-converter.html" class="related-tool-card"><span class="rt-icon">🔄</span><div class="rt-name">WebP Converter</div><div class="rt-desc">Convert to/from WebP</div></a>
+    <a href="resume-builder.html" class="related-tool-card"><span class="rt-icon">📄</span><div class="rt-name">Resume Builder</div><div class="rt-desc">Build a free CV online</div></a>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Related Guides</h2>
+  <p>Learn more about working with images online:</p>
+  <div class="related-tools-grid">
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">📚</span><div class="rt-name">JPG vs PNG</div><div class="rt-desc">Which format to use and when</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">🌐</span><div class="rt-name">Image Formats for the Web</div><div class="rt-desc">Choosing formats for faster sites</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">🎨</span><div class="rt-name">Reducing Photo File Size</div><div class="rt-desc">Tips for smaller image files</div></a>
+  </div>
+</div>
+
+<div style="max-width:1000px;margin:0 auto;padding:0 32px 80px;">
+  <div class="page-cta-box">
+    <h2>Ready to Convert Your PNGs?</h2>
+    <p>Batch convert PNG images to JPG in seconds — free, private, and no signup required.</p>
+    <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:14px 36px;font-size:1rem;">⬆️ Start Converting Free Now</button>
+  </div>
+</div>
+
+<div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px 40px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
+    data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
+      </svg>
+    </div>
+    <span>Nexa<em>Tools</em>.io</span>
+  </div>
+  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+  </div>
+  <p class="footer-copy">© 2026 NexaTools.io — Worldwide 🌍</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+var items = [];
+var uid = 0;
+var currentQuality = 0.9;
+
+var uploadZone = document.getElementById('upload-zone');
+var imgInput = document.getElementById('img-input');
+var imgInputMore = document.getElementById('img-input-more');
+var imageGrid = document.getElementById('image-grid');
+var batchSummary = document.getElementById('batch-summary');
+var bsCount = document.getElementById('bs-count');
+var qualityWrap = document.getElementById('quality-wrap');
+var qualitySlider = document.getElementById('quality-slider');
+var qualityLabel = document.getElementById('quality-label');
+var convertBtn = document.getElementById('convert-btn');
+var downloadZipBtn = document.getElementById('download-zip-btn');
+var progressWrap = document.getElementById('progress-wrap');
+var progressFill = document.getElementById('progress-fill');
+var progressText = document.getElementById('progress-text');
+var progressPct = document.getElementById('progress-pct');
+var errorBox = document.getElementById('error-box');
+
+var ACCEPTED_TYPES = ['image/png'];
+
+qualitySlider.addEventListener('input', function(){
+  currentQuality = parseInt(qualitySlider.value,10)/100;
+  qualityLabel.textContent = 'Quality: ' + qualitySlider.value + '%';
+});
+
+imgInput.addEventListener('change', function(e){ addFiles(e.target.files); imgInput.value=''; });
+imgInputMore.addEventListener('change', function(e){ addFiles(e.target.files); imgInputMore.value=''; });
+['dragenter','dragover'].forEach(function(evt){ uploadZone.addEventListener(evt, function(e){ e.preventDefault(); uploadZone.classList.add('dragover'); }); });
+['dragleave','drop'].forEach(function(evt){ uploadZone.addEventListener(evt, function(e){ e.preventDefault(); uploadZone.classList.remove('dragover'); }); });
+uploadZone.addEventListener('drop', function(e){ e.preventDefault(); if (e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+
+function addFiles(fileList) {
+  errorBox.classList.remove('active');
+  Array.prototype.forEach.call(fileList, function(file) {
+    var isAccepted = ACCEPTED_TYPES.indexOf(file.type) !== -1 || /\.png$/i.test(file.name);
+    if (!isAccepted) { showError('"' + file.name + '" is not a PNG and was skipped.'); return; }
+    if (file.size > 20 * 1024 * 1024) { showError('"' + file.name + '" is larger than 20 MB and was skipped.'); return; }
+    var url = URL.createObjectURL(file);
+    items.push({ id: ++uid, file: file, origUrl: url, jpgBlob: null, jpgUrl: null, status: 'pending' });
+  });
+  renderGrid();
+}
+
+function renderGrid() {
+  imageGrid.innerHTML = '';
+  items.forEach(function(item) {
+    var card = document.createElement('div');
+    card.className = 'image-card' + (item.status === 'done' ? ' done' : item.status === 'error' ? ' errored' : '');
+    card.dataset.id = item.id;
+
+    var afterThumb = item.jpgUrl ? item.jpgUrl : item.origUrl;
+    var statusLine = item.status === 'done' ? '✅ Converted' : item.status === 'error' ? '⚠️ Conversion failed' : '⏳ Waiting to convert';
+
+    card.innerHTML =
+      '<div class="ic-top-row"><button class="ic-remove-mini" data-remove="' + item.id + '" aria-label="Remove image">✕</button></div>' +
+      '<div class="ic-labels"><span>Original</span><span></span><span>JPG</span></div>' +
+      '<div class="ic-previews">' +
+        '<div class="ic-thumb"><img src="' + item.origUrl + '" alt=""></div>' +
+        '<span class="ic-arrow">→</span>' +
+        '<div class="ic-thumb"><img src="' + afterThumb + '" alt=""></div>' +
+      '</div>' +
+      '<div class="ic-name">' + escHtml(item.file.name) + '</div>' +
+      '<div class="ic-sizes"><span>' + formatSize(item.file.size) + '</span>' + (item.jpgBlob ? ('<span class="ic-new-size">' + formatSize(item.jpgBlob.size) + '</span>') : '<span>&mdash;</span>') + '</div>' +
+      '<div class="ic-status">' + statusLine + '</div>' +
+      '<div class="ic-actions">' +
+        (item.jpgBlob ? '<button class="btn btn-cyan" data-download="' + item.id + '">⬇️ Download JPG</button>' : '') +
+      '</div>';
+    imageGrid.appendChild(card);
+  });
+
+  imageGrid.querySelectorAll('[data-remove]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = parseInt(btn.dataset.remove, 10);
+      var idx = items.findIndex(function(x){ return x.id === id; });
+      if (idx > -1) {
+        URL.revokeObjectURL(items[idx].origUrl);
+        if (items[idx].jpgUrl) URL.revokeObjectURL(items[idx].jpgUrl);
+        items.splice(idx, 1);
+      }
+      renderGrid();
+    });
+  });
+  imageGrid.querySelectorAll('[data-download]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = parseInt(btn.dataset.download, 10);
+      var item = items.find(function(x){ return x.id === id; });
+      if (item && item.jpgBlob) downloadBlob(item.jpgBlob, jpgName(item.file.name));
+    });
+  });
+
+  batchSummary.style.display = items.length ? 'flex' : 'none';
+  qualityWrap.style.display = items.length ? 'block' : 'none';
+  bsCount.innerHTML = '<strong>' + items.length + '</strong> image' + (items.length===1?'':'s') + ' selected';
+  convertBtn.disabled = items.length === 0;
+  var anyDone = items.some(function(x){ return x.status === 'done'; });
+  downloadZipBtn.style.display = anyDone ? 'inline-block' : 'none';
+}
+
+function jpgName(originalName) {
+  return (originalName.replace(/\.[^.]+$/, '') || 'image') + '.jpg';
+}
+function showError(msg){ errorBox.textContent = '⚠️ ' + msg; errorBox.classList.add('active'); }
+function formatSize(b){ if(b<1024) return b+' B'; if(b<1024*1024) return (b/1024).toFixed(1)+' KB'; return (b/(1024*1024)).toFixed(2)+' MB'; }
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function setProgress(pct,label){ progressWrap.classList.add('active'); progressFill.style.width=pct+'%'; progressPct.textContent=pct+'%'; if(label) progressText.textContent=label; }
+
+function convertOne(item) {
+  return new Promise(function(resolve) {
+    var img = new Image();
+    img.onload = function() {
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(function(blob) {
+          if (!blob) { item.status = 'error'; resolve(); return; }
+          item.jpgBlob = blob;
+          item.jpgUrl = URL.createObjectURL(blob);
+          item.status = 'done';
+          resolve();
+        }, 'image/jpeg', currentQuality);
+      } catch (e) {
+        item.status = 'error';
+        resolve();
+      }
+    };
+    img.onerror = function() { item.status = 'error'; resolve(); };
+    img.src = item.origUrl;
+  });
+}
+
+convertBtn.addEventListener('click', function() {
+  if (!items.length) return;
+  errorBox.classList.remove('active');
+  convertBtn.disabled = true;
+  setProgress(5, 'Starting conversion…');
+
+  (async function() {
+    for (var i = 0; i < items.length; i++) {
+      setProgress(Math.round(5 + (i/items.length)*90), 'Converting ' + items[i].file.name + '…');
+      await convertOne(items[i]);
+      renderGrid();
+    }
+    setProgress(100, 'Done!');
+    setTimeout(function(){ progressWrap.classList.remove('active'); }, 800);
+    convertBtn.disabled = false;
+    var anyError = items.some(function(x){ return x.status === 'error'; });
+    if (anyError) showError('Some images could not be converted. They may be corrupted or in an unsupported format.');
+  })();
+});
+
+downloadZipBtn.addEventListener('click', function() {
+  var doneItems = items.filter(function(x){ return x.status === 'done' && x.jpgBlob; });
+  if (!doneItems.length) return;
+  var used = {};
+  var zipFiles = [];
+  (async function() {
+    for (var i = 0; i < doneItems.length; i++) {
+      var item = doneItems[i];
+      var name = jpgName(item.file.name);
+      if (used[name]) { name = name.replace(/\.jpg$/i, '') + '-' + (used[name]+1) + '.jpg'; used[jpgName(item.file.name)]++; }
+      else { used[jpgName(item.file.name)] = 1; }
+      var buf = await item.jpgBlob.arrayBuffer();
+      zipFiles.push({ name: name, data: new Uint8Array(buf) });
+    }
+    var zipBlob = zipStoreBinary(zipFiles);
+    downloadBlob(zipBlob, 'converted-jpg-images.zip');
+  })();
+});
+
+function downloadBlob(blob, name) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+}
+
+function zipStoreBinary(files) {
+  var localParts = [], centralParts = [], offset = 0;
+  function crc32(bytes){
+    var table = crc32.table || (crc32.table = (function(){ var t=[]; for(var n=0;n<256;n++){var c=n; for(var k=0;k<8;k++) c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1); t[n]=c>>>0;} return t; })());
+    var crc = 0xFFFFFFFF;
+    for (var i=0;i<bytes.length;i++) crc = table[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+  function u16(n){ return new Uint8Array([n&0xFF,(n>>>8)&0xFF]); }
+  function u32(n){ return new Uint8Array([n&0xFF,(n>>>8)&0xFF,(n>>>16)&0xFF,(n>>>24)&0xFF]); }
+  function concat(arrs){ var len=0; arrs.forEach(function(a){len+=a.length;}); var out=new Uint8Array(len); var p=0; arrs.forEach(function(a){out.set(a,p);p+=a.length;}); return out; }
+  var encoder = new TextEncoder();
+  files.forEach(function(f){
+    var content = f.data;
+    var nameBytes = encoder.encode(f.name);
+    var crc = crc32(content);
+    var localHeader = concat([u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(content.length),u32(content.length),u16(nameBytes.length),u16(0),nameBytes]);
+    localParts.push(localHeader, content);
+    var centralHeader = concat([u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(content.length),u32(content.length),u16(nameBytes.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),nameBytes]);
+    centralParts.push(centralHeader);
+    offset += localHeader.length + content.length;
+  });
+  var localData = concat(localParts), centralData = concat(centralParts);
+  var end = concat([u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(centralData.length),u32(localData.length),u16(0)]);
+  return new Blob([localData, centralData, end], { type: 'application/zip' });
+}
+
+function toggleToolFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q-tool').forEach(function(b) {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
