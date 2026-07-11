@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
 <meta name="author" content="NexaTools.io">
-<title>Free URL Encoder & Decoder Online | NexaTools.io</title>
-<meta name="description" content="Encode or decode URLs and query strings instantly in your browser. Component and full-URL modes. 100% free, no signup, no backend.">
+<title>Free HTML Minifier Online | NexaTools.io</title>
+<meta name="description" content="Minify HTML instantly in your browser. Strip whitespace, comments and line breaks to shrink file size. 100% free, no signup, no data upload.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.nexatools.io/url-encoder.html">
+<link rel="canonical" href="https://www.nexatools.io/html-minifier.html">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
@@ -114,14 +114,14 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <span>›</span>
   <a href="developer-tools.html">Developer Tools</a>
   <span>›</span>
-  <span style="color:#0f172a;">URL Encoder</span>
+  <span style="color:#0f172a;">HTML Minifier</span>
 </div>
 
 <!-- TOOL HERO -->
 <div class="tool-page-hero">
-  <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🔗</div>
-  <h1>URL Encoder & Decoder</h1>
-  <p>Percent-encode or decode URLs and query strings instantly, right in your browser, with component or full-URL modes.</p>
+  <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🗜️</div>
+  <h1>HTML Minifier</h1>
+  <p>Shrink HTML files by stripping comments, whitespace and line breaks, instantly in your browser. No signup, no backend, no data ever leaves your device.</p>
   <div class="hero-feature-pills">
     <span class="feature-pill">🔒 100% Private</span>
     <span class="feature-pill">⚡ Instant Results</span>
@@ -135,35 +135,38 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
     <div class="glass-card">
       <div class="card-header">
-        <h3>Text / URL Input</h3>
-        <span class="ai-badge">🔗 Client-Side Only</span>
+        <h3>HTML Input</h3>
+        <span class="ai-badge">🗜️ Client-Side Only</span>
       </div>
       <div class="form-group">
-        <label class="form-label" for="url-input">Text or URL</label>
-        <textarea id="url-input" placeholder="https://example.com/search?q=hello world&lang=en" style="min-height:140px;font-family:monospace;font-size:0.85rem;"></textarea>
+        <label class="form-label" for="html-input">Paste your HTML</label>
+        <textarea id="html-input" placeholder="&lt;!DOCTYPE html&gt;&#10;&lt;html&gt;&#10;  &lt;body&gt;&#10;    &lt;!-- comment --&gt;&#10;    &lt;p&gt;Hello NexaTools&lt;/p&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;" style="min-height:220px;font-family:monospace;font-size:0.85rem;"></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label" for="url-mode">Encoding Mode</label>
-        <select id="url-mode" style="max-width:320px;">
-          <option value="component" selected>Component (encodeURIComponent) — encodes ?, &amp;, /, =</option>
-          <option value="full">Full URL (encodeURI) — keeps ?, &amp;, /, =</option>
-        </select>
+        <label class="form-label" for="html-opt-comments">Options</label>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#475569;"><input type="checkbox" id="html-opt-comments" checked> Remove comments</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#475569;"><input type="checkbox" id="html-opt-whitespace" checked> Collapse whitespace</label>
+        </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-cyan" onclick="urlEncode()">➡️ Encode</button>
-        <button class="btn btn-purple" onclick="urlDecode()">⬅️ Decode</button>
-        <button class="btn btn-ghost" onclick="urlSwap()">🔁 Swap</button>
-        <button class="btn btn-ghost" onclick="urlClear()">🗑️ Clear</button>
+        <button class="btn btn-cyan" onclick="minifyHTML()">🗜️ Minify HTML</button>
+        <button class="btn btn-ghost" onclick="clearHTML()">🗑️ Clear</button>
       </div>
 
-      <div class="error-box" id="url-error"></div>
+      <div class="error-box" id="html-error"></div>
 
-      <div class="output-wrap" id="url-output-wrap" style="display:none;">
-        <div class="output-label" id="url-output-label">Result</div>
-        <pre id="url-output" style="white-space:pre-wrap;word-break:break-all;font-family:monospace;font-size:0.85rem;line-height:1.6;max-height:300px;overflow:auto;"></pre>
+      <div class="output-wrap" id="html-output-wrap" style="display:none;">
+        <div class="output-label">Minified Output</div>
+        <pre id="html-output" style="white-space:pre-wrap;word-break:break-word;font-family:monospace;font-size:0.85rem;line-height:1.6;max-height:420px;overflow:auto;"></pre>
         <div class="btn-row">
-          <button class="btn btn-ghost" id="url-copy-btn" onclick="copyURL()">📋 Copy Result</button>
+          <button class="btn btn-ghost" id="html-copy-btn" onclick="copyHTML()">📋 Copy Result</button>
         </div>
+      </div>
+
+      <div class="result-box" id="html-result-box">
+        <span class="rb-icon">✅</span>
+        <div class="rb-text"><strong>Size Reduced</strong><span id="html-size-msg">Your HTML has been minified.</span></div>
       </div>
     </div>
 
@@ -172,55 +175,55 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
 <!-- SEO SECTION -->
 <section class="seo-section">
-  <h2>Free Online URL Encoder &amp; Decoder</h2>
-  <p>The NexaTools URL Encoder converts text and links into a safe, percent-encoded format, or decodes an encoded URL back into readable text. It's built for developers handling query parameters, form submissions, or links containing spaces and special characters.</p>
-  <p>Choose between Component mode, which escapes every reserved character including &amp; and = for safe use inside a single query parameter, or Full URL mode, which leaves the URL structure intact while encoding only unsafe characters like spaces.</p>
-  <h3>How to Encode or Decode a URL</h3>
+  <h2>Free Online HTML Minifier</h2>
+  <p>The NexaTools HTML Minifier compresses HTML markup by removing comments, extra whitespace and unnecessary line breaks, right inside your browser. Smaller HTML files load faster, reduce bandwidth usage, and are a quick win for page speed before deploying a site.</p>
+  <p>Everything runs locally on your device using standard browser JavaScript. Nothing you paste is uploaded to a server, which makes it safe to use with private templates, internal pages or client work.</p>
+  <h3>How to Minify HTML</h3>
   <div class="steps-grid">
-    <div class="step-card"><div class="step-num">1</div><h4>Paste your text or URL</h4><p>Add the link or string you want to convert.</p></div>
-    <div class="step-card"><div class="step-num">2</div><h4>Pick a mode</h4><p>Component for query values, Full URL for whole links.</p></div>
-    <div class="step-card"><div class="step-num">3</div><h4>Encode or decode</h4><p>Click the matching button and copy your result.</p></div>
+    <div class="step-card"><div class="step-num">1</div><h4>Paste your HTML</h4><p>Drop your raw HTML markup into the input box above.</p></div>
+    <div class="step-card"><div class="step-num">2</div><h4>Choose options</h4><p>Toggle comment removal and whitespace collapsing as needed.</p></div>
+    <div class="step-card"><div class="step-num">3</div><h4>Copy the result</h4><p>Use the copy button to grab the minified output instantly.</p></div>
   </div>
-  <h3>Why Use This URL Tool</h3>
+  <h3>Why Use This HTML Tool</h3>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Runs locally.</strong> URLs and query strings never leave your browser.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant results.</strong> No server round trip, no delay.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🎯</span><p><strong>Two modes.</strong> Component or full-URL encoding, whichever you need.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Completely free.</strong> No login, no limits.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Private by design.</strong> HTML never leaves your browser or touches a server.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant results.</strong> Minification happens as you click, no waiting.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>100% free.</strong> No signup, no limits, no watermark on the output.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Works everywhere.</strong> Fully responsive on desktop, tablet and mobile.</p></div>
   </div>
 
   <h3>Frequently Asked Questions</h3>
   <div class="faq-list-tool">
     <div class="faq-item-tool">
-      <button class="faq-q-tool" id="faq-q-url-1" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-1">What's the difference between the two encoding modes?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
-      <div class="faq-a-tool" id="faq-a-url-1" role="region" aria-labelledby="faq-q-url-1">Component mode (encodeURIComponent) escapes every special character, ideal for a single query parameter value. Full URL mode (encodeURI) leaves URL structure characters like /, ?, and & untouched, ideal for encoding an entire link.</div>
+      <button class="faq-q-tool" id="faq-q-html-1" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-html-1">Does this HTML minifier send my code anywhere?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-html-1" role="region" aria-labelledby="faq-q-html-1">No. All minification happens locally in your browser using JavaScript. Your HTML is never uploaded or stored.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" id="faq-q-url-2" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-2">Is my URL sent to a server when I encode it?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
-      <div class="faq-a-tool" id="faq-a-url-2" role="region" aria-labelledby="faq-q-url-2">No. Encoding and decoding both happen locally in your browser using standard JavaScript functions.</div>
+      <button class="faq-q-tool" id="faq-q-html-2" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-html-2">Will minifying break my HTML?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-html-2" role="region" aria-labelledby="faq-q-html-2">The tool only removes comments and collapses redundant whitespace between tags, it does not change tag structure, attributes or content, so the rendered page stays the same.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" id="faq-q-url-3" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-3">Why do I get an error when decoding?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
-      <div class="faq-a-tool" id="faq-a-url-3" role="region" aria-labelledby="faq-q-url-3">This usually means the text contains a malformed percent sequence, like a stray % not followed by two hex digits. Double-check the string and try again.</div>
+      <button class="faq-q-tool" id="faq-q-html-3" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-html-3">Does it minify inline CSS or JavaScript inside the HTML?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-html-3" role="region" aria-labelledby="faq-q-html-3">This tool focuses on HTML markup. For inline &lt;style&gt; or &lt;script&gt; blocks, use the dedicated CSS Minifier and JavaScript Minifier tools for best results.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" id="faq-q-url-4" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-url-4">Can I use this for form data or API query strings?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
-      <div class="faq-a-tool" id="faq-a-url-4" role="region" aria-labelledby="faq-q-url-4">Yes, this is exactly what URL component encoding is designed for, safely escaping values before adding them to a query string.</div>
+      <button class="faq-q-tool" id="faq-q-html-4" onclick="toggleFaqTool(this)" aria-expanded="false" aria-controls="faq-a-html-4">Is there a size limit for the HTML I paste?<span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool" id="faq-a-html-4" role="region" aria-labelledby="faq-q-html-4">There's no hard limit, but very large HTML files (several MB) may be slower to process since everything runs in your browser.</div>
     </div>
   </div>
 
   <div class="page-cta-box">
-    <h2>Encode or Decode a URL in Seconds</h2>
-    <p>Paste your link or text — copy the safe, encoded result instantly.</p>
+    <h2>Shrink Your HTML in Seconds</h2>
+    <p>Paste, minify, copy — no login required, ever.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
   <h3>More Developer Tools</h3>
   <div class="related-tools-grid">
+    <a href="css-minifier.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🎨</span><span class="rt-name">CSS Minifier</span><span class="rt-desc">Compress CSS stylesheets</span></a>
+    <a href="javascript-minifier.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">⚙️</span><span class="rt-name">JavaScript Minifier</span><span class="rt-desc">Compress JS source code</span></a>
     <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc">Beautify, minify & validate JSON</span></a>
-    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc">Encode & decode Base64 text/files</span></a>
-    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc">MD5, SHA-1, SHA-256 & more</span></a>
-    <a href="uuid-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🆔</span><span class="rt-name">UUID Generator</span><span class="rt-desc">Generate v4 UUIDs in bulk</span></a>
+    <a href="json-validator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">✅</span><span class="rt-name">JSON Validator</span><span class="rt-desc">Check JSON syntax instantly</span></a>
   </div>
 </section>
 
@@ -263,4 +266,67 @@ function toggleFaqTool(btn) {
   document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
   if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
 }
+
+function minifyHTML() {
+  const input = document.getElementById('html-input').value;
+  const errorBox = document.getElementById('html-error');
+  const outputWrap = document.getElementById('html-output-wrap');
+  const resultBox = document.getElementById('html-result-box');
+  errorBox.style.display = 'none';
+  outputWrap.style.display = 'none';
+  resultBox.style.display = 'none';
+
+  if (!input.trim()) {
+    errorBox.textContent = 'Please paste some HTML to minify.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  const removeComments = document.getElementById('html-opt-comments').checked;
+  const collapseWhitespace = document.getElementById('html-opt-whitespace').checked;
+
+  try {
+    let result = input;
+    if (removeComments) {
+      result = result.replace(/<!--[\s\S]*?-->/g, '');
+    }
+    if (collapseWhitespace) {
+      result = result.replace(/>\s+</g, '><');
+      result = result.replace(/[\t ]+/g, ' ');
+      result = result.replace(/\n+/g, '');
+      result = result.replace(/^\s+|\s+$/g, '');
+    }
+
+    document.getElementById('html-output').textContent = result;
+    outputWrap.style.display = 'block';
+
+    const before = input.length;
+    const after = result.length;
+    const pct = before > 0 ? Math.round((1 - after / before) * 100) : 0;
+    document.getElementById('html-size-msg').textContent = `Reduced from ${before} to ${after} characters (${pct}% smaller).`;
+    resultBox.style.display = 'flex';
+  } catch (e) {
+    errorBox.textContent = 'Could not minify this HTML: ' + e.message;
+    errorBox.style.display = 'block';
+  }
+}
+
+function clearHTML() {
+  document.getElementById('html-input').value = '';
+  document.getElementById('html-output-wrap').style.display = 'none';
+  document.getElementById('html-error').style.display = 'none';
+  document.getElementById('html-result-box').style.display = 'none';
+}
+
+function copyHTML() {
+  const text = document.getElementById('html-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('html-copy-btn');
+    const original = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+}
 </script>
+</body>
+</html>
