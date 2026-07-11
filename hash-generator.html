@@ -174,7 +174,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
   <div class="page-cta-box">
     <h2>Generate a Hash in Seconds</h2>
-    <p>Type your text get MD5 and SHA hashes instantly, all free.</p>
+    <p>Type your text — get MD5 and SHA hashes instantly, all free.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
@@ -225,5 +225,128 @@ function toggleFaqTool(btn) {
   const isOpen = btn.classList.contains('open');
   document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
   if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+
+// --- Minimal MD5 implementation (public domain style, self-contained) ---
+function md5(str) {
+  function rotl(x, c) { return (x << c) | (x >>> (32 - c)); }
+  function toHex(num) {
+    let s = '', n;
+    for (let i = 0; i < 4; i++) {
+      n = (num >>> (i * 8)) & 0xFF;
+      s += n.toString(16).padStart(2, '0');
+    }
+    return s;
+  }
+  const K = [];
+  for (let i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296);
+  const S = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,
+             5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,
+             4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,
+             6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+
+  const bytes = new TextEncoder().encode(str);
+  const origLenBits = bytes.length * 8;
+  let msg = Array.from(bytes);
+  msg.push(0x80);
+  while (msg.length % 64 !== 56) msg.push(0);
+  for (let i = 0; i < 8; i++) msg.push((origLenBits / Math.pow(2, 8 * i)) & 0xFF);
+
+  let a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
+
+  for (let chunkStart = 0; chunkStart < msg.length; chunkStart += 64) {
+    const M = [];
+    for (let i = 0; i < 16; i++) {
+      M[i] = msg[chunkStart + i*4] | (msg[chunkStart + i*4 + 1] << 8) |
+             (msg[chunkStart + i*4 + 2] << 16) | (msg[chunkStart + i*4 + 3] << 24);
+    }
+    let A = a0, B = b0, C = c0, D = d0;
+    for (let i = 0; i < 64; i++) {
+      let F, g;
+      if (i < 16) { F = (B & C) | (~B & D); g = i; }
+      else if (i < 32) { F = (D & B) | (~D & C); g = (5*i + 1) % 16; }
+      else if (i < 48) { F = B ^ C ^ D; g = (3*i + 5) % 16; }
+      else { F = C ^ (B | ~D); g = (7*i) % 16; }
+      F = (F + A + K[i] + M[g]) | 0;
+      A = D; D = C; C = B;
+      B = (B + rotl(F, S[i])) | 0;
+    }
+    a0 = (a0 + A) | 0; b0 = (b0 + B) | 0; c0 = (c0 + C) | 0; d0 = (d0 + D) | 0;
+  }
+
+  function toHexLE(num) {
+    let bytesOut = [];
+    for (let i = 0; i < 4; i++) bytesOut.push((num >>> (i*8)) & 0xFF);
+    return bytesOut.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  return toHexLE(a0) + toHexLE(b0) + toHexLE(c0) + toHexLE(d0);
+}
+
+async function sha(algo, str) {
+  const data = new TextEncoder().encode(str);
+  const hashBuffer = await crypto.subtle.digest(algo, data);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function hashRowHtml(label, value) {
+  const id = 'hash-val-' + label.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return `
+    <div style="border:1px solid rgba(0,0,0,0.08);border-radius:10px;padding:12px 14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-weight:600;font-size:0.85rem;">${label}</span>
+        <button class="btn btn-ghost" style="padding:4px 10px;font-size:0.78rem;" onclick="copyHashValue('${id}', this)">📋 Copy</button>
+      </div>
+      <div id="${id}" style="font-family:monospace;font-size:0.82rem;word-break:break-all;color:#334155;">${value}</div>
+    </div>`;
+}
+
+async function generateHashes() {
+  const errBox = document.getElementById('hash-error');
+  errBox.style.display = 'none';
+  errBox.textContent = '';
+
+  const input = document.getElementById('hash-input').value;
+  if (!input) {
+    errBox.textContent = 'Please enter some text to hash.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  try {
+    const md5Hash = md5(input);
+    const sha1Hash = await sha('SHA-1', input);
+    const sha256Hash = await sha('SHA-256', input);
+    const sha384Hash = await sha('SHA-384', input);
+    const sha512Hash = await sha('SHA-512', input);
+
+    const resultsDiv = document.getElementById('hash-results');
+    resultsDiv.innerHTML =
+      hashRowHtml('MD5', md5Hash) +
+      hashRowHtml('SHA-1', sha1Hash) +
+      hashRowHtml('SHA-256', sha256Hash) +
+      hashRowHtml('SHA-384', sha384Hash) +
+      hashRowHtml('SHA-512', sha512Hash);
+
+    document.getElementById('hash-output-wrap').style.display = 'block';
+  } catch (e) {
+    errBox.textContent = 'Something went wrong generating the hashes.';
+    errBox.style.display = 'block';
+  }
+}
+
+function copyHashValue(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '✅';
+    setTimeout(() => { btn.textContent = original; }, 1200);
+  });
+}
+
+function clearHashes() {
+  document.getElementById('hash-input').value = '';
+  document.getElementById('hash-results').innerHTML = '';
+  document.getElementById('hash-output-wrap').style.display = 'none';
+  document.getElementById('hash-error').style.display = 'none';
 }
 </script>
