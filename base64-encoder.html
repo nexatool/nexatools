@@ -199,7 +199,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
   <div class="page-cta-box">
     <h2>Encode or Decode Base64 in Seconds</h2>
-    <p>Paste your text or drop a file copy the result instantly.</p>
+    <p>Paste your text or drop a file — copy the result instantly.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
@@ -250,5 +250,86 @@ function toggleFaqTool(btn) {
   const isOpen = btn.classList.contains('open');
   document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
   if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+
+function b64ShowError(msg) {
+  const box = document.getElementById('b64-error');
+  if (box) { box.textContent = msg; box.style.display = msg ? 'block' : 'none'; }
+}
+
+function b64Encode() {
+  b64ShowError('');
+  const input = document.getElementById('b64-input').value;
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(input)));
+    document.getElementById('b64-output-label').textContent = 'Encoded Result (Base64)';
+    document.getElementById('b64-output').textContent = encoded;
+    document.getElementById('b64-output-wrap').style.display = 'block';
+  } catch (e) {
+    b64ShowError('Could not encode this text.');
+  }
+}
+
+function b64Decode() {
+  b64ShowError('');
+  const input = document.getElementById('b64-input').value.trim();
+  try {
+    const decoded = decodeURIComponent(escape(atob(input)));
+    document.getElementById('b64-output-label').textContent = 'Decoded Result (Text)';
+    document.getElementById('b64-output').textContent = decoded;
+    document.getElementById('b64-output-wrap').style.display = 'block';
+  } catch (e) {
+    b64ShowError("Invalid Base64 input — couldn't decode it.");
+  }
+}
+
+function b64Swap() {
+  const output = document.getElementById('b64-output').textContent;
+  if (output) {
+    document.getElementById('b64-input').value = output;
+    document.getElementById('b64-output-wrap').style.display = 'none';
+  }
+}
+
+function b64Clear() {
+  document.getElementById('b64-input').value = '';
+  document.getElementById('b64-output').textContent = '';
+  document.getElementById('b64-output-wrap').style.display = 'none';
+  b64ShowError('');
+}
+
+function copyB64() {
+  const text = document.getElementById('b64-output').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('b64-copy-btn');
+    const original = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+}
+
+function b64FileChange(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const result = reader.result; // data:*/*;base64,XXXX
+    const base64 = result.split(',')[1] || '';
+    document.getElementById('b64-file-output').textContent = base64;
+    document.getElementById('b64-file-output-wrap').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function copyB64File() {
+  const text = document.getElementById('b64-file-output').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('b64-file-copy-btn');
+    const original = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
 }
 </script>
