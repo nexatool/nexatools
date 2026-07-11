@@ -35,7 +35,32 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
 .mobile-nav a { color:#475569 !important; }
 .nav-mobile-toggle span { background:#475569 !important; }
 footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !important; }
-</style>
+
+
+/* ===== PAGE HERO (matched to JPG-to-PNG tool page) ===== */
+.tool-page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 50px) 32px 40px;max-width:1000px;margin:0 auto;text-align:center}
+.tool-page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.tool-page-hero p{color:var(--text2);font-size:1rem;line-height:1.7;max-width:620px;margin:0 auto 28px}
+.hero-feature-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.feature-pill{background:var(--cyan-dim);border:1px solid var(--border3);color:var(--cyan);font-size:0.78rem;padding:6px 16px;border-radius:30px;font-weight:500}
+
+/* ===== TOOL SECTION (centered, matched to JPG-to-PNG tool page) ===== */
+.tool-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 32px 60px}
+.tool-container{max-width:1000px;margin:0 auto;width:100%}
+
+/* ===== SEO SECTION (matched) ===== */
+.seo-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:60px 32px;border-top:1px solid var(--border)}
+.seo-section h2{font-family:var(--font-display);font-size:1.7rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,var(--text),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.seo-section p{color:var(--text2);font-size:0.95rem;line-height:1.85;margin-bottom:16px}
+.seo-section h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--cyan);margin:28px 0 10px}
+
+.cat-icon-big{background:var(--cyan-dim) !important}
+
+@media(max-width:768px){
+  .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
+  .tool-section{padding:0 20px 40px}
+  .seo-section{padding:40px 20px}
+}
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -225,7 +250,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </div>
   <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
 </footer>
-
+</style>
 <script src="script.js"></script>
 <script>
 window.addEventListener('scroll', () => {
