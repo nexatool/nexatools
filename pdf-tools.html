@@ -13,6 +13,18 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},
+    {"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://www.nexatools.io/pdf-tools.html"}
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
@@ -53,6 +65,27 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 @media(max-width:768px){
   .breadcrumb{padding:calc(var(--nav-h) + 14px) 20px 0}
   .category-hero{padding:28px 20px 8px}
+}
+
+/* ===== ADDITIONAL CATEGORY CONTENT (added, does not alter existing styles) ===== */
+.cat-seo-section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:40px 32px;border-top:1px solid rgba(0,0,0,0.08)}
+.cat-seo-section h2{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:14px;color:#0f172a}
+.cat-seo-section p{color:#475569;font-size:0.95rem;line-height:1.8;margin-bottom:14px;max-width:820px}
+.cat-seo-section a{color:#2563eb;font-weight:600;text-decoration:none}
+.cat-seo-section a:hover{text-decoration:underline}
+.cat-audience-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.cat-audience-item{display:flex;align-items:flex-start;gap:10px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 16px}
+.cat-audience-item .cai-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.cat-audience-item p{font-size:0.85rem;color:#475569;line-height:1.6;margin:0;max-width:none}
+.cat-audience-item strong{color:#0f172a}
+.cat-choose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.cat-choose-card{background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px}
+.cat-choose-card h4{font-size:0.9rem;font-weight:700;color:#0f172a;margin-bottom:6px}
+.cat-choose-card p{font-size:0.82rem;color:#475569;line-height:1.6;margin:0;max-width:none}
+.cat-reviewed-by{background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:22px 24px;margin-top:8px}
+@media(max-width:768px){
+  .cat-seo-section{padding:28px 20px}
+  .cat-audience-list{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -102,17 +135,18 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
   <span>›</span>
-  <span style="color:#0f172a;">PDF Tools</span>
-</div>
+  <span style="color:#0f172a;" aria-current="page">PDF Tools</span>
+</nav>
 
 <!-- CATEGORY HERO -->
+<main>
 <div class="category-hero">
   <div class="cat-icon-big" style="background:rgba(220,38,38,0.08);" aria-hidden="true">📑</div>
   <h1>PDF Tools</h1>
-  <p>Convert, merge, split and compress PDF files directly in your browser. 100% free, no signup, nothing uploaded to a server.</p>
+  <p>Whether you need to combine a few reports, shrink a scanned file before emailing it, or turn a Word draft into a polished PDF, NexaTools' PDF Tools work entirely in your browser  no signup, no installs, and nothing ever leaves your device.</p>
 </div>
 
 <!-- TOOLS GRID -->
@@ -147,6 +181,62 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </section>
 
 <div class="back-row"><a href="index.html#categories-section">← Back to All Categories</a></div>
+
+<!-- WHO IS THIS CATEGORY FOR -->
+<section class="cat-seo-section" aria-labelledby="who-heading">
+  <h2 id="who-heading">Who Is This Category For?</h2>
+  <p>PDF Tools on NexaTools is built for anyone who regularly works with documents but doesn't want to install desktop software or pay for a subscription just to convert, combine, or shrink a file.</p>
+  <div class="cat-audience-list">
+    <div class="cat-audience-item"><span class="cai-icon">💼</span><p><strong>Office Professionals</strong>Combine reports, convert contracts, and compress attachments before sending them to clients or colleagues.</p></div>
+    <div class="cat-audience-item"><span class="cai-icon">🎓</span><p><strong>Students & Researchers</strong>Turn Word essays into PDF for submission portals, or merge scanned chapters into one file.</p></div>
+    <div class="cat-audience-item"><span class="cai-icon">🏢</span><p><strong>Small Business Owners</strong>Prepare quotes, invoices, and forms as clean PDFs without buying office software.</p></div>
+    <div class="cat-audience-item"><span class="cai-icon">📠</span><p><strong>Anyone Scanning Documents</strong>Merge multiple scanned pages or shrink large scans down to a manageable size.</p></div>
+    <div class="cat-audience-item"><span class="cai-icon">✍️</span><p><strong>Freelancers & Job Seekers</strong>Convert a resume or proposal from Word to PDF so formatting stays locked for the reader.</p></div>
+    <div class="cat-audience-item"><span class="cai-icon">🔒</span><p><strong>Privacy-Conscious Users</strong>Anyone who prefers processing files locally instead of uploading them to a remote server.</p></div>
+  </div>
+</section>
+
+<!-- HOW TO CHOOSE THE RIGHT TOOL -->
+<section class="cat-seo-section" aria-labelledby="choose-heading">
+  <h2 id="choose-heading">How to Choose the Right PDF Tool</h2>
+  <p>Each tool below solves a different, specific problem. Here's a quick guide to picking the right one for your task:</p>
+  <div class="cat-choose-grid">
+    <div class="cat-choose-card">
+      <h4>Need an editable copy of a PDF?</h4>
+      <p>Use <a href="pdf-to-word.html">PDF to Word</a> to turn a PDF into a document you can edit in Word.</p>
+    </div>
+    <div class="cat-choose-card">
+      <h4>Have a Word document to share?</h4>
+      <p>Use <a href="word-to-pdf.html">Word to PDF</a> to convert DOCX files into a fixed, shareable PDF.</p>
+    </div>
+    <div class="cat-choose-card">
+      <h4>Have several PDFs to combine?</h4>
+      <p>Use <a href="merge-pdf.html">Merge PDF</a> to join multiple files into one document, in the order you choose.</p>
+    </div>
+    <div class="cat-choose-card">
+      <h4>Need only certain pages?</h4>
+      <p>Use <a href="split-pdf.html">Split PDF</a> to extract or separate specific pages from a larger file.</p>
+    </div>
+    <div class="cat-choose-card">
+      <h4>Is your file too large to send?</h4>
+      <p>Use <a href="compress-pdf.html">Compress PDF</a> to shrink the file size while keeping it readable.</p>
+    </div>
+  </div>
+  <p>Still not sure? Read more about choosing the right file format in our guide on <a href="blog-section.html">PDF vs DOCX</a>, or browse the full <a href="index.html#tools-section">tools directory</a> for other free utilities.</p>
+</section>
+
+<!-- REVIEWED BY -->
+<section class="cat-seo-section" aria-labelledby="reviewed-heading">
+  <h2 id="reviewed-heading">Reviewed by Rashid Amin</h2>
+  <div class="cat-reviewed-by">
+    <p>
+      Rashid Amin is the founder of NexaTools and builds browser-based productivity tools focused on privacy, speed, and usability. NexaTools helps users convert images, edit PDFs, use developer utilities, and access AI-powered tools directly in the browser without unnecessary uploads or signups.
+    </p>
+    <p style="margin-bottom:0;"><strong>Last Updated:</strong> July 2026</p>
+  </div>
+</section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
