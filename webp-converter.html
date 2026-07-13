@@ -54,6 +54,18 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},
+    {"@type":"ListItem","position":2,"name":"Image Tools","item":"https://www.nexatools.io/image-tools.html"},
+    {"@type":"ListItem","position":3,"name":"WebP Converter","item":"https://www.nexatools.io/webp-converter.html"}
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2">
@@ -118,6 +130,19 @@
 .page-cta-box{background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;margin:40px 0}
 .page-cta-box h2{font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:10px}
 .page-cta-box p{color:var(--text2);font-size:0.92rem;margin-bottom:22px}
+
+/* ===== REVIEWER / LAST UPDATED BYLINE ===== */
+.page-meta-byline{position:relative;z-index:1;max-width:1000px;margin:10px auto 0;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:0.8rem;color:var(--muted2)}
+.page-meta-byline .pmb-reviewer{display:flex;align-items:center;gap:8px}
+.pmb-avatar{width:26px;height:26px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.page-meta-byline strong{color:var(--text2);font-weight:600}
+.page-meta-byline .pmb-dot{color:var(--border3)}
+
+/* ===== TROUBLESHOOTING LIST ===== */
+.trouble-list{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.trouble-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.trouble-item h4{font-size:0.9rem;font-weight:600;color:var(--text);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.trouble-item p{font-size:0.85rem;color:var(--text2);line-height:1.7;margin:0}
 
 /* ===== BREADCRUMB ===== */
 .breadcrumb{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:calc(var(--nav-h) + 16px) 32px 0;font-size:0.8rem;color:var(--muted2);display:flex;gap:8px;align-items:center}
@@ -264,20 +289,27 @@
 </nav>
 
 <!-- ===== BREADCRUMB ===== -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
-  <span>›</span>
+  <span aria-hidden="true">›</span>
   <a href="image-tools.html">Image Tools</a>
-  <span>›</span>
-  <span style="color:var(--text);">WebP Converter</span>
-</div>
+  <span aria-hidden="true">›</span>
+  <span style="color:var(--text);" aria-current="page">WebP Converter</span>
+</nav>
+
+<!-- ===== REVIEWER / LAST UPDATED ===== -->
+<p class="page-meta-byline">
+  <span class="pmb-reviewer"><span class="pmb-avatar" aria-hidden="true">👤</span>Reviewed by <strong>Rashid Amin</strong>, Founder of NexaTools</span>
+  <span class="pmb-dot">•</span>
+  <span>Last Updated: <strong>July 2026</strong></span>
+</p>
 
 <!-- ===== HERO ===== -->
 <div class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
     <span class="badge-dot"></span>Free WebP Converter No Signup Required
   </div>
-  <h1>Free WebP Converter<br><span class="title-gradient">Convert JPG, PNG &amp; WebP  Any Direction</span></h1>
+  <h1>Free WebP Converter<br><span class="title-gradient">Convert JPG, PNG &amp; WebP Any Direction</span></h1>
   <p>Convert between JPG, PNG and WebP in any direction, with adjustable output quality. Upload several images at once, preview before and after, then download individually or as a single ZIP. Everything happens inside your browser your images are never uploaded to a server.</p>
   <div class="hero-feature-pills">
     <span class="feature-pill">✅ 100% Free</span>
@@ -308,7 +340,7 @@
       <input type="file" id="img-input" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple aria-label="Upload JPG, PNG or WebP images">
       <div class="upload-icon">📤</div>
       <h3>Drag &amp; drop images here</h3>
-      <p>or click to browse JPG, PNG or WebP, mix and match max 20 MB each images never leave your device</p>
+      <p>or click to browse JPG, PNG or WebP, mix and match max 20 MB each  images never leave your device</p>
     </label>
 
     <div class="batch-summary" id="batch-summary" style="display:none">
@@ -353,7 +385,7 @@
 
     <div class="limitation-note">
       <span class="ln-icon">ℹ️</span>
-      <span>Each image is decoded and redrawn onto a canvas, then exported in your chosen format your browser's Canvas API does the conversion, so nothing is uploaded anywhere. JPG output has no transparency support (transparent areas are filled with white); WebP and PNG both preserve transparency. WebP export requires a modern browser if yours doesn't support it, the tool will let you know so you can pick JPG or PNG instead.</span>
+      <span>Each image is decoded and redrawn onto a canvas, then exported in your chosen format  your browser's Canvas API does the conversion, so nothing is uploaded anywhere. JPG output has no transparency support (transparent areas are filled with white); WebP and PNG both preserve transparency. WebP export requires a modern browser if yours doesn't support it, the tool will let you know so you can pick JPG or PNG instead.</span>
     </div>
   </div>
 </div>
@@ -371,7 +403,7 @@
   <p>Convert JPG, PNG and WebP images to any of the three formats without installing software or creating an account. Everything runs locally in your browser using the Canvas API, so your images stay private.</p>
   <div class="steps-grid">
     <div class="step-card"><div class="step-num">🔒</div><h4>100% Private</h4><p>Your images are processed entirely on your device. Nothing is uploaded to any server.</p></div>
-    <div class="step-card"><div class="step-num">🔄</div><h4>Any Direction</h4><p>JPG⇄WebP, PNG⇄WebP, and JPG⇄PNG — all supported from one upload box.</p></div>
+    <div class="step-card"><div class="step-num">🔄</div><h4>Any Direction</h4><p>JPG⇄WebP, PNG⇄WebP, and JPG⇄PNG all supported from one upload box.</p></div>
     <div class="step-card"><div class="step-num">🆓</div><h4>Completely Free</h4><p>No subscription, no watermark, no file limits, and no signup required.</p></div>
     <div class="step-card"><div class="step-num">📱</div><h4>Works Everywhere</h4><p>Use it on desktop, tablet, or mobile in any modern browser.</p></div>
   </div>
@@ -422,6 +454,46 @@
   <p>Logos, screenshots, and graphics with flat colors or transparency look best as PNG, though the files are typically larger than WebP.</p>
   <h3>4. Watch Transparency When Converting to JPG</h3>
   <p>Since JPG can't store transparency, any transparent pixels in your PNG or WebP source become solid white after conversion double-check the preview before downloading.</p>
+</div>
+
+<!-- ===== SEO CONTENT: WHO SHOULD USE ===== -->
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <p>The NexaTools WebP Converter is built for anyone who needs to move between JPG, PNG and WebP without installing desktop software or uploading files to a server.</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🌐</span><p><strong>Web Designers &amp; Developers</strong>Convert site assets to WebP for smaller, faster-loading pages.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎨</span><p><strong>Designers &amp; Illustrators</strong>Move artwork between lossless PNG and space-efficient WebP as a project needs.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📝</span><p><strong>Bloggers &amp; Content Creators</strong>Standardize images to whichever format their CMS or theme requires.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🛍️</span><p><strong>Online Sellers</strong>Batch-convert product photos to meet a marketplace's accepted format.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>App &amp; SaaS Teams</strong>Prepare a consistent set of image assets across JPG, PNG, and WebP for different platforms.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Privacy-Conscious Users</strong>Anyone who prefers a converter that never uploads images to a server.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: USE CASES ===== -->
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <p>Here are a few everyday situations where converting between JPG, PNG and WebP comes in handy:</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">⚡</div><h4>Faster Websites</h4><p>Convert JPG or PNG assets to WebP to shrink page weight without a visible quality drop.</p></div>
+    <div class="step-card"><div class="step-num">🔁</div><h4>Format Compatibility</h4><p>Convert WebP images back to JPG or PNG for tools and platforms that don't yet support WebP.</p></div>
+    <div class="step-card"><div class="step-num">🖼️</div><h4>Preserving Transparency</h4><p>Move a transparent PNG graphic to WebP while keeping its transparent background intact.</p></div>
+    <div class="step-card"><div class="step-num">📦</div><h4>Batch Format Standardization</h4><p>Convert a whole folder of mixed-format images to one consistent format in a single pass.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: TROUBLESHOOTING ===== -->
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <p>Running into an issue while converting your images? Here are fixes for the most common problems:</p>
+  <div class="trouble-list">
+    <div class="trouble-item"><h4>⚠️ "Your browser does not support exporting WebP images"</h4><p>A small number of older browsers can't create WebP files. Switch to JPG or PNG as your target format, or try a modern browser like Chrome, Edge, Firefox, or Safari 14+.</p></div>
+    <div class="trouble-item"><h4>⚠️ Image looks solid white where it used to be transparent</h4><p>This is expected when converting to JPG, which doesn't support transparency. Choose WebP or PNG as the target format to keep transparent areas intact.</p></div>
+    <div class="trouble-item"><h4>⚠️ "Some images could not be converted"</h4><p>The affected file may be corrupted or an unsupported type. Confirm it's a valid JPG, PNG, or WebP file and try uploading it on its own.</p></div>
+    <div class="trouble-item"><h4>⚠️ File larger than 20 MB</h4><p>Very large images aren't supported in-browser. Try compressing the image first, then convert it.</p></div>
+    <div class="trouble-item"><h4>⚠️ ZIP download doesn't include all images</h4><p>Only successfully converted images are added to the ZIP. Re-run the conversion for any files marked with an error before downloading.</p></div>
+    <div class="trouble-item"><h4>⚠️ Download button doesn't work</h4><p>Some browsers block automatic downloads from JavaScript. Check your browser's download permissions or pop-up settings for this site.</p></div>
+  </div>
 </div>
 
 <!-- ===== FAQ ===== -->
@@ -484,7 +556,7 @@
 <div style="max-width:1000px;margin:0 auto;padding:0 32px 80px;">
   <div class="page-cta-box">
     <h2>Ready to Convert Your Images?</h2>
-    <p>Switch between JPG, PNG and WebP in seconds free, private, and no signup required.</p>
+    <p>Switch between JPG, PNG and WebP in seconds  free, private, and no signup required.</p>
     <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:14px 36px;font-size:1rem;">⬆️ Start Converting Free Now</button>
   </div>
 </div>
@@ -585,7 +657,7 @@ document.querySelectorAll('.format-tab').forEach(function(tab){
     }
     qualityRow.classList.toggle('show', targetFormat === 'webp' || targetFormat === 'jpg');
     qualityNote.textContent = targetFormat === 'png'
-      ? 'PNG output is always lossless quality does not apply.'
+      ? 'PNG output is always lossless  quality does not apply.'
       : 'Applies to your ' + targetFormat.toUpperCase() + ' output. Higher quality means a larger file but fewer visible compression artifacts.';
     markStale();
   });
