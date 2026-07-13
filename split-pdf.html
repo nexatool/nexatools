@@ -53,6 +53,18 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},
+    {"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://www.nexatools.io/pdf-tools.html"},
+    {"@type":"ListItem","position":3,"name":"Split PDF","item":"https://www.nexatools.io/split-pdf.html"}
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2">
@@ -127,6 +139,19 @@
 .page-cta-box{background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;margin:40px 0}
 .page-cta-box h2{font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:10px}
 .page-cta-box p{color:var(--text2);font-size:0.92rem;margin-bottom:22px}
+
+/* ===== REVIEWER / LAST UPDATED BYLINE ===== */
+.page-meta-byline{position:relative;z-index:1;max-width:1000px;margin:10px auto 0;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:0.8rem;color:var(--muted2)}
+.page-meta-byline .pmb-reviewer{display:flex;align-items:center;gap:8px}
+.pmb-avatar{width:26px;height:26px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.page-meta-byline strong{color:var(--text2);font-weight:600}
+.page-meta-byline .pmb-dot{color:var(--border3)}
+
+/* ===== TROUBLESHOOTING LIST ===== */
+.trouble-list{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.trouble-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.trouble-item h4{font-size:0.9rem;font-weight:600;color:var(--text);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.trouble-item p{font-size:0.85rem;color:var(--text2);line-height:1.7;margin:0}
 
 /* ===== BREADCRUMB ===== */
 .breadcrumb{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:calc(var(--nav-h) + 16px) 32px 0;font-size:0.8rem;color:var(--muted2);display:flex;gap:8px;align-items:center}
@@ -252,13 +277,20 @@
 </nav>
 
 <!-- ===== BREADCRUMB ===== -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
-  <span>›</span>
+  <span aria-hidden="true">›</span>
   <a href="pdf-tools.html">PDF Tools</a>
-  <span>›</span>
-  <span style="color:var(--text);">Split PDF</span>
-</div>
+  <span aria-hidden="true">›</span>
+  <span style="color:var(--text);" aria-current="page">Split PDF</span>
+</nav>
+
+<!-- ===== REVIEWER / LAST UPDATED ===== -->
+<p class="page-meta-byline">
+  <span class="pmb-reviewer"><span class="pmb-avatar" aria-hidden="true">👤</span>Reviewed by <strong>Rashid Amin</strong>, Founder of NexaTools</span>
+  <span class="pmb-dot">•</span>
+  <span>Last Updated: <strong>July 2026</strong></span>
+</p>
 
 <!-- ===== HERO ===== -->
 <div class="tool-page-hero">
@@ -401,6 +433,45 @@
   <p>Pages are extracted in the order you list them, so 5,1-3 will place page 5 first, followed by pages 1 through 3.</p>
   <h3>4. Password-Protected PDFs Aren't Supported</h3>
   <p>If a PDF is encrypted or password protected, remove the password first using a PDF editor, then split it here.</p>
+</div>
+
+<!-- ===== SEO CONTENT: WHO SHOULD USE ===== -->
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <p>The NexaTools Split PDF tool is built for anyone who needs to pull specific pages out of a larger document without installing desktop software or sharing files with a third-party server.</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🎓</span><p><strong>Students &amp; Researchers</strong>Pull relevant chapters or sections out of long textbooks and papers for study or citation.</p></div>
+    <div class="benefit-item"><span class="bi-icon">💼</span><p><strong>Office &amp; Admin Staff</strong>Separate contracts, invoices, or reports that were scanned together into one file.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚖️</span><p><strong>Legal &amp; HR Teams</strong>Extract only the relevant exhibits or forms from lengthy case files or employee packets.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🧑‍💻</span><p><strong>Freelancers &amp; Small Businesses</strong>Send clients only the pages they need instead of an entire bundled PDF.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Teachers &amp; Trainers</strong>Create smaller handouts or worksheets from a larger source document.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Privacy-Conscious Users</strong>Anyone who prefers a tool that never uploads files to a server.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: USE CASES ===== -->
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <p>Here are a few everyday situations where extracting pages from a PDF comes in handy:</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">📑</div><h4>Sharing Select Pages</h4><p>Send only the invoice page from a long statement instead of the whole document.</p></div>
+    <div class="step-card"><div class="step-num">📘</div><h4>Extracting a Chapter</h4><p>Pull a single chapter out of an eBook or manual for quick reference.</p></div>
+    <div class="step-card"><div class="step-num">🗂️</div><h4>Splitting Scanned Batches</h4><p>Break a scanned batch of multiple documents into separate files by page range.</p></div>
+    <div class="step-card"><div class="step-num">✍️</div><h4>Preparing Forms</h4><p>Isolate the signature or form page you need someone else to fill out.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: TROUBLESHOOTING ===== -->
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <p>Running into an issue while splitting your PDF? Here are fixes for the most common problems:</p>
+  <div class="trouble-list">
+    <div class="trouble-item"><h4>⚠️ "This file could not be read as a PDF"</h4><p>The file may be corrupted or password protected. Remove any password protection using a PDF editor first, then upload it again.</p></div>
+    <div class="trouble-item"><h4>⚠️ "Please enter a valid page range"</h4><p>Double-check that every number in your range falls between 1 and the total page count shown after upload, and that ranges are written as start-end (e.g. 1-3).</p></div>
+    <div class="trouble-item"><h4>⚠️ File larger than 25 MB</h4><p>Very large PDFs aren't supported in-browser. Try compressing the PDF first with a PDF compression tool, then split it.</p></div>
+    <div class="trouble-item"><h4>⚠️ Page count not detected</h4><p>If the page count badge never appears, your connection may have blocked the PDF engine from loading. Refresh the page and try again.</p></div>
+    <div class="trouble-item"><h4>⚠️ Download button doesn't work</h4><p>Some browsers block automatic downloads from JavaScript. Check your browser's download permissions or pop-up settings for this site.</p></div>
+  </div>
 </div>
 
 <!-- ===== FAQ ===== -->
