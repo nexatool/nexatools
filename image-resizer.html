@@ -53,6 +53,18 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},
+    {"@type":"ListItem","position":2,"name":"Image Tools","item":"https://www.nexatools.io/image-tools.html"},
+    {"@type":"ListItem","position":3,"name":"Image Resizer","item":"https://www.nexatools.io/image-resizer.html"}
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=2">
@@ -117,6 +129,19 @@
 .page-cta-box{background:linear-gradient(135deg,var(--cyan-dim),var(--purple-dim));border:1px solid var(--border3);border-radius:var(--radius-lg);padding:40px;text-align:center;margin:40px 0}
 .page-cta-box h2{font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:10px}
 .page-cta-box p{color:var(--text2);font-size:0.92rem;margin-bottom:22px}
+
+/* ===== REVIEWER / LAST UPDATED BYLINE ===== */
+.page-meta-byline{position:relative;z-index:1;max-width:1000px;margin:10px auto 0;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:0.8rem;color:var(--muted2)}
+.page-meta-byline .pmb-reviewer{display:flex;align-items:center;gap:8px}
+.pmb-avatar{width:26px;height:26px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.page-meta-byline strong{color:var(--text2);font-weight:600}
+.page-meta-byline .pmb-dot{color:var(--border3)}
+
+/* ===== TROUBLESHOOTING LIST ===== */
+.trouble-list{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.trouble-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.trouble-item h4{font-size:0.9rem;font-weight:600;color:var(--text);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.trouble-item p{font-size:0.85rem;color:var(--text2);line-height:1.7;margin:0}
 
 /* ===== BREADCRUMB ===== */
 .breadcrumb{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:calc(var(--nav-h) + 16px) 32px 0;font-size:0.8rem;color:var(--muted2);display:flex;gap:8px;align-items:center}
@@ -272,13 +297,20 @@
 </nav>
 
 <!-- ===== BREADCRUMB ===== -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
-  <span>›</span>
+  <span aria-hidden="true">›</span>
   <a href="image-tools.html">Image Tools</a>
-  <span>›</span>
-  <span style="color:var(--text);">Image Resizer</span>
-</div>
+  <span aria-hidden="true">›</span>
+  <span style="color:var(--text);" aria-current="page">Image Resizer</span>
+</nav>
+
+<!-- ===== REVIEWER / LAST UPDATED ===== -->
+<p class="page-meta-byline">
+  <span class="pmb-reviewer"><span class="pmb-avatar" aria-hidden="true">👤</span>Reviewed by <strong>Rashid Amin</strong>, Founder of NexaTools</span>
+  <span class="pmb-dot">•</span>
+  <span>Last Updated: <strong>July 2026</strong></span>
+</p>
 
 <!-- ===== HERO ===== -->
 <div class="tool-page-hero">
@@ -421,7 +453,7 @@
 
 <!-- ===== SEO CONTENT: HOW TO USE ===== -->
 <div class="seo-section">
-  <h2>How to Resize an Image Online — Step by Step</h2>
+  <h2>How to Resize an Image Online Step by Step</h2>
   <p>Resizing an image to a new size takes just a few seconds. Follow these steps:</p>
   <div class="steps-grid">
     <div class="step-card"><div class="step-num">1</div><h4>Upload Your Image</h4><p>Drag and drop your JPG, PNG or WebP file into the upload area, or click to browse your device.</p></div>
@@ -464,6 +496,46 @@
   <p>Website banners, social posts and profile pictures all have different ideal dimensions. Resize to the platform's recommended size to avoid unnecessary cropping or blur.</p>
   <h3>4. Use Percentage for Quick Proportional Scaling</h3>
   <p>If you just need an image "a bit smaller" without calculating exact pixels, the percentage mode is the fastest way to scale it down while automatically keeping proportions.</p>
+</div>
+
+<!-- ===== SEO CONTENT: WHO SHOULD USE ===== -->
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <p>The NexaTools Image Resizer is built for anyone who needs an image at a specific size without opening design software or uploading files to a stranger's server.</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🛍️</span><p><strong>Online Sellers</strong>Resize product photos to match the exact dimensions required by marketplaces and storefronts.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Social Media Managers</strong>Fit images to the recommended sizes for posts, covers, and profile pictures on each platform.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🌐</span><p><strong>Web Designers &amp; Developers</strong>Resize banners, thumbnails, and hero images to keep pages loading fast.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📝</span><p><strong>Bloggers &amp; Content Creators</strong>Standardize featured images and inline graphics across articles.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎓</span><p><strong>Students &amp; Educators</strong>Fit images to page or slide layouts for assignments and presentations.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Privacy-Conscious Users</strong>Anyone who prefers a resizer that never uploads images to a server.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: USE CASES ===== -->
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <p>Here are a few everyday situations where resizing an image comes in handy:</p>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">🖼️</div><h4>Marketplace Listings</h4><p>Match the exact pixel dimensions required by Amazon, Etsy, or other selling platforms.</p></div>
+    <div class="step-card"><div class="step-num">📐</div><h4>Social Media Sizing</h4><p>Scale a photo to fit a profile picture, cover banner, or post format precisely.</p></div>
+    <div class="step-card"><div class="step-num">⚡</div><h4>Faster Web Pages</h4><p>Shrink oversized images down to the display size your website actually needs.</p></div>
+    <div class="step-card"><div class="step-num">📧</div><h4>Email &amp; Document Attachments</h4><p>Scale down large photos so they fit neatly into emails, forms, or reports.</p></div>
+  </div>
+</div>
+
+<!-- ===== SEO CONTENT: TROUBLESHOOTING ===== -->
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <p>Running into an issue while resizing your image? Here are fixes for the most common problems:</p>
+  <div class="trouble-list">
+    <div class="trouble-item"><h4>⚠️ Image looks blurry or soft after resizing</h4><p>This happens when enlarging an image beyond its original dimensions no new detail can be created, only more pixels covering the same detail. Try shrinking a larger source image instead.</p></div>
+    <div class="trouble-item"><h4>⚠️ Image looks stretched or squashed</h4><p>The aspect ratio lock was likely turned off with mismatched width and height values. Re-enable "Maintain aspect ratio" and re-enter one dimension.</p></div>
+    <div class="trouble-item"><h4>⚠️ "Could not resize this image"</h4><p>The file may be corrupted or in an unsupported format. Confirm it's a valid JPG, PNG, or WebP file and try again.</p></div>
+    <div class="trouble-item"><h4>⚠️ File larger than 20 MB</h4><p>Very large images aren't supported in-browser. Try compressing the image first, then resize it.</p></div>
+    <div class="trouble-item"><h4>⚠️ Live preview or dimensions not updating</h4><p>Make sure a valid number is entered in the width or height fields. Empty or zero values won't update the preview.</p></div>
+    <div class="trouble-item"><h4>⚠️ Download button doesn't work</h4><p>Some browsers block automatic downloads from JavaScript. Check your browser's download permissions or pop-up settings for this site.</p></div>
+  </div>
 </div>
 
 <!-- ===== FAQ ===== -->
@@ -557,7 +629,7 @@
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms & Conditions</a>
   </div>
-  <p class="footer-copy">© 2026 NexaTools.io — Worldwide 🌍</p>
+  <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
 </footer>
 
 <!-- ===== EXISTING SITE SCRIPTS ===== -->
