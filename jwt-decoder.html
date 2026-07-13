@@ -17,6 +17,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nexatools.io/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Developer Tools",
+      "item": "https://www.nexatools.io/developer-tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "JWT Decoder",
+      "item": "https://www.nexatools.io/jwt-decoder.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JWT Decoder",
+  "url": "https://www.nexatools.io/jwt-decoder.html",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Decode and inspect JWT tokens instantly in your browser. View header, payload and expiry.",
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Rashid Amin",
+    "jobTitle": "Founder, NexaTools"
+  }
+}
+</script>
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -109,14 +156,17 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <a href="developer-tools.html">Developer Tools</a>
-  <span>›</span>
-  <span style="color:#0f172a;">JWT Decoder</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li><a href="developer-tools.html">Developer Tools</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:#0f172a;" aria-current="page">JWT Decoder</li>
+  </ol>
+</nav>
 
+<main>
 <!-- TOOL HERO -->
 <div class="tool-page-hero">
   <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🔑</div>
@@ -127,6 +177,10 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <span class="feature-pill">⚡ Instant Results</span>
     <span class="feature-pill">🆓 Always Free</span>
   </div>
+  <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--text2);margin-top:-8px;">
+    <span>✅ Reviewed by <a href="about.html" style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </p>
 </div>
 
 <!-- TOOL SECTION -->
@@ -192,6 +246,31 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Works everywhere.</strong> Fully responsive on desktop, tablet and mobile.</p></div>
   </div>
 
+  <h3>Who Should Use This Tool</h3>
+  <p>This JWT decoder is built for anyone working with token-based authentication who needs to inspect what's inside a token. That includes:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🧑‍💻</span><p><strong>Developers</strong> debugging authentication flows who need to see the claims inside a token issued by an API.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎯</span><p><strong>Backend and API engineers</strong> checking that a token's payload contains the expected fields during integration testing.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Students and hobbyists</strong> learning how JWTs are structured and how header, payload and signature fit together.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🛠️</span><p><strong>Anyone without dev tools installed</strong> who needs to quickly check a token's contents without writing a script.</p></div>
+  </div>
+
+  <h3>Common Use Cases</h3>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🔍</span><p><strong>Debugging login and session issues.</strong> Decode a token to confirm which claims and roles it actually contains.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⏰</span><p><strong>Checking token expiry.</strong> Quickly see the "exp" claim converted to a readable date to confirm whether a token has expired.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📄</span><p><strong>Verifying API responses.</strong> Confirm that a token issued during testing contains the fields your application expects.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Learning JWT structure.</strong> Explore how the header, payload and signature sections are separated and encoded.</p></div>
+  </div>
+
+  <h3>Common Problems &amp; Troubleshooting</h3>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>"Invalid Token" error.</strong> Make sure you copied the full token with all three dot-separated sections (header.payload.signature) and no extra whitespace.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>Copy button doesn't seem to work.</strong> Some browsers block clipboard access until you interact with the page first; click anywhere on the page, then try Copy Payload again.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>I need to verify the signature, not just decode it.</strong> This tool only decodes and displays the header and payload; verifying a signature requires the signing key and isn't something this browser-only tool performs.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>Be careful where you paste real tokens.</strong> JWTs often carry live session data, so avoid pasting production tokens into any tool unless you trust it runs entirely client-side, as this one does.</p></div>
+  </div>
+
   <h3>Frequently Asked Questions</h3>
   <div class="faq-list-tool">
     <div class="faq-item-tool">
@@ -214,18 +293,19 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
   <div class="page-cta-box">
     <h2>Inspect Your JWT in Seconds</h2>
-    <p>Paste, decode, review — no login required, ever.</p>
+    <p>Paste, decode, review no login required, ever.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
   <h3>More Developer Tools</h3>
   <div class="related-tools-grid">
-    <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc">Beautify, minify & validate JSON</span></a>
-    <a href="json-validator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">✅</span><span class="rt-name">JSON Validator</span><span class="rt-desc">Check JSON syntax instantly</span></a>
-    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc">Encode & decode Base64 text/files</span></a>
-    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc">MD5, SHA-1, SHA-256 & more</span></a>
+    <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc"> Beautify, minify & validate JSON</span></a>
+    <a href="json-validator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">✅</span><span class="rt-name">JSON Validator</span><span class="rt-desc"> Check JSON syntax instantly</span></a>
+    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc"> Encode & decode Base64 text/files</span></a>
+    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc"> MD5, SHA-1, SHA-256 & more</span></a>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
