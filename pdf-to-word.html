@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f8fafc">
-<meta name="author" content="NexaTools.io">
+<meta name="author" content="Rashid Amin, NexaTools.io">
 <title>Free PDF to Word Converter Online Convert PDF to Editable DOCX | NexaTools.io</title>
 <meta name="description" content="Convert PDF to Word (DOCX) online for free. No signup, no upload to a server your file stays in your browser. Fast, private PDF to editable Word document converter.">
 <meta name="keywords" content="pdf to word converter, pdf to docx free, convert pdf to word online, free pdf to word Pakistan, pdf to editable word document, pdf converter no signup">
@@ -35,7 +35,9 @@
   "operatingSystem": "Web Browser",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": ["PDF to DOCX conversion","Runs entirely in your browser","No signup required","No file size watermark","100% free"],
-  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io" }
+  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io" },
+  "author": { "@type": "Person", "name": "Rashid Amin" },
+  "review": { "@type": "Review", "author": { "@type": "Person", "name": "Rashid Amin" }, "reviewBody": "Reviewed for accuracy of extraction behavior and stated limitations." }
 }
 </script>
 
@@ -44,11 +46,24 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Is this PDF to Word converter really free?","acceptedAnswer":{"@type":"Answer","text":"Yes! NexaTools PDF to Word Converter is 100% free. No credit card, no signup, no hidden charges."}},
+    {"@type":"Question","name":"Is this PDF to Word converter really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. NexaTools PDF to Word Converter is 100% free, with no credit card, signup, or hidden charges, and no limit on how many files you convert."}},
     {"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs entirely inside your browser using JavaScript. Your file is never uploaded or stored anywhere."}},
-    {"@type":"Question","name":"Will the formatting of my PDF be preserved exactly?","acceptedAnswer":{"@type":"Answer","text":"The converter extracts the text and paragraph structure from your PDF into an editable DOCX. Complex layouts, images, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs."}},
-    {"@type":"Question","name":"Can I convert scanned PDFs?","acceptedAnswer":{"@type":"Answer","text":"Scanned PDFs are images of text, not real text, so this tool cannot extract text from them. It works best with PDFs that were created digitally, such as exports from Word, Google Docs, or a website."}},
-    {"@type":"Question","name":"What file format do I get?","acceptedAnswer":{"@type":"Answer","text":"You get a standard .docx file that opens directly in Microsoft Word, Google Docs, and LibreOffice Writer."}}
+    {"@type":"Question","name":"Will the formatting of my PDF be preserved exactly?","acceptedAnswer":{"@type":"Answer","text":"The converter extracts the text and paragraph structure from your PDF into an editable DOCX. Complex layouts, images, multi-column pages, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs."}},
+    {"@type":"Question","name":"Can I convert scanned PDFs?","acceptedAnswer":{"@type":"Answer","text":"Scanned PDFs are images of text rather than real text, so this tool cannot extract text from them. It works best with PDFs that were created digitally, such as exports from Word, Google Docs, or a website."}},
+    {"@type":"Question","name":"What file format do I get?","acceptedAnswer":{"@type":"Answer","text":"You get a standard .docx file that opens directly in Microsoft Word, Google Docs, and LibreOffice Writer."}},
+    {"@type":"Question","name":"Why did my conversion say no text was found?","acceptedAnswer":{"@type":"Answer","text":"This usually means the PDF is a scanned image or a password-protected file with no extractable text layer. Try a digitally created PDF, or run the file through OCR software first."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},
+    {"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://www.nexatools.io/pdf-tools.html"},
+    {"@type":"ListItem","position":3,"name":"PDF to Word Converter","item":"https://www.nexatools.io/pdf-to-word.html"}
   ]
 }
 </script>
@@ -181,6 +196,13 @@
 .limitation-note{display:flex;gap:10px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:0.8rem;color:var(--text2);line-height:1.6}
 .limitation-note .ln-icon{flex-shrink:0}
 
+/* ===== AUTHOR / TRUST BLOCK ===== */
+.author-box{display:flex;align-items:center;gap:14px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:20px 0}
+.author-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;flex-shrink:0;font-size:1rem}
+.author-meta{font-size:0.8rem;color:var(--text2);line-height:1.6}
+.author-meta strong{color:var(--text);display:block;font-size:0.9rem}
+.page-updated{font-size:0.75rem;color:var(--muted2);text-align:center;margin-top:8px}
+
 @media(max-width:768px){
   .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
   .tool-section{padding:0 20px 40px}
@@ -199,7 +221,7 @@
 <div class="bg-orb orb-2"></div>
 
 <!-- ===== NAVIGATION ===== -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
     <div class="nav-logo" onclick="window.location.href='index.html'">
       <div class="logo-icon">
@@ -221,7 +243,7 @@
       <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
       <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+    <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle mobile menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -236,21 +258,21 @@
 </nav>
 
 <!-- ===== BREADCRUMB ===== -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
   <span>›</span>
   <a href="pdf-tools.html">PDF Tools</a>
   <span>›</span>
-  <span style="color:var(--text);">PDF to Word Converter</span>
-</div>
+  <span style="color:var(--text);" aria-current="page">PDF to Word Converter</span>
+</nav>
 
 <!-- ===== HERO ===== -->
-<div class="tool-page-hero">
+<header class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
     <span class="badge-dot"></span>Free PDF to Word Converter No Signup Required
   </div>
-  <h1>Free PDF to Word Converter<br><span class="title-gradient">Convert PDF to Editable DOCX</span></h1>
-  <p>Turn any text-based PDF into an editable Microsoft Word document in seconds. Everything happens inside your browser your file is never uploaded to a server. 100% free, no watermark.</p>
+  <h1>Free PDF to Word Converter<br><span class="title-gradient">Convert PDF to Editable DOCX in Your Browser</span></h1>
+  <p>Turn a text-based PDF into an editable Microsoft Word (.docx) file in seconds. The entire conversion runs locally in your browser using JavaScript your PDF is never uploaded to a server or stored anywhere. It's free, unlimited, and doesn't add a watermark.</p>
   <div class="hero-feature-pills">
     <span class="feature-pill">✅ 100% Free</span>
     <span class="feature-pill">🔒 Runs In Your Browser</span>
@@ -258,7 +280,7 @@
     <span class="feature-pill">🚫 No Login Needed</span>
     <span class="feature-pill">📄 No Watermark</span>
   </div>
-</div>
+</header>
 
 <!-- ===== AD SLOT TOP ===== -->
 <div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
@@ -268,32 +290,32 @@
 </div>
 
 <!-- ===== PDF TO WORD TOOL ===== -->
-<div class="tool-section">
-  <div class="glass-card">
+<main class="tool-section">
+  <section class="glass-card" aria-labelledby="tool-heading">
     <div class="card-header">
-      <h3>📄 PDF to Word Converter</h3>
+      <h3 id="tool-heading">📄 PDF to Word Converter</h3>
     </div>
 
     <div class="section-divider">Upload PDF</div>
 
     <label class="upload-zone" id="upload-zone">
       <input type="file" id="pdf-input" accept="application/pdf,.pdf" aria-label="Upload PDF file">
-      <div class="upload-icon">📤</div>
+      <div class="upload-icon" aria-hidden="true">📤</div>
       <h3>Drag &amp; drop your PDF here</h3>
       <p>or click to browse max 25 MB your file never leaves your device</p>
     </label>
 
     <div id="file-card-wrap"></div>
 
-    <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-wrap" id="progress-wrap" role="status" aria-live="polite">
       <div class="progress-label"><span id="progress-text">Reading PDF…</span><span id="progress-pct">0%</span></div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
 
-    <div class="error-box" id="error-box"></div>
+    <div class="error-box" id="error-box" role="alert"></div>
 
     <div class="result-box" id="result-box">
-      <span class="rb-icon">✅</span>
+      <span class="rb-icon" aria-hidden="true">✅</span>
       <div class="rb-text">
         <strong id="result-name">document.docx</strong>
         <span id="result-meta">Ready to download</span>
@@ -307,11 +329,11 @@
     </div>
 
     <div class="limitation-note">
-      <span class="ln-icon">ℹ️</span>
-      <span>This tool extracts real text and paragraph structure from digitally created PDFs into an editable .docx file. Scanned PDFs (photos of pages), complex multi-column layouts, tables, and embedded images are not fully supported the extracted text will still be editable, but exact visual formatting from the original PDF may not carry over.</span>
+      <span class="ln-icon" aria-hidden="true">ℹ️</span>
+      <span>This tool extracts real text and paragraph structure from digitally created PDFs into an editable .docx file. Scanned PDFs (photos of pages), password-protected files, complex multi-column layouts, tables, and embedded images are not fully supported the extracted text will still be editable, but exact visual formatting from the original PDF may not carry over.</span>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
 <!-- ===== AD SLOT MIDDLE ===== -->
 <div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
@@ -321,20 +343,32 @@
 </div>
 
 <!-- ===== SEO CONTENT: FEATURES ===== -->
-<div class="seo-section">
-  <h2>Why NexaTools PDF to Word Converter</h2>
-  <p>Convert PDF documents into fully editable Word files without installing software or creating an account. Everything runs locally in your browser using JavaScript, so your files stay private.</p>
+<section class="seo-section" aria-labelledby="why-heading">
+  <h2 id="why-heading">Why Use the NexaTools PDF to Word Converter</h2>
+  <p>Convert PDF documents into editable Word files without installing software or creating an account. The extraction runs locally in your browser using JavaScript and the pdf.js engine, so your files are read on your own device and never leave it.</p>
   <div class="steps-grid">
-    <div class="step-card"><div class="step-num">🔒</div><h4>100% Private</h4><p>Your PDF is processed entirely on your device. Nothing is uploaded to any server.</p></div>
-    <div class="step-card"><div class="step-num">⚡</div><h4>Fast Conversion</h4><p>Most documents convert in a few seconds, right in your browser tab.</p></div>
-    <div class="step-card"><div class="step-num">🆓</div><h4>Completely Free</h4><p>No subscription, no watermark, no page limits, and no signup required.</p></div>
-    <div class="step-card"><div class="step-num">📱</div><h4>Works Everywhere</h4><p>Use it on desktop, tablet, or mobile in any modern browser.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">🔒</div><h4>Private by Design</h4><p>Your PDF is processed entirely on your device. Nothing is uploaded to any server, so there's nothing for us to store or lose.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">⚡</div><h4>Fast Conversion</h4><p>Most text-based documents convert in a few seconds, right in your browser tab, with a live progress indicator per page.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">🆓</div><h4>Completely Free</h4><p>No subscription, no watermark, no page limits, and no signup required to convert or download.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">📱</div><h4>Works Everywhere</h4><p>Use it on desktop, tablet, or mobile in any modern browser that supports JavaScript file APIs.</p></div>
   </div>
-</div>
+</section>
+
+<!-- ===== WHO SHOULD USE THIS TOOL ===== -->
+<section class="seo-section" aria-labelledby="who-heading">
+  <h2 id="who-heading">Who Should Use This Tool</h2>
+  <p>This converter is built for anyone who has PDF text they need to edit rather than just read. It's particularly useful for:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🎓</span><p><strong>Students</strong>Turning lecture notes, syllabi, or research PDFs into editable documents for assignments and citations.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">💼</span><p><strong>Professionals</strong>Editing contracts, reports, or proposals that were only received as a PDF.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">✍️</span><p><strong>Writers & Editors</strong>Pulling text out of a PDF draft to continue editing in Word or Google Docs.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🏢</span><p><strong>Small Businesses</strong>Reusing PDF forms, letters, or old documents without retyping them from scratch.</p></div>
+  </div>
+</section>
 
 <!-- ===== SEO CONTENT: HOW TO USE ===== -->
-<div class="seo-section">
-  <h2>How to Convert PDF to Word Online Step by Step</h2>
+<section class="seo-section" aria-labelledby="howto-heading">
+  <h2 id="howto-heading">How to Convert PDF to Word Online Step by Step</h2>
   <p>Converting a PDF into an editable Word document takes less than a minute. Follow these steps:</p>
   <div class="steps-grid">
     <div class="step-card"><div class="step-num">1</div><h4>Upload Your PDF</h4><p>Drag and drop your PDF file into the upload area, or click to browse your device.</p></div>
@@ -342,21 +376,33 @@
     <div class="step-card"><div class="step-num">3</div><h4>Review the Result</h4><p>A summary shows the file name and page count once your DOCX is ready.</p></div>
     <div class="step-card"><div class="step-num">4</div><h4>Download the DOCX</h4><p>Click "Download Word File" to save your new editable document instantly.</p></div>
   </div>
-</div>
+</section>
+
+<!-- ===== COMMON USE CASES ===== -->
+<section class="seo-section" aria-labelledby="usecases-heading">
+  <h2 id="usecases-heading">Common Use Cases</h2>
+  <p>People reach for a PDF to Word converter in a few recurring situations:</p>
+  <h3>Editing a Document You Only Have as a PDF</h3>
+  <p>If the original Word file was lost or was never yours to begin with such as a PDF sent by a client or colleague converting it to DOCX lets you make edits instead of retyping the whole thing.</p>
+  <h3>Reusing Old Resumes, Letters, or Templates</h3>
+  <p>Older documents are often archived only as PDFs. Converting them back to Word makes it easy to update contact details, dates, or wording.</p>
+  <h3>Extracting Text for Reports or Research</h3>
+  <p>When you need to quote or reorganize content from a PDF report into your own Word document, converting first gives you an editable starting point.</p>
+</section>
 
 <!-- ===== SEO CONTENT: BENEFITS ===== -->
-<div class="seo-section">
-  <h2>Benefits of Converting PDF to Word with NexaTools</h2>
-  <p>There are many PDF converters online here is why people choose the NexaTools browser-based converter:</p>
+<section class="seo-section" aria-labelledby="benefits-heading">
+  <h2 id="benefits-heading">Benefits of Converting PDF to Word with NexaTools</h2>
+  <p>There are many PDF converters online here is why people choose this browser-based converter:</p>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>100% Private</strong>Your PDF never leaves your device. There is no server upload involved.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Completely Free</strong>No credit card, no hidden fees, no premium tier. Unlimited conversions.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant Results</strong>No waiting in a queue and no email verification needed to download.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📝</span><p><strong>Real Editable Text</strong>The output is a genuine .docx file you can edit directly in Word or Google Docs.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🚫</span><p><strong>No Watermark</strong>Your converted document is clean, with no branding added to the file.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Works on Mobile</strong>Fully responsive on desktop, tablet, and mobile browsers.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🔒</span><p><strong>100% Private</strong>Your PDF never leaves your device. There is no server upload involved.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🆓</span><p><strong>Completely Free</strong>No credit card, no hidden fees, no premium tier. Unlimited conversions.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚡</span><p><strong>Instant Results</strong>No waiting in a queue and no email verification needed to download.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📝</span><p><strong>Real Editable Text</strong>The output is a genuine .docx file you can edit directly in Word or Google Docs.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🚫</span><p><strong>No Watermark</strong>Your converted document is clean, with no branding added to the file.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📱</span><p><strong>Works on Mobile</strong>Fully responsive on desktop, tablet, and mobile browsers.</p></div>
   </div>
-</div>
+</section>
 
 <!-- ===== AD SLOT ===== -->
 <div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px;">
@@ -366,74 +412,105 @@
 </div>
 
 <!-- ===== SEO: TIPS ===== -->
-<div class="seo-section">
-  <h2>Tips for Getting the Best Results</h2>
+<section class="seo-section" aria-labelledby="tips-heading">
+  <h2 id="tips-heading">Tips for Getting the Best Results</h2>
   <p>PDF is a visual format, not a document-editing format, so conversion quality depends heavily on how the original PDF was created. Here's how to get the cleanest result:</p>
   <h3>1. Use PDFs Exported from Word, Docs, or a Website</h3>
-  <p>PDFs created digitally (from Word, Google Docs, Canva text layers, or "Print to PDF") contain real, extractable text, which converts far more reliably than scanned documents.</p>
+  <p>PDFs created digitally (from Word, Google Docs, Canva text layers, or "Print to PDF") contain a real, extractable text layer, which converts far more reliably than scanned documents.</p>
   <h3>2. Scanned Documents Need OCR First</h3>
   <p>A scanned PDF is really a photo of a page. This tool cannot read text from an image, so scanned pages will convert with little or no text. Run OCR software first if you're working from a scan.</p>
   <h3>3. Expect Layout, Not Pixel-Perfect Design</h3>
   <p>Complex multi-column brochures, tables, and heavily designed pages may lose some visual formatting during conversion. The text content and reading order are preserved so you can reformat quickly in Word.</p>
   <h3>4. Keep File Size Reasonable</h3>
   <p>Very large PDFs (over 25 MB) can be slow to process in-browser. Split large files first for the smoothest experience.</p>
-</div>
+</section>
+
+<!-- ===== COMMON PROBLEMS & TROUBLESHOOTING ===== -->
+<section class="seo-section" aria-labelledby="troubleshoot-heading">
+  <h2 id="troubleshoot-heading">Common Problems &amp; Troubleshooting</h2>
+  <p>Most conversion issues come down to how the source PDF was created. Here's how to resolve the most common ones:</p>
+  <h3>"No extractable text was found in this PDF"</h3>
+  <p>This means the PDF has no real text layer usually because it's a scanned image or was password-protected in a way that blocks text access. Run the file through OCR software, or ask the sender for the original document.</p>
+  <h3>The Downloaded File Won't Open Correctly</h3>
+  <p>Make sure the file finished downloading fully before opening it, and open it with Microsoft Word, Google Docs, or LibreOffice Writer, all of which support the standard .docx format this tool produces.</p>
+  <h3>Text Order Looks Jumbled</h3>
+  <p>PDFs with multi-column layouts or overlapping text boxes can confuse any text extractor, including this one, because a PDF doesn't store a true reading order the way Word does. Review and reorder the extracted paragraphs manually in Word after conversion.</p>
+  <h3>The "Convert" Button Stays Disabled</h3>
+  <p>The button activates only after a valid PDF under 25 MB has been selected. If it stays disabled, check the file extension is .pdf and the size is within the limit, then try selecting it again.</p>
+</section>
 
 <!-- ===== FAQ ===== -->
-<div class="seo-section">
-  <h2>Frequently Asked Questions</h2>
+<section class="seo-section" aria-labelledby="faq-heading">
+  <h2 id="faq-heading">Frequently Asked Questions</h2>
   <p>Everything you need to know about the NexaTools free PDF to Word converter.</p>
   <div class="faq-list-tool">
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is this PDF to Word converter really free? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Is this PDF to Word converter really free? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">Yes, completely free. Convert unlimited PDF files to Word documents without paying anything or creating an account.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is my PDF uploaded to a server? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Is my PDF uploaded to a server? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">No. The conversion runs entirely inside your browser using JavaScript. Your file is never uploaded or stored anywhere.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Will the formatting of my PDF be preserved exactly? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Will the formatting of my PDF be preserved exactly? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">The converter extracts the text and paragraph structure from your PDF into an editable DOCX. Complex layouts, images, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I convert scanned PDFs? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Can I convert scanned PDFs? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">Scanned PDFs are images of text, not real text, so this tool cannot extract text from them. It works best with PDFs that were created digitally, such as exports from Word, Google Docs, or a website.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">What file format do I get? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">What file format do I get? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">You get a standard .docx file that opens directly in Microsoft Word, Google Docs, and LibreOffice Writer.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is there a file size limit? <span class="faq-arrow-tool">▾</span></button>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Is there a file size limit? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
       <div class="faq-a-tool">Files up to 25 MB are supported. Larger files may process slowly since everything runs locally in your browser.</div>
     </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Why did my conversion say no text was found? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
+      <div class="faq-a-tool">This usually means the PDF is a scanned image or a password-protected file with no extractable text layer. Try a digitally created PDF, or run the file through OCR software first.</div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ===== RELATED TOOLS ===== -->
-<div class="seo-section">
-  <h2>More Free PDF Tools You Might Need</h2>
+<section class="seo-section" aria-labelledby="related-tools-heading">
+  <h2 id="related-tools-heading">More Free PDF Tools You Might Need</h2>
   <p>Complete your document workflow with these free tools from NexaTools:</p>
   <div class="related-tools-grid">
-    <a href="word-to-pdf.html" class="related-tool-card"><span class="rt-icon">📝</span><div class="rt-name">Word to PDF</div><div class="rt-desc">Convert DOCX to PDF</div></a>
-    <a href="merge-pdf.html" class="related-tool-card"><span class="rt-icon">🧩</span><div class="rt-name">Merge PDF</div><div class="rt-desc">Combine multiple PDFs</div></a>
-    <a href="split-pdf.html" class="related-tool-card"><span class="rt-icon">✂️</span><div class="rt-name">Split PDF</div><div class="rt-desc">Extract or split pages</div></a>
-    <a href="compress-pdf.html" class="related-tool-card"><span class="rt-icon">🗜️</span><div class="rt-name">Compress PDF</div><div class="rt-desc">Reduce PDF file size</div></a>
-    <a href="resume-builder.html" class="related-tool-card"><span class="rt-icon">📄</span><div class="rt-name">Resume Builder</div><div class="rt-desc">Build a free CV online</div></a>
+    <a href="word-to-pdf.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">📝</span><div class="rt-name">Word to PDF</div><div class="rt-desc">Convert DOCX to PDF</div></a>
+    <a href="merge-pdf.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧩</span><div class="rt-name">Merge PDF</div><div class="rt-desc">Combine multiple PDFs</div></a>
+    <a href="split-pdf.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">✂️</span><div class="rt-name">Split PDF</div><div class="rt-desc">Extract or split pages</div></a>
+    <a href="compress-pdf.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🗜️</span><div class="rt-name">Compress PDF</div><div class="rt-desc">Reduce PDF file size</div></a>
+    <a href="resume-builder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">📄</span><div class="rt-name">Resume Builder</div><div class="rt-desc">Build a free CV online</div></a>
   </div>
-</div>
+</section>
 
 <!-- ===== RELATED BLOG ARTICLES ===== -->
-<div class="seo-section">
-  <h2>Related Guides</h2>
+<section class="seo-section" aria-labelledby="related-guides-heading">
+  <h2 id="related-guides-heading">Related Guides</h2>
   <p>Learn more about working with PDF and Word documents:</p>
   <div class="related-tools-grid">
-    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">📚</span><div class="rt-name">PDF vs DOCX</div><div class="rt-desc">Which format to use and when</div></a>
-    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">✅</span><div class="rt-name">ATS-Friendly Documents</div><div class="rt-desc">Formatting tips for job applications</div></a>
-    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">🔍</span><div class="rt-name">OCR Explained</div><div class="rt-desc">Turning scans into real text</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">📚</span><div class="rt-name">PDF vs DOCX</div><div class="rt-desc">Which format to use and when</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">✅</span><div class="rt-name">ATS-Friendly Documents</div><div class="rt-desc">Formatting tips for job applications</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔍</span><div class="rt-name">OCR Explained</div><div class="rt-desc">Turning scans into real text</div></a>
   </div>
-</div>
+</section>
+
+<!-- ===== REVIEWED BY / TRUST ===== -->
+<section class="seo-section" aria-labelledby="reviewed-heading">
+  <h2 id="reviewed-heading">Reviewed for Accuracy</h2>
+  <div class="author-box">
+    <div class="author-avatar" aria-hidden="true">RA</div>
+    <div class="author-meta">
+      <strong>Reviewed by Rashid Amin, Founder of NexaTools.io</strong>
+      This page's tool description, limitations, and FAQs were checked against how the converter actually behaves before publishing.
+    </div>
+  </div>
+  <p class="page-updated">Last updated: July 13, 2026</p>
+</section>
 
 <!-- ===== CTA BOX ===== -->
 <div style="max-width:1000px;margin:0 auto;padding:0 32px 80px;">
@@ -789,10 +866,12 @@ function toggleToolFaq(btn) {
   var isOpen = btn.classList.contains('open');
   document.querySelectorAll('.faq-q-tool').forEach(function(b) {
     b.classList.remove('open');
+    b.setAttribute('aria-expanded', 'false');
     b.nextElementSibling.classList.remove('open');
   });
   if (!isOpen) {
     btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
     answer.classList.add('open');
   }
 }
