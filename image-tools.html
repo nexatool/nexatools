@@ -17,6 +17,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nexatools.io/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Image Tools",
+      "item": "https://www.nexatools.io/image-tools.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Image Tools Online",
+  "url": "https://www.nexatools.io/image-tools.html",
+  "description": "Compress, resize and convert images between formats with no quality loss. 100% free, no signup, runs entirely in your browser.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "NexaTools.io",
+    "url": "https://www.nexatools.io/"
+  },
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Rashid Amin",
+    "jobTitle": "Founder, NexaTools"
+  }
+}
+</script>
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -53,6 +92,18 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 @media(max-width:768px){
   .breadcrumb{padding:calc(var(--nav-h) + 14px) 20px 0}
   .category-hero{padding:28px 20px 8px}
+}
+
+.cat-meta-row{max-width:1200px;margin:0 auto;padding:0 32px;text-align:center;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:#64748b;margin-bottom:6px;}
+.cat-meta-row span{display:inline-flex;align-items:center;gap:6px;}
+.cat-info-section{max-width:1200px;margin:0 auto;padding:28px 32px;}
+.cat-info-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;color:#0f172a;}
+.cat-info-section p{color:#475569;font-size:0.98rem;line-height:1.7;margin-bottom:12px;}
+.cat-info-section ul{color:#475569;font-size:0.98rem;line-height:1.8;margin:0 0 12px 20px;}
+.cat-info-section a{color:#2563eb;text-decoration:none;font-weight:600;}
+.cat-info-section a:hover{text-decoration:underline;}
+@media(max-width:768px){
+  .cat-info-section{padding:20px 20px;}
 }
 </style>
 </head>
@@ -102,21 +153,29 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <span style="color:#0f172a;">Image Tools</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:#0f172a;" aria-current="page">Image Tools</li>
+  </ol>
+</nav>
 
+<main>
 <!-- CATEGORY HERO -->
 <div class="category-hero">
   <div class="cat-icon-big" style="background:rgba(219,39,119,0.08);" aria-hidden="true">🖼️</div>
   <h1>Image Tools</h1>
-  <p>Compress, resize and convert images between formats with no quality loss. 100% free, no signup, runs entirely in your browser.</p>
+  <p>Compress, resize and convert images between formats with no quality loss right in your browser. Whether you're prepping product photos for an online store, shrinking screenshots for a blog post, or converting a batch of images to a web-friendly format, these free tools handle it in seconds with no signup, no uploads to a server, and no loss in visible quality.</p>
+  <div class="cat-meta-row">
+    <span>✅ Reviewed by <a href="about.html" style="color:#2563eb;text-decoration:none;font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </div>
 </div>
 
 <!-- TOOLS GRID -->
-<section class="tools-section section tools-section-wrap">
+<section class="tools-section section tools-section-wrap" aria-labelledby="tools-heading">
+  <h2 id="tools-heading" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Available Image Tools</h2>
   <div class="tools-grid">
     <a href="image-compressor.html" class="tool-card-link" style="--card-color:#db2777;">
       <div class="tc-icon" style="background:rgba(219,39,119,0.08);border-color:rgba(219,39,119,0.15);" aria-hidden="true">🗜️</div>
@@ -146,7 +205,35 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </div>
 </section>
 
+<!-- WHO IS THIS FOR -->
+<section class="cat-info-section" aria-labelledby="who-heading">
+  <h2 id="who-heading">Who Is This Category For?</h2>
+  <p>NexaTools' image tools are built for anyone who needs to edit or convert images quickly without installing software or learning a design program. That includes:</p>
+  <ul>
+    <li><strong>Online sellers and marketers</strong> who need to compress product photos so pages load faster without hurting image quality.</li>
+    <li><strong>Bloggers and content creators</strong> who need to resize screenshots or convert images to lighter formats before publishing.</li>
+    <li><strong>Web developers</strong> who need to convert images to modern formats like WebP to improve site performance.</li>
+    <li><strong>Students and everyday users</strong> who just need a quick, free way to change an image's format or file size for email, forms, or social media.</li>
+  </ul>
+  <p>Every tool in this category runs directly in your browser, so your images are never uploaded to a server making them a safe, private option for personal and professional work alike.</p>
+</section>
+
+<!-- HOW TO CHOOSE -->
+<section class="cat-info-section" aria-labelledby="choose-heading">
+  <h2 id="choose-heading">How to Choose the Right Image Tool</h2>
+  <p>Not sure which tool you need? Here's a quick way to decide:</p>
+  <ul>
+    <li>If your image file is <strong>too large</strong> to upload or email, start with the <a href="image-compressor.html">Image Compressor</a> to shrink the file size while keeping visible quality intact.</li>
+    <li>If your image is the <strong>wrong dimensions</strong> for a website, profile, or print, use the <a href="image-resizer.html">Image Resizer</a> to set exact pixel dimensions.</li>
+    <li>If you have a <strong>PNG that needs to become a smaller JPG</strong> (for example, to save space), use <a href="png-to-jpg.html">PNG to JPG</a>.</li>
+    <li>If you need a <strong>JPG with a transparent background</strong>, convert it with <a href="jpg-to-png.html">JPG to PNG</a>.</li>
+    <li>If you want the <strong>best balance of quality and file size</strong> for the modern web, try the <a href="webp-converter.html">WebP Converter</a>.</li>
+  </ul>
+  <p>Still not sure? Read our full guide on <a href="blog-section.html">choosing the right image format</a> for more detail, or check the <a href="index.html#categories-section">full tools directory</a> for related categories like document and file conversion tools.</p>
+</section>
+
 <div class="back-row"><a href="index.html#categories-section">← Back to All Categories</a></div>
+</main>
 
 <!-- FOOTER -->
 <footer>
