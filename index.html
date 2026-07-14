@@ -322,6 +322,19 @@ footer { margin-top:80px; padding:48px 24px 32px; border-top:1px solid rgba(0,0,
   .tools-grid, .category-grid, .mini-tools-grid, .blog-grid, .why-grid { grid-template-columns:1fr !important; }
   body { overflow-x:hidden; }
 }
+
+/* ===== MOBILE NAV FIX ===== */
+.nav-mobile-toggle { display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:40px; height:40px; background:transparent !important; border:none; cursor:pointer; padding:0; }
+.nav-mobile-toggle span { display:block; width:22px; height:2px; border-radius:2px; background:#475569; transition:transform 0.25s ease, opacity 0.25s ease; }
+.mobile-nav { display:none; flex-direction:column; }
+.mobile-nav.open { display:flex; }
+.nav-mobile-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-mobile-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+.nav-mobile-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+@media (max-width:768px) {
+  .nav-links { display:none !important; }
+  .nav-mobile-toggle { display:flex !important; }
+}
 </style>
 </head>
 <body>
