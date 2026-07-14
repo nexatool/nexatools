@@ -33,6 +33,18 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexatools.io/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.nexatools.io/index.html#tools" },
+    { "@type": "ListItem", "position": 3, "name": "Invoice/Billing Generator", "item": "https://www.nexatools.io/invoice-generator.html" }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Free Invoice/Billing Generator  NexaTools.io",
   "url": "https://www.nexatools.io/invoice-generator.html",
@@ -312,14 +324,17 @@
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <a href="index.html#tools">Tools</a>
-  <span>›</span>
-  <span style="color:var(--text);">Invoice/Billing Generator</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li><a href="index.html#tools">Tools</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:var(--text);" aria-current="page">Invoice/Billing Generator</li>
+  </ol>
+</nav>
 
+<main>
 <!-- HERO -->
 <div class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
@@ -336,6 +351,10 @@
     <span class="feature-pill">⬇️ PDF Download</span>
     <span class="feature-pill">🔒 No Login Needed</span>
   </div>
+  <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--muted2);margin-top:8px;">
+    <span>✅ Reviewed by <a href="about.html" title="Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free, helping users complete everyday tasks without unnecessary uploads or signups." style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </p>
 </div>
 
 <!-- AD TOP -->
@@ -621,6 +640,39 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
+<!-- WHO SHOULD USE -->
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">💻</span><p><strong>Freelancers on Upwork or Fiverr</strong> who need to bill international clients in USD with a PKR equivalent shown.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🏪</span><p><strong>Small business owners in Pakistan</strong> who need GST-compliant invoices with JazzCash or Easypaisa payment details.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🌍</span><p><strong>International freelancers and contractors</strong> who need a quick, professional invoice with Payoneer or Wise payment details.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📋</span><p><strong>Anyone billing clients occasionally</strong> who doesn't want to pay for accounting software just to send a few invoices a month.</p></div>
+  </div>
+</div>
+
+<!-- COMMON USE CASES -->
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🧾</span><p><strong>Billing after project delivery.</strong> Generate and send a PDF invoice as soon as work is completed.</p></div>
+    <div class="benefit-item"><span class="bi-icon">💱</span><p><strong>Cross-border freelance billing.</strong> Invoice in USD while automatically showing the PKR equivalent for local reference.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📊</span><p><strong>GST-inclusive invoicing.</strong> Add Pakistani GST automatically at 17%, or adjust the rate for your situation.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📁</span><p><strong>Recurring client billing.</strong> Reuse the same template each month for repeat clients, changing only the line items and dates.</p></div>
+  </div>
+</div>
+
+<!-- COMMON PROBLEMS -->
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The PKR equivalent isn't showing.</strong> Make sure you've selected USD as the currency and entered an exchange rate the conversion only appears once both are set.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>GST isn't calculating.</strong> Check the GST box in the invoice form; the 17% default only applies once the checkbox is enabled, and you can edit the rate afterward.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The PDF didn't download.</strong> After clicking "Generate Invoice" then "Print / Save as PDF," make sure your browser's print dialog has "Save as PDF" selected as the destination before clicking Save.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>JazzCash or Easypaisa details aren't printing on the invoice.</strong> Confirm you clicked the JazzCash or Easypaisa button in the Payment Methods section and entered your account number there.</p></div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <div class="seo-section">
   <h2>Frequently Asked Questions</h2>
@@ -688,6 +740,7 @@
     </button>
   </div>
 </div>
+</main>
 
 <!-- AD BOTTOM -->
 <div class="ad-slot" style="max-width:1000px;margin:0 auto;padding:0 32px 40px;">
