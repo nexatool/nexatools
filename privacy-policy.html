@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f8fafc">
-<meta name="author" content="NexaTools.io">
-<title>Privacy Policy NexaTools.io</title>
-<meta name="description" content="NexaTools.io Privacy Policy We never collect, store or sell your data. All tools run in your browser. Read our full privacy commitment.">
+<meta name="author" content="Rashid Amin">
+<title>Privacy Policy | NexaTools.io Free AI Tools</title>
+<meta name="description" content="Read the NexaTools.io Privacy Policy: what data we collect, what we never collect, how our browser-based tools work, cookies, third-party services, and how to contact us with privacy questions.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.nexatools.io/privacy-policy.html">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -19,7 +19,32 @@
   "@type": "WebPage",
   "name": "Privacy Policy NexaTools.io",
   "url": "https://www.nexatools.io/privacy-policy.html",
-  "description": "Privacy Policy for NexaTools.io"
+  "description": "Privacy Policy for NexaTools.io",
+  "author": {
+    "@type": "Person",
+    "name": "Rashid Amin",
+    "jobTitle": "Founder of NexaTools"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nexatools.io/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Privacy Policy",
+      "item": "https://www.nexatools.io/privacy-policy.html"
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,6 +124,20 @@
     .page-hero { padding: calc(var(--nav-h, 68px) + 36px) 20px 36px; }
     .policy-card { padding: 20px; }
   }
+
+  .breadcrumb-nav { max-width: 820px; margin: 0 auto; padding: 16px 32px 0; }
+  .breadcrumb-nav ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; font-size: 0.8rem; color: #64748b; }
+  .breadcrumb-nav a { color: #2563eb; text-decoration: none; }
+  .breadcrumb-nav a:hover { text-decoration: underline; }
+  .breadcrumb-nav li:not(:last-child)::after { content: '/'; margin-left: 6px; color: #94a3b8; }
+
+  .reviewed-by { background: rgba(37,99,235,0.05); border: 1px dashed rgba(37,99,235,0.3); border-radius: 16px; padding: 22px 28px; margin-bottom: 28px; }
+  .reviewed-by h2 { font-family: var(--font-display, 'Clash Display', sans-serif); font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+  .reviewed-by p { color: #64748b; font-size: 0.85rem; line-height: 1.75; margin-bottom: 8px; }
+  .reviewed-by p:last-child { margin-bottom: 0; }
+  @media (max-width: 768px) {
+    .reviewed-by { padding: 18px 20px; }
+  }
 </style>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
@@ -121,14 +160,15 @@
     </div>
     
     <div class="nav-links">
-   <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="#tools-section">Tools</a>
       <a class="nav-link" href="#categories-section">Categories</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
-      <a class="nav-link" href="contact.html">Contact</a
+      <a class="nav-link" href="contact.html">Contact</a>
   <a class="nav-link" href="privacy-policy.html" style="color:var(--cyan);">Privacy</a>
 </div>
+<div class="nav-right">
   <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
 </div>
     <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
@@ -143,19 +183,32 @@
   </div>
 </nav>
 
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="index.html">Home</a></li>
+    <li aria-current="page">Privacy Policy</li>
+  </ol>
+</nav>
+
 <div class="page-hero">
-  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;"><span class="badge-dot"></span>Last Updated: May 2026</div>
+  <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;"><span class="badge-dot"></span>Last Updated: July 2026</div>
   <h1>🔒 Privacy Policy</h1>
   <p>Your privacy is our priority. Here's exactly what we do and don't do with your information.</p>
 </div>
 
-<div class="policy-content">
+<main class="policy-content">
 
   <div class="highlight-box">
     ✅ <strong>Simple Summary:</strong> NexaTools.io does NOT collect, store, or sell your personal data. All tools run 100% in your browser. Your documents and information never leave your device.
   </div>
 
-  <div class="policy-card">
+  <section class="policy-card" aria-labelledby="why-privacy-heading">
+    <h2 id="why-privacy-heading">🔍 Why Privacy Matters at NexaTools</h2>
+    <p>We built NexaTools around one simple idea: you shouldn't have to hand over your personal data just to build a resume, invoice, or logo. Documents like these often contain sensitive personal or business information, so we designed our tools to process everything locally in your browser instead of on our servers.</p>
+    <p style="margin-top:8px;">This Privacy Policy explains, in plain language, exactly what information (if any) is involved when you use NexaTools, and what our third-party services such as advertising do on this site.</p>
+  </section>
+
+  <article class="policy-card">
     <h2>1. 📋 Information We Collect</h2>
     <p>NexaTools.io is designed to be a privacy-first platform. We do <strong style="color:#0f172a;">not</strong> collect the following:</p>
     <ul>
@@ -166,9 +219,9 @@
       <li>No third-party analytics or tracking scripts embedded in our tools</li>
     </ul>
     <p style="margin-top:12px;">The only data we may receive is standard server access logs (page visited, timestamp, browser type) which are automatically deleted and never used for profiling.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>2. 🌐 How Our Tools Work</h2>
     <p>All NexaTools.io tools Resume Builder, Invoice Generator, Logo Maker, QR Code Generator, Business Card Designer, Password Generator, and Social Media Scheduler process all data entirely within your browser using JavaScript. This means:</p>
     <ul>
@@ -178,15 +231,15 @@
       <li>QR codes are generated client-side and never transmitted</li>
       <li>Generated passwords are created locally and never logged</li>
     </ul>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>3. 💳 Payment Information</h2>
     <p>Pro plan subscriptions are processed exclusively by <strong style="color:#0f172a;">Gumroad</strong>, a third-party payment processor. NexaTools.io never sees, stores, handles, or has access to your credit card or payment details.</p>
     <p style="margin-top:8px;">When you purchase a Pro plan, you are subject to Gumroad's Privacy Policy and Terms of Service. We strongly encourage you to review their policies at gumroad.com.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>4. 🖼️ Third-Party Services</h2>
     <p>NexaTools.io uses the following third-party services on our website:</p>
     <ul>
@@ -195,44 +248,44 @@
       <li><strong style="color:#0f172a;">Gumroad</strong> Payment processing for Pro subscriptions only.</li>
     </ul>
     <p style="margin-top:8px;">We do not integrate Facebook Pixel, TikTok Pixel, or any other advertising trackers.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>5. 🍪 Cookies</h2>
     <p>NexaTools.io itself does not set tracking or analytics cookies. However, Google AdSense (our advertising partner) may place cookies on your device to serve personalized advertisements based on your browsing behavior.</p>
     <p style="margin-top:8px;">You can manage or disable these cookies through your browser settings or via <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:#2563eb;">Google's Ad Settings</a>.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>6. 👶 Children's Privacy</h2>
     <p>NexaTools.io does not knowingly collect any personal information from children under the age of 13. Our platform is intended for use by adults and young adults (13+). If you believe a child has submitted information through our site, please contact us at <a href="mailto:pro@nexatools.io" style="color:#2563eb;">pro@nexatools.io</a> and we will take prompt action.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>7. 🔗 External Links</h2>
     <p>Our website may contain links to external websites such as Gumroad, Google, and social media platforms. NexaTools.io is not responsible for the privacy practices or content of these third-party sites. We recommend reviewing their respective privacy policies before providing any personal information.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>8. 🛡️ Data Security</h2>
     <p>Since we do not collect or store your personal data on our servers, the risk of a data breach involving your personal information is minimal. We serve our website over HTTPS (SSL encryption) to ensure secure communication between your browser and our servers.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>9. ⚙️ Your Rights</h2>
     <p>Since we do not collect personal data, there is typically no data to access, correct, or delete. However, if you have any concerns about data related to a Pro plan purchase (handled by Gumroad), please contact:</p>
     <ul>
       <li>NexaTools.io: <a href="mailto:pro@nexatools.io" style="color:#2563eb;">pro@nexatools.io</a></li>
       <li>Gumroad directly via their support for payment-related data</li>
     </ul>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>10. 📝 Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. The "Last Updated" date at the top of this page will always reflect the most recent revision. Continued use of NexaTools.io after changes are posted constitutes acceptance of the updated policy.</p>
-  </div>
+  </article>
 
-  <div class="policy-card">
+  <article class="policy-card">
     <h2>11. ✉️ Contact Us</h2>
     <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>
     <ul>
@@ -241,9 +294,20 @@
       <li>Website: <a href="https://www.nexatools.io" style="color:#2563eb;">nexatools.io</a></li>
     </ul>
     <p style="margin-top:8px;">We aim to respond to all privacy-related inquiries within 48 hours.</p>
-  </div>
+  </article>
 
-</div>
+  <section class="reviewed-by" aria-labelledby="reviewed-heading">
+    <h2 id="reviewed-heading">Reviewed by Rashid Amin</h2>
+    <p>Founder of NexaTools</p>
+    <p>
+      Rashid Amin is the founder of NexaTools and reviews the platform's
+      tools and policies, including this Privacy Policy, to keep the
+      language accurate, clear and up to date.
+    </p>
+    <p><strong>Last Updated:</strong> July 2026</p>
+  </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
