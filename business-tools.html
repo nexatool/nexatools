@@ -17,6 +17,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nexatools.io/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Business Tools",
+      "item": "https://www.nexatools.io/business-tools.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Business Tools Online",
+  "url": "https://www.nexatools.io/business-tools.html",
+  "description": "Free browser-based business tools including an invoice generator, business card maker and logo maker for freelancers and small teams.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "NexaTools.io",
+    "url": "https://www.nexatools.io/"
+  },
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Rashid Amin",
+    "jobTitle": "Founder, NexaTools"
+  }
+}
+</script>
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -53,6 +92,18 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 @media(max-width:768px){
   .breadcrumb{padding:calc(var(--nav-h) + 14px) 20px 0}
   .category-hero{padding:28px 20px 8px}
+}
+
+.cat-meta-row{max-width:1200px;margin:0 auto;padding:0 32px;text-align:center;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:#64748b;margin-bottom:6px;}
+.cat-meta-row span{display:inline-flex;align-items:center;gap:6px;}
+.cat-info-section{max-width:1200px;margin:0 auto;padding:28px 32px;}
+.cat-info-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;color:#0f172a;}
+.cat-info-section p{color:#475569;font-size:0.98rem;line-height:1.7;margin-bottom:12px;}
+.cat-info-section ul{color:#475569;font-size:0.98rem;line-height:1.8;margin:0 0 12px 20px;}
+.cat-info-section a{color:#2563eb;text-decoration:none;font-weight:600;}
+.cat-info-section a:hover{text-decoration:underline;}
+@media(max-width:768px){
+  .cat-info-section{padding:20px 20px;}
 }
 </style>
 </head>
@@ -102,21 +153,29 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <span style="color:#0f172a;">Business Tools</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:#0f172a;" aria-current="page">Business Tools</li>
+  </ol>
+</nav>
 
+<main>
 <!-- CATEGORY HERO -->
 <div class="category-hero">
   <div class="cat-icon-big" style="background:rgba(234,88,12,0.08);" aria-hidden="true">💼</div>
   <h1>Business Tools</h1>
-  <p>Invoices, business cards and branding assets for freelancers and small teams. 100% free, no signup required.</p>
+  <p>Create professional invoices, business cards and logos without design software or a subscription. These browser-based tools are built for freelancers, small teams and solo founders who need polished branding assets in minutes 100% free, no signup required.</p>
+  <div class="cat-meta-row">
+    <span>✅ Reviewed by <a href="about.html" title="Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free, helping users complete everyday tasks without unnecessary uploads or signups." style="color:#2563eb;text-decoration:none;font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </div>
 </div>
 
 <!-- TOOLS GRID -->
-<section class="tools-section section tools-section-wrap">
+<section class="tools-section section tools-section-wrap" aria-labelledby="tools-heading">
+  <h2 id="tools-heading" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Available Business Tools</h2>
   <div class="tools-grid">
     <a href="invoice-generator.html" class="tool-card-link" style="--card-color:#7c3aed;">
       <div class="tc-icon" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.15);" aria-hidden="true">🧾</div>
@@ -136,7 +195,34 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </div>
 </section>
 
+<!-- WHO ARE THESE FOR -->
+<section class="cat-info-section" aria-labelledby="who-heading">
+  <h2 id="who-heading">Who Are These Business Tools For?</h2>
+  <p>NexaTools' business tools are built for anyone who needs to look professional without hiring a designer or paying for software. That includes:</p>
+  <ul>
+    <li><strong>Freelancers</strong> who need to send a polished invoice or put together a business card between client projects.</li>
+    <li><strong>Small business owners and shop owners</strong> who want consistent branding a logo, business card, and invoice that all match.</li>
+    <li><strong>Startups and solo founders</strong> who need a first logo or invoice template before investing in a full brand identity.</li>
+    <li><strong>Anyone billing clients occasionally</strong> who doesn't want to pay for accounting software just to send a few invoices a month.</li>
+  </ul>
+  <p>Every tool here runs directly in your browser, so your client details, business information and designs are never uploaded to a server.</p>
+</section>
+
+<!-- HOW TO CHOOSE -->
+<section class="cat-info-section" aria-labelledby="choose-heading">
+  <h2 id="choose-heading">How to Choose the Right Business Tool</h2>
+  <p>Not sure where to start? Here's a quick way to decide:</p>
+  <ul>
+    <li>If you need to <strong>bill a client</strong>, start with the <a href="invoice-generator.html">Invoice / Billing Generator</a> pick from 4 templates, add unlimited line items, and export straight to PDF.</li>
+    <li>If you need something to <strong>hand out in person</strong>, use the <a href="business-card-maker.html">Business Card Maker</a> to design a card with one of 7 themes and custom fonts, then export as PNG.</li>
+    <li>If you're just getting your <strong>brand identity started</strong>, the <a href="logo-maker.html">Logo Maker</a> lets you generate a logo in 5 styles with custom colors before you commit to a full design.</li>
+    <li>Building a full brand kit? Use all three together a logo from the Logo Maker looks best carried through to your <a href="business-card-maker.html">business card</a> and <a href="invoice-generator.html">invoices</a> for a consistent look.</li>
+  </ul>
+  <p>Still deciding? Browse the <a href="index.html#categories-section">full tools directory</a> for other categories, or check our <a href="blog-section.html">blog guides</a> for branding tips.</p>
+</section>
+
 <div class="back-row"><a href="index.html#categories-section">← Back to All Categories</a></div>
+</main>
 
 <!-- FOOTER -->
 <footer>
