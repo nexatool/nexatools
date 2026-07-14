@@ -17,6 +17,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Resume Tools Online",
+  "url": "https://www.nexatools.io/resume-tools.html",
+  "description": "Free resume building tools with AI-assisted summaries and ready-made templates. No signup required.",
+  "isPartOf": { "@type": "WebSite", "name": "NexaTools.io", "url": "https://www.nexatools.io" },
+  "about": { "@type": "Thing", "name": "Resume Building Tools" },
+  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexatools.io/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Resume Tools", "item": "https://www.nexatools.io/resume-tools.html" }
+  ]
+}
+</script>
+
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -58,6 +83,23 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 @media(max-width:768px){
   .breadcrumb{padding:calc(var(--nav-h) + 14px) 20px 0}
   .category-hero{padding:28px 20px 8px}
+}
+
+.cat-info-section{max-width:1200px;margin:0 auto;padding:40px 32px;}
+.cat-info-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:14px;color:#0f172a;}
+.cat-info-section p{color:#475569;font-size:0.95rem;line-height:1.75;margin-bottom:14px;}
+.cat-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;}
+.cat-info-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px 20px;}
+.cat-info-card h3{font-size:0.98rem;font-weight:700;margin-bottom:6px;color:#0f172a;}
+.cat-info-card p{font-size:0.85rem;color:#64748b;margin-bottom:0;}
+.cat-tips-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;}
+.cat-tips-list li{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:12px 16px;font-size:0.9rem;color:#334155;line-height:1.6;}
+.reviewer-box{max-width:1200px;margin:0 auto;padding:0 32px 40px;}
+.reviewer-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:20px 24px;font-size:0.88rem;color:#475569;line-height:1.7;}
+.reviewer-card strong{color:#0f172a;}
+@media(max-width:768px){
+  .cat-info-section{padding:28px 20px;}
+  .reviewer-box{padding:0 20px 32px;}
 }
 </style>
 </head>
@@ -107,21 +149,23 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="index.html">Home</a>
   <span>›</span>
   <span style="color:#0f172a;">Resume Tools</span>
-</div>
+</nav>
+
+<main>
 
 <!-- CATEGORY HERO -->
 <div class="category-hero">
   <div class="cat-icon-big" style="background:rgba(37,99,235,0.08);" aria-hidden="true">📄</div>
   <h1>Resume Tools</h1>
-  <p>Build and format resumes with AI-assisted summaries and ready-made templates. Free, browser-based, no signup required.</p>
+  <p>Build a clean, professional, ATS-friendly resume in minutes with our free browser-based Resume Builder. Choose from ready-made templates, generate an AI-assisted summary, and export straight to PDF no signup, no installs, and nothing ever leaves your browser.</p>
 </div>
 
 <!-- TOOLS GRID -->
-<section class="tools-section section tools-section-wrap">
+<section class="tools-section section tools-section-wrap" aria-label="Resume tools">
   <div class="tools-grid">
     <a href="resume-builder.html" class="tool-card-link" style="--card-color:#2563eb;">
       <div class="tc-icon" style="background:rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.15);" aria-hidden="true">📄</div>
@@ -132,7 +176,59 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </div>
 </section>
 
+<!-- WHO ARE THESE TOOLS FOR -->
+<section class="cat-info-section" aria-label="Who these tools are for">
+  <h2>Who Are These Resume Tools For?</h2>
+  <p>Our resume tools are built for anyone who needs a polished, professional resume without hiring a designer or wrestling with word processor formatting.</p>
+  <div class="cat-info-grid">
+    <div class="cat-info-card">
+      <h3>Job Seekers</h3>
+      <p>Create a fresh resume quickly when applying to new roles across any industry.</p>
+    </div>
+    <div class="cat-info-card">
+      <h3>Students &amp; Graduates</h3>
+      <p>Build a first resume that highlights education, internships and projects clearly.</p>
+    </div>
+    <div class="cat-info-card">
+      <h3>Career Changers</h3>
+      <p>Reframe existing experience with a template and summary suited to a new field.</p>
+    </div>
+    <div class="cat-info-card">
+      <h3>Freelancers &amp; Contractors</h3>
+      <p>Put together a client-facing resume alongside <a href="index.html#tools-section">business card</a> and invoice materials.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BUILD AN ATS-FRIENDLY RESUME -->
+<section class="cat-info-section" aria-label="How to build an ATS-friendly resume">
+  <h2>How to Build an ATS-Friendly Resume</h2>
+  <p>Many employers use Applicant Tracking Systems (ATS) to scan resumes before a human ever sees them. Keeping your resume simple, well-structured and keyword-relevant helps it pass those automated filters and reach a hiring manager. A few practical habits make a real difference:</p>
+  <ul class="cat-tips-list">
+    <li>Keep your resume to one or two pages.</li>
+    <li>Tailor it for each job application.</li>
+    <li>Use clear section headings.</li>
+    <li>Highlight measurable achievements.</li>
+    <li>Save as PDF before submitting.</li>
+  </ul>
+  <p style="margin-top:16px;">Start with the <a href="resume-builder.html">Resume Builder</a> to apply one of the built-in templates, then use the AI summary writer to tighten your professional summary. Once your resume is ready, explore our PDF tools in the <a href="index.html#tools-section">Tools section</a> to merge, compress or convert your final document, and check the <a href="blog-section.html">Blog</a> for in-depth guides on resume writing and job search strategy.</p>
+</section>
+
+
+
 <div class="back-row"><a href="index.html#categories-section">← Back to All Categories</a></div>
+
+<!-- REVIEWED BY -->
+<section class="reviewer-box" aria-label="Reviewer information">
+  <div class="reviewer-card">
+    <p><strong>Reviewed by Rashid Amin</strong><br>
+    Founder of NexaTools<br>
+    Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, resume creation, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free.<br>
+    <em>Last Updated: July 2026</em></p>
+  </div>
+</section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
