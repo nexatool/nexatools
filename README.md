@@ -1,4 +1,4 @@
-# Hi there, I'm NexaTool 👋
+# Hi there, I'm NexaTools 👋
 
 <div align="center">
 
@@ -10,12 +10,22 @@
 
 ## 🚀 About NexaTools
 
-> **Free AI-powered tools for students, freelancers & businesses no login needed.**
+NexaTools is a collection of free, browser-based tools built to help students, freelancers, and small businesses get everyday tasks done quickly — without needing to log in, sign up, or pay anything.
 
-🌐 **Website:** [nexatools.io](https://www.nexatools.io)  
-🛠️ **Tools:** Resume Builder · Invoice Generator · QR Code · Logo Maker · Business Card · Password Generator · Social Media Scheduler  
-🆓 **Price:** $0 Free Forever  
-📍 **Users:** Worldwide 🌍  
+The goal is simple: remove the friction of "create an account to use a basic tool." Every tool on NexaTools runs directly in your browser and is designed to be fast, clean, and easy to use on any device.
+
+🌐 **Website:** [nexatools.io](https://www.nexatools.io)
+🛠️ **Tools:** Resume Builder · Invoice Generator · QR Code · Logo Maker · Business Card · Password Generator · Social Media Scheduler
+🆓 **Price:** Free, no login required
+
+---
+
+## 🗂️ Categories
+
+- **📄 Documents & Business** — Resume Builder, Invoice Generator, Business Card Maker
+- **🎨 Design & Branding** — Logo Maker
+- **🔐 Utilities & Security** — Password Generator, QR Code Generator
+- **📅 Productivity & Social** — Social Media Scheduler
 
 ---
 
@@ -53,17 +63,30 @@
 </div>
 
 ---
+---
 
-## ✨ Why NexaTools?
+## 👤 Founder
 
-```
-✅ 100% Free No hidden charges
-✅ No Login  No signup required  
-✅ No Watermark Clean exports
-✅ AI-Powered Smart writing assistance
-✅ Privacy First Data never leaves your browser
-✅ Works Worldwide Students, freelancers & businesses
-```
+**Rashid Amin** — Founder & Developer of NexaTools
+
+NexaTools was created to make useful everyday tools accessible to everyone, without the barriers of logins, subscriptions, or paywalls.
+
+[![Website](https://img.shields.io/badge/Website-nexatools.io-00e5ff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.nexatools.io)
+[![Contact](https://img.shields.io/badge/Contact-Us-a78bfa?style=for-the-badge&logo=gmail&logoColor=white)](https://www.nexatools.io/contact.html)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Whether it's fixing a bug, improving a tool, or suggesting a new feature, here's how to get started:
+
+1. **Fork** this repository
+2. **Create a branch** for your change (`git checkout -b feature/your-feature`)
+3. **Make your changes** and test them locally
+4. **Commit** with a clear message describing what you changed
+5. **Open a Pull Request** describing your change and why it helps
+
+If you find a bug or have an idea for a new tool, feel free to [open an issue](https://www.nexatools.io/contact.html) or reach out directly.
 
 ---
 
@@ -81,3 +104,7 @@
 Made with ❤️ for everyone, worldwide 🌍
 
 </div>
+
+## ✨ Why NexaTools?
+
+NexaTools is built around a few simple principles:
