@@ -17,6 +17,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.nexatools.io/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Developer Tools",
+      "item": "https://www.nexatools.io/developer-tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Base64 Encoder",
+      "item": "https://www.nexatools.io/base64-encoder.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Base64 Encoder & Decoder",
+  "url": "https://www.nexatools.io/base64-encoder.html",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Encode text to Base64 or decode Base64 back to text, plus convert files to Base64, instantly in your browser.",
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "Rashid Amin",
+    "jobTitle": "Founder, NexaTools"
+  }
+}
+</script>
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -109,14 +156,17 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <a href="developer-tools.html">Developer Tools</a>
-  <span>›</span>
-  <span style="color:#0f172a;">Base64 Encoder</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li><a href="developer-tools.html">Developer Tools</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:#0f172a;" aria-current="page">Base64 Encoder</li>
+  </ol>
+</nav>
 
+<main>
 <!-- TOOL HERO -->
 <div class="tool-page-hero">
   <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🔤</div>
@@ -127,6 +177,10 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <span class="feature-pill">⚡ Instant Results</span>
     <span class="feature-pill">🆓 Always Free</span>
   </div>
+  <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--text2);margin-top:-8px;">
+    <span>✅ Reviewed by <a href="about.html" style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </p>
 </div>
 
 <!-- TOOL SECTION -->
@@ -202,6 +256,31 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>Always free.</strong> No signup, no usage limits.</p></div>
   </div>
 
+  <h3>Who Should Use This Tool</h3>
+  <p>This Base64 encoder/decoder is built for anyone who needs to convert between plain text/files and Base64. That includes:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🧑‍💻</span><p><strong>Developers</strong> preparing data URIs, authentication headers, or API payloads that require Base64 encoding.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📁</span><p><strong>Anyone embedding a file</strong> like an image or icon directly into HTML or CSS as a data URI.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Students and hobbyists</strong> learning how Base64 encoding turns binary data into text-safe characters.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🛠️</span><p><strong>Anyone without dev tools installed</strong> who needs to encode or decode text without opening a terminal.</p></div>
+  </div>
+
+  <h3>Common Use Cases</h3>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🔗</span><p><strong>Building data URIs.</strong> Convert an image or small file to Base64 to embed it directly in HTML or CSS.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔑</span><p><strong>Preparing auth headers.</strong> Encode credentials or tokens into the Base64 format some APIs require.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔍</span><p><strong>Reading encoded values.</strong> Decode a Base64 string from a payload or config file to see its actual content.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Learning and teaching.</strong> Encode and decode simple examples to see how Base64 represents data.</p></div>
+  </div>
+
+  <h3>Common Problems &amp; Troubleshooting</h3>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>"Invalid Base64" error when decoding.</strong> Make sure you're using the Decode button on an actual Base64 string, not on plain text meant for encoding.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>Copy button doesn't seem to work.</strong> Some browsers block clipboard access until you interact with the page first; click anywhere on the page, then try Copy Result again.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The Swap button did nothing.</strong> Swap only moves the current result back into the input box generate a result first by clicking Encode or Decode.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>My uploaded file doesn't show a result.</strong> Very large files can take a moment to process since everything runs in your browser; wait briefly or try a smaller file.</p></div>
+  </div>
+
   <h3>Frequently Asked Questions</h3>
   <div class="faq-list-tool">
     <div class="faq-item-tool">
@@ -224,7 +303,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
   <div class="page-cta-box">
     <h2>Encode or Decode Base64 in Seconds</h2>
-    <p>Paste your text or drop a file — copy the result instantly.</p>
+    <p>Paste your text or drop a file copy the result instantly.</p>
     <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
   </div>
 
@@ -236,6 +315,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <a href="uuid-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🆔</span><span class="rt-name">UUID Generator</span><span class="rt-desc">Generate v4 UUIDs in bulk</span></a>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -303,7 +383,7 @@ function b64Decode() {
     document.getElementById('b64-output').textContent = decoded;
     document.getElementById('b64-output-wrap').style.display = 'block';
   } catch (e) {
-    b64ShowError("Invalid Base64 input — couldn't decode it.");
+    b64ShowError("Invalid Base64 input  couldn't decode it.");
   }
 }
 
