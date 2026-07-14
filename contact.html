@@ -38,6 +38,16 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexatools.io/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://www.nexatools.io/contact.html" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
@@ -314,6 +324,10 @@
     .contact-form-wrap, .faq-box { padding: 24px; }
     .cta-bottom { padding: 32px 20px; }
   }
+
+  /* ── Reviewer Box ── */
+  .reviewer-card{background:#ffffff;border:1px solid rgba(0,0,0,0.09);border-radius:18px;padding:22px 24px;font-size:0.88rem;color:#475569;line-height:1.7;margin-bottom:28px;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+  .reviewer-card strong{color:#0f172a;}
 </style>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
@@ -362,11 +376,13 @@
   </div>
 </nav>
 
+<main>
+
 <!-- HERO -->
 <div class="page-hero">
   <div class="hero-badge" style="margin-bottom:24px;display:inline-flex;"><span class="badge-dot"></span>We'd Love to Hear From You</div>
   <h1>Get in <span class="title-gradient">Touch With Us</span></h1>
-  <p>Have a question, found a bug, or want to share feedback? Our support team typically responds within 24 to 48 hours.</p>
+  <p>Whether you have a technical issue, found a bug, want to suggest a new tool, have a business inquiry, or just want to share feedback, reach out below. Our support team typically responds within 24 to 48 hours.</p>
 </div>
 
 <div class="contact-content">
@@ -407,16 +423,16 @@
       <h2>📬 Send Us a Message</h2>
       <div class="form-row">
         <div class="form-group-cf">
-          <label class="form-label-cf">Your Name</label>
+          <label class="form-label-cf" for="cf-name">Your Name</label>
           <input id="cf-name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name">
         </div>
         <div class="form-group-cf">
-          <label class="form-label-cf">Email Address</label>
+          <label class="form-label-cf" for="cf-email">Email Address</label>
           <input id="cf-email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email">
         </div>
       </div>
       <div class="form-group-cf">
-        <label class="form-label-cf">Subject</label>
+        <label class="form-label-cf" for="cf-subject">Subject</label>
         <select id="cf-subject" class="form-input-cf">
           <option value="">Select a topic...</option>
           <option value="general">General Question</option>
@@ -427,7 +443,7 @@
         </select>
       </div>
       <div class="form-group-cf">
-        <label class="form-label-cf">Message</label>
+        <label class="form-label-cf" for="cf-message">Message</label>
         <textarea id="cf-message" class="form-input-cf" placeholder="Tell us how we can help you..."></textarea>
       </div>
       <button class="submit-btn" id="submit-btn" onclick="submitForm()">
@@ -443,7 +459,7 @@
   </div>
 
   <!-- FAQ -->
-  <div class="faq-box">
+  <div class="faq-box" aria-label="Frequently asked questions">
     <h2> Frequently Asked Questions</h2>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
@@ -475,6 +491,14 @@
     </div>
   </div>
 
+  <!-- REVIEWED BY -->
+  <div class="reviewer-card">
+    <p><strong>Reviewed by Rashid Amin</strong><br>
+    Founder of NexaTools<br>
+    Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, resume creation, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free.<br>
+    <em>Last Updated: July 2026</em></p>
+  </div>
+
   <!-- CTA -->
   <div class="cta-bottom">
     <div class="cta-icon">🚀</div>
@@ -484,6 +508,8 @@
   </div>
 
 </div>
+
+</main>
 
 <footer>
   <div class="footer-logo">
@@ -504,7 +530,7 @@
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="terms.html">Terms &amp; Conditions</a>
   </div>
-  <p class="footer-copy">© 2026 NexaTools.io — Free AI Tools for Everyone, Worldwide 🌍</p>
+  <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍</p>
 </footer>
 
 <script src="script.js"></script>
