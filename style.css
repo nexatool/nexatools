@@ -828,6 +828,18 @@ footer { text-align:center; padding:60px 32px 40px; border-top:1px solid rgba(0,
   .style-grid { grid-template-columns:1fr; }
   .qr-use-card,.student-tool { grid-template-columns:1fr; }
   .blog-cta-box { padding:32px 20px; }
+
+  /* Prevent narrow-viewport overflow: keep header labels in step with the
+     input rows below them (item-row-inp already collapses to 1fr 1fr) */
+  .items-header { grid-template-columns:1fr 1fr; gap:8px; }
+
+  /* Fixed 2-column grids that don't otherwise adapt for phones */
+  .benefits-list { grid-template-columns:1fr; }
+
+  /* Contain wide tables/images so they scroll within their own box
+     instead of pushing out the page */
+  #invoice-out { overflow-x:auto; }
+  img, svg, video, canvas, iframe { max-width:100%; height:auto; }
 }
 
 @media (max-width: 640px) {
@@ -856,18 +868,25 @@ footer { text-align:center; padding:60px 32px 40px; border-top:1px solid rgba(0,
 .blog-body a.btn-primary span { color: #ffffff !important; }
 /* ===== HERO TITLE FIX ===== */
 /* ===== NAVBAR ===== */
-nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
-nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
-.nav-inner { max-width:1400px; margin:0 auto; height:64px !important; display:flex; align-items:center; justify-content:flex-start !important; padding:0 24px !important; }
-.nav-logo { color:#0f172a !important; font-size:1.3rem !important; }
-.nav-logo em { color:#2563eb !important; }
-.logo-icon { background:rgba(37,99,235,0.08) !important; border-color:rgba(37,99,235,0.2) !important; }
-.nav-links { display:flex; gap:130px !important; margin-left:70px !important; }
-.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
-.nav-link:hover { color:#2563eb !important; background:transparent !important; }
-.btn-nav-ghost { border-color:rgba(0,0,0,0.15) !important; color:#475569 !important; padding:8px 18px !important; font-size:1.00rem !important; font-weight:700 !important; white-space:nowrap !important; }
-.btn-nav-pro { background:linear-gradient(135deg,#2563eb,#7c3aed) !important; color:#fff !important; padding:10px 22px !important; font-size:1.00rem !important; font-weight:700 !important; border-radius:11px !important; white-space:nowrap !important; }
-.nav-right { display:flex; align-items:center; gap:10px; margin-left:auto !important; }
+/* Scoped to desktop (min-width:769px) so these overrides can never re-show
+   the desktop nav links / ghost button on mobile, which was forcing a fixed,
+   viewport-wide horizontal overflow (nav is position:fixed, so body's
+   overflow-x:hidden could not clip it). Desktop styling below is unchanged. */
+@media (min-width: 769px) {
+  nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
+  nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
+  .nav-inner { max-width:1400px; margin:0 auto; height:64px !important; display:flex; align-items:center; justify-content:flex-start !important; padding:0 24px !important; }
+  .nav-logo { color:#0f172a !important; font-size:1.3rem !important; }
+  .nav-logo em { color:#2563eb !important; }
+  .logo-icon { background:rgba(37,99,235,0.08) !important; border-color:rgba(37,99,235,0.2) !important; }
+  .nav-links { display:flex; gap:130px !important; margin-left:70px !important; }
+  .nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
+  .nav-link:hover { color:#2563eb !important; background:transparent !important; }
+  .btn-nav-ghost { border-color:rgba(0,0,0,0.15) !important; color:#475569 !important; padding:8px 18px !important; font-size:1.00rem !important; font-weight:700 !important; white-space:nowrap !important; }
+  .btn-nav-pro { background:linear-gradient(135deg,#2563eb,#7c3aed) !important; color:#fff !important; padding:10px 22px !important; font-size:1.00rem !important; font-weight:700 !important; border-radius:11px !important; white-space:nowrap !important; }
+  .nav-right { display:flex; align-items:center; gap:10px; margin-left:auto !important; }
+}
+/* These are cosmetic-only and safe at every width */
 .mobile-nav { background:rgba(255,255,255,0.98) !important; border-top-color:rgba(0,0,0,0.08) !important; }
 .mobile-nav a { color:#475569 !important; }
 .nav-mobile-toggle span { background:#475569 !important; }
