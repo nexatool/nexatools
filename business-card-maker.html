@@ -23,6 +23,7 @@
 <meta name="twitter:title" content="Free Business Card Maker Online  NexaTools.io">
 <meta name="twitter:description" content="Free business card maker. Design & download PNG instantly. No signup. No watermark.">
 <meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.nexatools.io/index.html#tools"},{"@type":"ListItem","position":3,"name":"Business Card Maker","item":"https://www.nexatools.io/business-card-maker.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free Business Card Maker NexaTools.io","url":"https://www.nexatools.io/business-card-maker.html","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600;700&family=Raleway:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&family=Nunito:wght@300;400;700&family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -216,12 +217,17 @@
 </nav>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a><span>›</span>
-  <a href="index.html#tools">Tools</a><span>›</span>
-  <span style="color:var(--text);">Business Card Maker</span>
-</div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li><a href="index.html#tools">Tools</a></li>
+    <li aria-hidden="true">›</li>
+    <li style="color:var(--text);" aria-current="page">Business Card Maker</li>
+  </ol>
+</nav>
 
+<main>
 <!-- HERO -->
 <div class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
@@ -238,6 +244,10 @@
     <span class="feature-pill">💾 PNG + PDF</span>
     <span class="feature-pill">🚫 No Watermark</span>
   </div>
+  <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--muted2);margin-top:8px;">
+    <span>✅ Reviewed by <a href="about.html" title="Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free, helping users complete everyday tasks without unnecessary uploads or signups." style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </p>
 </div>
 
 <!-- AD TOP -->
@@ -399,7 +409,7 @@
           <button class="side-tab-btn active" id="tab-front" onclick="switchTab('front')">🃏 Front Side</button>
           <button class="side-tab-btn" id="tab-back" onclick="switchTab('back')">🔄 Back Side</button>
         </div>
-        <div class="bc-preview-label" id="preview-label">📋 Front — Live Preview</div>
+        <div class="bc-preview-label" id="preview-label">📋 Front Live Preview</div>
         <div class="preview-toggle-row">
           <button class="preview-toggle-btn active" onclick="setBgPreview('checker',this)">⬜ Checker</button>
           <button class="preview-toggle-btn" onclick="setBgPreview('dark',this)">🌑 Dark BG</button>
@@ -455,6 +465,36 @@
   </div>
 </div>
 
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🧑‍💼</span><p><strong>Freelancers and consultants</strong> who need a professional card to hand out at meetings or events without hiring a designer.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🏪</span><p><strong>Small business owners</strong> who want a card that matches their logo and branding.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🚀</span><p><strong>Startups and solo founders</strong> who need a first business card before investing in a full design service.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎨</span><p><strong>Anyone who wants a QR code on their card</strong> so contacts can scan straight to a website or WhatsApp chat.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🤝</span><p><strong>Networking events and meetings.</strong> Design a card in minutes before a conference or client meeting.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🔄</span><p><strong>Two-sided cards.</strong> Use the front for contact details and the back for services, a tagline, or social links.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📱</span><p><strong>Scannable contact cards.</strong> Add a QR code linking to your website or WhatsApp so people can connect with one scan.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🖨️</span><p><strong>Print-ready exports.</strong> Download a high-resolution or transparent PNG when sending the design to a print shop.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The QR code isn't appearing.</strong> Make sure you've entered a URL or WhatsApp number in the QR Code field it only generates once that field has a value.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The back side looks empty.</strong> Switch to the Back tab and add a headline, service lines, or footer text the back side is blank until you fill it in.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The downloaded PNG looks blurry when printed.</strong> Use the High-Res (Print) download option instead of the standard PNG for sharper print quality.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>My saved design is gone.</strong> The Save to Browser feature uses your browser's local storage, so it won't carry over to a different browser or device, or if site data is cleared.</p></div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <div class="seo-section">
   <h2>Frequently Asked Questions</h2>
@@ -487,6 +527,7 @@
     <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="padding:14px 36px;font-size:1rem;">⬆️ Design My Business Card Free</button>
   </div>
 </div>
+</main>
 
 <!-- AD BOTTOM -->
 <div class="ad-slot" style="max-width:1100px;margin:0 auto;padding:0 32px 40px;">
@@ -523,7 +564,7 @@ window.addEventListener('scroll',()=>document.getElementById('navbar').classList
 function toggleToolFaq(btn){const a=btn.nextElementSibling,o=btn.classList.contains('open');document.querySelectorAll('.faq-q-tool').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open')});if(!o){btn.classList.add('open');a.classList.add('open')}}
 
 // ═══════════════════════════════════════════════
-//  BUSINESS CARD ENGINE — ALL PHASES
+//  BUSINESS CARD ENGINE ALL PHASES
 // ═══════════════════════════════════════════════
 
 let logoImg = null;
@@ -931,7 +972,7 @@ function downloadTransparent(){
   const canvas=document.getElementById('bc-canvas');
   const off=document.createElement('canvas');off.width=1050;off.height=600;
   const ctx=off.getContext('2d');
-  // copy current render then blank bg pixels — simplest: just re-draw without bg
+  // copy current render then blank bg pixels  simplest: just re-draw without bg
   renderFrontOnCanvas(off,true);
   const link=document.createElement('a');
   const n=(getVal('bc-name').replace(/\s+/g,'-').toLowerCase()||'business-card');
@@ -1033,7 +1074,7 @@ function showMsg(id,txt){
 }
 
 // ════════════════════════════════
-//  PHASE 3 — AI / SMART FEATURES
+//  PHASE 3  AI / SMART FEATURES
 // ════════════════════════════════
 
 // Industry presets
@@ -1055,7 +1096,7 @@ function applyIndustry(key,btn){
   renderBoth();
 }
 
-// AI Tagline (local smart generation — no API needed)
+// AI Tagline (local smart generation  no API needed)
 const TAGLINE_DB={
   'web designer':["Pixels with purpose.","Designing digital experiences.","Your vision, beautifully built."],
   'developer':["Code that creates impact.","Building the future, line by line.","Clean code. Powerful results."],
