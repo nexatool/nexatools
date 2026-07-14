@@ -6,11 +6,9 @@
 
 </div>
 
----
-
 ## 🚀 About NexaTools
 
-NexaTools is a collection of free, browser-based tools built to help students, freelancers, and small businesses get everyday tasks done quickly — without needing to log in, sign up, or pay anything.
+NexaTools is a collection of free, browser-based tools built to help students, freelancers, and small businesses get everyday tasks done quickly  without needing to log in, sign up, or pay anything.
 
 The goal is simple: remove the friction of "create an account to use a basic tool." Every tool on NexaTools runs directly in your browser and is designed to be fast, clean, and easy to use on any device.
 
@@ -18,7 +16,6 @@ The goal is simple: remove the friction of "create an account to use a basic too
 🛠️ **Tools:** Resume Builder · Invoice Generator · QR Code · Logo Maker · Business Card · Password Generator · Social Media Scheduler
 🆓 **Price:** Free, no login required
 
----
 
 ## 🗂️ Categories
 
@@ -41,16 +38,12 @@ The goal is simple: remove the friction of "create an account to use a basic too
 | 🔐 **Password Generator** | Strong · bulk generate · copy instantly | [Try Now](https://www.nexatools.io/password-generator.html) |
 | 📅 **Social Media Scheduler** | Instagram · Facebook · LinkedIn · Twitter | [Try Now](https://www.nexatools.io/scheduler.html) |
 
----
-
 ## 💻 Tech Stack
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-
----
 
 ## 📊 Repo Stats
 
@@ -62,19 +55,15 @@ The goal is simple: remove the friction of "create an account to use a basic too
 
 </div>
 
----
----
 
 ## 👤 Founder
 
-**Rashid Amin** — Founder & Developer of NexaTools
+**Rashid Amin**  Founder & Developer of NexaTools
 
 NexaTools was created to make useful everyday tools accessible to everyone, without the barriers of logins, subscriptions, or paywalls.
 
 [![Website](https://img.shields.io/badge/Website-nexatools.io-00e5ff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.nexatools.io)
 [![Contact](https://img.shields.io/badge/Contact-Us-a78bfa?style=for-the-badge&logo=gmail&logoColor=white)](https://www.nexatools.io/contact.html)
-
----
 
 ## 🤝 Contributing
 
@@ -88,14 +77,11 @@ Contributions are welcome! Whether it's fixing a bug, improving a tool, or sugge
 
 If you find a bug or have an idea for a new tool, feel free to [open an issue](https://www.nexatools.io/contact.html) or reach out directly.
 
----
-
 ## 📬 Connect
 
 [![Website](https://img.shields.io/badge/Website-nexatools.io-00e5ff?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.nexatools.io)
 [![Contact](https://img.shields.io/badge/Contact-Us-a78bfa?style=for-the-badge&logo=gmail&logoColor=white)](https://www.nexatools.io/contact.html)
 
----
 
 <div align="center">
 
