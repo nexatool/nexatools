@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.nexatools.io/index.html"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.nexatools.io/index.html#tools-section"},{"@type":"ListItem","position":3,"name":"QR Code Generator","item":"https://www.nexatools.io/qr-code-generator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free QR Code Generator  NexaTools.io","url":"https://www.nexatools.io/qr-code-generator.html","description":"Generate free QR codes online for URLs, WiFi, UPI, JazzCash, EasyPaisa, PayPal, WhatsApp, Instagram and more.","applicationCategory":"UtilitiesApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NexaTools.io","url":"https://www.nexatools.io"}}
+</script>
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -512,14 +518,16 @@ footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-alig
 </div>
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="index.html">Home</a>
-  <span>›</span>
-  <a href="index.html#tools-section">Tools</a>
-  <span>›</span>
-  <span>QR Code Generator</span>
-</div>
-
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-hidden="true">›</li>
+    <li><a href="index.html#tools-section">Tools</a></li>
+    <li aria-hidden="true">›</li>
+    <li aria-current="page">QR Code Generator</li>
+  </ol>
+</nav>
+<main>
 <!-- HERO -->
 <div class="tool-page-hero">
   <div class="hero-badge" style="margin-bottom:20px;display:inline-flex;">
@@ -537,6 +545,10 @@ footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-alig
     <span class="feature-pill">🔒 No Login</span>
     <span class="feature-pill">🌍 PK · IN · Worldwide</span>
   </div>
+  <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--text2);margin-top:8px;">
+    <span>✅ Reviewed by <a href="about.html" style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
+    <span>🕒 Last Updated: July 2026</span>
+  </p>
 </div>
 <!-- TOOL -->
 <div class="tool-section">
@@ -728,7 +740,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-alig
 </div>
 
 <div class="seo-section">
-  <h2>How to Create a Free QR Code — Step by Step</h2>
+  <h2>How to Create a Free QR Code Step by Step</h2>
   <p>Generating a QR code with NexaTools takes less than 30 seconds. No account, no payment, no watermark.</p>
   <div class="steps-grid">
     <div class="step-card"><div class="step-num">1</div><h4>Choose QR Type</h4><p>Select URL, Payment, Social, WiFi, or other types from the tabs.</p></div>
@@ -792,8 +804,39 @@ footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-alig
     </div>
     <div class="faq-item-tool">
       <button class="faq-q-tool" onclick="toggleFaq(this)">Do the QR codes expire? <span class="faq-arrow-tool">▾</span></button>
-      <div class="faq-a-tool">No. QR codes from NexaTools never expire. The QR contains your data directly — no server or tracking link. It works forever as long as the destination remains active.</div>
+      <div class="faq-a-tool">No. QR codes from NexaTools never expire. The QR contains your data directly no server or tracking link. It works forever as long as the destination remains active.</div>
     </div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Who Should Use This Tool</h2>
+  <p>This QR code generator is built for anyone who needs a fast, no-cost way to turn a link, number, or payment ID into a scannable code. That includes:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🏪</span><p><strong>Small business owners</strong> who want a payment or WhatsApp QR code for a shop counter, receipt, or flyer.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🧑‍💻</span><p><strong>Freelancers and marketers</strong> adding QR codes to business cards, packaging, or social campaigns.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🍽️</span><p><strong>Restaurants and cafés</strong> creating a digital menu QR code for tables.</p></div>
+    <div class="benefit-item"><span class="bi-icon">👤</span><p><strong>Anyone</strong> who needs a one-off QR code for WiFi sharing, a phone number, or a quick link.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Common Use Cases</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">💳</span><p><strong>In-person payments.</strong> Generate a UPI, JazzCash, EasyPaisa, or PayPal QR code so customers can pay without cash.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📶</span><p><strong>Guest WiFi access.</strong> Create a WiFi QR code so visitors connect instantly without typing a password.</p></div>
+    <div class="benefit-item"><span class="bi-icon">💬</span><p><strong>Direct messaging.</strong> Generate a WhatsApp QR code so customers can start a chat with one scan.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📲</span><p><strong>Social media growth.</strong> Add an Instagram, Facebook, or YouTube QR code to packaging or signage to grow followers offline.</p></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Common Problems &amp; Troubleshooting</h2>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The QR code won't scan.</strong> Make sure there's enough contrast between the foreground and background colors, and avoid making the code too small when printing.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>A payment QR code isn't working.</strong> Double-check the mobile number or UPI ID was entered correctly and matches the format shown in the placeholder text.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The WiFi QR code doesn't connect devices.</strong> Confirm the network name and password were typed exactly as they appear on the router, including capitalization.</p></div>
+    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The downloaded PNG looks blurry when printed.</strong> Generate the code at a larger size before downloading so it stays sharp at print resolution.</p></div>
   </div>
 </div>
 
@@ -813,6 +856,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 24px 26px; text-alig
     <button class="btn btn-cyan" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ Create QR Code Free Now</button>
   </div>
 </div>
+</main>
 
 <!-- FOOTER -->
 <footer>
