@@ -48,7 +48,7 @@
   "mainEntity": [
     {"@type":"Question","name":"Is this PDF to Word converter really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. NexaTools PDF to Word Converter is 100% free, with no credit card, signup, or hidden charges, and no limit on how many files you convert."}},
     {"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs entirely inside your browser using JavaScript. Your file is never uploaded or stored anywhere."}},
-    {"@type":"Question","name":"Will the formatting of my PDF be preserved exactly?","acceptedAnswer":{"@type":"Answer","text":"The converter extracts the text and paragraph structure from your PDF into an editable DOCX. Complex layouts, images, multi-column pages, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs."}},
+    {"@type":"Question","name":"Will the formatting of my PDF be preserved exactly?","acceptedAnswer":{"@type":"Answer","text":"The converter extracts text, headings, bold/italic styling, spacing, basic tables, and inferred text color into an editable DOCX. Complex layouts, embedded images, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs."}},
     {"@type":"Question","name":"Can I convert scanned PDFs?","acceptedAnswer":{"@type":"Answer","text":"Scanned PDFs are images of text rather than real text, so this tool cannot extract text from them. It works best with PDFs that were created digitally, such as exports from Word, Google Docs, or a website."}},
     {"@type":"Question","name":"What file format do I get?","acceptedAnswer":{"@type":"Answer","text":"You get a standard .docx file that opens directly in Microsoft Word, Google Docs, and LibreOffice Writer."}},
     {"@type":"Question","name":"Why did my conversion say no text was found?","acceptedAnswer":{"@type":"Answer","text":"This usually means the PDF is a scanned image or a password-protected file with no extractable text layer. Try a digitally created PDF, or run the file through OCR software first."}}
@@ -330,7 +330,7 @@
 
     <div class="limitation-note">
       <span class="ln-icon" aria-hidden="true">ℹ️</span>
-      <span>This tool extracts real text and paragraph structure from digitally created PDFs into an editable .docx file. Scanned PDFs (photos of pages), password-protected files, complex multi-column layouts, tables, and embedded images are not fully supported the extracted text will still be editable, but exact visual formatting from the original PDF may not carry over.</span>
+      <span>This tool extracts text, headings, basic bold/italic styling, and approximate paragraph spacing from digitally created PDFs into an editable .docx file. Text color is inferred where possible but not guaranteed to be pixel-accurate. Simple multi-column layouts are converted into basic Word tables. Scanned PDFs (photos of pages), password-protected files, embedded images, and mathematical equations rendered as symbol-font glyphs (rather than real Unicode text) are not supported those require OCR or full page rendering, which this browser-only, upload-free tool intentionally does not do.</span>
     </div>
   </section>
 </main>
@@ -454,7 +454,7 @@
     </div>
     <div class="faq-item-tool">
       <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Will the formatting of my PDF be preserved exactly? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
-      <div class="faq-a-tool">The converter extracts the text and paragraph structure from your PDF into an editable DOCX. Complex layouts, images, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs.</div>
+      <div class="faq-a-tool">The converter extracts text, headings, bold/italic styling, spacing, basic tables, and inferred text color into an editable DOCX. Complex layouts, embedded images, and precise page design may not carry over perfectly, especially for scanned or heavily designed PDFs.</div>
     </div>
     <div class="faq-item-tool">
       <button class="faq-q-tool" onclick="toggleToolFaq(this)" aria-expanded="false">Can I convert scanned PDFs? <span class="faq-arrow-tool" aria-hidden="true">▾</span></button>
@@ -509,7 +509,7 @@
       This page's tool description, limitations, and FAQs were checked against how the converter actually behaves before publishing.
     </div>
   </div>
-  <p class="page-updated">Last updated: July 13, 2026</p>
+  <p class="page-updated">Last updated: July 16, 2026</p>
 </section>
 
 <!-- ===== CTA BOX ===== -->
@@ -558,7 +558,7 @@ if (window['pdfjsLib']) {
 }
 </script>
 
-<!-- ===== PDF TO WORD SCRIPTS ===== -->
+<!-- ===== PDF TO WORD SCRIPTS (IMPROVED: styled DOCX output) ===== -->
 <script>
 var selectedFile = null;
 var docxBlob = null;
@@ -657,146 +657,245 @@ function setProgress(pct, label) {
   if (label) progressText.textContent = label;
 }
 
-convertBtn.addEventListener('click', function() {
-  if (!selectedFile) return;
-  if (!window['pdfjsLib']) { showError('PDF engine failed to load. Check your connection and try again.'); return; }
-  errorBox.classList.remove('active');
-  resultBox.classList.remove('active');
-  convertBtn.disabled = true;
-  setProgress(5, 'Reading PDF…');
+/* ---- Extraction: pull styled lines/paragraphs/tables per page ---- */
+function extractPageModel(page) {
+  return page.getOperatorList().then(function(opList) {
+    var OPS = pdfjsLib.OPS;
+    var colorSeq = [];
+    var currentColor = null; // [r,g,b] 0-255, best-effort only
 
-  var reader = new FileReader();
-  reader.onload = function() {
-    var typedArray = new Uint8Array(this.result);
-    pdfjsLib.getDocument({ data: typedArray }).promise.then(function(pdf) {
-      var numPages = pdf.numPages;
-      var pagesText = [];
-      var pageIndex = 1;
-
-      function processNextPage() {
-        if (pageIndex > numPages) {
-          finishConversion(pagesText);
-          return;
-        }
-        pdf.getPage(pageIndex).then(function(page) {
-          return page.getTextContent();
-        }).then(function(content) {
-          var lines = [];
-          var lastY = null;
-          var currentLine = [];
-          content.items.forEach(function(item) {
-            var y = item.transform[5];
-            if (lastY !== null && Math.abs(y - lastY) > 2) {
-              lines.push(currentLine.join(' ').trim());
-              currentLine = [];
-            }
-            currentLine.push(item.str);
-            lastY = y;
-          });
-          if (currentLine.length) lines.push(currentLine.join(' ').trim());
-          pagesText.push(lines.filter(function(l){ return l.length; }));
-
-          var pct = Math.round(10 + (pageIndex / numPages) * 70);
-          setProgress(pct, 'Extracting page ' + pageIndex + ' of ' + numPages + '…');
-          pageIndex++;
-          setTimeout(processNextPage, 0);
-        }).catch(function(err) {
-          showError('Could not read page ' + pageIndex + ': ' + err.message);
-          convertBtn.disabled = false;
-        });
+    for (var i = 0; i < opList.fnArray.length; i++) {
+      var fn = opList.fnArray[i], args = opList.argsArray[i];
+      if (fn === OPS.setFillRGBColor) {
+        currentColor = [args[0], args[1], args[2]];
+      } else if (fn === OPS.setFillGray) {
+        var g = Math.round(args[0] * 255);
+        currentColor = [g, g, g];
+      } else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) {
+        currentColor = null; // non-RGB colorspace, too unreliable to infer
+      } else if (fn === OPS.showText || fn === OPS.showSpacedText) {
+        colorSeq.push(currentColor);
       }
-      processNextPage();
-    }).catch(function(err) {
-      showError('This file could not be read as a PDF. It may be corrupted or password protected.');
-      convertBtn.disabled = false;
+    }
+
+    return page.getTextContent({ includeMarkedContent: false }).then(function(content) {
+      var colorIdx = 0;
+      var items = content.items.map(function(item) {
+        var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
+        var fontObj = null;
+        try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
+        var color = colorIdx < colorSeq.length ? colorSeq[colorIdx] : null;
+        colorIdx++;
+        return {
+          str: item.str,
+          x: item.transform[4],
+          y: item.transform[5],
+          w: item.width || 0,
+          fontSize: fontSize,
+          bold: !!(fontObj && fontObj.bold),
+          italic: !!(fontObj && fontObj.italic),
+          color: color
+        };
+      }).filter(function(i){ return i.str && i.str.length; });
+
+      return buildLinesAndParagraphs(items);
     });
-  };
-  reader.onerror = function() {
-    showError('Could not read the selected file.');
-    convertBtn.disabled = false;
-  };
-  reader.readAsArrayBuffer(selectedFile);
-});
-
-function finishConversion(pagesText) {
-  setProgress(85, 'Building Word document…');
-  var totalLines = 0;
-  pagesText.forEach(function(p){ totalLines += p.length; });
-
-  if (totalLines === 0) {
-    showError('No extractable text was found in this PDF. It may be a scanned document (an image of text), which this tool cannot convert. Try a digitally created PDF instead.');
-    progressWrap.classList.remove('active');
-    convertBtn.disabled = false;
-    return;
-  }
-
-  buildDocx(pagesText).then(function(blob) {
-    docxBlob = blob;
-    setProgress(100, 'Done!');
-    var outName = (selectedFile.name.replace(/\.pdf$/i, '') || 'document') + '.docx';
-    document.getElementById('result-name').textContent = outName;
-    document.getElementById('result-meta').textContent = pagesText.length + ' page' + (pagesText.length === 1 ? '' : 's') + ' converted • ' + formatSize(blob.size);
-    resultBox.classList.add('active');
-    convertBtn.disabled = false;
-    downloadBtn.onclick = function() {
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url; a.download = outName;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
-    };
-  }).catch(function(err) {
-    showError('Something went wrong while building the Word file. Please try again.');
-    progressWrap.classList.remove('active');
-    convertBtn.disabled = false;
   });
 }
 
-/* ---- Minimal DOCX (OOXML) builder no external zip library required ---- */
-function buildDocx(pagesText) {
+function buildLinesAndParagraphs(items) {
+  if (!items.length) return { blocks: [] };
+
+  items.sort(function(a,b){ return b.y - a.y || a.x - b.x; });
+  var lines = [];
+  var cur = [items[0]];
+  for (var i = 1; i < items.length; i++) {
+    if (Math.abs(items[i].y - cur[cur.length-1].y) > 2) {
+      lines.push(cur);
+      cur = [items[i]];
+    } else {
+      cur.push(items[i]);
+    }
+  }
+  lines.push(cur);
+  lines.forEach(function(l){ l.sort(function(a,b){ return a.x - b.x; }); });
+
+  var sizes = items.map(function(it){ return it.fontSize; }).sort(function(a,b){ return a-b; });
+  var bodySize = sizes[Math.floor(sizes.length/2)] || 10;
+
+  var GAP = bodySize * 2;
+  function splitCells(line) {
+    var cells = [[line[0]]];
+    for (var k = 1; k < line.length; k++) {
+      var lastCell = cells[cells.length-1];
+      var prevEndX = lastCell[lastCell.length-1].x + lastCell[lastCell.length-1].w;
+      if (line[k].x - prevEndX > GAP) cells.push([line[k]]);
+      else lastCell.push(line[k]);
+    }
+    return cells.map(function(c){ return c.map(function(t){ return t.str; }).join(' ').trim(); });
+  }
+
+  var lineMeta = lines.map(function(line) {
+    var cells = splitCells(line);
+    var avgSize = line.reduce(function(s,t){ return s+t.fontSize; }, 0) / line.length;
+    var bold = line.filter(function(t){ return t.bold; }).length > line.length/2;
+    var italic = line.filter(function(t){ return t.italic; }).length > line.length/2;
+    var color = line[0].color;
+    return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, runs: line };
+  });
+
+  var blocks = [];
+  var i2 = 0;
+  while (i2 < lineMeta.length) {
+    if (lineMeta[i2].isMulti && lineMeta[i2+1] && lineMeta[i2+1].isMulti) {
+      var rows = [];
+      while (i2 < lineMeta.length && lineMeta[i2].isMulti) {
+        rows.push(lineMeta[i2].cells);
+        i2++;
+      }
+      blocks.push({ type: 'table', rows: rows, y: rows.length ? undefined : undefined });
+    } else {
+      var lm = lineMeta[i2];
+      var style = 'Normal';
+      if (lm.fontSize >= bodySize * 1.5) style = 'Heading1';
+      else if (lm.fontSize >= bodySize * 1.25) style = 'Heading2';
+      else if (lm.fontSize >= bodySize * 1.1 && lm.bold) style = 'Heading3';
+
+      var spacingBefore = 0;
+      if (blocks.length) {
+        var prev = blocks[blocks.length-1];
+        if (prev.y !== undefined) {
+          var gap = prev.y - lm.y;
+          if (gap > lm.fontSize * 1.8) spacingBefore = 200;
+        }
+      }
+      blocks.push({
+        type: 'para', style: style, y: lm.y, spacingBefore: spacingBefore,
+        runs: lm.runs.map(function(r){
+          return { text: r.str, bold: r.bold, italic: r.italic, size: r.fontSize, color: r.color };
+        })
+      });
+      i2++;
+    }
+  }
+  return { blocks: blocks };
+}
+
+/* ---- DOCX assembly with real styling ---- */
+function rgbToHex(c) {
+  if (!c) return null;
+  function h(n){ n = Math.max(0, Math.min(255, Math.round(n))); var s = n.toString(16); return s.length===1?'0'+s:s; }
+  return h(c[0]) + h(c[1]) + h(c[2]);
+}
+
+function runXml(run) {
+  var rPr = '';
+  if (run.bold) rPr += '<w:b/>';
+  if (run.italic) rPr += '<w:i/>';
+  if (run.size) rPr += '<w:sz w:val="' + Math.round(run.size * 2) + '"/>';
+  var hex = rgbToHex(run.color);
+  if (hex && hex !== '000000') rPr += '<w:color w:val="' + hex + '"/>';
+  var rPrXml = rPr ? '<w:rPr>' + rPr + '</w:rPr>' : '';
+  return '<w:r>' + rPrXml + '<w:t xml:space="preserve">' + escXml(run.text) + '</w:t></w:r>';
+}
+
+function paraXml(block) {
+  var pPr = '';
+  if (block.style && block.style !== 'Normal') pPr += '<w:pStyle w:val="' + block.style + '"/>';
+  if (block.spacingBefore) pPr += '<w:spacing w:before="' + block.spacingBefore + '"/>';
+  var pPrXml = pPr ? '<w:pPr>' + pPr + '</w:pPr>' : '';
+  var runs = (block.runs || []).map(runXml).join('');
+  return '<w:p>' + pPrXml + runs + '</w:p>';
+}
+
+function tableXml(block) {
+  var colCount = 1;
+  block.rows.forEach(function(r){ if (r.length > colCount) colCount = r.length; });
+  var colWidth = Math.floor(9360 / colCount);
+  var gridCols = '';
+  for (var c = 0; c < colCount; c++) gridCols += '<w:gridCol w:w="' + colWidth + '"/>';
+  var rowsXml = block.rows.map(function(row) {
+    var cells = '';
+    for (var c2 = 0; c2 < colCount; c2++) {
+      var text = row[c2] || '';
+      cells += '<w:tc><w:tcPr><w:tcW w:w="' + colWidth + '" w:type="dxa"/></w:tcPr>' +
+               '<w:p><w:r><w:t xml:space="preserve">' + escXml(text) + '</w:t></w:r></w:p></w:tc>';
+    }
+    return '<w:tr>' + cells + '</w:tr>';
+  }).join('');
+  return '<w:tbl><w:tblPr><w:tblW w:w="9360" w:type="dxa"/>' +
+    '<w:tblBorders><w:top w:val="single" w:sz="4" w:color="AAAAAA"/><w:left w:val="single" w:sz="4" w:color="AAAAAA"/>' +
+    '<w:bottom w:val="single" w:sz="4" w:color="AAAAAA"/><w:right w:val="single" w:sz="4" w:color="AAAAAA"/>' +
+    '<w:insideH w:val="single" w:sz="4" w:color="AAAAAA"/><w:insideV w:val="single" w:sz="4" w:color="AAAAAA"/></w:tblBorders>' +
+    '</w:tblPr><w:tblGrid>' + gridCols + '</w:tblGrid>' + rowsXml + '</w:tbl>';
+}
+
+function buildDocx(pageModels) {
   return new Promise(function(resolve) {
     var bodyXml = '';
-    pagesText.forEach(function(lines, pIdx) {
-      if (lines.length === 0) {
+    pageModels.forEach(function(model, pIdx) {
+      if (!model.blocks.length) {
         bodyXml += '<w:p/>';
       } else {
-        lines.forEach(function(line) {
-          bodyXml += '<w:p><w:r><w:t xml:space="preserve">' + escXml(line) + '</w:t></w:r></w:p>';
+        model.blocks.forEach(function(b) {
+          bodyXml += b.type === 'table' ? tableXml(b) : paraXml(b);
         });
       }
-      if (pIdx < pagesText.length - 1) {
+      if (pIdx < pageModels.length - 1) {
         bodyXml += '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
       }
     });
 
     var documentXml =
-'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-'<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
-'<w:body>' + bodyXml +
-'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>' +
-'</w:body></w:document>';
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:body>' + bodyXml +
+      '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>' +
+      '</w:body></w:document>';
+
+    var stylesXml =
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/>' +
+        '<w:pPr><w:spacing w:before="240" w:after="120"/><w:outlineLvl w:val="0"/></w:pPr>' +
+        '<w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/>' +
+        '<w:pPr><w:spacing w:before="200" w:after="100"/><w:outlineLvl w:val="1"/></w:pPr>' +
+        '<w:rPr><w:b/><w:sz w:val="28"/></w:rPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="Heading3"><w:name w:val="heading 3"/><w:basedOn w:val="Normal"/>' +
+        '<w:pPr><w:spacing w:before="160" w:after="80"/><w:outlineLvl w:val="2"/></w:pPr>' +
+        '<w:rPr><w:b/><w:sz w:val="24"/></w:rPr></w:style>' +
+      '</w:styles>';
 
     var contentTypesXml =
-'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
-'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
-'<Default Extension="xml" ContentType="application/xml"/>' +
-'<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
-'</Types>';
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+      '<Default Extension="xml" ContentType="application/xml"/>' +
+      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
+      '</Types>';
 
     var relsXml =
-'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
-'<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
-'</Relationships>';
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
+      '</Relationships>';
 
-    var files = {
+    var docRelsXml =
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
+      '</Relationships>';
+
+    resolve(zipStore({
       '[Content_Types].xml': contentTypesXml,
       '_rels/.rels': relsXml,
-      'word/document.xml': documentXml
-    };
-
-    resolve(zipStore(files));
+      'word/_rels/document.xml.rels': docRelsXml,
+      'word/document.xml': documentXml,
+      'word/styles.xml': stylesXml
+    }));
   });
 }
 
@@ -858,6 +957,89 @@ function zipStore(files) {
   ]);
 
   return new Blob([localData, centralData, end], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+}
+
+convertBtn.addEventListener('click', function() {
+  if (!selectedFile) return;
+  if (!window['pdfjsLib']) { showError('PDF engine failed to load. Check your connection and try again.'); return; }
+  errorBox.classList.remove('active');
+  resultBox.classList.remove('active');
+  convertBtn.disabled = true;
+  setProgress(5, 'Reading PDF…');
+
+  var reader = new FileReader();
+  reader.onload = function() {
+    var typedArray = new Uint8Array(this.result);
+    pdfjsLib.getDocument({ data: typedArray }).promise.then(function(pdf) {
+      var numPages = pdf.numPages;
+      var pageModels = [];
+      var pageIndex = 1;
+
+      function processNextPage() {
+        if (pageIndex > numPages) {
+          finishConversion(pageModels);
+          return;
+        }
+        pdf.getPage(pageIndex).then(extractPageModel).then(function(model) {
+          pageModels.push(model);
+          var pct = Math.round(10 + (pageIndex / numPages) * 70);
+          setProgress(pct, 'Extracting page ' + pageIndex + ' of ' + numPages + '…');
+          pageIndex++;
+          setTimeout(processNextPage, 0);
+        }).catch(function(err) {
+          showError('Could not read page ' + pageIndex + ': ' + err.message);
+          convertBtn.disabled = false;
+        });
+      }
+      processNextPage();
+    }).catch(function(err) {
+      showError('This file could not be read as a PDF. It may be corrupted or password protected.');
+      convertBtn.disabled = false;
+    });
+  };
+  reader.onerror = function() {
+    showError('Could not read the selected file.');
+    convertBtn.disabled = false;
+  };
+  reader.readAsArrayBuffer(selectedFile);
+});
+
+function finishConversion(pageModels) {
+  setProgress(85, 'Building Word document…');
+  var totalRuns = 0;
+  pageModels.forEach(function(m){
+    m.blocks.forEach(function(b){
+      totalRuns += b.type === 'table' ? b.rows.length : (b.runs ? b.runs.length : 0);
+    });
+  });
+
+  if (totalRuns === 0) {
+    showError('No extractable text was found in this PDF. It may be a scanned document (an image of text), which this tool cannot convert. Try a digitally created PDF instead.');
+    progressWrap.classList.remove('active');
+    convertBtn.disabled = false;
+    return;
+  }
+
+  buildDocx(pageModels).then(function(blob) {
+    docxBlob = blob;
+    setProgress(100, 'Done!');
+    var outName = (selectedFile.name.replace(/\.pdf$/i, '') || 'document') + '.docx';
+    document.getElementById('result-name').textContent = outName;
+    document.getElementById('result-meta').textContent = pageModels.length + ' page' + (pageModels.length === 1 ? '' : 's') + ' converted • ' + formatSize(blob.size);
+    resultBox.classList.add('active');
+    convertBtn.disabled = false;
+    downloadBtn.onclick = function() {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = outName;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+    };
+  }).catch(function(err) {
+    showError('Something went wrong while building the Word file. Please try again.');
+    progressWrap.classList.remove('active');
+    convertBtn.disabled = false;
+  });
 }
 
 /* ---- FAQ toggle (shared pattern) ---- */
