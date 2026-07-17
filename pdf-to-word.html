@@ -1012,7 +1012,14 @@ function buildLinesAndParagraphs(items, pageWidth) {
     }
     return runs;
   }
-
+// ---- list detection: bullet markers or numbered patterns at line start ----
+  function detectListInfo(cellText) {
+    var bulletMatch = /^[\u2022\u25CF\u25AA\-\*]\s+/.exec(cellText);
+    if (bulletMatch) return { isList: true, ordered: false, text: cellText.slice(bulletMatch[0].length) };
+    var numMatch = /^(\d{1,3}|[a-zA-Z])[\.\)]\s+/.exec(cellText);
+    if (numMatch) return { isList: true, ordered: true, text: cellText.slice(numMatch[0].length) };
+    return { isList: false, ordered: false, text: cellText };
+  }
   var tableRuns = detectTableRuns(lineMeta);
   var tableRunForLine = {};
   tableRuns.forEach(function(run){ for (var k = run.start; k < run.end; k++) tableRunForLine[k] = run; });
@@ -1080,6 +1087,10 @@ function paraXml(block) {
   if (block.align === 'center') pPr += '<w:jc w:val="center"/>';
   else if (block.align === 'right') pPr += '<w:jc w:val="right"/>';
   else if (block.align === 'justify') pPr += '<w:jc w:val="both"/>';
+  if (block.isList) {
+    var numId = block.ordered ? 2 : 1;
+    pPr += '<w:numPr><w:ilvl w:val="0"/><w:numId w:val="' + numId + '"/></w:numPr>';
+  }
   var pPrXml = pPr ? '<w:pPr>' + pPr + '</w:pPr>' : '';
   var runs = (block.runs || []).map(runXml).join('');
   return '<w:p>' + pPrXml + runs + '</w:p>';
@@ -1214,6 +1225,7 @@ function buildDocx(pageModels) {
       '<w:body>' + bodyXml + '</w:body></w:document>';
 
     var stylesXml =
+    
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/>' +
@@ -1228,7 +1240,23 @@ function buildDocx(pageModels) {
         '<w:pPr><w:spacing w:before="160" w:after="80"/><w:outlineLvl w:val="2"/></w:pPr>' +
         '<w:rPr><w:b/><w:sz w:val="24"/></w:rPr></w:style>' +
       '</w:styles>';
+      var hasList = false;
+        pageModels.forEach(function(m){
+      m.blocks.forEach(function(b){ if (b.isList) hasList = true; });
+    });
 
+    var numberingXml =
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:numbering xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:abstractNum w:abstractNumId="0">' +
+        '<w:lvl w:ilvl="0"><w:numFmt w:val="bullet"/><w:lvlText w:val="&#8226;"/><w:pPr><w:ind w:left="720" w:hanging="360"/></w:pPr></w:lvl>' +
+      '</w:abstractNum>' +
+      '<w:abstractNum w:abstractNumId="1">' +
+        '<w:lvl w:ilvl="0"><w:numFmt w:val="decimal"/><w:lvlText w:val="%1."/><w:pPr><w:ind w:left="720" w:hanging="360"/></w:pPr></w:lvl>' +
+      '</w:abstractNum>' +
+      '<w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>' +
+      '<w:num w:numId="2"><w:abstractNumId w:val="1"/></w:num>' +
+      '</w:numbering>';
     var contentTypesXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
@@ -1240,7 +1268,27 @@ function buildDocx(pageModels) {
       '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
       '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
       '</Types>';
-
+      var files = {
+      '[Content_Types].xml': contentTypesXml,
+      '_rels/.rels': relsXml,
+      'word/_rels/document.xml.rels': docRelsXml,
+      'word/document.xml': documentXml,
+      'word/styles.xml': stylesXml
+    };
+    if (hasList) files['word/numbering.xml'] = numberingXml;
+    Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
+var contentTypesXml =
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+      '<Default Extension="xml" ContentType="application/xml"/>' +
+      '<Default Extension="png" ContentType="image/png"/>' +
+      '<Default Extension="jpg" ContentType="image/jpeg"/>' +
+      '<Default Extension="jpeg" ContentType="image/jpeg"/>' +
+      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
+      (hasList ? '<Override PartName="/word/numbering.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"/>' : '') +
+      '</Types>';
     var relsXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
@@ -1253,6 +1301,13 @@ function buildDocx(pageModels) {
       '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
       relEntries.join('') +
       '</Relationships>';
+      var docRelsXml =
+      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
+      (hasList ? '<Relationship Id="rIdNum" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/>' : '') +
+      relEntries.join('') +
+      '</Relationships>';
 
     var files = {
       '[Content_Types].xml': contentTypesXml,
@@ -1261,6 +1316,8 @@ function buildDocx(pageModels) {
       'word/document.xml': documentXml,
       'word/styles.xml': stylesXml
     };
+    if (hasList) files['word/numbering.xml'] = numberingXml;
+    Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
     Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
 
     resolve(zipStore(files));
