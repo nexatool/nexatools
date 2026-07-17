@@ -821,8 +821,7 @@ function extractPageModel(page) {
   renderCanvas.height = Math.ceil(viewportPt.height);
   var renderCtx = renderCanvas.getContext('2d');
   var renderTask = page.render({ canvasContext: renderCtx, viewport: viewportPt });
-
-  return renderTask.promise.catch(function(){})
+return renderTask.promise.catch(function(){})
     .then(function () { return page.getOperatorList(); })
     .then(function (opList) {
     var OPS = pdfjsLib.OPS;
@@ -925,6 +924,56 @@ function extractPageModel(page) {
       }
     }
 
+    // ---- Dedupe + merge rects, and separate real page borders from in-flow shapes ----
+    function sig(r) { return Math.round(r.xPt)+':'+Math.round(r.yTopPt)+':'+Math.round(r.widthPt)+':'+Math.round(r.heightPt); }
+
+    var seen = {};
+    var dedupedRects = [];
+    rects.forEach(function (rc) {
+      var key = sig(rc);
+      if (seen[key]) return;
+      seen[key] = true;
+      dedupedRects.push(rc);
+    });
+
+    dedupedRects.sort(function (a, b) { return b.yTopPt - a.yTopPt || a.xPt - b.xPt; });
+    var mergedRects = [];
+    dedupedRects.forEach(function (rc) {
+      if (!rc.line) { mergedRects.push(rc); return; }
+      var last = mergedRects.length ? mergedRects[mergedRects.length - 1] : null;
+      if (last && last.line && Math.abs(last.yTopPt - rc.yTopPt) < 2) {
+        var left = Math.min(last.xPt, rc.xPt);
+        var right = Math.max(last.xPt + last.widthPt, rc.xPt + rc.widthPt);
+        last.xPt = left;
+        last.widthPt = right - left;
+      } else {
+        mergedRects.push({ xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color, line: true, order: rc.order });
+      }
+    });
+
+    var pageBorderInfo = null;
+    var fullPageRect = mergedRects.filter(function (r) {
+      return !r.line && r.widthPt >= pageWidthPt * 0.85 && r.heightPt >= pageHeightPt * 0.85;
+    })[0];
+    if (fullPageRect) {
+      pageBorderInfo = { color: fullPageRect.color };
+      mergedRects = mergedRects.filter(function (r) { return r !== fullPageRect; });
+    } else {
+      var nearTop = mergedRects.filter(function (r) { return r.line && r.widthPt >= pageWidthPt * 0.7 && r.yTopPt >= pageHeightPt * 0.85; });
+      var nearBottom = mergedRects.filter(function (r) { return r.line && r.widthPt >= pageWidthPt * 0.7 && r.yTopPt <= pageHeightPt * 0.15; });
+      if (nearTop.length && nearBottom.length) {
+        pageBorderInfo = { color: null };
+        mergedRects = mergedRects.filter(function (r) { return nearTop.indexOf(r) === -1 && nearBottom.indexOf(r) === -1; });
+      }
+    }
+
+    mergedRects = mergedRects.filter(function (r) {
+      if (r.line) return r.widthPt >= 20;
+      return r.widthPt >= 20 && r.heightPt >= 8;
+    });
+
+    rects = mergedRects;
+
     return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
@@ -984,7 +1033,7 @@ function extractPageModel(page) {
             align: align
           });
         });
-        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation };
+        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
       });
     });
   });
@@ -1378,7 +1427,7 @@ function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
 
 function shapeXml(block, id) {
   if (block.line) {
-    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
+    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
   }
   var pPr;
   if (block.color) {
@@ -1476,17 +1525,22 @@ function buildDocx(pageModels) {
       var pgH = Math.round(pageHeightPt * 20);
       var marginTw = Math.round(marginPt * 20);
       var orientAttr = isLandscape ? ' w:orient="landscape"' : '';
+      var borderXml = model.pageBorder
+        ? '<w:pgBorders w:offsetFrom="page"><w:top w:val="single" w:sz="12" w:space="24" w:color="auto"/><w:left w:val="single" w:sz="12" w:space="24" w:color="auto"/><w:bottom w:val="single" w:sz="12" w:space="24" w:color="auto"/><w:right w:val="single" w:sz="12" w:space="24" w:color="auto"/></w:pgBorders>'
+        : '';
 
       if (pIdx < pageModels.length - 1) {
         pageXml += '<w:p><w:pPr><w:sectPr>' +
           '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"' + orientAttr + '/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
+          borderXml +
           '<w:type w:val="nextPage"/>' +
           '</w:sectPr></w:pPr></w:p>';
       } else {
         pageXml += '<w:sectPr>' +
           '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"' + orientAttr + '/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
+          borderXml +
           '</w:sectPr>';
       }
       bodyXml += pageXml;
