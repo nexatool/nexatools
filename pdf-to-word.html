@@ -765,10 +765,43 @@ function extractPageImages(page) {
         if (widthPt > 4 && heightPt > 4) {
           found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i });
         }
+        } else if (fn === OPS.paintImageXObject || fn === OPS.paintJpegXObject) {
+        var objId = args[0];
+        var corners = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
+          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
+        });
+        var xs = corners.map(function(c){return c[0];});
+        var ys = corners.map(function(c){return c[1];});
+        var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+        var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+        var widthPt = maxX - minX, heightPt = maxY - minY;
+        if (widthPt > 4 && heightPt > 4) {
+          found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i, inline: false });
+        }
+      } else if (fn === OPS.paintInlineImageXObject) {
+        // inline images carry the bitmap directly in args[0], not via objs.get()
+        var imgData = args[0];
+        var corners2 = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
+          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
+        });
+        var xs2 = corners2.map(function(c){return c[0];});
+        var ys2 = corners2.map(function(c){return c[1];});
+        var minX2 = Math.min.apply(null, xs2), maxX2 = Math.max.apply(null, xs2);
+        var minY2 = Math.min.apply(null, ys2), maxY2 = Math.max.apply(null, ys2);
+        var w2 = maxX2 - minX2, h2 = maxY2 - minY2;
+        if (w2 > 4 && h2 > 4 && imgData) {
+          found.push({ objId: null, inlineData: imgData, xPt: minX2, yTopPt: maxY2, widthPt: w2, heightPt: h2, order: i, inline: true });
+        }
+
       }
     }
 
-    return Promise.all(found.map(function (f) {
+   return Promise.all(found.map(function (f) {
+      if (f.inline) {
+        var dataUrl2 = imageDataToPngDataUrl(f.inlineData);
+        if (!dataUrl2) return null;
+        return { dataUrl: dataUrl2, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
+      }
       return getPdfObj(page.objs, f.objId).then(function (imgObj) {
         var dataUrl = imageDataToPngDataUrl(imgObj);
         if (!dataUrl) return null;
@@ -777,7 +810,6 @@ function extractPageImages(page) {
     })).then(function (results) {
       return results.filter(function (r) { return r; });
     });
-  });
 }
 
 /* ---------------- Extraction: text model + page size + images ---------------- */
@@ -788,20 +820,76 @@ function extractPageModel(page) {
 
   return page.getOperatorList().then(function (opList) {
     var OPS = pdfjsLib.OPS;
-    var colorSeq = [];
-    var currentColor = null;
+    var ctm = [1,0,0,1,0,0];
+    var ctmStack = [];
+    var fillColor = null;
+    var colorStack = [];
+    var rects = []; // background/border shapes
+
+    function mul(m1, m2) {
+      return [
+        m1[0]*m2[0] + m1[1]*m2[2],
+        m1[0]*m2[1] + m1[1]*m2[3],
+        m1[2]*m2[0] + m1[3]*m2[2],
+        m1[2]*m2[1] + m1[3]*m2[3],
+        m1[4]*m2[0] + m1[5]*m2[2] + m2[4],
+        m1[4]*m2[1] + m1[5]*m2[3] + m2[5]
+      ];
+    }
+
+    // pass 1: walk ops, track ctm+fillColor together, tag each showText with
+    // the CTM/color active at that exact point (fixes the old positional-index bug),
+    // and collect filled rectangles as background/border candidates
+    var textColorAtOpIndex = []; // parallel array indexed by showText occurrence order
+    var pendingRectStart = null;
 
     for (var i = 0; i < opList.fnArray.length; i++) {
       var fn = opList.fnArray[i], args = opList.argsArray[i];
-      if (fn === OPS.setFillRGBColor) {
-        currentColor = [args[0], args[1], args[2]];
-      } else if (fn === OPS.setFillGray) {
-        var g = Math.round(args[0] * 255);
-        currentColor = [g, g, g];
-      } else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) {
-        currentColor = null;
-      } else if (fn === OPS.showText || fn === OPS.showSpacedText) {
-        colorSeq.push(currentColor);
+      if (fn === OPS.save) { ctmStack.push(ctm.slice()); colorStack.push(fillColor); }
+      else if (fn === OPS.restore) { ctm = ctmStack.pop() || ctm; fillColor = colorStack.pop() || fillColor; }
+      else if (fn === OPS.transform) { ctm = mul(args, ctm); }
+      else if (fn === OPS.setFillRGBColor) { fillColor = [args[0], args[1], args[2]]; }
+      else if (fn === OPS.setFillGray) { var g = Math.round(args[0]*255); fillColor = [g,g,g]; }
+      else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) { fillColor = null; }
+      else if (fn === OPS.rectangle) {
+        // args: x, y, w, h  (untransformed, in current CTM space)
+        pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
+      }
+      else if (fn === OPS.constructPath) {
+        // constructPath args[0] = ops array, args[1] = coordinate array
+        // Detect simple axis-aligned rectangles built via moveTo/lineTo/closePath
+        try {
+          var coords = args[1];
+          if (coords && coords.length >= 8) {
+            var xs = [coords[0], coords[2], coords[4], coords[6]];
+            var ys = [coords[1], coords[3], coords[5], coords[7]];
+            var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+            var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+            pendingRectStart = { x: minX, y: minY, w: maxX-minX, h: maxY-minY, ctm: ctm.slice(), color: fillColor };
+          }
+        } catch(e) {}
+      }
+      else if (fn === OPS.fill || fn === OPS.eoFill) {
+        if (pendingRectStart && pendingRectStart.color) {
+          var r = pendingRectStart;
+          var corners = [[r.x,r.y],[r.x+r.w,r.y],[r.x,r.y+r.h],[r.x+r.w,r.y+r.h]].map(function(p){
+            return [r.ctm[0]*p[0]+r.ctm[2]*p[1]+r.ctm[4], r.ctm[1]*p[0]+r.ctm[3]*p[1]+r.ctm[5]];
+          });
+          var cxs = corners.map(function(c){return c[0];}), cys = corners.map(function(c){return c[1];});
+          var rw = Math.max.apply(null, cxs) - Math.min.apply(null, cxs);
+          var rh = Math.max.apply(null, cys) - Math.min.apply(null, cys);
+          // Only keep rects that look like backgrounds/borders (reasonably sized), skip tiny glyph fills
+          if (rw > 8 && rh > 4) {
+            rects.push({
+              xPt: Math.min.apply(null, cxs), yTopPt: Math.max.apply(null, cys),
+              widthPt: rw, heightPt: rh, color: r.color, order: i
+            });
+          }
+        }
+        pendingRectStart = null;
+      }
+      else if (fn === OPS.showText || fn === OPS.showSpacedText) {
+        textColorAtOpIndex.push(fillColor);
       }
     }
 
@@ -811,17 +899,32 @@ function extractPageModel(page) {
         var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
         var fontObj = null;
         try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
-        var color = colorIdx < colorSeq.length ? colorSeq[colorIdx] : null;
+        var color = colorIdx < textColorAtOpIndex.length ? textColorAtOpIndex[colorIdx] : null;
         colorIdx++;
+        var fontName = (fontObj && (fontObj.name || fontObj.loadedName)) || null;
+        var underline = !!(fontObj && fontObj.name && /underline/i.test(fontObj.name));
         return {
           str: item.str, x: item.transform[4], y: item.transform[5], w: item.width || 0,
-          fontSize: fontSize, bold: !!(fontObj && fontObj.bold), italic: !!(fontObj && fontObj.italic), color: color
+          fontSize: fontSize, bold: !!(fontObj && fontObj.bold), italic: !!(fontObj && fontObj.italic),
+          color: color, fontName: fontName, underline: underline
         };
       }).filter(function (i) { return i.str && i.str.length; });
 
       var textModel = buildLinesAndParagraphs(items, pageWidthPt);
       return extractPageImages(page).then(function (images) {
         var blocks = textModel.blocks.slice();
+
+        // insert background/border rects as shape blocks, positioned before overlapping text
+        rects.forEach(function (rc) {
+          var insertAt = blocks.length;
+          for (var b = 0; b < blocks.length; b++) {
+            if (blocks[b].y !== undefined && blocks[b].y < rc.yTopPt) { insertAt = b; break; }
+          }
+          blocks.splice(insertAt, 0, {
+            type: 'shape', xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
+          });
+        });
+
         images.forEach(function (img) {
           var insertAt = blocks.length;
           for (var b = 0; b < blocks.length; b++) {
@@ -837,7 +940,6 @@ function extractPageModel(page) {
     });
   });
 }
-
 function buildLinesAndParagraphs(items, pageWidth) {
   if (!items.length) return { blocks: [] };
   pageWidth = pageWidth || 612;
@@ -891,35 +993,68 @@ function buildLinesAndParagraphs(items, pageWidth) {
     return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, align: align, runs: line };
   });
 
-  function isRealTableStart(lineMeta, idx) {
-    if (!lineMeta[idx].isMulti) return false;
-    var count = lineMeta[idx].cells.length;
-    var consecutive = 1;
-    for (var k = idx + 1; k < lineMeta.length && k < idx + 3; k++) {
-      if (lineMeta[k].isMulti && Math.abs(lineMeta[k].cells.length - count) <= 1) consecutive++;
-      else break;
-    }
-    return consecutive >= 3;
+
+// ---- heading detection: multi-signal score instead of a single fontSize ratio ----
+  function classifyStyle(lm) {
+    var sizeRatio = lm.fontSize / bodySize;
+    var score = 0;
+    if (sizeRatio >= 1.35) score += 2;
+    else if (sizeRatio >= 1.15) score += 1;
+    if (lm.bold) score += 1;
+    if (lm.cells.length === 1 && lm.cells[0].length < 90) score += 1; // headings are short lines
+    if (lm.color && (lm.color[0] || lm.color[1] || lm.color[2])) score += 1; // colored headings (common in templates)
+
+    if (score >= 4) return 'Heading1';
+    if (score >= 3) return 'Heading2';
+    if (score >= 2 && sizeRatio > 1.0) return 'Heading3';
+    return 'Normal';
   }
+
+  // ---- table detection: require an actual repeating column grid, not just "3 multi-cell lines" ----
+  function detectTableRuns(lineMeta) {
+    var runs = [];
+    var i = 0;
+    while (i < lineMeta.length) {
+      if (!lineMeta[i].isMulti) { i++; continue; }
+      var startX = lineMeta[i].runs.map(function(r){ return Math.round(r.x/5)*5; });
+      var j = i + 1;
+      var rows = [lineMeta[i]];
+      while (j < lineMeta.length && lineMeta[j].isMulti) {
+        var jx = lineMeta[j].runs.map(function(r){ return Math.round(r.x/5)*5; });
+        // require the column start positions to roughly line up (grid), not just similar cell counts
+        var aligned = jx.some(function(x0){ return startX.some(function(x1){ return Math.abs(x0-x1) <= 6; }); });
+        if (!aligned) break;
+        rows.push(lineMeta[j]);
+        j++;
+      }
+      if (rows.length >= 2) { // 2+ aligned rows is a real table, unlike the old "3 consecutive" rule
+        runs.push({ start: i, end: j });
+        i = j;
+      } else {
+        i++;
+      }
+    }
+    return runs;
+  }
+
+  var tableRuns = detectTableRuns(lineMeta);
+  var tableRunForLine = {};
+  tableRuns.forEach(function(run){ for (var k = run.start; k < run.end; k++) tableRunForLine[k] = run; });
 
   var blocks = [];
   var i2 = 0;
   while (i2 < lineMeta.length) {
-    if (isRealTableStart(lineMeta, i2)) {
+    var run = tableRunForLine[i2];
+    if (run && run.start === i2) {
       var rows = [];
-      var firstCellCount = lineMeta[i2].cells.length;
-      while (i2 < lineMeta.length && lineMeta[i2].isMulti &&
-             Math.abs(lineMeta[i2].cells.length - firstCellCount) <= 1) {
-        rows.push(lineMeta[i2].cells);
-        i2++;
-      }
-      blocks.push({ type: 'table', rows: rows, y: rows.length ? undefined : undefined });
+      for (var k2 = run.start; k2 < run.end; k2++) rows.push(lineMeta[k2].cells);
+      blocks.push({ type: 'table', rows: rows });
+      i2 = run.end;
+    } else if (run) {
+      i2++; // already consumed inside a run started earlier (shouldn't normally hit)
     } else {
       var lm = lineMeta[i2];
-      var style = 'Normal';
-      if (lm.fontSize >= bodySize * 1.4) style = 'Heading1';
-      else if (lm.fontSize >= bodySize * 1.15) style = 'Heading2';
-      else if (lm.fontSize >= bodySize * 1.05 || (lm.bold && lm.fontSize >= bodySize * 0.98)) style = 'Heading3';
+      var style = classifyStyle(lm);
 
       var spacingBefore = 0;
       if (blocks.length) {
@@ -932,7 +1067,7 @@ function buildLinesAndParagraphs(items, pageWidth) {
       blocks.push({
         type: 'para', style: style, y: lm.y, spacingBefore: spacingBefore, align: lm.align,
         runs: lm.runs.map(function(r){
-          return { text: r.str, bold: r.bold, italic: r.italic, size: r.fontSize, color: r.color };
+          return { text: r.str, bold: r.bold, italic: r.italic, underline: r.underline, size: r.fontSize, color: r.color, fontName: r.fontName };
         })
       });
       i2++;
@@ -947,26 +1082,40 @@ function rgbToHex(c) {
   function h(n){ n = Math.max(0, Math.min(255, Math.round(n))); var s = n.toString(16); return s.length===1?'0'+s:s; }
   return h(c[0]) + h(c[1]) + h(c[2]);
 }
-
 function runXml(run) {
   var rPr = '';
   if (run.bold) rPr += '<w:b/>';
   if (run.italic) rPr += '<w:i/>';
+  if (run.underline) rPr += '<w:u w:val="single"/>';
+  if (run.fontName) {
+    var safeFont = escXml(run.fontName).replace(/^[A-Z]{6}\+/, ''); // strip PDF subset prefix e.g. ABCDEF+Arial
+    rPr += '<w:rFonts w:ascii="' + safeFont + '" w:hAnsi="' + safeFont + '"/>';
+  }
   if (run.size) rPr += '<w:sz w:val="' + Math.round(run.size * 2) + '"/>';
   var hex = rgbToHex(run.color);
   if (hex && hex !== '000000') rPr += '<w:color w:val="' + hex + '"/>';
   var rPrXml = rPr ? '<w:rPr>' + rPr + '</w:rPr>' : '';
   return '<w:r>' + rPrXml + '<w:t xml:space="preserve">' + escXml(run.text) + '</w:t></w:r>';
 }
-
 function paraXml(block) {
   var pPr = '';
   if (block.style && block.style !== 'Normal') pPr += '<w:pStyle w:val="' + block.style + '"/>';
   if (block.spacingBefore) pPr += '<w:spacing w:before="' + block.spacingBefore + '"/>';
   if (block.align === 'center') pPr += '<w:jc w:val="center"/>';
+  else if (block.align === 'right') pPr += '<w:jc w:val="right"/>';
+  else if (block.align === 'justify') pPr += '<w:jc w:val="both"/>';
   var pPrXml = pPr ? '<w:pPr>' + pPr + '</w:pPr>' : '';
   var runs = (block.runs || []).map(runXml).join('');
   return '<w:p>' + pPrXml + runs + '</w:p>';
+}
+
+// new: render a captured background/border rectangle as a simple shaded paragraph frame
+function shapeXml(block, docPrId) {
+  var hex = rgbToHex(block.color) || 'CCCCCC';
+  var wPt = Math.round(block.widthPt * 20); // twips
+  var hPt = Math.round(block.heightPt * 20);
+  return '<w:p><w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' +
+         '<w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>';
 }
 
 function tableXml(block) {
@@ -1024,28 +1173,28 @@ function imageInlineXml(relId, widthPt, heightPt, maxWidthPt, docPrId, align) {
 }
 
 /* ---------------- DOCX assembly: real page size + inline images ---------------- */
-
 function buildDocx(pageModels) {
   return new Promise(function (resolve) {
     var mediaFiles = {};
     var relEntries = [];
     var relIdCounter = 2;
     var docPrId = 1;
-
-    var pageWidthPt = (pageModels[0] && pageModels[0].pageWidthPt) || 612;
-    var pageHeightPt = (pageModels[0] && pageModels[0].pageHeightPt) || 792;
     var marginPt = 72;
-    var contentWidthPt = pageWidthPt - marginPt * 2;
 
     var bodyXml = '';
     pageModels.forEach(function (model, pIdx) {
+      var pageWidthPt = model.pageWidthPt || 612;
+      var pageHeightPt = model.pageHeightPt || 792;
+      var contentWidthPt = pageWidthPt - marginPt * 2;
+
+      var pageXml = '';
       if (!model.blocks.length) {
-        bodyXml += '<w:p/>';
+        pageXml += '<w:p/>';
       } else {
         model.blocks.forEach(function (b) {
-          if (b.type === 'table') {
-            bodyXml += tableXml(b);
-          } else if (b.type === 'image') {
+          if (b.type === 'table') pageXml += tableXml(b);
+          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++);
+          else if (b.type === 'image') {
             try {
               var relId = 'rId' + (relIdCounter++);
               var mediaName = 'image' + (docPrId) + '.png';
@@ -1053,30 +1202,40 @@ function buildDocx(pageModels) {
               if (bytes && bytes.length) {
                 mediaFiles['word/media/' + mediaName] = bytes;
                 relEntries.push('<Relationship Id="' + relId + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/' + mediaName + '"/>');
-                bodyXml += imageInlineXml(relId, b.widthPt, b.heightPt, contentWidthPt, docPrId++, b.align);
+                pageXml += imageInlineXml(relId, b.widthPt, b.heightPt, contentWidthPt, docPrId++, b.align);
               }
             } catch (e) { }
           } else {
-            bodyXml += paraXml(b);
+            pageXml += paraXml(b);
           }
         });
       }
-      if (pIdx < pageModels.length - 1) {
-        bodyXml += '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
-      }
-    });
 
-    var pgW = Math.round(pageWidthPt * 20);
-    var pgH = Math.round(pageHeightPt * 20);
-    var marginTw = Math.round(marginPt * 20);
+      var pgW = Math.round(pageWidthPt * 20);
+      var pgH = Math.round(pageHeightPt * 20);
+      var marginTw = Math.round(marginPt * 20);
+
+      if (pIdx < pageModels.length - 1) {
+        // per-page section break: sectPr goes INSIDE the last paragraph's pPr for every page but the last
+        pageXml += '<w:p><w:pPr><w:sectPr>' +
+          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
+          '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
+          '<w:type w:val="nextPage"/>' +
+          '</w:sectPr></w:pPr></w:p>';
+      } else {
+        // last page: this sectPr is the document's final/body-level one
+        pageXml += '<w:sectPr>' +
+          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
+          '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
+          '</w:sectPr>';
+      }
+      bodyXml += pageXml;
+    });
 
     var documentXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
-      '<w:body>' + bodyXml +
-      '<w:sectPr><w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
-      '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>' +
-      '</w:body></w:document>';
+      '<w:body>' + bodyXml + '</w:body></w:document>';
 
     var stylesXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
@@ -1101,6 +1260,7 @@ function buildDocx(pageModels) {
       '<Default Extension="xml" ContentType="application/xml"/>' +
       '<Default Extension="png" ContentType="image/png"/>' +
       '<Default Extension="jpg" ContentType="image/jpeg"/>' +
+      '<Default Extension="jpeg" ContentType="image/jpeg"/>' +
       '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
       '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
       '</Types>';
