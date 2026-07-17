@@ -917,7 +917,7 @@ function drawingXml(relId, widthPt, heightPt, docPrId) {
     widthEmu = maxWidthEmu;
     heightEmu = Math.round(heightEmu * ratio);
   }
-  return '<w:p><w:r><w:drawing>' +
+  return '<w:p><w:r><w:drawing xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">' +
     '<wp:inline distT="0" distB="0" distL="0" distR="0">' +
     '<wp:extent cx="' + widthEmu + '" cy="' + heightEmu + '"/>' +
     '<wp:docPr id="' + docPrId + '" name="Page' + docPrId + '"/>' +
