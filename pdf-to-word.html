@@ -1295,7 +1295,22 @@ function paraXml(block) {
   var runs = (block.runs || []).map(runXml).join('');
   return '<w:p>' + pPrXml + runs + '</w:p>';
 }
-
+function paraXml(block) {
+  var pPr = '';
+  if (block.style && block.style !== 'Normal') pPr += '<w:pStyle w:val="' + block.style + '"/>';
+  if (block.spacingBefore) pPr += '<w:spacing w:before="' + block.spacingBefore + '" w:after="0"/>';
+  if (block.align === 'center') pPr += '<w:jc w:val="center"/>';
+  else if (block.align === 'right') pPr += '<w:jc w:val="right"/>';
+  else if (block.align === 'justify') pPr += '<w:jc w:val="both"/>';
+  if (block.indentTwips) pPr += '<w:ind w:left="' + block.indentTwips + '"/>';
+  if (block.isList) {
+    var numId = block.ordered ? 2 : 1;
+    pPr += '<w:numPr><w:ilvl w:val="0"/><w:numId w:val="' + numId + '"/></w:numPr>';
+  }
+  var pPrXml = pPr ? '<w:pPr>' + pPr + '</w:pPr>' : '';
+  var runs = (block.runs || []).map(runXml).join('');
+  return '<w:p>' + pPrXml + runs + '</w:p>';
+}
 /* ---------------- buildDocx() ---------------- */
 function buildDocx(pageModels) {
   return new Promise(function (resolve) {
