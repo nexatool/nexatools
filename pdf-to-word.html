@@ -1450,7 +1450,7 @@ function buildDocx(pageModels) {
       } else {
         model.blocks.forEach(function (b) {
           if (b.type === 'table') pageXml += tableXml(b);
-          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++);
+          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt);
           else if (b.type === 'image') {
             try {
               var relId = 'rId' + (relIdCounter++);
