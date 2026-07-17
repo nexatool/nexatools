@@ -665,14 +665,131 @@ function setProgress(pct, label) {
   if (label) progressText.textContent = label;
 }
 
-/* ---- Extraction: pull styled lines/paragraphs/tables per page ---- */
-function extractPageModel(page) {
-  var pageWidth = (page.view && (page.view[2] - page.view[0])) || 612;
+/* ---------------- Image extraction ---------------- */
 
-  return page.getOperatorList().then(function(opList) {
+function getPdfObj(objs, id) {
+  return new Promise(function (resolve) {
+    try {
+      objs.get(id, resolve);
+    } catch (e) {
+      resolve(null);
+    }
+  });
+}
+
+function imageDataToPngDataUrl(imgObj) {
+  if (!imgObj || !imgObj.width || !imgObj.height) return null;
+  var w = imgObj.width, h = imgObj.height;
+  var canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+
+  var out = ctx.createImageData(w, h);
+  var src = imgObj.data;
+  var kind = imgObj.kind;
+
+  try {
+    if (kind === 3 || (src && src.length === w * h * 4)) {
+      out.data.set(src);
+    } else if (kind === 2 || (src && src.length === w * h * 3)) {
+      var di = 0;
+      for (var i = 0; i < w * h; i++) {
+        out.data[di++] = src[i * 3];
+        out.data[di++] = src[i * 3 + 1];
+        out.data[di++] = src[i * 3 + 2];
+        out.data[di++] = 255;
+      }
+    } else if (kind === 1) {
+      var rowBytes = Math.ceil(w / 8);
+      var di2 = 0;
+      for (var y = 0; y < h; y++) {
+        for (var x = 0; x < w; x++) {
+          var byte = src[y * rowBytes + (x >> 3)];
+          var bit = (byte >> (7 - (x & 7))) & 1;
+          var v = bit ? 255 : 0;
+          out.data[di2++] = v; out.data[di2++] = v; out.data[di2++] = v; out.data[di2++] = 255;
+        }
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    return null;
+  }
+
+  ctx.putImageData(out, 0, 0);
+  try {
+    return canvas.toDataURL('image/png');
+  } catch (e) {
+    return null;
+  }
+}
+
+function extractPageImages(page) {
+  return page.getOperatorList().then(function (opList) {
+    var OPS = pdfjsLib.OPS;
+    var found = [];
+    var ctm = [1, 0, 0, 1, 0, 0];
+    var stack = [];
+
+    function mul(m1, m2) {
+      return [
+        m1[0]*m2[0] + m1[1]*m2[2],
+        m1[0]*m2[1] + m1[1]*m2[3],
+        m1[2]*m2[0] + m1[3]*m2[2],
+        m1[2]*m2[1] + m1[3]*m2[3],
+        m1[4]*m2[0] + m1[5]*m2[2] + m2[4],
+        m1[4]*m2[1] + m1[5]*m2[3] + m2[5]
+      ];
+    }
+
+    for (var i = 0; i < opList.fnArray.length; i++) {
+      var fn = opList.fnArray[i], args = opList.argsArray[i];
+      if (fn === OPS.save) {
+        stack.push(ctm.slice());
+      } else if (fn === OPS.restore) {
+        ctm = stack.pop() || ctm;
+      } else if (fn === OPS.transform) {
+        ctm = mul(args, ctm);
+      } else if (fn === OPS.paintImageXObject || fn === OPS.paintJpegXObject) {
+        var objId = args[0];
+        var corners = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
+          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
+        });
+        var xs = corners.map(function(c){return c[0];});
+        var ys = corners.map(function(c){return c[1];});
+        var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+        var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+        var widthPt = maxX - minX, heightPt = maxY - minY;
+        if (widthPt > 4 && heightPt > 4) {
+          found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i });
+        }
+      }
+    }
+
+    return Promise.all(found.map(function (f) {
+      return getPdfObj(page.objs, f.objId).then(function (imgObj) {
+        var dataUrl = imageDataToPngDataUrl(imgObj);
+        if (!dataUrl) return null;
+        return { dataUrl: dataUrl, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
+      });
+    })).then(function (results) {
+      return results.filter(function (r) { return r; });
+    });
+  });
+}
+
+/* ---------------- Extraction: text model + page size + images ---------------- */
+
+function extractPageModel(page) {
+  var viewportPt = page.getViewport({ scale: 1 });
+  var pageWidthPt = viewportPt.width, pageHeightPt = viewportPt.height;
+
+  return page.getOperatorList().then(function (opList) {
     var OPS = pdfjsLib.OPS;
     var colorSeq = [];
-    var currentColor = null; // [r,g,b] 0-255, best-effort only
+    var currentColor = null;
 
     for (var i = 0; i < opList.fnArray.length; i++) {
       var fn = opList.fnArray[i], args = opList.argsArray[i];
@@ -682,33 +799,41 @@ function extractPageModel(page) {
         var g = Math.round(args[0] * 255);
         currentColor = [g, g, g];
       } else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) {
-        currentColor = null; // non-RGB colorspace, too unreliable to infer
+        currentColor = null;
       } else if (fn === OPS.showText || fn === OPS.showSpacedText) {
         colorSeq.push(currentColor);
       }
     }
 
-    return page.getTextContent({ includeMarkedContent: false }).then(function(content) {
+    return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
-      var items = content.items.map(function(item) {
+      var items = content.items.map(function (item) {
         var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
         var fontObj = null;
         try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
         var color = colorIdx < colorSeq.length ? colorSeq[colorIdx] : null;
         colorIdx++;
         return {
-          str: item.str,
-          x: item.transform[4],
-          y: item.transform[5],
-          w: item.width || 0,
-          fontSize: fontSize,
-          bold: !!(fontObj && fontObj.bold),
-          italic: !!(fontObj && fontObj.italic),
-          color: color
+          str: item.str, x: item.transform[4], y: item.transform[5], w: item.width || 0,
+          fontSize: fontSize, bold: !!(fontObj && fontObj.bold), italic: !!(fontObj && fontObj.italic), color: color
         };
-      }).filter(function(i){ return i.str && i.str.length; });
+      }).filter(function (i) { return i.str && i.str.length; });
 
-      return buildLinesAndParagraphs(items, pageWidth);
+      var textModel = buildLinesAndParagraphs(items, pageWidthPt);
+      return extractPageImages(page).then(function (images) {
+        var blocks = textModel.blocks.slice();
+        images.forEach(function (img) {
+          var insertAt = blocks.length;
+          for (var b = 0; b < blocks.length; b++) {
+            if (blocks[b].y !== undefined && blocks[b].y < img.yTopPt) { insertAt = b; break; }
+          }
+          blocks.splice(insertAt, 0, {
+            type: 'image', dataUrl: img.dataUrl, widthPt: img.widthPt, heightPt: img.heightPt,
+            align: (img.xPt > pageWidthPt * 0.2 && (img.xPt + img.widthPt) < pageWidthPt * 0.8) ? 'center' : 'left'
+          });
+        });
+        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt };
+      });
     });
   });
 }
@@ -753,11 +878,6 @@ function buildLinesAndParagraphs(items, pageWidth) {
     var italic = line.filter(function(t){ return t.italic; }).length > line.length/2;
     var color = line[0].color;
 
-    // Alignment heuristic: compare left margin (first item's x) and right
-    // margin (pageWidth - last item's right edge). If both margins are
-    // roughly equal and reasonably large, the line is treated as centered.
-    // Best-effort only — irregular PDFs (rotated text, unusual margins)
-    // can still be misclassified.
     var leftMargin = line[0].x;
     var lastItem = line[line.length - 1];
     var rightMargin = pageWidth - (lastItem.x + lastItem.w);
@@ -771,9 +891,6 @@ function buildLinesAndParagraphs(items, pageWidth) {
     return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, align: align, runs: line };
   });
 
-  // A real table needs at least 3 consecutive lines with a matching (±1)
-  // column count. Two lines alone is too easy to trigger falsely from a
-  // justified paragraph that happens to have one wide inter-word gap.
   function isRealTableStart(lineMeta, idx) {
     if (!lineMeta[idx].isMulti) return false;
     var count = lineMeta[idx].cells.length;
@@ -882,73 +999,66 @@ function dataUrlToBytes(dataUrl) {
   return bytes;
 }
 
-function drawingXml(relId, widthPt, heightPt, docPrId) {
-  // Fit the image to a max width of 6.5in (page width minus 1in margins
-  // each side) while keeping the PDF page's own aspect ratio.
-  var maxWidthEmu = 5940000; // 6.5in * 914400
-  var widthEmu = Math.round(widthPt * 12700);
-  var heightEmu = Math.round(heightPt * 12700);
-  if (widthEmu > maxWidthEmu) {
-    var ratio = maxWidthEmu / widthEmu;
-    widthEmu = maxWidthEmu;
-    heightEmu = Math.round(heightEmu * ratio);
+/* ---------------- Inline (flow) image XML ---------------- */
+
+function imageInlineXml(relId, widthPt, heightPt, maxWidthPt, docPrId, align) {
+  var wPt = widthPt, hPt = heightPt;
+  if (wPt > maxWidthPt) {
+    var ratio = maxWidthPt / wPt;
+    wPt = maxWidthPt;
+    hPt = hPt * ratio;
   }
-  return '<w:p><w:r><w:drawing xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">' +
+  var wE = Math.round(wPt * 12700), hE = Math.round(hPt * 12700);
+  var jc = align === 'center' ? '<w:jc w:val="center"/>' : '';
+  return '<w:p>' + (jc ? '<w:pPr>' + jc + '</w:pPr>' : '') + '<w:r><w:drawing>' +
     '<wp:inline distT="0" distB="0" distL="0" distR="0">' +
-    '<wp:extent cx="' + widthEmu + '" cy="' + heightEmu + '"/>' +
-    '<wp:docPr id="' + docPrId + '" name="Page' + docPrId + '"/>' +
+    '<wp:extent cx="' + wE + '" cy="' + hE + '"/>' +
+    '<wp:docPr id="' + docPrId + '" name="Image' + docPrId + '"/>' +
     '<wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr>' +
-    '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">' +
-    '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
-    '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
-    '<pic:nvPicPr><pic:cNvPr id="' + docPrId + '" name="Page' + docPrId + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
+    '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+    '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="' + docPrId + '" name="Image' + docPrId + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
     '<pic:blipFill><a:blip r:embed="' + relId + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>' +
-    '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + widthEmu + '" cy="' + heightEmu + '"/></a:xfrm>' +
-    '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
-    '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
+    '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + wE + '" cy="' + hE + '"/></a:xfrm>' +
+    '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>' +
+    '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
 
-function buildDocx(pageModels, pageImages) {
-  return new Promise(function(resolve) {
-    pageImages = pageImages || [];
+/* ---------------- DOCX assembly: real page size + inline images ---------------- */
+
+function buildDocx(pageModels) {
+  return new Promise(function (resolve) {
     var mediaFiles = {};
     var relEntries = [];
-    var relIdCounter = 2; // rId1 reserved for styles.xml
+    var relIdCounter = 2;
     var docPrId = 1;
 
-    var bodyXml = '';
-    var imageEmbedFailed = false;
-    pageModels.forEach(function(model, pIdx) {
-      var img = pageImages[pIdx];
-      if (img && img.dataUrl) {
-        try {
-          var relId = 'rId' + (relIdCounter++);
-          var ext = img.isJpeg ? 'jpg' : 'png';
-          var mediaName = 'image' + (pIdx + 1) + '.' + ext;
-          var bytes = dataUrlToBytes(img.dataUrl);
-          if (bytes && bytes.length) {
-            mediaFiles['word/media/' + mediaName] = bytes;
-            relEntries.push('<Relationship Id="' + relId + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/' + mediaName + '"/>');
-            bodyXml += drawingXml(relId, img.widthPt, img.heightPt, docPrId++);
-            // Label the split clearly so it doesn't read as accidental
-            // duplication: the picture above is a fixed snapshot of the
-            // original page; the text below is the same content, editable.
-            bodyXml += '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="60" w:after="200"/></w:pPr>' +
-              '<w:r><w:rPr><w:i/><w:sz w:val="16"/><w:color w:val="888888"/></w:rPr>' +
-              '<w:t xml:space="preserve">↑ page image (fixed)&#8195;·&#8195;editable text below ↓</w:t></w:r></w:p>';
-          }
-        } catch (e) {
-          // A single bad image must not corrupt the whole document —
-          // skip embedding it and keep the page's editable text.
-          imageEmbedFailed = true;
-        }
-      }
+    var pageWidthPt = (pageModels[0] && pageModels[0].pageWidthPt) || 612;
+    var pageHeightPt = (pageModels[0] && pageModels[0].pageHeightPt) || 792;
+    var marginPt = 72;
+    var contentWidthPt = pageWidthPt - marginPt * 2;
 
+    var bodyXml = '';
+    pageModels.forEach(function (model, pIdx) {
       if (!model.blocks.length) {
         bodyXml += '<w:p/>';
       } else {
-        model.blocks.forEach(function(b) {
-          bodyXml += b.type === 'table' ? tableXml(b) : paraXml(b);
+        model.blocks.forEach(function (b) {
+          if (b.type === 'table') {
+            bodyXml += tableXml(b);
+          } else if (b.type === 'image') {
+            try {
+              var relId = 'rId' + (relIdCounter++);
+              var mediaName = 'image' + (docPrId) + '.png';
+              var bytes = dataUrlToBytes(b.dataUrl);
+              if (bytes && bytes.length) {
+                mediaFiles['word/media/' + mediaName] = bytes;
+                relEntries.push('<Relationship Id="' + relId + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/' + mediaName + '"/>');
+                bodyXml += imageInlineXml(relId, b.widthPt, b.heightPt, contentWidthPt, docPrId++, b.align);
+              }
+            } catch (e) { }
+          } else {
+            bodyXml += paraXml(b);
+          }
         });
       }
       if (pIdx < pageModels.length - 1) {
@@ -956,11 +1066,16 @@ function buildDocx(pageModels, pageImages) {
       }
     });
 
+    var pgW = Math.round(pageWidthPt * 20);
+    var pgH = Math.round(pageHeightPt * 20);
+    var marginTw = Math.round(marginPt * 20);
+
     var documentXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:body>' + bodyXml +
-      '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>' +
+      '<w:sectPr><w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
+      '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>' +
       '</w:body></w:document>';
 
     var stylesXml =
@@ -1010,7 +1125,7 @@ function buildDocx(pageModels, pageImages) {
       'word/document.xml': documentXml,
       'word/styles.xml': stylesXml
     };
-    Object.keys(mediaFiles).forEach(function(path){ files[path] = mediaFiles[path]; });
+    Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
 
     resolve(zipStore(files));
   });
@@ -1077,41 +1192,12 @@ function zipStore(files) {
   return new Blob([localData, centralData, end], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
 }
 
-/* Render a PDF page to an image data URL using pdf.js's own tested canvas
-   renderer (not a hand-rolled operator-list walk) — this is what makes
-   logos, colors, and borders show up exactly as in the original.
-   Scale and format adapt to page count so a 40-page PDF doesn't produce
-   a huge DOCX: fewer pages get a crisper PNG, larger documents fall back
-   to compressed JPEG at a lower scale. */
-function renderPageToPng(page, numPages) {
-  var renderScale = numPages > 20 ? 1.0 : (numPages > 8 ? 1.25 : 1.5);
-  var useJpeg = numPages > 8;
-  var viewport = page.getViewport({ scale: renderScale });
-  var canvas = document.createElement('canvas');
-  canvas.width = Math.ceil(viewport.width);
-  canvas.height = Math.ceil(viewport.height);
-  var ctx = canvas.getContext('2d');
-  if (!ctx) return Promise.reject(new Error('Canvas not supported in this browser'));
-  var pointViewport = page.getViewport({ scale: 1 }); // for true page size in points
-
-  return page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function() {
-    var dataUrl = useJpeg ? canvas.toDataURL('image/jpeg', 0.82) : canvas.toDataURL('image/png');
-    return {
-      dataUrl: dataUrl,
-      widthPt: pointViewport.width,
-      heightPt: pointViewport.height,
-      isJpeg: useJpeg
-    };
-  });
-}
-
 convertBtn.addEventListener('click', function() {
   if (!selectedFile) return;
   if (!window['pdfjsLib']) { showError('PDF engine failed to load. Check your connection and try again.'); return; }
   errorBox.classList.remove('active');
   resultBox.classList.remove('active');
   convertBtn.disabled = true;
-  var visualMode = false; // page-snapshot mode removed — it doubled document length/pages
   setProgress(5, 'Reading PDF…');
 
   var reader = new FileReader();
@@ -1120,44 +1206,26 @@ convertBtn.addEventListener('click', function() {
     pdfjsLib.getDocument({ data: typedArray }).promise.then(function(pdf) {
       var numPages = pdf.numPages;
       var pageModels = [];
-      var pageImages = [];
       var pageIndex = 1;
 
       function processNextPage() {
         if (pageIndex > numPages) {
-          finishConversion(pageModels, pageImages);
+          finishConversion(pageModels);
           return;
         }
         pdf.getPage(pageIndex).then(function(page) {
           return extractPageModel(page).catch(function() {
-            // Text extraction failed for this one page (e.g. an unusual
-            // font/encoding) — keep the page as blank text rather than
-            // aborting the whole document.
-            return { blocks: [] };
-          }).then(function(model) {
-            if (!visualMode) return { model: model, image: null };
-            return renderPageToPng(page, numPages).catch(function() {
-              // Visual snapshot failed for this one page — keep the
-              // extracted text and simply skip the image for this page.
-              return null;
-            }).then(function(img) {
-              return { model: model, image: img };
-            });
+            return { blocks: [], pageWidthPt: 612, pageHeightPt: 792 };
           });
-        }).then(function(result) {
-          pageModels.push(result.model);
-          pageImages.push(result.image);
+        }).then(function(model) {
+          pageModels.push(model);
           var pct = Math.round(10 + (pageIndex / numPages) * 70);
-          setProgress(pct, (visualMode ? 'Rendering & extracting page ' : 'Extracting page ') + pageIndex + ' of ' + numPages + '…');
+          setProgress(pct, 'Extracting page ' + pageIndex + ' of ' + numPages + '…');
           pageIndex++;
           setTimeout(processNextPage, 0);
         }).catch(function(err) {
-          // Only a truly unreadable page (pdf.js can't even open it)
-          // reaches here — extraction/render errors are caught above.
           if (pageModels.length > 0) {
-            // Salvage what converted successfully rather than throwing
-            // away all progress because one later page is damaged.
-            finishConversion(pageModels, pageImages, pageModels.length);
+            finishConversion(pageModels, pageModels.length);
           } else {
             showError('This PDF could not be converted. The file may be damaged or use an unsupported PDF feature.');
             convertBtn.disabled = false;
@@ -1183,27 +1251,25 @@ convertBtn.addEventListener('click', function() {
   reader.readAsArrayBuffer(selectedFile);
 });
 
-function finishConversion(pageModels, pageImages, isPartial) {
+function finishConversion(pageModels, isPartial) {
   setProgress(85, 'Building Word document…');
   var totalRuns = 0;
   pageModels.forEach(function(m){
     m.blocks.forEach(function(b){
-      totalRuns += b.type === 'table' ? b.rows.length : (b.runs ? b.runs.length : 0);
+      if (b.type === 'table') totalRuns += b.rows.length;
+      else if (b.type === 'image') totalRuns += 1;
+      else totalRuns += (b.runs ? b.runs.length : 0);
     });
   });
-  var hasImages = pageImages && pageImages.some(function(img){ return !!img; });
 
-  if (totalRuns === 0 && !hasImages) {
+  if (totalRuns === 0) {
     showError('No extractable text was found in this PDF. It may be a scanned document (an image of text), which this browser-only tool cannot convert. Try a digitally created PDF instead (exported from Word, Google Docs, or a website).');
     progressWrap.classList.remove('active');
     convertBtn.disabled = false;
     return;
   }
 
-  buildDocx(pageModels, pageImages).then(function(blob) {
-    // A well-formed .docx always has a real ZIP + XML payload; a blob
-    // this small means something failed silently upstream — refuse to
-    // hand the user a broken file instead of pretending it worked.
+  buildDocx(pageModels).then(function(blob) {
     if (!blob || blob.size < 300) {
       showError('The Word file could not be built correctly. Please try again with the same PDF.');
       progressWrap.classList.remove('active');
