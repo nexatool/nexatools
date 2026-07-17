@@ -1151,19 +1151,20 @@ function buildLinesAndParagraphs(items, pageWidth) {
   var baseLeftMargin = leftMargins.length ? Math.min.apply(null, leftMargins) : 0;
 
   function classifyStyle(lm) {
-    var sizeRatio = lm.fontSize / bodySize;
-    var score = 0;
-    if (sizeRatio >= 1.35) score += 2;
-    else if (sizeRatio >= 1.15) score += 1;
-    if (lm.bold) score += 1;
-    if (lm.cells.length === 1 && lm.cells[0].length < 90) score += 1;
-    if (lm.color && (lm.color[0] || lm.color[1] || lm.color[2])) score += 1;
+  var sizeRatio = lm.fontSize / bodySize;
+  if (sizeRatio < 1.15) return 'Normal'; // body-size text kabhi heading nahi honi chahiye
+  var score = 0;
+  if (sizeRatio >= 1.6) score += 2;
+  else if (sizeRatio >= 1.15) score += 1;
+  if (lm.bold) score += 1;
+  if (lm.cells.length === 1 && lm.cells[0].length < 90) score += 1;
+  // color ko heading-signal se hata diya — coloured body text heading nahi hoti
 
-    if (score >= 4) return 'Heading1';
-    if (score >= 3) return 'Heading2';
-    if (score >= 2 && sizeRatio > 1.0) return 'Heading3';
-    return 'Normal';
-  }
+  if (score >= 4) return 'Heading1';
+  if (score >= 3) return 'Heading2';
+  if (score >= 2) return 'Heading3';
+  return 'Normal';
+}
 
   function detectTableRuns(lineMeta) {
     var runs = [];
@@ -1213,52 +1214,89 @@ function buildLinesAndParagraphs(items, pageWidth) {
   tableRuns.forEach(function(run){ for (var k = run.start; k < run.end; k++) tableRunForLine[k] = run; });
 
   var blocks = [];
-  var i2 = 0;
-  while (i2 < lineMeta.length) {
-    var run = tableRunForLine[i2];
-    if (run && run.start === i2) {
-      var rows = [];
-      for (var k2 = run.start; k2 < run.end; k2++) rows.push(lineMeta[k2].cells);
-      blocks.push({ type: 'table', rows: rows });
-      i2 = run.end;
-    } else if (run) {
-      i2++;
-    } else {
-      var lm = lineMeta[i2];
-      var style = classifyStyle(lm);
+var i2 = 0;
+var lastEmittedY = null;
+while (i2 < lineMeta.length) {
+  var run = tableRunForLine[i2];
+  if (run && run.start === i2) {
+    var rows = [];
+    for (var k2 = run.start; k2 < run.end; k2++) rows.push(lineMeta[k2].cells);
+    blocks.push({ type: 'table', rows: rows });
+    i2 = run.end;
+    lastEmittedY = null;
+    continue;
+  } else if (run) {
+    i2++;
+    continue;
+  }
 
-      var spacingBefore = 0;
-      if (blocks.length) {
-        var prev = blocks[blocks.length-1];
-        if (prev.y !== undefined) {
-          var gap = prev.y - lm.y;
-          if (gap > lm.fontSize * 1.8) spacingBefore = 200;
-          else if (gap > lm.fontSize * 1.15) spacingBefore = 60; // finer line-spacing signal
-        }
-      }
-      var listInfo = detectListInfo(lm.cells[0] || '');
-      var runsForBlock = lm.runs;
-      if (listInfo.isList && runsForBlock.length > 1) {
-        var firstRunTrimmed = runsForBlock[0].str.trim();
-        if (firstRunTrimmed.length <= 1 && isLikelyBulletChar(firstRunTrimmed)) {
-          runsForBlock = runsForBlock.slice(1);
-        }
-      }
-      // indentation relative to the page's base left margin, converted to twips (1pt = 20 twips)
-      var indentTwips = Math.max(0, Math.round((lm.leftMargin - baseLeftMargin) * 20));
-      if (listInfo.isList) indentTwips = 0; // lists use their own numbering indent
+  var lm = lineMeta[i2];
+  var style = classifyStyle(lm);
+  var listInfo = detectListInfo(lm.cells[0] || '');
 
-      blocks.push({
-        type: 'para', style: style, y: lm.y, spacingBefore: spacingBefore, align: lm.align,
-        isList: listInfo.isList, ordered: listInfo.ordered, indentTwips: indentTwips,
-        runs: runsForBlock.map(function(r){
-          return { text: r.str, bold: r.bold, italic: r.italic, underline: r.underline, size: r.fontSize, color: r.color, fontName: r.fontName };
-        })
-      });
-      i2++;
+  var spacingBefore = 0;
+  if (lastEmittedY !== null) {
+    var gap0 = lastEmittedY - lm.y;
+    if (gap0 > lm.fontSize * 1.8) spacingBefore = 160;
+    else if (gap0 > lm.fontSize * 1.35) spacingBefore = 80;
+  }
+
+  var runsForBlock = lm.runs;
+  if (listInfo.isList && runsForBlock.length > 1) {
+    var firstRunTrimmed = runsForBlock[0].str.trim();
+    if (firstRunTrimmed.length <= 1 && isLikelyBulletChar(firstRunTrimmed)) {
+      runsForBlock = runsForBlock.slice(1);
     }
   }
-  return { blocks: blocks };
+  var indentTwips = Math.max(0, Math.round((lm.leftMargin - baseLeftMargin) * 20));
+  if (listInfo.isList) indentTwips = 0;
+
+  var mergedRuns = runsForBlock.map(function (r) {
+    return { text: r.str, bold: r.bold, italic: r.italic, underline: r.underline, size: r.fontSize, color: r.color, fontName: r.fontName };
+  });
+
+  var paraAlign = lm.align;
+  var paraIsHeading = style !== 'Normal';
+  var curLine = lm;
+  var j2 = i2 + 1;
+
+  // Merge subsequent wrapped body lines into this same paragraph
+  if (!listInfo.isList && !paraIsHeading) {
+    while (j2 < lineMeta.length && !tableRunForLine[j2]) {
+      var nextLm = lineMeta[j2];
+      var nextListInfo = detectListInfo(nextLm.cells[0] || '');
+      var nextStyle = classifyStyle(nextLm);
+      var gapNext = curLine.y - nextLm.y;
+      var sameAlign = nextLm.align === paraAlign;
+      var sameSize = Math.abs(nextLm.fontSize - lm.fontSize) < 1.2;
+      var isWrap = gapNext > 0 && gapNext <= lm.fontSize * 1.35;
+      if (nextListInfo.isList || nextStyle !== 'Normal' || !sameAlign || !sameSize || !isWrap) break;
+
+      if (mergedRuns.length) {
+        var lastRun = mergedRuns[mergedRuns.length - 1];
+        if (lastRun.text && !/[\s\-]$/.test(lastRun.text)) {
+          mergedRuns.push({ text: ' ', bold: lastRun.bold, italic: lastRun.italic, underline: false, size: lastRun.size, color: lastRun.color, fontName: lastRun.fontName });
+        }
+      }
+      nextLm.runs.forEach(function (r) {
+        mergedRuns.push({ text: r.str, bold: r.bold, italic: r.italic, underline: r.underline, size: r.fontSize, color: r.color, fontName: r.fontName });
+      });
+
+      curLine = nextLm;
+      j2++;
+    }
+  }
+
+  blocks.push({
+    type: 'para', style: style, y: lm.y, spacingBefore: spacingBefore, align: paraAlign,
+    isList: listInfo.isList, ordered: listInfo.ordered, indentTwips: indentTwips,
+    runs: mergedRuns
+  });
+
+  lastEmittedY = curLine.y;
+  i2 = j2;
+}
+return { blocks: blocks };
 }
 
 /* ---------------- runXml() ---------------- */
