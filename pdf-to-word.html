@@ -196,41 +196,6 @@
 .limitation-note{display:flex;gap:10px;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:0.8rem;color:var(--text2);line-height:1.6}
 .limitation-note .ln-icon{flex-shrink:0}
 
-/* ===== VISUAL MODE TOGGLE (fixed responsive layout — see below) ===== */
-.visual-mode-toggle{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-start;
-  gap:10px;
-  width:100%;
-  max-width:100%;
-  box-sizing:border-box;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px 16px;
-  margin-top:16px;
-  cursor:pointer;
-  font-size:0.85rem;
-  color:var(--text2);
-  overflow-wrap:break-word;
-}
-.visual-mode-toggle input[type="checkbox"]{
-  flex:0 0 auto;
-  width:16px;
-  height:16px;
-  margin-top:3px;
-  cursor:pointer;
-}
-.visual-mode-toggle span{
-  flex:1 1 240px;
-  min-width:0;
-  max-width:100%;
-  overflow-wrap:break-word;
-  word-break:break-word;
-}
-.visual-mode-toggle strong{color:var(--text)}
-
 /* ===== AUTHOR / TRUST BLOCK ===== */
 .author-box{display:flex;align-items:center;gap:14px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:20px 0}
 .author-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;flex-shrink:0;font-size:1rem}
@@ -349,11 +314,6 @@
 
     <div class="error-box" id="error-box" role="alert"></div>
 
-    <label class="visual-mode-toggle">
-      <input type="checkbox" id="visual-mode-check">
-      <span><strong>Keep exact original look</strong> adds a snapshot image of each page (logo, colors, borders included) above the editable text for that page. This roughly doubles the document's length and file size — you get both a visual copy and separately editable text, not one combined view. Leave unchecked for a shorter, purely editable document.</span>
-    </label>
-
     <div class="result-box" id="result-box">
       <span class="rb-icon" aria-hidden="true">✅</span>
       <div class="rb-text">
@@ -370,7 +330,7 @@
 
     <div class="limitation-note">
       <span class="ln-icon" aria-hidden="true">ℹ️</span>
-      <span>This tool extracts text, headings, basic bold/italic styling, approximate paragraph spacing, basic tables, and detected center alignment from digitally created PDFs into an editable .docx file. Text color is inferred where possible but not guaranteed to be pixel-accurate. Logos, images, borders, boxes, and colored backgrounds are drawn/vector or raster graphics that plain text extraction cannot recreate as editable Word elements turn on "Keep exact original look" above to include them as a picture instead. Scanned PDFs, password-protected files, and mathematical equations rendered as symbol-font glyphs (not real Unicode text) still cannot be extracted as text, with or without that option.</span>
+      <span>This tool extracts text, headings, basic bold/italic styling, approximate paragraph spacing, basic tables, and detected center alignment from digitally created PDFs into an editable .docx file. Text color is inferred where possible but not guaranteed to be pixel-accurate. Logos, images, borders, boxes, and colored backgrounds are drawn/vector or raster graphics that plain text extraction cannot recreate as editable Word elements. Scanned PDFs, password-protected files, and mathematical equations rendered as symbol-font glyphs (not real Unicode text) cannot be extracted as text.</span>
     </div>
   </section>
 </main>
@@ -1134,7 +1094,7 @@ convertBtn.addEventListener('click', function() {
   errorBox.classList.remove('active');
   resultBox.classList.remove('active');
   convertBtn.disabled = true;
-  var visualMode = document.getElementById('visual-mode-check').checked;
+  var visualMode = false; // page-snapshot mode removed — it doubled document length/pages
   setProgress(5, 'Reading PDF…');
 
   var reader = new FileReader();
@@ -1217,7 +1177,7 @@ function finishConversion(pageModels, pageImages, isPartial) {
   var hasImages = pageImages && pageImages.some(function(img){ return !!img; });
 
   if (totalRuns === 0 && !hasImages) {
-    showError('No extractable text was found in this PDF. It may be a scanned document (an image of text), which this tool cannot convert. Try a digitally created PDF instead, or enable "Keep exact original look" to get a visual copy.');
+    showError('No extractable text was found in this PDF. It may be a scanned document (an image of text), which this browser-only tool cannot convert. Try a digitally created PDF instead (exported from Word, Google Docs, or a website).');
     progressWrap.classList.remove('active');
     convertBtn.disabled = false;
     return;
@@ -1228,7 +1188,7 @@ function finishConversion(pageModels, pageImages, isPartial) {
     // this small means something failed silently upstream — refuse to
     // hand the user a broken file instead of pretending it worked.
     if (!blob || blob.size < 300) {
-      showError('The Word file could not be built correctly. Please try again, or try with "Keep exact original look" turned off.');
+      showError('The Word file could not be built correctly. Please try again with the same PDF.');
       progressWrap.classList.remove('active');
       convertBtn.disabled = false;
       return;
@@ -1251,7 +1211,7 @@ function finishConversion(pageModels, pageImages, isPartial) {
       setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
     };
   }).catch(function(err) {
-    showError('Something went wrong while building the Word file. Please try again' + (hasImages ? ', or try with "Keep exact original look" turned off.' : '.'));
+    showError('Something went wrong while building the Word file. Please try again.');
     progressWrap.classList.remove('active');
     convertBtn.disabled = false;
   });
