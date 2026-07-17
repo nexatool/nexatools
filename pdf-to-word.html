@@ -797,27 +797,20 @@ function extractPageImages(page) {
   }); 
 }
 /* ---------------- Extraction: text model + page size + images ---------------- */
-
 function extractPageModel(page) {
   var viewportPt = page.getViewport({ scale: 1 });
   var pageWidthPt = viewportPt.width, pageHeightPt = viewportPt.height;
+  var pageRotation = viewportPt.rotation || 0;
 
-  // Force pdf.js to actually decode embedded images (logos, photos) by
-  // rendering the page once to a throwaway offscreen canvas first.
-  // getOperatorList() alone only gives the display instructions — the
-  // real pixel data for images is only guaranteed to be available in
-  // page.objs after render() has run, otherwise objs.get() can return
-  // nothing and the image silently gets dropped from the output.
   var renderCanvas = document.createElement('canvas');
   renderCanvas.width = Math.ceil(viewportPt.width);
   renderCanvas.height = Math.ceil(viewportPt.height);
   var renderCtx = renderCanvas.getContext('2d');
   var renderTask = page.render({ canvasContext: renderCtx, viewport: viewportPt });
 
-  return renderTask.promise.catch(function(){ /* ignore render errors, still try to extract */ })
-    .then(function () {
-      return page.getOperatorList();
-    }).then(function (opList) {
+  return renderTask.promise.catch(function(){})
+    .then(function () { return page.getOperatorList(); })
+    .then(function (opList) {
     var OPS = pdfjsLib.OPS;
     var ctm = [1,0,0,1,0,0];
     var ctmStack = [];
@@ -847,8 +840,6 @@ function extractPageModel(page) {
       else if (fn === OPS.setFillRGBColor) { fillColor = [args[0], args[1], args[2]]; }
       else if (fn === OPS.setFillGray) { var g = Math.round(args[0]*255); fillColor = [g,g,g]; }
       else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) {
-        // try to salvage a plain RGB/Gray value if args look numeric (common
-        // simple case), otherwise fall back to null for real pattern fills
         if (args && args.length === 3 && args.every(function(a){ return typeof a === 'number'; })) {
           fillColor = [args[0]*255, args[1]*255, args[2]*255];
         } else if (args && args.length === 1 && typeof args[0] === 'number') {
@@ -861,7 +852,7 @@ function extractPageModel(page) {
       else if (fn === OPS.rectangle) {
         pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
       }
-   else if (fn === OPS.constructPath) {
+      else if (fn === OPS.constructPath) {
         try {
           var coords = args[1];
           if (coords && coords.length >= 8) {
@@ -871,8 +862,6 @@ function extractPageModel(page) {
             var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
             pendingRectStart = { x: minX, y: minY, w: maxX-minX, h: maxY-minY, ctm: ctm.slice(), color: fillColor };
           } else if (coords && coords.length === 4) {
-            // a plain 2-point line segment (moveTo + lineTo) — treat its
-            // bounding box as a thin horizontal/vertical rule
             var lx = [coords[0], coords[2]], ly = [coords[1], coords[3]];
             var lminX = Math.min.apply(null, lx), lmaxX = Math.max.apply(null, lx);
             var lminY = Math.min.apply(null, ly), lmaxY = Math.max.apply(null, ly);
@@ -898,7 +887,7 @@ function extractPageModel(page) {
         }
         pendingRectStart = null;
       }
-     else if (fn === OPS.stroke || fn === OPS.closeStroke) {
+      else if (fn === OPS.stroke || fn === OPS.closeStroke) {
         if (pendingRectStart) {
           var r2 = pendingRectStart;
           var corners2 = [[r2.x,r2.y],[r2.x+r2.w,r2.y],[r2.x,r2.y+r2.h],[r2.x+r2.w,r2.y+r2.h]].map(function(p){
@@ -910,11 +899,8 @@ function extractPageModel(page) {
           var rTop2 = Math.max.apply(null, cys2);
           var rLeft2 = Math.min.apply(null, cxs2);
           if (rw2 > 8 && rh2 > 4) {
-            // a real box (has both width and height) -> border
             rects.push({ xPt: rLeft2, yTopPt: rTop2, widthPt: rw2, heightPt: rh2, color: null, border: true, order: i });
           } else if (rw2 > 8 && rh2 <= 4) {
-            // a thin/flat stroke -> a horizontal rule line, keep it distinct so multiple
-            // consecutive lines don't collapse into one
             rects.push({ xPt: rLeft2, yTopPt: rTop2, widthPt: rw2, heightPt: 0, color: null, line: true, order: i });
           }
         }
@@ -925,11 +911,11 @@ function extractPageModel(page) {
       }
     }
 
-  return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
+    return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
         var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
-if (fontSize < 6) fontSize = 10;
+        if (fontSize < 6) fontSize = 10;
         var fontObj = null;
         try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
         var color = colorIdx < textColorAtOpIndex.length ? textColorAtOpIndex[colorIdx] : null;
@@ -937,9 +923,12 @@ if (fontSize < 6) fontSize = 10;
         var fontName = (fontObj && (fontObj.name || fontObj.loadedName)) || null;
         var underline = !!(fontObj && fontObj.name && /underline/i.test(fontObj.name));
         var nameBold = fontName && /bold|black|heavy|semibold/i.test(fontName);
+        var nameItalic = fontName && /italic|oblique/i.test(fontName);
         return {
           str: item.str, x: item.transform[4], y: item.transform[5], w: item.width || 0,
-          fontSize: fontSize, bold: !!((fontObj && fontObj.bold) || nameBold), italic: !!(fontObj && fontObj.italic),
+          fontSize: fontSize,
+          bold: !!((fontObj && fontObj.bold) || nameBold),
+          italic: !!((fontObj && fontObj.italic) || nameItalic),
           color: color, fontName: fontName, underline: underline
         };
       }).filter(function (i) { return i.str && i.str.length; });
@@ -969,11 +958,87 @@ if (fontSize < 6) fontSize = 10;
             align: (img.xPt > pageWidthPt * 0.2 && (img.xPt + img.widthPt) < pageWidthPt * 0.8) ? 'center' : 'left'
           });
         });
-        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt };
+        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation };
       });
     });
   });
 }
+
+/* ---------------- extractPageImages() ---------------- */
+function extractPageImages(page) {
+  return page.getOperatorList().then(function (opList) {
+    var OPS = pdfjsLib.OPS;
+    var found = [];
+    var ctm = [1, 0, 0, 1, 0, 0];
+    var stack = [];
+
+    function mul(m1, m2) {
+      return [
+        m1[0]*m2[0] + m1[1]*m2[2],
+        m1[0]*m2[1] + m1[1]*m2[3],
+        m1[2]*m2[0] + m1[3]*m2[2],
+        m1[2]*m2[1] + m1[3]*m2[3],
+        m1[4]*m2[0] + m1[5]*m2[2] + m2[4],
+        m1[4]*m2[1] + m1[5]*m2[3] + m2[5]
+      ];
+    }
+
+    for (var i = 0; i < opList.fnArray.length; i++) {
+      var fn = opList.fnArray[i], args = opList.argsArray[i];
+      if (fn === OPS.save) {
+        stack.push(ctm.slice());
+      } else if (fn === OPS.restore) {
+        ctm = stack.pop() || ctm;
+      } else if (fn === OPS.transform) {
+        ctm = mul(args, ctm);
+      } else if (fn === OPS.paintImageXObject || fn === OPS.paintJpegXObject || fn === OPS.paintImageMaskXObject) {
+        var objId = args[0];
+        var corners = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
+          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
+        });
+        var xs = corners.map(function(c){return c[0];});
+        var ys = corners.map(function(c){return c[1];});
+        var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+        var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+        var widthPt = maxX - minX, heightPt = maxY - minY;
+        // lowered the minimum from 4pt to 2pt so small icons/logos aren't skipped
+        if (widthPt > 2 && heightPt > 2) {
+          found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i, inline: false });
+        }
+      } else if (fn === OPS.paintInlineImageXObject) {
+        var imgData = args[0];
+        var corners2 = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
+          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
+        });
+        var xs2 = corners2.map(function(c){return c[0];});
+        var ys2 = corners2.map(function(c){return c[1];});
+        var minX2 = Math.min.apply(null, xs2), maxX2 = Math.max.apply(null, xs2);
+        var minY2 = Math.min.apply(null, ys2), maxY2 = Math.max.apply(null, ys2);
+        var w2 = maxX2 - minX2, h2 = maxY2 - minY2;
+        if (w2 > 2 && h2 > 2 && imgData) {
+          found.push({ objId: null, inlineData: imgData, xPt: minX2, yTopPt: maxY2, widthPt: w2, heightPt: h2, order: i, inline: true });
+        }
+      }
+    }
+
+    return Promise.all(found.map(function (f) {
+      if (f.inline) {
+        var dataUrl2 = imageDataToPngDataUrl(f.inlineData);
+        if (!dataUrl2) return null;
+        return { dataUrl: dataUrl2, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
+      }
+      return getPdfObj(page.objs, f.objId).then(function (imgObj) {
+        var dataUrl = imageDataToPngDataUrl(imgObj);
+        if (!dataUrl) return null;
+        return { dataUrl: dataUrl, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
+      });
+    })).then(function (results) {
+      return results.filter(function (r) { return r; });
+    });
+  });
+}
+
+/* ---------------- buildLinesAndParagraphs() ---------------- */
 function buildLinesAndParagraphs(items, pageWidth) {
   if (!items.length) return { blocks: [] };
   pageWidth = pageWidth || 612;
@@ -1007,7 +1072,6 @@ function buildLinesAndParagraphs(items, pageWidth) {
     return cells.map(function(c){ return c.map(function(t){ return t.str; }).join(' ').trim(); });
   }
   function isRuleLine(text) {
-    // a line that's just repeated dashes/underscores (a drawn "rule"/signature line)
     return /^[_\-.\u2014\u2013]{10,}$/.test(text.replace(/\s/g, ''));
   }
 
@@ -1027,21 +1091,27 @@ function buildLinesAndParagraphs(items, pageWidth) {
     if (leftMargin > 20 && rightMargin > 20 &&
         Math.abs(leftMargin - rightMargin) < Math.max(18, lineWidth * 0.08)) {
       align = 'center';
+    } else if (rightMargin < 20 && leftMargin > pageWidth * 0.25) {
+      // pinned to the right edge with a large left gap -> right aligned
+      align = 'right';
     }
 
-    return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, align: align, runs: line };
+    // indentation: how far this line starts from the page's typical left margin
+    return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, align: align, runs: line, leftMargin: leftMargin };
   });
 
+  // typical left margin = the most common (mode-ish) left start among body-size lines
+  var leftMargins = lineMeta.filter(function(lm){ return Math.abs(lm.fontSize - bodySize) < 1.5; }).map(function(lm){ return lm.leftMargin; });
+  var baseLeftMargin = leftMargins.length ? Math.min.apply(null, leftMargins) : 0;
 
-// ---- heading detection: multi-signal score instead of a single fontSize ratio ----
   function classifyStyle(lm) {
     var sizeRatio = lm.fontSize / bodySize;
     var score = 0;
     if (sizeRatio >= 1.35) score += 2;
     else if (sizeRatio >= 1.15) score += 1;
     if (lm.bold) score += 1;
-    if (lm.cells.length === 1 && lm.cells[0].length < 90) score += 1; // headings are short lines
-    if (lm.color && (lm.color[0] || lm.color[1] || lm.color[2])) score += 1; // colored headings (common in templates)
+    if (lm.cells.length === 1 && lm.cells[0].length < 90) score += 1;
+    if (lm.color && (lm.color[0] || lm.color[1] || lm.color[2])) score += 1;
 
     if (score >= 4) return 'Heading1';
     if (score >= 3) return 'Heading2';
@@ -1049,7 +1119,6 @@ function buildLinesAndParagraphs(items, pageWidth) {
     return 'Normal';
   }
 
-  // ---- table detection: require an actual repeating column grid, not just "3 multi-cell lines" ----
   function detectTableRuns(lineMeta) {
     var runs = [];
     var i = 0;
@@ -1060,13 +1129,12 @@ function buildLinesAndParagraphs(items, pageWidth) {
       var rows = [lineMeta[i]];
       while (j < lineMeta.length && lineMeta[j].isMulti) {
         var jx = lineMeta[j].runs.map(function(r){ return Math.round(r.x/5)*5; });
-        // require the column start positions to roughly line up (grid), not just similar cell counts
         var aligned = jx.some(function(x0){ return startX.some(function(x1){ return Math.abs(x0-x1) <= 6; }); });
         if (!aligned) break;
         rows.push(lineMeta[j]);
         j++;
       }
-      if (rows.length >= 2) { // 2+ aligned rows is a real table, unlike the old "3 consecutive" rule
+      if (rows.length >= 2) {
         runs.push({ start: i, end: j });
         i = j;
       } else {
@@ -1075,11 +1143,11 @@ function buildLinesAndParagraphs(items, pageWidth) {
     }
     return runs;
   }
-// ---- list detection: bullet markers or numbered patterns at line start ----
+
   function isLikelyBulletChar(ch) {
     if (!ch) return false;
-    if (/[\p{L}\p{N}]/u.test(ch)) return false; // letters/numbers are never bullets
-    if ('.,;:\'")]}'.indexOf(ch) !== -1) return false; // common sentence punctuation, not bullets
+    if (/[\p{L}\p{N}]/u.test(ch)) return false;
+    if ('.,;:\'")]}'.indexOf(ch) !== -1) return false;
     return true;
   }
 
@@ -1088,9 +1156,6 @@ function buildLinesAndParagraphs(items, pageWidth) {
     if (bulletMatch) return { isList: true, ordered: false, text: cellText.slice(bulletMatch[0].length) };
     var numMatch = /^(\d{1,3}|[a-zA-Z])[\.\)]\s+/.exec(cellText);
     if (numMatch) return { isList: true, ordered: true, text: cellText.slice(numMatch[0].length) };
-    // generic fallback: any single odd symbol at line start (covers Wingdings/Symbol
-    // font bullet glyphs that PDF leaves as unmapped characters, which would
-    // otherwise render as a "tofu" box in Word)
     var genericMatch = /^(.)\s+(.*)$/.exec(cellText);
     if (genericMatch && isLikelyBulletChar(genericMatch[1]) && genericMatch[2].length > 0) {
       return { isList: true, ordered: false, text: genericMatch[2] };
@@ -1111,7 +1176,7 @@ function buildLinesAndParagraphs(items, pageWidth) {
       blocks.push({ type: 'table', rows: rows });
       i2 = run.end;
     } else if (run) {
-      i2++; // already consumed inside a run started earlier (shouldn't normally hit)
+      i2++;
     } else {
       var lm = lineMeta[i2];
       var style = classifyStyle(lm);
@@ -1122,6 +1187,7 @@ function buildLinesAndParagraphs(items, pageWidth) {
         if (prev.y !== undefined) {
           var gap = prev.y - lm.y;
           if (gap > lm.fontSize * 1.8) spacingBefore = 200;
+          else if (gap > lm.fontSize * 1.15) spacingBefore = 60; // finer line-spacing signal
         }
       }
       var listInfo = detectListInfo(lm.cells[0] || '');
@@ -1129,12 +1195,16 @@ function buildLinesAndParagraphs(items, pageWidth) {
       if (listInfo.isList && runsForBlock.length > 1) {
         var firstRunTrimmed = runsForBlock[0].str.trim();
         if (firstRunTrimmed.length <= 1 && isLikelyBulletChar(firstRunTrimmed)) {
-          runsForBlock = runsForBlock.slice(1); // drop the bullet-glyph run itself
+          runsForBlock = runsForBlock.slice(1);
         }
       }
+      // indentation relative to the page's base left margin, converted to twips (1pt = 20 twips)
+      var indentTwips = Math.max(0, Math.round((lm.leftMargin - baseLeftMargin) * 20));
+      if (listInfo.isList) indentTwips = 0; // lists use their own numbering indent
+
       blocks.push({
         type: 'para', style: style, y: lm.y, spacingBefore: spacingBefore, align: lm.align,
-        isList: listInfo.isList, ordered: listInfo.ordered,
+        isList: listInfo.isList, ordered: listInfo.ordered, indentTwips: indentTwips,
         runs: runsForBlock.map(function(r){
           return { text: r.str, bold: r.bold, italic: r.italic, underline: r.underline, size: r.fontSize, color: r.color, fontName: r.fontName };
         })
@@ -1145,19 +1215,14 @@ function buildLinesAndParagraphs(items, pageWidth) {
   return { blocks: blocks };
 }
 
-/* ---- DOCX assembly with real styling ---- */
-function rgbToHex(c) {
-  if (!c) return null;
-  function h(n){ n = Math.max(0, Math.min(255, Math.round(n))); var s = n.toString(16); return s.length===1?'0'+s:s; }
-  return h(c[0]) + h(c[1]) + h(c[2]);
-}
+/* ---------------- runXml() ---------------- */
 function runXml(run) {
   var rPr = '';
   if (run.bold) rPr += '<w:b/>';
   if (run.italic) rPr += '<w:i/>';
   if (run.underline) rPr += '<w:u w:val="single"/>';
   if (run.fontName) {
-    var safeFont = escXml(run.fontName).replace(/^[A-Z]{6}\+/, ''); // strip PDF subset prefix e.g. ABCDEF+Arial
+    var safeFont = escXml(run.fontName).replace(/^[A-Z]{6}\+/, '');
     rPr += '<w:rFonts w:ascii="' + safeFont + '" w:hAnsi="' + safeFont + '"/>';
   }
   if (run.size) rPr += '<w:sz w:val="' + Math.round(run.size * 2) + '"/>';
@@ -1166,13 +1231,16 @@ function runXml(run) {
   var rPrXml = rPr ? '<w:rPr>' + rPr + '</w:rPr>' : '';
   return '<w:r>' + rPrXml + '<w:t xml:space="preserve">' + escXml(run.text) + '</w:t></w:r>';
 }
+
+/* ---------------- paraXml() ---------------- */
 function paraXml(block) {
   var pPr = '';
   if (block.style && block.style !== 'Normal') pPr += '<w:pStyle w:val="' + block.style + '"/>';
-  if (block.spacingBefore) pPr += '<w:spacing w:before="' + block.spacingBefore + '"/>';
+  if (block.spacingBefore) pPr += '<w:spacing w:before="' + block.spacingBefore + '" w:after="0"/>';
   if (block.align === 'center') pPr += '<w:jc w:val="center"/>';
   else if (block.align === 'right') pPr += '<w:jc w:val="right"/>';
   else if (block.align === 'justify') pPr += '<w:jc w:val="both"/>';
+  if (block.indentTwips) pPr += '<w:ind w:left="' + block.indentTwips + '"/>';
   if (block.isList) {
     var numId = block.ordered ? 2 : 1;
     pPr += '<w:numPr><w:ilvl w:val="0"/><w:numId w:val="' + numId + '"/></w:numPr>';
@@ -1182,78 +1250,7 @@ function paraXml(block) {
   return '<w:p>' + pPrXml + runs + '</w:p>';
 }
 
-// new: render a captured background/border rectangle as a simple shaded paragraph frame
-function shapeXml(block, docPrId) {
-  if (block.line) {
-    return '<w:p><w:pPr><w:pBdr>' +
-      '<w:bottom w:val="single" w:sz="6" w:color="000000"/>' +
-      '</w:pBdr><w:spacing w:before="0" w:after="0"/></w:pPr></w:p>';
-  }
-  if (block.border) {
-    return '<w:p><w:pPr><w:pBdr>' +
-      '<w:top w:val="single" w:sz="6" w:color="000000"/>' +
-      '<w:left w:val="single" w:sz="6" w:color="000000"/>' +
-      '<w:bottom w:val="single" w:sz="6" w:color="000000"/>' +
-      '<w:right w:val="single" w:sz="6" w:color="000000"/>' +
-      '</w:pBdr></w:pPr><w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>';
-  }
-  var hex = rgbToHex(block.color) || 'CCCCCC';
-  return '<w:p><w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' +
-         '<w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>';
-}
-function tableXml(block) {
-  var colCount = 1;
-  block.rows.forEach(function(r){ if (r.length > colCount) colCount = r.length; });
-  var colWidth = Math.floor(9360 / colCount);
-  var gridCols = '';
-  for (var c = 0; c < colCount; c++) gridCols += '<w:gridCol w:w="' + colWidth + '"/>';
-  var rowsXml = block.rows.map(function(row) {
-    var cells = '';
-    for (var c2 = 0; c2 < colCount; c2++) {
-      var text = row[c2] || '';
-      cells += '<w:tc><w:tcPr><w:tcW w:w="' + colWidth + '" w:type="dxa"/></w:tcPr>' +
-               '<w:p><w:r><w:t xml:space="preserve">' + escXml(text) + '</w:t></w:r></w:p></w:tc>';
-    }
-    return '<w:tr>' + cells + '</w:tr>';
-  }).join('');
-  return '<w:tbl><w:tblPr><w:tblW w:w="9360" w:type="dxa"/>' +
-    '<w:tblBorders><w:top w:val="single" w:sz="4" w:color="AAAAAA"/><w:left w:val="single" w:sz="4" w:color="AAAAAA"/>' +
-    '<w:bottom w:val="single" w:sz="4" w:color="AAAAAA"/><w:right w:val="single" w:sz="4" w:color="AAAAAA"/>' +
-    '<w:insideH w:val="single" w:sz="4" w:color="AAAAAA"/><w:insideV w:val="single" w:sz="4" w:color="AAAAAA"/></w:tblBorders>' +
-    '</w:tblPr><w:tblGrid>' + gridCols + '</w:tblGrid>' + rowsXml + '</w:tbl>';
-}
-
-function dataUrlToBytes(dataUrl) {
-  var base64 = dataUrl.split(',')[1];
-  var binary = atob(base64);
-  var bytes = new Uint8Array(binary.length);
-  for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return bytes;
-}
-
-/* ---------------- Inline (flow) image XML ---------------- */
-
-function imageInlineXml(relId, widthPt, heightPt, maxWidthPt, docPrId, align) {
-  var wPt = widthPt, hPt = heightPt;
-  if (wPt > maxWidthPt) {
-    var ratio = maxWidthPt / wPt;
-    wPt = maxWidthPt;
-    hPt = hPt * ratio;
-  }
-  var wE = Math.round(wPt * 12700), hE = Math.round(hPt * 12700);
-  var jc = align === 'center' ? '<w:jc w:val="center"/>' : '';
-  return '<w:p>' + (jc ? '<w:pPr>' + jc + '</w:pPr>' : '') + '<w:r><w:drawing>' +
-    '<wp:inline distT="0" distB="0" distL="0" distR="0">' +
-    '<wp:extent cx="' + wE + '" cy="' + hE + '"/>' +
-    '<wp:docPr id="' + docPrId + '" name="Image' + docPrId + '"/>' +
-    '<wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr>' +
-    '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
-    '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="' + docPrId + '" name="Image' + docPrId + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
-    '<pic:blipFill><a:blip r:embed="' + relId + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>' +
-    '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + wE + '" cy="' + hE + '"/></a:xfrm>' +
-    '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>' +
-    '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
-}
+/* ---------------- buildDocx() ---------------- */
 function buildDocx(pageModels) {
   return new Promise(function (resolve) {
     var mediaFiles = {};
@@ -1267,6 +1264,7 @@ function buildDocx(pageModels) {
       var pageWidthPt = model.pageWidthPt || 612;
       var pageHeightPt = model.pageHeightPt || 792;
       var contentWidthPt = pageWidthPt - marginPt * 2;
+      var isLandscape = pageWidthPt > pageHeightPt;
 
       var pageXml = '';
       if (!model.blocks.length) {
@@ -1295,16 +1293,17 @@ function buildDocx(pageModels) {
       var pgW = Math.round(pageWidthPt * 20);
       var pgH = Math.round(pageHeightPt * 20);
       var marginTw = Math.round(marginPt * 20);
+      var orientAttr = isLandscape ? ' w:orient="landscape"' : '';
 
       if (pIdx < pageModels.length - 1) {
         pageXml += '<w:p><w:pPr><w:sectPr>' +
-          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
+          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"' + orientAttr + '/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
           '<w:type w:val="nextPage"/>' +
           '</w:sectPr></w:pPr></w:p>';
       } else {
         pageXml += '<w:sectPr>' +
-          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
+          '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"' + orientAttr + '/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
           '</w:sectPr>';
       }
