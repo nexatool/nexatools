@@ -796,6 +796,126 @@ function extractPageImages(page) {
     });
   }); 
 }
+/* ---------------- Extraction: text model + page size + images ---------------- */
+
+function extractPageModel(page) {
+  var viewportPt = page.getViewport({ scale: 1 });
+  var pageWidthPt = viewportPt.width, pageHeightPt = viewportPt.height;
+
+  return page.getOperatorList().then(function (opList) {
+    var OPS = pdfjsLib.OPS;
+    var ctm = [1,0,0,1,0,0];
+    var ctmStack = [];
+    var fillColor = null;
+    var colorStack = [];
+    var rects = [];
+
+    function mul(m1, m2) {
+      return [
+        m1[0]*m2[0] + m1[1]*m2[2],
+        m1[0]*m2[1] + m1[1]*m2[3],
+        m1[2]*m2[0] + m1[3]*m2[2],
+        m1[2]*m2[1] + m1[3]*m2[3],
+        m1[4]*m2[0] + m1[5]*m2[2] + m2[4],
+        m1[4]*m2[1] + m1[5]*m2[3] + m2[5]
+      ];
+    }
+
+    var textColorAtOpIndex = [];
+    var pendingRectStart = null;
+
+    for (var i = 0; i < opList.fnArray.length; i++) {
+      var fn = opList.fnArray[i], args = opList.argsArray[i];
+      if (fn === OPS.save) { ctmStack.push(ctm.slice()); colorStack.push(fillColor); }
+      else if (fn === OPS.restore) { ctm = ctmStack.pop() || ctm; fillColor = colorStack.pop() || fillColor; }
+      else if (fn === OPS.transform) { ctm = mul(args, ctm); }
+      else if (fn === OPS.setFillRGBColor) { fillColor = [args[0], args[1], args[2]]; }
+      else if (fn === OPS.setFillGray) { var g = Math.round(args[0]*255); fillColor = [g,g,g]; }
+      else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) { fillColor = null; }
+      else if (fn === OPS.rectangle) {
+        pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
+      }
+      else if (fn === OPS.constructPath) {
+        try {
+          var coords = args[1];
+          if (coords && coords.length >= 8) {
+            var xs = [coords[0], coords[2], coords[4], coords[6]];
+            var ys = [coords[1], coords[3], coords[5], coords[7]];
+            var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+            var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+            pendingRectStart = { x: minX, y: minY, w: maxX-minX, h: maxY-minY, ctm: ctm.slice(), color: fillColor };
+          }
+        } catch(e) {}
+      }
+      else if (fn === OPS.fill || fn === OPS.eoFill) {
+        if (pendingRectStart && pendingRectStart.color) {
+          var r = pendingRectStart;
+          var corners = [[r.x,r.y],[r.x+r.w,r.y],[r.x,r.y+r.h],[r.x+r.w,r.y+r.h]].map(function(p){
+            return [r.ctm[0]*p[0]+r.ctm[2]*p[1]+r.ctm[4], r.ctm[1]*p[0]+r.ctm[3]*p[1]+r.ctm[5]];
+          });
+          var cxs = corners.map(function(c){return c[0];}), cys = corners.map(function(c){return c[1];});
+          var rw = Math.max.apply(null, cxs) - Math.min.apply(null, cxs);
+          var rh = Math.max.apply(null, cys) - Math.min.apply(null, cys);
+          if (rw > 8 && rh > 4) {
+            rects.push({
+              xPt: Math.min.apply(null, cxs), yTopPt: Math.max.apply(null, cys),
+              widthPt: rw, heightPt: rh, color: r.color, order: i
+            });
+          }
+        }
+        pendingRectStart = null;
+      }
+      else if (fn === OPS.showText || fn === OPS.showSpacedText) {
+        textColorAtOpIndex.push(fillColor);
+      }
+    }
+
+    return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
+      var colorIdx = 0;
+      var items = content.items.map(function (item) {
+        var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
+        var fontObj = null;
+        try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
+        var color = colorIdx < textColorAtOpIndex.length ? textColorAtOpIndex[colorIdx] : null;
+        colorIdx++;
+        var fontName = (fontObj && (fontObj.name || fontObj.loadedName)) || null;
+        var underline = !!(fontObj && fontObj.name && /underline/i.test(fontObj.name));
+        return {
+          str: item.str, x: item.transform[4], y: item.transform[5], w: item.width || 0,
+          fontSize: fontSize, bold: !!(fontObj && fontObj.bold), italic: !!(fontObj && fontObj.italic),
+          color: color, fontName: fontName, underline: underline
+        };
+      }).filter(function (i) { return i.str && i.str.length; });
+
+      var textModel = buildLinesAndParagraphs(items, pageWidthPt);
+      return extractPageImages(page).then(function (images) {
+        var blocks = textModel.blocks.slice();
+
+        rects.forEach(function (rc) {
+          var insertAt = blocks.length;
+          for (var b = 0; b < blocks.length; b++) {
+            if (blocks[b].y !== undefined && blocks[b].y < rc.yTopPt) { insertAt = b; break; }
+          }
+          blocks.splice(insertAt, 0, {
+            type: 'shape', xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
+          });
+        });
+
+        images.forEach(function (img) {
+          var insertAt = blocks.length;
+          for (var b = 0; b < blocks.length; b++) {
+            if (blocks[b].y !== undefined && blocks[b].y < img.yTopPt) { insertAt = b; break; }
+          }
+          blocks.splice(insertAt, 0, {
+            type: 'image', dataUrl: img.dataUrl, widthPt: img.widthPt, heightPt: img.heightPt,
+            align: (img.xPt > pageWidthPt * 0.2 && (img.xPt + img.widthPt) < pageWidthPt * 0.8) ? 'center' : 'left'
+          });
+        });
+        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt };
+      });
+    });
+  });
+}
 function buildLinesAndParagraphs(items, pageWidth) {
   if (!items.length) return { blocks: [] };
   pageWidth = pageWidth || 612;
