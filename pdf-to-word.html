@@ -351,7 +351,7 @@
 
     <label class="visual-mode-toggle">
       <input type="checkbox" id="visual-mode-check">
-      <span><strong>Keep exact original look</strong> adds a snapshot image of each page (logo, colors, borders included) above the editable text. Increases file size; the snapshot itself is a picture, not editable text.</span>
+      <span><strong>Keep exact original look</strong> adds a snapshot image of each page (logo, colors, borders included) above the editable text for that page. This roughly doubles the document's length and file size — you get both a visual copy and separately editable text, not one combined view. Leave unchecked for a shorter, purely editable document.</span>
     </label>
 
     <div class="result-box" id="result-box">
@@ -954,6 +954,12 @@ function buildDocx(pageModels, pageImages) {
             mediaFiles['word/media/' + mediaName] = bytes;
             relEntries.push('<Relationship Id="' + relId + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/' + mediaName + '"/>');
             bodyXml += drawingXml(relId, img.widthPt, img.heightPt, docPrId++);
+            // Label the split clearly so it doesn't read as accidental
+            // duplication: the picture above is a fixed snapshot of the
+            // original page; the text below is the same content, editable.
+            bodyXml += '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="60" w:after="200"/></w:pPr>' +
+              '<w:r><w:rPr><w:i/><w:sz w:val="16"/><w:color w:val="888888"/></w:rPr>' +
+              '<w:t xml:space="preserve">↑ page image (fixed)&#8195;·&#8195;editable text below ↓</w:t></w:r></w:p>';
           }
         } catch (e) {
           // A single bad image must not corrupt the whole document —
