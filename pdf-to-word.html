@@ -1295,6 +1295,105 @@ function paraXml(block) {
   var runs = (block.runs || []).map(runXml).join('');
   return '<w:p>' + pPrXml + runs + '</w:p>';
 }
+function rgbToHex(color) {
+  if (!color) return null;
+  var r = Math.max(0, Math.min(255, Math.round(color[0])));
+  var g = Math.max(0, Math.min(255, Math.round(color[1])));
+  var b = Math.max(0, Math.min(255, Math.round(color[2])));
+  function h(n) { var s = n.toString(16); return s.length < 2 ? '0' + s : s; }
+  return h(r) + h(g) + h(b);
+}
+
+function dataUrlToBytes(dataUrl) {
+  var comma = dataUrl.indexOf(',');
+  var b64 = dataUrl.substring(comma + 1);
+  var bin = atob(b64);
+  var bytes = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+
+function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
+  var w = widthPt, h = heightPt;
+  if (w > contentWidthPt && w > 0) {
+    var scale = contentWidthPt / w;
+    w = contentWidthPt;
+    h = h * scale;
+  }
+  var emuW = Math.max(1, Math.round(w * 12700));
+  var emuH = Math.max(1, Math.round(h * 12700));
+  var jc = align === 'center' ? 'center' : (align === 'right' ? 'right' : 'left');
+  return '<w:p><w:pPr><w:jc w:val="' + jc + '"/></w:pPr><w:r><w:drawing>' +
+    '<wp:inline distT="0" distB="0" distL="0" distR="0">' +
+    '<wp:extent cx="' + emuW + '" cy="' + emuH + '"/>' +
+    '<wp:docPr id="' + id + '" name="Picture ' + id + '"/>' +
+    '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">' +
+    '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+    '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+    '<pic:nvPicPr><pic:cNvPr id="' + id + '" name="Picture ' + id + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
+    '<pic:blipFill><a:blip r:embed="' + relId + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>' +
+    '<a:stretch><a:fillRect/></a:stretch></pic:blipFill>' +
+    '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + emuW + '" cy="' + emuH + '"/></a:xfrm>' +
+    '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
+    '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
+}
+
+function shapeXml(block, id) {
+  if (block.line) {
+    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
+  }
+  var pPr;
+  if (block.color) {
+    var hex = rgbToHex(block.color);
+    pPr = hex ? '<w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' : '';
+  } else {
+    pPr = '<w:pPr><w:pBdr>' +
+      '<w:top w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:left w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:right w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '</w:pBdr></w:pPr>';
+  }
+  return '<w:p>' + pPr + '</w:p>';
+}
+
+function tableXml(block) {
+  var rows = block.rows || [];
+  if (!rows.length) return '';
+  var colCount = 0;
+  rows.forEach(function(r){ if (r.length > colCount) colCount = r.length; });
+  if (colCount === 0) return '';
+
+  var gridCols = '';
+  for (var c = 0; c < colCount; c++) gridCols += '<w:gridCol/>';
+
+  var rowsXml = rows.map(function(row) {
+    var cellsXml = '';
+    for (var c2 = 0; c2 < colCount; c2++) {
+      var cellText = row[c2] || '';
+      cellsXml += '<w:tc><w:tcPr><w:tcBorders>' +
+        '<w:top w:val="single" w:sz="4" w:color="auto"/>' +
+        '<w:left w:val="single" w:sz="4" w:color="auto"/>' +
+        '<w:bottom w:val="single" w:sz="4" w:color="auto"/>' +
+        '<w:right w:val="single" w:sz="4" w:color="auto"/>' +
+        '</w:tcBorders></w:tcPr>' +
+        '<w:p><w:r><w:t xml:space="preserve">' + escXml(cellText) + '</w:t></w:r></w:p></w:tc>';
+    }
+    return '<w:tr>' + cellsXml + '</w:tr>';
+  }).join('');
+
+  return '<w:tbl>' +
+    '<w:tblPr><w:tblBorders>' +
+    '<w:top w:val="single" w:sz="4" w:color="auto"/>' +
+    '<w:left w:val="single" w:sz="4" w:color="auto"/>' +
+    '<w:bottom w:val="single" w:sz="4" w:color="auto"/>' +
+    '<w:right w:val="single" w:sz="4" w:color="auto"/>' +
+    '<w:insideH w:val="single" w:sz="4" w:color="auto"/>' +
+    '<w:insideV w:val="single" w:sz="4" w:color="auto"/>' +
+    '</w:tblBorders></w:tblPr>' +
+    '<w:tblGrid>' + gridCols + '</w:tblGrid>' +
+    rowsXml + '</w:tbl>';
+}
 /* ---------------- buildDocx() ---------------- */
 function buildDocx(pageModels) {
   return new Promise(function (resolve) {
