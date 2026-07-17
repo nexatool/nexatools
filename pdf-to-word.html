@@ -802,7 +802,22 @@ function extractPageModel(page) {
   var viewportPt = page.getViewport({ scale: 1 });
   var pageWidthPt = viewportPt.width, pageHeightPt = viewportPt.height;
 
-  return page.getOperatorList().then(function (opList) {
+  // Force pdf.js to actually decode embedded images (logos, photos) by
+  // rendering the page once to a throwaway offscreen canvas first.
+  // getOperatorList() alone only gives the display instructions — the
+  // real pixel data for images is only guaranteed to be available in
+  // page.objs after render() has run, otherwise objs.get() can return
+  // nothing and the image silently gets dropped from the output.
+  var renderCanvas = document.createElement('canvas');
+  renderCanvas.width = Math.ceil(viewportPt.width);
+  renderCanvas.height = Math.ceil(viewportPt.height);
+  var renderCtx = renderCanvas.getContext('2d');
+  var renderTask = page.render({ canvasContext: renderCtx, viewport: viewportPt });
+
+  return renderTask.promise.catch(function(){ /* ignore render errors, still try to extract */ })
+    .then(function () {
+      return page.getOperatorList();
+    }).then(function (opList) {
     var OPS = pdfjsLib.OPS;
     var ctm = [1,0,0,1,0,0];
     var ctmStack = [];
@@ -846,7 +861,7 @@ function extractPageModel(page) {
       else if (fn === OPS.rectangle) {
         pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
       }
-      else if (fn === OPS.constructPath) {
+   else if (fn === OPS.constructPath) {
         try {
           var coords = args[1];
           if (coords && coords.length >= 8) {
@@ -855,6 +870,13 @@ function extractPageModel(page) {
             var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
             var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
             pendingRectStart = { x: minX, y: minY, w: maxX-minX, h: maxY-minY, ctm: ctm.slice(), color: fillColor };
+          } else if (coords && coords.length === 4) {
+            // a plain 2-point line segment (moveTo + lineTo) — treat its
+            // bounding box as a thin horizontal/vertical rule
+            var lx = [coords[0], coords[2]], ly = [coords[1], coords[3]];
+            var lminX = Math.min.apply(null, lx), lmaxX = Math.max.apply(null, lx);
+            var lminY = Math.min.apply(null, ly), lmaxY = Math.max.apply(null, ly);
+            pendingRectStart = { x: lminX, y: lminY, w: lmaxX-lminX, h: lmaxY-lminY, ctm: ctm.slice(), color: fillColor };
           }
         } catch(e) {}
       }
@@ -932,7 +954,8 @@ if (fontSize < 6) fontSize = 10;
             if (blocks[b].y !== undefined && blocks[b].y < rc.yTopPt) { insertAt = b; break; }
           }
           blocks.splice(insertAt, 0, {
-            type: 'shape', xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
+            type: 'shape', xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
+            color: rc.color, border: rc.border, line: rc.line
           });
         });
 
