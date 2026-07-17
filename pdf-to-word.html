@@ -876,7 +876,7 @@ function extractPageModel(page) {
         }
         pendingRectStart = null;
       }
-      else if (fn === OPS.stroke || fn === OPS.closeStroke) {
+     else if (fn === OPS.stroke || fn === OPS.closeStroke) {
         if (pendingRectStart) {
           var r2 = pendingRectStart;
           var corners2 = [[r2.x,r2.y],[r2.x+r2.w,r2.y],[r2.x,r2.y+r2.h],[r2.x+r2.w,r2.y+r2.h]].map(function(p){
@@ -885,11 +885,15 @@ function extractPageModel(page) {
           var cxs2 = corners2.map(function(c){return c[0];}), cys2 = corners2.map(function(c){return c[1];});
           var rw2 = Math.max.apply(null, cxs2) - Math.min.apply(null, cxs2);
           var rh2 = Math.max.apply(null, cys2) - Math.min.apply(null, cys2);
+          var rTop2 = Math.max.apply(null, cys2);
+          var rLeft2 = Math.min.apply(null, cxs2);
           if (rw2 > 8 && rh2 > 4) {
-            rects.push({
-              xPt: Math.min.apply(null, cxs2), yTopPt: Math.max.apply(null, cys2),
-              widthPt: rw2, heightPt: rh2, color: null, border: true, order: i
-            });
+            // a real box (has both width and height) -> border
+            rects.push({ xPt: rLeft2, yTopPt: rTop2, widthPt: rw2, heightPt: rh2, color: null, border: true, order: i });
+          } else if (rw2 > 8 && rh2 <= 4) {
+            // a thin/flat stroke -> a horizontal rule line, keep it distinct so multiple
+            // consecutive lines don't collapse into one
+            rects.push({ xPt: rLeft2, yTopPt: rTop2, widthPt: rw2, heightPt: 0, color: null, line: true, order: i });
           }
         }
         pendingRectStart = null;
@@ -1157,6 +1161,11 @@ function paraXml(block) {
 
 // new: render a captured background/border rectangle as a simple shaded paragraph frame
 function shapeXml(block, docPrId) {
+  if (block.line) {
+    return '<w:p><w:pPr><w:pBdr>' +
+      '<w:bottom w:val="single" w:sz="6" w:color="000000"/>' +
+      '</w:pBdr><w:spacing w:before="0" w:after="0"/></w:pPr></w:p>';
+  }
   if (block.border) {
     return '<w:p><w:pPr><w:pBdr>' +
       '<w:top w:val="single" w:sz="6" w:color="000000"/>' +
