@@ -870,7 +870,7 @@ function extractPageModel(page) {
       }
     }
 
-    return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
+  return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
         var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
@@ -880,9 +880,10 @@ function extractPageModel(page) {
         colorIdx++;
         var fontName = (fontObj && (fontObj.name || fontObj.loadedName)) || null;
         var underline = !!(fontObj && fontObj.name && /underline/i.test(fontObj.name));
+        var nameBold = fontName && /bold|black|heavy|semibold/i.test(fontName);
         return {
           str: item.str, x: item.transform[4], y: item.transform[5], w: item.width || 0,
-          fontSize: fontSize, bold: !!(fontObj && fontObj.bold), italic: !!(fontObj && fontObj.italic),
+          fontSize: fontSize, bold: !!((fontObj && fontObj.bold) || nameBold), italic: !!(fontObj && fontObj.italic),
           color: color, fontName: fontName, underline: underline
         };
       }).filter(function (i) { return i.str && i.str.length; });
@@ -1158,8 +1159,6 @@ function imageInlineXml(relId, widthPt, heightPt, maxWidthPt, docPrId, align) {
     '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>' +
     '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
-
-/* ---------------- DOCX assembly: real page size + inline images ---------------- */
 function buildDocx(pageModels) {
   return new Promise(function (resolve) {
     var mediaFiles = {};
@@ -1203,14 +1202,12 @@ function buildDocx(pageModels) {
       var marginTw = Math.round(marginPt * 20);
 
       if (pIdx < pageModels.length - 1) {
-        // per-page section break: sectPr goes INSIDE the last paragraph's pPr for every page but the last
         pageXml += '<w:p><w:pPr><w:sectPr>' +
           '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
           '<w:type w:val="nextPage"/>' +
           '</w:sectPr></w:pPr></w:p>';
       } else {
-        // last page: this sectPr is the document's final/body-level one
         pageXml += '<w:sectPr>' +
           '<w:pgSz w:w="' + pgW + '" w:h="' + pgH + '"/>' +
           '<w:pgMar w:top="' + marginTw + '" w:right="' + marginTw + '" w:bottom="' + marginTw + '" w:left="' + marginTw + '" w:header="720" w:footer="720" w:gutter="0"/>' +
@@ -1225,7 +1222,6 @@ function buildDocx(pageModels) {
       '<w:body>' + bodyXml + '</w:body></w:document>';
 
     var stylesXml =
-    
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/>' +
@@ -1240,8 +1236,9 @@ function buildDocx(pageModels) {
         '<w:pPr><w:spacing w:before="160" w:after="80"/><w:outlineLvl w:val="2"/></w:pPr>' +
         '<w:rPr><w:b/><w:sz w:val="24"/></w:rPr></w:style>' +
       '</w:styles>';
-      var hasList = false;
-        pageModels.forEach(function(m){
+
+    var hasList = false;
+    pageModels.forEach(function(m){
       m.blocks.forEach(function(b){ if (b.isList) hasList = true; });
     });
 
@@ -1257,27 +1254,8 @@ function buildDocx(pageModels) {
       '<w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>' +
       '<w:num w:numId="2"><w:abstractNumId w:val="1"/></w:num>' +
       '</w:numbering>';
+
     var contentTypesXml =
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
-      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
-      '<Default Extension="xml" ContentType="application/xml"/>' +
-      '<Default Extension="png" ContentType="image/png"/>' +
-      '<Default Extension="jpg" ContentType="image/jpeg"/>' +
-      '<Default Extension="jpeg" ContentType="image/jpeg"/>' +
-      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
-      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
-      '</Types>';
-      var files = {
-      '[Content_Types].xml': contentTypesXml,
-      '_rels/.rels': relsXml,
-      'word/_rels/document.xml.rels': docRelsXml,
-      'word/document.xml': documentXml,
-      'word/styles.xml': stylesXml
-    };
-    if (hasList) files['word/numbering.xml'] = numberingXml;
-    Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
-var contentTypesXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
       '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
@@ -1289,6 +1267,7 @@ var contentTypesXml =
       '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
       (hasList ? '<Override PartName="/word/numbering.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"/>' : '') +
       '</Types>';
+
     var relsXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
@@ -1296,12 +1275,6 @@ var contentTypesXml =
       '</Relationships>';
 
     var docRelsXml =
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
-      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
-      relEntries.join('') +
-      '</Relationships>';
-      var docRelsXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
       '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
@@ -1317,7 +1290,6 @@ var contentTypesXml =
       'word/styles.xml': stylesXml
     };
     if (hasList) files['word/numbering.xml'] = numberingXml;
-    Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
     Object.keys(mediaFiles).forEach(function (path) { files[path] = mediaFiles[path]; });
 
     resolve(zipStore(files));
