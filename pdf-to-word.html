@@ -690,7 +690,9 @@ function imageDataToPngDataUrl(imgObj, isMask) {
   var kind = imgObj.kind;
 
   try {
-    if (!isMask && (kind === 3 || (src && src.length === w * h * 4))) {
+    if (!isMask && src && src.length === w * h * 4) {
+      out.data.set(src);
+    } else if (!isMask && (kind === 3 || (src && src.length === w * h * 4))) {
       out.data.set(src);
     } else if (!isMask && (kind === 2 || (src && src.length === w * h * 3))) {
       var di = 0;
@@ -700,14 +702,10 @@ function imageDataToPngDataUrl(imgObj, isMask) {
         out.data[di++] = src[i * 3 + 2];
         out.data[di++] = 255;
       }
+      if (imgObj.alphaData) {
+        for (var ai = 0; ai < w * h; ai++) out.data[ai * 4 + 3] = imgObj.alphaData[ai];
+      }
     } else if (isMask || kind === 1 || (src && src.length === Math.ceil(w / 8) * h)) {
-      // 1-bit stencil: many small logos/icons are painted as an image MASK
-      // rather than a full-color image. A mask has no color information of
-      // its own it is just "paint here / don't paint here". Rendering it
-      // through the old bilevel path produced a solid black-or-white box;
-      // rendering the "paint" bits as opaque black on a transparent
-      // background keeps the actual logo/icon shape while still letting it
-      // sit naturally on the page instead of covering it with a rectangle.
       var rowBytes = Math.ceil(w / 8);
       var di2 = 0;
       for (var y = 0; y < h; y++) {
@@ -715,7 +713,6 @@ function imageDataToPngDataUrl(imgObj, isMask) {
           var byte = src[y * rowBytes + (x >> 3)];
           var bit = (byte >> (7 - (x & 7))) & 1;
           if (isMask) {
-            // PDF mask convention: 0 = paint (opaque), 1 = mask out (skip)
             var paint = bit === 0;
             out.data[di2++] = 0; out.data[di2++] = 0; out.data[di2++] = 0;
             out.data[di2++] = paint ? 255 : 0;
@@ -724,6 +721,13 @@ function imageDataToPngDataUrl(imgObj, isMask) {
             out.data[di2++] = v; out.data[di2++] = v; out.data[di2++] = v; out.data[di2++] = 255;
           }
         }
+      }
+    } else if (src && src.length === w * h) {
+      // grayscale, one byte per pixel
+      var di3 = 0;
+      for (var gi = 0; gi < w * h; gi++) {
+        var gv2 = src[gi];
+        out.data[di3++] = gv2; out.data[di3++] = gv2; out.data[di3++] = gv2; out.data[di3++] = 255;
       }
     } else {
       return null;
@@ -739,77 +743,6 @@ function imageDataToPngDataUrl(imgObj, isMask) {
     return null;
   }
 }
-function extractPageImages(page) {
-  return page.getOperatorList().then(function (opList) {
-    var OPS = pdfjsLib.OPS;
-    var found = [];
-    var ctm = [1, 0, 0, 1, 0, 0];
-    var stack = [];
-
-    function mul(m1, m2) {
-      return [
-        m1[0]*m2[0] + m1[1]*m2[2],
-        m1[0]*m2[1] + m1[1]*m2[3],
-        m1[2]*m2[0] + m1[3]*m2[2],
-        m1[2]*m2[1] + m1[3]*m2[3],
-        m1[4]*m2[0] + m1[5]*m2[2] + m2[4],
-        m1[4]*m2[1] + m1[5]*m2[3] + m2[5]
-      ];
-    }
-
-    for (var i = 0; i < opList.fnArray.length; i++) {
-      var fn = opList.fnArray[i], args = opList.argsArray[i];
-      if (fn === OPS.save) {
-        stack.push(ctm.slice());
-      } else if (fn === OPS.restore) {
-        ctm = stack.pop() || ctm;
-      } else if (fn === OPS.transform) {
-        ctm = mul(args, ctm);
-      } else if (fn === OPS.paintImageXObject || fn === OPS.paintJpegXObject) {
-        var objId = args[0];
-        var corners = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
-          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
-        });
-        var xs = corners.map(function(c){return c[0];});
-        var ys = corners.map(function(c){return c[1];});
-        var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
-        var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
-        var widthPt = maxX - minX, heightPt = maxY - minY;
-        if (widthPt > 4 && heightPt > 4) {
-          found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i, inline: false });
-        }
-      } else if (fn === OPS.paintInlineImageXObject) {
-        var imgData = args[0];
-        var corners2 = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
-          return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
-        });
-        var xs2 = corners2.map(function(c){return c[0];});
-        var ys2 = corners2.map(function(c){return c[1];});
-        var minX2 = Math.min.apply(null, xs2), maxX2 = Math.max.apply(null, xs2);
-        var minY2 = Math.min.apply(null, ys2), maxY2 = Math.max.apply(null, ys2);
-        var w2 = maxX2 - minX2, h2 = maxY2 - minY2;
-        if (w2 > 4 && h2 > 4 && imgData) {
-          found.push({ objId: null, inlineData: imgData, xPt: minX2, yTopPt: maxY2, widthPt: w2, heightPt: h2, order: i, inline: true });
-        }
-      }
-    }
-
-    return Promise.all(found.map(function (f) {
-      if (f.inline) {
-        var dataUrl2 = imageDataToPngDataUrl(f.inlineData);
-        if (!dataUrl2) return null;
-        return { dataUrl: dataUrl2, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
-      }
-      return getPdfObj(page.objs, f.objId).then(function (imgObj) {
-        var dataUrl = imageDataToPngDataUrl(imgObj);
-        if (!dataUrl) return null;
-        return { dataUrl: dataUrl, xPt: f.xPt, yTopPt: f.yTopPt, widthPt: f.widthPt, heightPt: f.heightPt, order: f.order };
-      });
-    })).then(function (results) {
-      return results.filter(function (r) { return r; });
-    });
-  }); 
-}
 /* ---------------- Extraction: text model + page size + images ---------------- */
 function extractPageModel(page) {
   var viewportPt = page.getViewport({ scale: 1 });
@@ -821,7 +754,8 @@ function extractPageModel(page) {
   renderCanvas.height = Math.ceil(viewportPt.height);
   var renderCtx = renderCanvas.getContext('2d');
   var renderTask = page.render({ canvasContext: renderCtx, viewport: viewportPt });
-return renderTask.promise.catch(function(){})
+
+  return renderTask.promise.catch(function(){})
     .then(function () { return page.getOperatorList(); })
     .then(function (opList) {
     var OPS = pdfjsLib.OPS;
@@ -924,7 +858,7 @@ return renderTask.promise.catch(function(){})
       }
     }
 
-    // ---- Dedupe + merge rects, and separate real page borders from in-flow shapes ----
+    // ---- Dedupe, merge collinear rules, detect boxes/page borders ----
     function sig(r) { return Math.round(r.xPt)+':'+Math.round(r.yTopPt)+':'+Math.round(r.widthPt)+':'+Math.round(r.heightPt); }
 
     var seen = {};
@@ -951,6 +885,7 @@ return renderTask.promise.catch(function(){})
       }
     });
 
+    // Detect a genuine page border
     var pageBorderInfo = null;
     var fullPageRect = mergedRects.filter(function (r) {
       return !r.line && r.widthPt >= pageWidthPt * 0.85 && r.heightPt >= pageHeightPt * 0.85;
@@ -967,12 +902,40 @@ return renderTask.promise.catch(function(){})
       }
     }
 
-    mergedRects = mergedRects.filter(function (r) {
+    // Collapse a top-line + bottom-line pair that share the same x-range and
+    // sit close together vertically (a "boxed field") into ONE box shape,
+    // instead of two separate floating rule paragraphs around the text.
+    var lineRects = mergedRects.filter(function (r) { return r.line; });
+    var otherRects = mergedRects.filter(function (r) { return !r.line; });
+    var usedIdx = {};
+    var boxRects = [];
+    for (var a = 0; a < lineRects.length; a++) {
+      if (usedIdx[a]) continue;
+      for (var bI = a + 1; bI < lineRects.length; bI++) {
+        if (usedIdx[bI]) continue;
+        var L1 = lineRects[a], L2 = lineRects[bI];
+        var sameX = Math.abs(L1.xPt - L2.xPt) < 4 && Math.abs((L1.xPt + L1.widthPt) - (L2.xPt + L2.widthPt)) < 4;
+        var vGap = Math.abs(L1.yTopPt - L2.yTopPt);
+        if (sameX && vGap > 4 && vGap < 60) {
+          usedIdx[a] = true; usedIdx[bI] = true;
+          boxRects.push({
+            xPt: L1.xPt, yTopPt: Math.max(L1.yTopPt, L2.yTopPt),
+            widthPt: L1.widthPt, heightPt: vGap,
+            color: null, border: true, order: Math.min(L1.order, L2.order)
+          });
+          break;
+        }
+      }
+    }
+    var remainingLines = lineRects.filter(function (r, idx) { return !usedIdx[idx]; });
+    var finalRects = otherRects.concat(boxRects, remainingLines);
+
+    finalRects = finalRects.filter(function (r) {
       if (r.line) return r.widthPt >= 20;
       return r.widthPt >= 20 && r.heightPt >= 8;
     });
 
-    rects = mergedRects;
+    var rects2 = finalRects;
 
     return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
@@ -1000,7 +963,7 @@ return renderTask.promise.catch(function(){})
       return extractPageImages(page).then(function (images) {
         var blocks = textModel.blocks.slice();
 
-        rects.forEach(function (rc) {
+        rects2.forEach(function (rc) {
           var insertAt = blocks.length;
           for (var b = 0; b < blocks.length; b++) {
             if (blocks[b].y !== undefined && blocks[b].y < rc.yTopPt) { insertAt = b; break; }
@@ -1012,11 +975,6 @@ return renderTask.promise.catch(function(){})
         });
 
         images.forEach(function (img) {
-          // Anchor to the text block whose baseline is closest above this
-          // image's top edge, so the image stays next to the paragraph it
-          // sat beside in the original PDF instead of only being ordered
-          // by raw y-position (which can drift when several images share
-          // nearly the same vertical band, e.g. a logo next to a heading).
           var insertAt = blocks.length;
           for (var b = 0; b < blocks.length; b++) {
             if (blocks[b].y !== undefined && blocks[b].y < img.yTopPt) { insertAt = b; break; }
@@ -1039,6 +997,7 @@ return renderTask.promise.catch(function(){})
   });
 }
 
+/* ---------------- extractPageImages() ---------------- */
 /* ---------------- extractPageImages() ---------------- */
 function extractPageImages(page) {
   return page.getOperatorList().then(function (opList) {
@@ -1067,9 +1026,6 @@ function extractPageImages(page) {
       } else if (fn === OPS.transform) {
         ctm = mul(args, ctm);
       } else if (fn === OPS.paintImageXObject || fn === OPS.paintJpegXObject || fn === OPS.paintImageMaskXObject) {
-        // paintImageMaskXObject paints a 1-bit stencil (used heavily for
-        // small logos/icons/footer marks) - flag it so the decode step
-        // below knows to treat it as paint/no-paint rather than full color.
         var isMaskOp = (fn === OPS.paintImageMaskXObject);
         var objId = args[0];
         var corners = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
@@ -1080,11 +1036,10 @@ function extractPageImages(page) {
         var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
         var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
         var widthPt = maxX - minX, heightPt = maxY - minY;
-        // lowered the minimum from 4pt to 2pt so small icons/logos aren't skipped
         if (widthPt > 2 && heightPt > 2) {
           found.push({ objId: objId, xPt: minX, yTopPt: maxY, widthPt: widthPt, heightPt: heightPt, order: i, inline: false, isMask: isMaskOp });
         }
-      } else if (fn === OPS.paintInlineImageXObject) {
+      } else if (fn === OPS.paintInlineImageXObject || fn === OPS.paintInlineImageXObjectGroup) {
         var imgData = args[0];
         var corners2 = [[0,0],[1,0],[0,1],[1,1]].map(function(p){
           return [ctm[0]*p[0] + ctm[2]*p[1] + ctm[4], ctm[1]*p[0] + ctm[3]*p[1] + ctm[5]];
@@ -1100,11 +1055,6 @@ function extractPageImages(page) {
       }
     }
 
-    // Dedupe: the same logo/icon objId is frequently painted many times
-    // (repeated header stamps, watermark-style footers). Decoding and
-    // re-encoding the same bitmap to PNG on every occurrence is wasted
-    // work and used to slow down image-heavy pages; decode each unique
-    // objId once and reuse the resulting data URL for every placement.
     var decodeCache = {};
     return Promise.all(found.map(function (f) {
       if (f.inline) {
@@ -1121,7 +1071,7 @@ function extractPageImages(page) {
       }
       var decodePromise = getPdfObj(page.objs, f.objId).then(function (imgObj) {
         return imageDataToPngDataUrl(imgObj, f.isMask);
-      });
+      }).catch(function () { return null; });
       decodeCache[cacheKey] = decodePromise;
       return decodePromise.then(function (dataUrl) {
         if (!dataUrl) return null;
@@ -1132,7 +1082,6 @@ function extractPageImages(page) {
     });
   });
 }
-
 /* ---------------- buildLinesAndParagraphs() ---------------- */
 function buildLinesAndParagraphs(items, pageWidth) {
   if (!items.length) return { blocks: [] };
@@ -1424,7 +1373,6 @@ function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
     '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
     '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
-
 function shapeXml(block, id) {
   if (block.line) {
     return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
@@ -1443,7 +1391,6 @@ function shapeXml(block, id) {
   }
   return '<w:p>' + pPr + '</w:p>';
 }
-
 function tableXml(block) {
   var rows = block.rows || [];
   if (!rows.length) return '';
