@@ -1079,6 +1079,7 @@ function buildLinesAndParagraphs(items, pageWidth) {
           if (gap > lm.fontSize * 1.8) spacingBefore = 200;
         }
       }
+      var listInfo = detectListInfo(lm.cells[0] || '');
       var runsForBlock = lm.runs;
       if (listInfo.isList && runsForBlock.length > 1) {
         var firstRunTrimmed = runsForBlock[0].str.trim();
