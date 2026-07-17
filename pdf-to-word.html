@@ -831,7 +831,18 @@ function extractPageModel(page) {
       else if (fn === OPS.transform) { ctm = mul(args, ctm); }
       else if (fn === OPS.setFillRGBColor) { fillColor = [args[0], args[1], args[2]]; }
       else if (fn === OPS.setFillGray) { var g = Math.round(args[0]*255); fillColor = [g,g,g]; }
-      else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) { fillColor = null; }
+      else if (fn === OPS.setFillColorN || fn === OPS.setFillColor) {
+        // try to salvage a plain RGB/Gray value if args look numeric (common
+        // simple case), otherwise fall back to null for real pattern fills
+        if (args && args.length === 3 && args.every(function(a){ return typeof a === 'number'; })) {
+          fillColor = [args[0]*255, args[1]*255, args[2]*255];
+        } else if (args && args.length === 1 && typeof args[0] === 'number') {
+          var gv = Math.round(args[0]*255);
+          fillColor = [gv, gv, gv];
+        } else {
+          fillColor = null;
+        }
+      }
       else if (fn === OPS.rectangle) {
         pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
       }
@@ -874,6 +885,7 @@ function extractPageModel(page) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
         var fontSize = Math.hypot(item.transform[2], item.transform[3]) || Math.abs(item.transform[0]) || 10;
+if (fontSize < 6) fontSize = 10;
         var fontObj = null;
         try { fontObj = page.commonObjs.get(item.fontName); } catch (e) {}
         var color = colorIdx < textColorAtOpIndex.length ? textColorAtOpIndex[colorIdx] : null;
@@ -949,10 +961,15 @@ function buildLinesAndParagraphs(items, pageWidth) {
     }
     return cells.map(function(c){ return c.map(function(t){ return t.str; }).join(' ').trim(); });
   }
+  function isRuleLine(text) {
+    // a line that's just repeated dashes/underscores (a drawn "rule"/signature line)
+    return /^[_\-.\u2014\u2013]{10,}$/.test(text.replace(/\s/g, ''));
+  }
 
   var lineMeta = lines.map(function(line) {
     var cells = splitCells(line);
     var avgSize = line.reduce(function(s,t){ return s+t.fontSize; }, 0) / line.length;
+    if (cells.length === 1 && isRuleLine(cells[0])) avgSize = bodySize;
     var bold = line.filter(function(t){ return t.bold; }).length > line.length/2;
     var italic = line.filter(function(t){ return t.italic; }).length > line.length/2;
     var color = line[0].color;
