@@ -876,6 +876,24 @@ function extractPageModel(page) {
         }
         pendingRectStart = null;
       }
+      else if (fn === OPS.stroke || fn === OPS.closeStroke) {
+        if (pendingRectStart) {
+          var r2 = pendingRectStart;
+          var corners2 = [[r2.x,r2.y],[r2.x+r2.w,r2.y],[r2.x,r2.y+r2.h],[r2.x+r2.w,r2.y+r2.h]].map(function(p){
+            return [r2.ctm[0]*p[0]+r2.ctm[2]*p[1]+r2.ctm[4], r2.ctm[1]*p[0]+r2.ctm[3]*p[1]+r2.ctm[5]];
+          });
+          var cxs2 = corners2.map(function(c){return c[0];}), cys2 = corners2.map(function(c){return c[1];});
+          var rw2 = Math.max.apply(null, cxs2) - Math.min.apply(null, cxs2);
+          var rh2 = Math.max.apply(null, cys2) - Math.min.apply(null, cys2);
+          if (rw2 > 8 && rh2 > 4) {
+            rects.push({
+              xPt: Math.min.apply(null, cxs2), yTopPt: Math.max.apply(null, cys2),
+              widthPt: rw2, heightPt: rh2, color: null, border: true, order: i
+            });
+          }
+        }
+        pendingRectStart = null;
+      }
       else if (fn === OPS.showText || fn === OPS.showSpacedText) {
         textColorAtOpIndex.push(fillColor);
       }
@@ -1139,13 +1157,18 @@ function paraXml(block) {
 
 // new: render a captured background/border rectangle as a simple shaded paragraph frame
 function shapeXml(block, docPrId) {
+  if (block.border) {
+    return '<w:p><w:pPr><w:pBdr>' +
+      '<w:top w:val="single" w:sz="6" w:color="000000"/>' +
+      '<w:left w:val="single" w:sz="6" w:color="000000"/>' +
+      '<w:bottom w:val="single" w:sz="6" w:color="000000"/>' +
+      '<w:right w:val="single" w:sz="6" w:color="000000"/>' +
+      '</w:pBdr></w:pPr><w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>';
+  }
   var hex = rgbToHex(block.color) || 'CCCCCC';
-  var wPt = Math.round(block.widthPt * 20); // twips
-  var hPt = Math.round(block.heightPt * 20);
   return '<w:p><w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' +
          '<w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>';
 }
-
 function tableXml(block) {
   var colCount = 1;
   block.rows.forEach(function(r){ if (r.length > colCount) colCount = r.length; });
