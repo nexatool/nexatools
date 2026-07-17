@@ -734,7 +734,7 @@ function buildLinesAndParagraphs(items, pageWidth) {
   var sizes = items.map(function(it){ return it.fontSize; }).sort(function(a,b){ return a-b; });
   var bodySize = sizes[Math.floor(sizes.length/2)] || 10;
 
-  var GAP = bodySize * 2;
+  var GAP = bodySize * 3.2;
   function splitCells(line) {
     var cells = [[line[0]]];
     for (var k = 1; k < line.length; k++) {
@@ -771,12 +771,28 @@ function buildLinesAndParagraphs(items, pageWidth) {
     return { cells: cells, isMulti: cells.length >= 2, y: line[0].y, fontSize: avgSize, bold: bold, italic: italic, color: color, align: align, runs: line };
   });
 
+  // A real table needs at least 3 consecutive lines with a matching (±1)
+  // column count. Two lines alone is too easy to trigger falsely from a
+  // justified paragraph that happens to have one wide inter-word gap.
+  function isRealTableStart(lineMeta, idx) {
+    if (!lineMeta[idx].isMulti) return false;
+    var count = lineMeta[idx].cells.length;
+    var consecutive = 1;
+    for (var k = idx + 1; k < lineMeta.length && k < idx + 3; k++) {
+      if (lineMeta[k].isMulti && Math.abs(lineMeta[k].cells.length - count) <= 1) consecutive++;
+      else break;
+    }
+    return consecutive >= 3;
+  }
+
   var blocks = [];
   var i2 = 0;
   while (i2 < lineMeta.length) {
-    if (lineMeta[i2].isMulti && lineMeta[i2+1] && lineMeta[i2+1].isMulti) {
+    if (isRealTableStart(lineMeta, i2)) {
       var rows = [];
-      while (i2 < lineMeta.length && lineMeta[i2].isMulti) {
+      var firstCellCount = lineMeta[i2].cells.length;
+      while (i2 < lineMeta.length && lineMeta[i2].isMulti &&
+             Math.abs(lineMeta[i2].cells.length - firstCellCount) <= 1) {
         rows.push(lineMeta[i2].cells);
         i2++;
       }
@@ -784,9 +800,9 @@ function buildLinesAndParagraphs(items, pageWidth) {
     } else {
       var lm = lineMeta[i2];
       var style = 'Normal';
-      if (lm.fontSize >= bodySize * 1.5) style = 'Heading1';
-      else if (lm.fontSize >= bodySize * 1.25) style = 'Heading2';
-      else if (lm.fontSize >= bodySize * 1.1 && lm.bold) style = 'Heading3';
+      if (lm.fontSize >= bodySize * 1.4) style = 'Heading1';
+      else if (lm.fontSize >= bodySize * 1.15) style = 'Heading2';
+      else if (lm.fontSize >= bodySize * 1.05 || (lm.bold && lm.fontSize >= bodySize * 0.98)) style = 'Heading3';
 
       var spacingBefore = 0;
       if (blocks.length) {
@@ -950,7 +966,8 @@ function buildDocx(pageModels, pageImages) {
     var stylesXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
-      '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>' +
+      '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/>' +
+        '<w:pPr><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr></w:style>' +
       '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/>' +
         '<w:pPr><w:spacing w:before="240" w:after="120"/><w:outlineLvl w:val="0"/></w:pPr>' +
         '<w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style>' +
