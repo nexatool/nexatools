@@ -963,7 +963,35 @@ function extractPageModel(page) {
       return extractPageImages(page).then(function (images) {
         var blocks = textModel.blocks.slice();
 
+        // ---- Bug B fix ----
+        // Tables built by buildLinesAndParagraphs() already draw their own
+        // cell borders in Word (see tableXml()). Without this check, every
+        // gridline pdf.js drew for that same table also comes through here
+        // as a separate "line"/"border" shape paragraph, duplicating the
+        // grid and bloating the page count (e.g. 2 pages -> 8 pages on
+        // heavily-gridded source PDFs). We only suppress rects that are
+        // pure strokes (line/border, no fill color) AND fall inside a
+        // table's bounding box; colored/shaded shapes are left untouched
+        // since tables don't reproduce those.
+        var tableBoxes = blocks.filter(function (b) {
+          return b.type === 'table' && b.yTopPt !== undefined;
+        });
+
+        function rectOverlapsTable(rc) {
+          var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
+          var rcLeft = rc.xPt, rcRight = rc.xPt + rc.widthPt;
+          for (var t = 0; t < tableBoxes.length; t++) {
+            var tb = tableBoxes[t];
+            var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
+            var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
+            if (xOverlap && yOverlap) return true;
+          }
+          return false;
+        }
+
         rects2.forEach(function (rc) {
+          if ((rc.line || rc.border) && rectOverlapsTable(rc)) return;
+
           var insertAt = blocks.length;
           for (var b = 0; b < blocks.length; b++) {
             if (blocks[b].y !== undefined && blocks[b].y < rc.yTopPt) { insertAt = b; break; }
@@ -996,8 +1024,6 @@ function extractPageModel(page) {
     });
   });
 }
-
-/* ---------------- extractPageImages() ---------------- */
 /* ---------------- extractPageImages() ---------------- */
 function extractPageImages(page) {
   return page.getOperatorList().then(function (opList) {
@@ -1217,9 +1243,33 @@ var lastEmittedY = null;
 while (i2 < lineMeta.length) {
   var run = tableRunForLine[i2];
   if (run && run.start === i2) {
+    // ---- Bug B fix: capture the table's bounding box (in PDF points) ----
+    // so extractPageModel() can suppress duplicate gridline "shapes" that
+    // pdf.js drew for these same cell borders. Padding accounts for cell
+    // padding + stroke width sitting just outside the text extents.
     var rows = [];
-    for (var k2 = run.start; k2 < run.end; k2++) rows.push(lineMeta[k2].cells);
-    blocks.push({ type: 'table', rows: rows });
+    var tblYTop = -Infinity, tblYBottom = Infinity, tblXLeft = Infinity, tblXRight = -Infinity;
+    for (var k2 = run.start; k2 < run.end; k2++) {
+      rows.push(lineMeta[k2].cells);
+      var rowRuns = lineMeta[k2].runs;
+      var rowY = lineMeta[k2].y;
+      if (rowY > tblYTop) tblYTop = rowY;
+      if (rowY < tblYBottom) tblYBottom = rowY;
+      if (rowRuns && rowRuns.length) {
+        var rLeft = rowRuns[0].x;
+        var rRight = rowRuns[rowRuns.length - 1].x + rowRuns[rowRuns.length - 1].w;
+        if (rLeft < tblXLeft) tblXLeft = rLeft;
+        if (rRight > tblXRight) tblXRight = rRight;
+      }
+    }
+    var TBL_PAD = 10;
+    blocks.push({
+      type: 'table', rows: rows,
+      y: tblYTop,
+      yTopPt: tblYTop + TBL_PAD, yBottomPt: tblYBottom - TBL_PAD,
+      xLeftPt: (isFinite(tblXLeft) ? tblXLeft : 0) - TBL_PAD,
+      xRightPt: (isFinite(tblXRight) ? tblXRight : pageWidth) + TBL_PAD
+    });
     i2 = run.end;
     lastEmittedY = null;
     continue;
@@ -1296,7 +1346,6 @@ while (i2 < lineMeta.length) {
 }
 return { blocks: blocks };
 }
-
 /* ---------------- runXml() ---------------- */
 function runXml(run) {
   var rPr = '';
