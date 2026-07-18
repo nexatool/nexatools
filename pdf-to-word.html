@@ -965,7 +965,8 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
     };
   })
 ));
-var rects2 = finalRects;
+
+  var rects2 = finalRects;
 
 // ---- Discard spurious large solid-dark shapes ----
 // Browser "print to PDF" often flattens CSS box-shadow / soft borders into
@@ -993,7 +994,6 @@ var rects2 = finalRects;
   });
   console.log('[TRACE] dark shape suppression', JSON.stringify({ before: before, after: rects2.length }));
 })();
-
 // ---- Dedup layered/overlapping shapes ----
 
   var byPosition = {};
@@ -1226,6 +1226,7 @@ console.log('[TRACE] extractPageModel done', JSON.stringify({
 return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
       });
     });
+  });
 }
 /* ---------------- extractPageImages() ---------------- */
 function extractPageImages(page) {
