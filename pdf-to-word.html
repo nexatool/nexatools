@@ -1085,26 +1085,9 @@ console.log('[TRACE] fill-based rects inside table y-ranges', JSON.stringify(
   rects2.filter(function(rc) {
     if (rc.line || rc.border) return false; // sirf fill-based (koi line/border flag nahi)
     var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
-    return tableBoxes.some(function(tb) {
+   return tableBoxes.some(function(tb) {
       return rcTop > tb.yBottomPt - 5 && rcBottom < tb.yTopPt + 5;
     });
-    console.log('[TRACE] rejected rects overlapping tableBoxes', JSON.stringify(
-  rejectedRects.filter(function(r) {
-    var rcTop = r.yTopPt, rcBottom = r.yTopPt - r.heightPt;
-    var rcLeft = r.xPt, rcRight = r.xPt + r.widthPt;
-    return tableBoxes.some(function(tb) {
-      var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
-      var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
-      return xOverlap && yOverlap;
-    });
-  }).map(function(r) {
-    return {
-      xPt: r.xPt, yTopPt: r.yTopPt, widthPt: r.widthPt, heightPt: r.heightPt,
-      type: r.line ? 'line' : (r.border ? 'border' : 'fill'),
-      color: r.color
-    };
-  })
-));
   }).slice(0, 20).map(function(rc) {
     return {
       xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
