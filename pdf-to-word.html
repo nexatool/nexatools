@@ -1477,11 +1477,11 @@ while (i2 < lineMeta.length) {
   var listInfo = detectListInfo(lm.cells[0] || '');
 
   var spacingBefore = 0;
-  if (lastEmittedY !== null) {
-    var gap0 = lastEmittedY - lm.y;
-    if (gap0 > lm.fontSize * 1.8) spacingBefore = 160;
-    else if (gap0 > lm.fontSize * 1.35) spacingBefore = 80;
-  }
+if (lastEmittedY !== null) {
+  var gap0 = lastEmittedY - lm.y;
+  if (gap0 > lm.fontSize * 2.2) spacingBefore = 100;
+  else if (gap0 > lm.fontSize * 1.6) spacingBefore = 40;
+}
 
   var runsForBlock = lm.runs;
   if (listInfo.isList && runsForBlock.length > 1) {
@@ -1670,7 +1670,14 @@ function tableXml(block) {
     var cellsXml = '';
     for (var c2 = 0; c2 < colCount; c2++) {
       var cellText = row[c2] || '';
-      cellsXml += '<w:tc><w:tcPr><w:tcBorders>' +
+      cellsXml += '<w:tc><w:tcPr>' +
+  '<w:tcMar>' +
+  '<w:top w:w="20" w:type="dxa"/>' +
+  '<w:left w:w="60" w:type="dxa"/>' +
+  '<w:bottom w:w="20" w:type="dxa"/>' +
+  '<w:right w:w="60" w:type="dxa"/>' +
+  '</w:tcMar>' +
+  '<w:tcBorders>' +
         '<w:top w:val="single" w:sz="4" w:color="auto"/>' +
         '<w:left w:val="single" w:sz="4" w:color="auto"/>' +
         '<w:bottom w:val="single" w:sz="4" w:color="auto"/>' +
@@ -1700,7 +1707,7 @@ function buildDocx(pageModels) {
     var relEntries = [];
     var relIdCounter = 2;
     var docPrId = 1;
-    var marginPt = 72;
+    var marginPt = 36; // 0.5" instead of 1" — matches source page's tighter margins
 
     var bodyXml = '';
     pageModels.forEach(function (model, pIdx) {
