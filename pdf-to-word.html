@@ -1204,8 +1204,11 @@ console.log('[TRACE] extractPageModel done', JSON.stringify({
 
   console.log('[TRACE] giant shapes (>15% page area)', JSON.stringify(giants));
 })();
-
 return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
+      });
+    });
+  });
+}
 /* ---------------- extractPageImages() ---------------- */
 function extractPageImages(page) {
   return page.getOperatorList().then(function (opList) {
