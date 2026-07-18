@@ -967,34 +967,44 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
 ));
 var rects2 = finalRects;
 
-// ---- Dedup layered/overlapping shapes ----
-// Some PDFs draw a single visual effect (e.g. a photo's shadow/border)
-// as many stacked rectangles at (or very near) the same top-left position,
-// differing only slightly in size. Left as-is, each one becomes its own
-// paragraph in the DOCX, causing massive page bloat with no visual gain.
-// Positions with only ONE shape are real, uniquely-placed elements
-// (logo boxes, header borders, outlines) and are never touched below.
-// Within a true duplicate cluster (same rounded position, 2+ shapes),
-// we avoid picking the largest rect, since layered clusters often include
-// one oversized background/shadow fill that would otherwise blanket the
-// real content. Instead we exclude background-sized candidates and keep
-// the smallest remaining shape — the tightest, most representative outline.
-(function dedupLayeredShapes() {
+// ---- Discard spurious large solid-dark shapes ----
+// Browser "print to PDF" often flattens CSS box-shadow / soft borders into
+// many nested vector rectangles with varying gray opacity. A few of these
+// can survive dedup as large, solid near-black fills that were never meant
+// to be an actual filled block — the source page has no such black boxes.
+// A rect this dark AND this large is virtually always a rendering
+// artifact, not real content, so we drop it rather than paint a black box
+// over real text underneath it.
+(function suppressSpuriousDarkShapes() {
   var pageArea = pageWidthPt * pageHeightPt;
-  var backgroundAreaThreshold = pageArea * 0.15;
+  var areaThreshold = pageArea * 0.05; // ignore fills bigger than 5% of the page
+  var before = rects2.length;
+  rects2 = rects2.filter(function (rc) {
+    if (rc.line || rc.border || !rc.color) return true; // only solid fills
+    var isNearBlack = rc.color[0] < 40 && rc.color[1] < 40 && rc.color[2] < 40;
+    var area = rc.widthPt * rc.heightPt;
+    if (isNearBlack && area > areaThreshold) {
+      console.log('[TRACE] suppressed spurious dark shape', JSON.stringify({
+        xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
+      }));
+      return false;
+    }
+    return true;
+  });
+  console.log('[TRACE] dark shape suppression', JSON.stringify({ before: before, after: rects2.length }));
+})();
 
-  function colorDistanceFromWhite(color) {
-    if (!color) return 0;
-    var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
-    return dr * dr + dg * dg + db * db;
-  }
+// ---- Dedup layered/overlapping shapes ----
 
   var byPosition = {};
-  rects2.forEach(function (rc) {
-    var key = Math.round(rc.xPt) + ':' + Math.round(rc.yTopPt);
-    if (!byPosition[key]) byPosition[key] = [];
-    byPosition[key].push(rc);
-  });
+rects2.forEach(function (rc) {
+  // Widened tolerance (6pt grid instead of exact pixel match) — CSS
+  // box-shadow blur rings render as many nested rects offset by just
+  // a few points, so exact-position matching was missing most of them.
+  var key = Math.round(rc.xPt / 6) * 6 + ':' + Math.round(rc.yTopPt / 6) * 6;
+  if (!byPosition[key]) byPosition[key] = [];
+  byPosition[key].push(rc);
+});
 
   rects2 = Object.keys(byPosition).map(function (key) {
     var cluster = byPosition[key];
