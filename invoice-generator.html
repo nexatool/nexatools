@@ -69,6 +69,32 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NexaTools Free Invoice/Billing Generator",
+  "url": "https://www.nexatools.io/invoice-generator.html",
+  "applicationCategory": "BusinessApplication",
+  "browserRequirements": "Requires JavaScript. Works in any modern browser.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "isAccessibleForFree": true,
+  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://nexatools.io" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NexaTools.io",
+  "url": "https://www.nexatools.io",
+  "logo": "https://www.nexatools.io/favicon-96x96.png",
+  "founder": { "@type": "Person", "name": "Rashid Amin" },
+  "sameAs": []
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
@@ -100,6 +126,36 @@
       "@type": "Question",
       "name": "How many line items can I add?",
       "acceptedAnswer": { "@type": "Answer", "text": "You can add unlimited line items. Each item has a description, quantity, and rate field. The total calculates automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to sign up to use the invoice generator?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No signup, no login, and no email required. Open the page and start creating your invoice right away." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add my own logo to the invoice?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Currently the generator focuses on clean text-based headers. Logo upload is on our roadmap for a future update." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit an invoice after generating it?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Change any field and click Generate Invoice again to refresh the preview before downloading." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I print the invoice directly?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the Print / Save as PDF button to open your browser's print dialog, where you can print on paper or save as a PDF file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the invoice generator mobile friendly?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool is fully responsive and works on phones, tablets, and desktops." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my invoice have a watermark?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Every invoice you generate is watermark-free, regardless of which template you choose." }
     }
   ]
 }
@@ -265,6 +321,18 @@
     letter-spacing: 0.8px; color: var(--cyan); margin-bottom: 14px;
   }
 
+  /* Feature cards grid (new) */
+  .features-grid-tool { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 24px 0; }
+  .feature-card-tool { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; transition: var(--transition); }
+  .feature-card-tool:hover { border-color: var(--border3); transform: translateY(-3px); }
+  .feature-card-tool .fc-icon { font-size: 1.3rem; margin-bottom: 8px; display: block; }
+  .feature-card-tool .fc-name { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .feature-card-tool .fc-desc { font-size: 0.78rem; color: var(--muted2); line-height: 1.55; }
+
+  /* Trust strip */
+  .trust-strip { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 18px auto 0; max-width: 900px; }
+  .trust-strip span { font-size: 0.75rem; color: var(--muted2); background: var(--surface2); border: 1px solid var(--border); padding: 6px 14px; border-radius: 30px; }
+
   @media (max-width: 768px) {
     .tool-page-hero { padding: calc(var(--nav-h) + 30px) 20px 30px; }
     .tool-section { padding: 0 20px 40px; }
@@ -341,19 +409,21 @@
     <span class="badge-dot"></span>Free Invoice/Billing Generator  JazzCash · Easypaisa · Payoneer · Wise
   </div>
   <h1>Free Invoice/Billing  Generator Online<br><span class="title-gradient">Built for Pakistani & International Freelancers</span></h1>
-  <p>Professional invoices in seconds. Multi-currency with PKR conversion, GST support, JazzCash/Easypaisa payment fields, and 4 premium templates. Download as PDF instantly.</p>
+  <p>Create professional, ready-to-send invoices directly in your browser no software to install and no account to create. Add your business and client details, list your products or services, and NexaTools calculates your totals, taxes, and currency conversion automatically. When you're done, download a clean PDF or print it in seconds.</p>
   <div class="hero-feature-pills">
-    <span class="feature-pill">✅ 100% Free</span>
+    <span class="feature-pill">🆓 Free Forever</span>
+    <span class="feature-pill">🚫 No Signup</span>
+    <span class="feature-pill">🌐 Browser-Based</span>
+    <span class="feature-pill">⬇️ PDF Download</span>
+    <span class="feature-pill">🔒 Privacy First</span>
     <span class="feature-pill">🏦 JazzCash & Easypaisa</span>
     <span class="feature-pill">💱 Multi-Currency + PKR</span>
     <span class="feature-pill">📊 GST 17% Auto-Calc</span>
-    <span class="feature-pill">📄 4 Templates</span>
-    <span class="feature-pill">⬇️ PDF Download</span>
-    <span class="feature-pill">🔒 No Login Needed</span>
   </div>
   <p style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:0.82rem;color:var(--muted2);margin-top:8px;">
     <span>✅ Reviewed by <a href="about.html" title="Rashid Amin is the founder of NexaTools, a platform dedicated to building fast, privacy-first online tools for PDFs, images, developers, AI, and business workflows. He focuses on creating browser-based tools that are simple to use, secure, and free, helping users complete everyday tasks without unnecessary uploads or signups." style="color:var(--cyan);font-weight:600;">Rashid Amin</a>, Founder of NexaTools</span>
     <span>🕒 Last Updated: July 2026</span>
+    <span>🔒 Browser-Based Processing</span>
   </p>
 </div>
 
@@ -573,6 +643,36 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
+<!-- SEO: WHAT IS AN INVOICE GENERATOR -->
+<div class="seo-section">
+  <h2>What Is an Invoice Generator?</h2>
+  <p>An invoice is a formal document a business or freelancer sends to a client to request payment for goods or services already delivered. It typically records who is billing whom, what was provided, how much it costs, when payment is due, and how the client can pay. A well-made invoice is more than paperwork it is a legal and financial record that protects both sides of a transaction and makes bookkeeping, tax filing, and dispute resolution far easier down the line.</p>
+  <p>Every business, no matter how small, eventually needs to issue invoices. Freelancers bill clients for completed projects. Small shops bill wholesale customers. Consultants bill by the hour or by milestone. Without a consistent, professional invoice, payments get delayed, details get lost in chat threads, and businesses struggle to track who owes what. A clear invoice sets expectations up front: the exact amount owed, the due date, and the accepted payment methods which in turn tends to get you paid faster.</p>
+  <p>An invoice generator like NexaTools removes the friction from this process. Instead of formatting a document by hand in a word processor or paying for accounting software you barely use, you fill in a short form your details, your client's details, the items or services rendered, and any applicable tax and the tool instantly builds a polished, print-ready invoice. Totals, tax amounts, and currency conversions are calculated automatically, which cuts down on the manual math errors that can make a business look unprofessional or, worse, cost money.</p>
+  <p>One of the biggest advantages of a browser-based invoice generator is that everything happens on your own device. There is nothing to install, no account to create, and no waiting on a server somewhere to process your data. This matters for two reasons: speed, since the invoice preview updates instantly as you type, and privacy, since your business and client information never has to leave your browser to produce a finished document. For freelancers and small businesses that handle sensitive financial details every day, that local-first approach is a meaningful advantage over many traditional invoicing platforms that store your data in the cloud by default.</p>
+  <p>NexaTools' generator was built specifically with flexibility in mind. It supports multiple currencies with automatic PKR conversion for Pakistani freelancers working with international clients, built-in GST/tax calculation, several professional templates, and a range of payment method fields from JazzCash and Easypaisa to Payoneer, Wise, PayPal, and standard bank transfer. The result is an invoice that looks like it came from dedicated accounting software, without the cost, signup, or learning curve.</p>
+</div>
+
+<!-- SEO: KEY FEATURES -->
+<div class="seo-section">
+  <h2>Key Features</h2>
+  <p>Everything you need to produce a professional invoice is built directly into the tool, at no cost.</p>
+  <div class="features-grid-tool">
+    <div class="feature-card-tool"><span class="fc-icon">📄</span><div class="fc-name">Professional Templates</div><div class="fc-desc">Choose from 4 polished designs Basic White, Corporate Dark, Gradient, and Luxury.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">⬇️</span><div class="fc-name">PDF Download</div><div class="fc-desc">Save your finished invoice as a clean, print-ready PDF in one click.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">➕</span><div class="fc-name">Unlimited Items</div><div class="fc-desc">Add as many product or service line items as your invoice needs.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🧮</span><div class="fc-name">Automatic Calculations</div><div class="fc-desc">Subtotals, tax, and grand totals update instantly as you type.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">📊</span><div class="fc-name">Tax / GST Support</div><div class="fc-desc">Enable tax with one click; the rate is fully editable for any region.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">💱</span><div class="fc-name">Currency Support</div><div class="fc-desc">Bill in USD, PKR, EUR, GBP, AED, SAR, CAD, or AUD with live PKR conversion.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🖨️</span><div class="fc-name">Print Ready</div><div class="fc-desc">Every template is formatted to print cleanly on standard paper sizes.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">📱</span><div class="fc-name">Mobile Friendly</div><div class="fc-desc">Create and download invoices from your phone, tablet, or desktop.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🚫</span><div class="fc-name">No Watermark</div><div class="fc-desc">Every invoice you generate is completely clean, with no branding forced on it.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🌐</span><div class="fc-name">Browser-Based</div><div class="fc-desc">No installs, no plugins the generator runs entirely in your browser tab.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🔒</span><div class="fc-name">Privacy First</div><div class="fc-desc">Your business and client details are never uploaded to a server.</div></div>
+    <div class="feature-card-tool"><span class="fc-icon">🚀</span><div class="fc-name">No Signup Required</div><div class="fc-desc">Start creating invoices immediately no account, email, or login needed.</div></div>
+  </div>
+</div>
+
 <!-- SEO: TEMPLATES -->
 <div class="seo-section">
   <h2>4 Free Professional Invoice Templates</h2>
@@ -615,6 +715,20 @@
   </div>
 </div>
 
+<!-- SEO: BENEFITS BY USER TYPE -->
+<div class="seo-section">
+  <h2>Benefits by Business Type</h2>
+  <p>The generator adapts to the way different kinds of businesses actually bill their clients.</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">💻</span><p><strong>Freelancers</strong> Bill Upwork or Fiverr clients in USD, show the PKR equivalent, and get paid through Payoneer or Wise without extra tools.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🏪</span><p><strong>Small Businesses</strong> Send GST-compliant invoices with JazzCash or Easypaisa details built in, without buying accounting software.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🏢</span><p><strong>Agencies</strong> Use the Luxury or Corporate Dark template to bill multiple line items per retainer or project milestone.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🧑‍💼</span><p><strong>Consultants</strong> Bill hourly or per-project rates with clear line items and payment terms noted in the invoice.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🛒</span><p><strong>Online Sellers</strong> Generate quick receipts or invoices for one-off sales without a full e-commerce billing system.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🎓</span><p><strong>Students</strong> Learn what a real invoice looks like or bill small tutoring and freelance side-gigs professionally.</p></div>
+  </div>
+</div>
+
 <!-- SEO: TIPS -->
 <div class="seo-section">
   <h2>Invoice Tips for Pakistani Freelancers in 2026</h2>
@@ -625,12 +739,32 @@
   <p>Pakistani freelancers should always list JazzCash and Easypaisa for local clients and Payoneer or Wise for international clients. The more payment options you provide, the faster you get paid.</p>
   <h3>Specify Payment Terms Clearly</h3>
   <p>Add your terms in the notes section: "Payment due within 7 days" or "Net 15." Many freelancers also add: "1.5% monthly late fee on overdue amounts." Clear terms significantly reduce late payments.</p>
+  <h3>Include a Clear Due Date</h3>
+  <p>An invoice without a due date leaves payment timing open to interpretation. Set the due date explicitly and reference it again in your notes so there is no ambiguity about when payment is expected.</p>
+  <h3>Mention Taxes Clearly</h3>
+  <p>If GST or any other tax applies, show it as its own line rather than folding it into the total. Clients and your own bookkeeping need to see the pre-tax subtotal, the tax rate applied, and the final amount separately.</p>
   <h3>Bill International Clients in USD with PKR Equivalent</h3>
   <p>When billing Upwork or Fiverr clients, use USD as your invoice currency. The PKR equivalent shows automatically so you know exactly what you will receive after conversion.</p>
+  <h3>Use Professional, Specific Descriptions</h3>
+  <p>Avoid vague line items like "Work done." Instead write "Homepage redesign  3 revisions" or "Logo design package (2 concepts + final files)." Specific descriptions reduce disputes and make your work easy to justify.</p>
   <h3>Send Invoices Immediately After Delivery</h3>
   <p>Send the invoice as soon as work is delivered. Delayed invoices almost always mean delayed payments. PDF format looks professional and cannot be accidentally edited by the client.</p>
   <h3>Save Every Invoice with a Clear Name</h3>
   <p>Name your files clearly: "INV-001-ClientName-May2026.pdf"this makes tax records and payment tracking much easier at year end.</p>
+</div>
+
+<!-- SEO: COMMON MISTAKES -->
+<div class="seo-section">
+  <h2>Common Invoice Mistakes to Avoid</h2>
+  <p>Small errors on an invoice can delay payment or make a business look unprofessional. Watch out for these:</p>
+  <div class="benefits-list">
+    <div class="benefit-item"><span class="bi-icon">🔢</span><p><strong>Missing or duplicate invoice numbers.</strong> This makes it hard for you and your client to track which invoice is which, especially at tax time.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📅</span><p><strong>No due date.</strong> Without a due date, clients have no urgency to pay, and disputes over "when it was due" become common.</p></div>
+    <div class="benefit-item"><span class="bi-icon">➗</span><p><strong>Manual math errors.</strong> Calculating totals and tax by hand invites mistakes. Let the generator calculate them automatically instead.</p></div>
+    <div class="benefit-item"><span class="bi-icon">💬</span><p><strong>Vague item descriptions.</strong> "Design work" tells a client nothing. Be specific about what was delivered and in what quantity.</p></div>
+    <div class="benefit-item"><span class="bi-icon">🏦</span><p><strong>No payment details.</strong> Leaving out how you accept payment forces the client to ask, which slows everything down.</p></div>
+    <div class="benefit-item"><span class="bi-icon">📄</span><p><strong>Inconsistent formatting.</strong> Switching templates or fonts between invoices looks unprofessional. Stick to one style per client relationship.</p></div>
+  </div>
 </div>
 
 <!-- AD -->
@@ -638,6 +772,19 @@
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6135039378280600"
     data-ad-slot="1517492186" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- PRIVACY FIRST -->
+<div class="seo-section">
+  <h2>Privacy First, By Design</h2>
+  <p>Invoices contain sensitive information names, contact details, payment accounts, and amounts owed. NexaTools' invoice generator is built to process everything locally in your browser whenever possible, so your business and client data is not routed through or stored on our servers as part of the invoice creation process.</p>
+  <p>We keep things simple: no account is required, so there is no profile of your invoicing history sitting on a remote server. Fields you fill in stay on your device until you choose to print or download the finished PDF. We do not add unnecessary tracking to your invoice data, and we respect that the information you enter your rates, your clients, your payment accounts belongs to you.</p>
+  <div class="trust-strip">
+    <span>🔒 Browser-Based Processing</span>
+    <span>🚫 No Signup Required</span>
+    <span>🆓 Free Forever</span>
+    <span>✅ Reviewed by Founder</span>
+  </div>
 </div>
 
 <!-- WHO SHOULD USE -->
@@ -683,8 +830,36 @@
       <div class="faq-a-tool">Yes, completely free. Create unlimited invoices, use all 4 templates, and download as PDF with no payment or signup required.</div>
     </div>
     <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Do you store my invoices? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. The generator processes everything in your browser. We do not store your invoice content on our servers as part of creating it.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I download my invoice as a PDF? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. Click "Generate Invoice," then "Print / Save as PDF," and choose "Save as PDF" in your browser's print dialog.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I edit an invoice after generating it? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. Update any field in the form and click "Generate Invoice" again to refresh the preview before downloading.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I print the invoice directly? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. The "Print / Save as PDF" button opens your browser's standard print dialog, so you can print on paper or save as PDF.</div>
+    </div>
+    <div class="faq-item-tool">
       <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I add JazzCash or Easypaisa to my invoice? <span class="faq-arrow-tool">▾</span></button>
       <div class="faq-a-tool">Yes. Click the JazzCash or Easypaisa button in the Payment Methods section, enter your account number, and it will automatically print on your Invoice/Billing PDF.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I add tax or GST to my invoice? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. Check the GST box and it defaults to 17% (Pakistan standard). You can change the rate to any value, and the total updates automatically.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I use my own logo on the invoice? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">The current templates focus on clean, text-based headers. Logo upload support is planned for a future update.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is the tool mobile friendly? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes. The generator is fully responsive and works smoothly on phones, tablets, and desktop browsers.</div>
     </div>
     <div class="faq-item-tool">
       <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I bill in USD and show PKR equivalent? <span class="faq-arrow-tool">▾</span></button>
@@ -703,9 +878,21 @@
       <div class="faq-a-tool">You can add unlimited line items. Each item has a description, quantity, and rate field. Subtotal and total update automatically as you add items.</div>
     </div>
     <div class="faq-item-tool">
-      <button class="faq-q-tool" onclick="toggleToolFaq(this)">How do I download the invoice as PDF? <span class="faq-arrow-tool">▾</span></button>
-      <div class="faq-a-tool">Click "Generate Invoice" then "Print / Save as PDF." Your browser print dialog opens select "Save as PDF" as the destination and click Save. The file downloads to your device.</div>
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Will my invoice have a watermark? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. Every invoice you generate is watermark-free, no matter which template you choose.</div>
     </div>
+  </div>
+</div>
+
+<!-- RELATED BLOG ARTICLES -->
+<div class="seo-section">
+  <h2>Related Blog Articles</h2>
+  <p>Learn more about invoicing and billing best practices from the NexaTools blog.</p>
+  <div class="related-tools-grid">
+    <a href="blog-invoice-guide.html" class="related-tool-card"><span class="rt-icon">📖</span><div class="rt-name">How to Create a Professional Invoice</div><div class="rt-desc">A complete step-by-step guide</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">🧑‍💻</span><div class="rt-name">Freelancer Invoice Guide</div><div class="rt-desc">Billing tips for freelancers</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">⚠️</span><div class="rt-name">Invoice Mistakes to Avoid</div><div class="rt-desc">Common errors and fixes</div></a>
+    <a href="blog-section.html" class="related-tool-card"><span class="rt-icon">🏪</span><div class="rt-name">Small Business Billing Tips</div><div class="rt-desc">Get paid on time, every time</div></a>
   </div>
 </div>
 
@@ -728,6 +915,23 @@
       <a href="blog-invoice-guide.html" style="color:var(--cyan);font-size:0.85rem;text-decoration:none;">Read Article →</a>
     </div>
   </div>
+</div>
+
+<!-- INTERNAL LINKS -->
+<div class="seo-section" style="padding-top:20px;padding-bottom:20px;">
+  <h3 style="margin-top:0;">Explore NexaTools</h3>
+  <p style="font-size:0.85rem; line-height:2;">
+    <a href="index.html" style="color:var(--cyan);text-decoration:none;">Home</a> ·
+    <a href="about.html" style="color:var(--cyan);text-decoration:none;">About</a> ·
+    <a href="contact.html" style="color:var(--cyan);text-decoration:none;">Contact</a> ·
+    <a href="privacy-policy.html" style="color:var(--cyan);text-decoration:none;">Privacy Policy</a> ·
+    <a href="terms.html" style="color:var(--cyan);text-decoration:none;">Terms &amp; Conditions</a> ·
+    <a href="disclaimer.html" style="color:var(--cyan);text-decoration:none;">Disclaimer</a> ·
+    <a href="cookies-policy.html" style="color:var(--cyan);text-decoration:none;">Cookies Policy</a> ·
+    <a href="copyright-notice.html" style="color:var(--cyan);text-decoration:none;">Copyright Notice</a> ·
+    <a href="blog-section.html" style="color:var(--cyan);text-decoration:none;">Blog</a> ·
+    <a href="index.html#tools-section" style="color:var(--cyan);text-decoration:none;">All Tools</a>
+  </p>
 </div>
 
 <!-- CTA -->
