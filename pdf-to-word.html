@@ -957,29 +957,6 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
   })
 ));
 var rects2 = finalRects;
-
-// ---- Dedup layered/overlapping shapes ----
-// Some PDFs draw a single visual effect (e.g. a photo's shadow/border)
-// as many stacked rectangles at (or very near) the same top-left position,
-// differing only slightly in size. Left as-is, each one becomes its own
-// paragraph in the DOCX, causing massive page bloat with no visual gain.
-// Positions with only ONE shape are real, uniquely-placed elements
-// (logo boxes, header borders, outlines) and are never touched below.
-// Within a true duplicate cluster (same rounded position, 2+ shapes),
-// we avoid picking the largest rect, since layered clusters often include
-// one oversized background/shadow fill that would otherwise blanket the
-// real content. Instead we exclude background-sized candidates and keep
-// the smallest remaining shape — the tightest, most representative outline.
-(function dedupLayeredShapes() {
-  var pageArea = pageWidthPt * pageHeightPt;
-  var backgroundAreaThreshold = pageArea * 0.15;
-
-  function colorDistanceFromWhite(color) {
-    if (!color) return 0;
-    var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
-    return dr * dr + dg * dg + db * db;
-  }
-
 // ---- Dedup layered/overlapping shapes ----
 (function dedupLayeredShapes() {
   var pageArea = pageWidthPt * pageHeightPt;
@@ -992,9 +969,6 @@ var rects2 = finalRects;
   }
   var byPosition = {};
   rects2.forEach(function (rc) {
-    // Widened tolerance (6pt grid instead of exact pixel match) — CSS
-    // box-shadow blur rings render as many nested rects offset by just
-    // a few points, so exact-position matching was missing most of them.
     var key = Math.round(rc.xPt / 6) * 6 + ':' + Math.round(rc.yTopPt / 6) * 6;
     if (!byPosition[key]) byPosition[key] = [];
     byPosition[key].push(rc);
@@ -1002,7 +976,7 @@ var rects2 = finalRects;
 
   rects2 = Object.keys(byPosition).map(function (key) {
     var cluster = byPosition[key];
-    if (cluster.length === 1) return cluster[0]; // unique shape, keep untouched
+    if (cluster.length === 1) return cluster[0];
 
     var withArea = cluster.map(function (rc) {
       return { rect: rc, area: rc.widthPt * rc.heightPt };
@@ -1012,8 +986,8 @@ var rects2 = finalRects;
     var candidates = nonBackground.length ? nonBackground : withArea;
 
     candidates.sort(function (a, b) {
-      if (a.area !== b.area) return a.area - b.area; // smallest first
-      return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color); // tie-break: less white-like first
+      if (a.area !== b.area) return a.area - b.area;
+      return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color);
     });
 
     if (cluster.length > 1) {
@@ -1620,23 +1594,45 @@ function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
     '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
     '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
-function shapeXml(block, id) {
+function shapeXml(block, id, pageWidthPt, marginPt, pageHeightPt) {
+  pageHeightPt = pageHeightPt || 792;
+
+  var leftPt = block.xPt || 0;
+  var topPt = (pageHeightPt || 792) - (block.yTopPt || 0);
+  var widthPt = Math.max(1, block.widthPt || 1);
+  var heightPt = Math.max(1, block.heightPt || 1);
+
+  var collapsedPPr = '<w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/><w:rPr><w:sz w:val="2"/></w:rPr></w:pPr>';
+
   if (block.line) {
-    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
+    var lineStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
+      'width:' + widthPt + 'pt;height:0pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;';
+    return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
+      '<v:line id="Line' + id + '" style="' + lineStyle + '" from="0,0" to="' + widthPt + 'pt,0" strokecolor="black" strokeweight="0.5pt"/>' +
+      '<w10:wrap type="none"/>' +
+      '</w:pict></w:r></w:p>';
   }
-  var pPr;
+
+  var fillAttr = '';
+  var strokeAttr = 'stroked="false"';
   if (block.color) {
     var hex = rgbToHex(block.color);
-    pPr = hex ? '<w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' : '';
+    if (hex) fillAttr = ' fillcolor="#' + hex + '"';
+  } else if (block.border) {
+    fillAttr = ' filled="false"';
+    strokeAttr = 'strokecolor="black" strokeweight="0.75pt"';
   } else {
-    pPr = '<w:pPr><w:pBdr>' +
-      '<w:top w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:left w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:right w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '</w:pBdr></w:pPr>';
+    fillAttr = ' filled="false"';
   }
-  return '<w:p>' + pPr + '</w:p>';
+
+  var shapeStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
+    'width:' + widthPt + 'pt;height:' + heightPt + 'pt;' +
+    'mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-1;';
+
+  return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
+    '<v:rect id="Shape' + id + '" style="' + shapeStyle + '"' + fillAttr + ' ' + strokeAttr + '/>' +
+    '<w10:wrap type="none"/>' +
+    '</w:pict></w:r></w:p>';
 }
 function tableXml(block) {
   var rows = block.rows || [];
@@ -1682,7 +1678,7 @@ function buildDocx(pageModels) {
     var relEntries = [];
     var relIdCounter = 2;
     var docPrId = 1;
-    var marginPt = 72;
+    var marginPt = 36;
 
     var bodyXml = '';
     pageModels.forEach(function (model, pIdx) {
@@ -1697,7 +1693,7 @@ function buildDocx(pageModels) {
       } else {
         model.blocks.forEach(function (b) {
           if (b.type === 'table') pageXml += tableXml(b);
-          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt);
+          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt, pageHeightPt);
           else if (b.type === 'image') {
             try {
               var relId = 'rId' + (relIdCounter++);
@@ -1739,11 +1735,12 @@ function buildDocx(pageModels) {
       }
       bodyXml += pageXml;
     });
-
-    var documentXml =
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
-      '<w:body>' + bodyXml + '</w:body></w:document>';
+var documentXml =
+  '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+  '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ' +
+  'xmlns:v="urn:schemas-microsoft-com:vml" ' +
+  'xmlns:w10="urn:schemas-microsoft-com:office:word">' +
+  '<w:body>' + bodyXml + '</w:body></w:document>'; 
 
     var stylesXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
