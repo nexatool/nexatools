@@ -1624,10 +1624,12 @@ function shapeXml(block, id, pageWidthPt, marginPt, pageHeightPt) {
   var widthPt = Math.max(1, block.widthPt || 1);
   var heightPt = Math.max(1, block.heightPt || 1);
 
+  var collapsedPPr = '<w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/><w:rPr><w:sz w:val="2"/></w:rPr></w:pPr>';
+
   if (block.line) {
     var lineStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
       'width:' + widthPt + 'pt;height:0pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;';
-    return '<w:p><w:r><w:pict>' +
+    return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
       '<v:line id="Line' + id + '" style="' + lineStyle + '" from="0,0" to="' + widthPt + 'pt,0" strokecolor="black" strokeweight="0.5pt"/>' +
       '<w10:wrap type="none"/>' +
       '</w:pict></w:r></w:p>';
@@ -1649,7 +1651,7 @@ function shapeXml(block, id, pageWidthPt, marginPt, pageHeightPt) {
     'width:' + widthPt + 'pt;height:' + heightPt + 'pt;' +
     'mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-1;';
 
-  return '<w:p><w:r><w:pict>' +
+  return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
     '<v:rect id="Shape' + id + '" style="' + shapeStyle + '"' + fillAttr + ' ' + strokeAttr + '/>' +
     '<w10:wrap type="none"/>' +
     '</w:pict></w:r></w:p>';
