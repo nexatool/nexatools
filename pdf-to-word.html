@@ -1616,23 +1616,43 @@ function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
     '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
     '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
-function shapeXml(block, id) {
+function shapeXml(block, id, pageWidthPt, marginPt, pageHeightPt) {
+  pageHeightPt = pageHeightPt || 792;
+
+  var leftPt = block.xPt || 0;
+  var topPt = (pageHeightPt || 792) - (block.yTopPt || 0);
+  var widthPt = Math.max(1, block.widthPt || 1);
+  var heightPt = Math.max(1, block.heightPt || 1);
+
   if (block.line) {
-    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
+    var lineStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
+      'width:' + widthPt + 'pt;height:0pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;';
+    return '<w:p><w:r><w:pict>' +
+      '<v:line id="Line' + id + '" style="' + lineStyle + '" from="0,0" to="' + widthPt + 'pt,0" strokecolor="black" strokeweight="0.5pt"/>' +
+      '<w10:wrap type="none"/>' +
+      '</w:pict></w:r></w:p>';
   }
-  var pPr;
+
+  var fillAttr = '';
+  var strokeAttr = 'stroked="false"';
   if (block.color) {
     var hex = rgbToHex(block.color);
-    pPr = hex ? '<w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' : '';
+    if (hex) fillAttr = ' fillcolor="#' + hex + '"';
+  } else if (block.border) {
+    fillAttr = ' filled="false"';
+    strokeAttr = 'strokecolor="black" strokeweight="0.75pt"';
   } else {
-    pPr = '<w:pPr><w:pBdr>' +
-      '<w:top w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:left w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '<w:right w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
-      '</w:pBdr></w:pPr>';
+    fillAttr = ' filled="false"';
   }
-  return '<w:p>' + pPr + '</w:p>';
+
+  var shapeStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
+    'width:' + widthPt + 'pt;height:' + heightPt + 'pt;' +
+    'mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-1;';
+
+  return '<w:p><w:r><w:pict>' +
+    '<v:rect id="Shape' + id + '" style="' + shapeStyle + '"' + fillAttr + ' ' + strokeAttr + '/>' +
+    '<w10:wrap type="none"/>' +
+    '</w:pict></w:r></w:p>';
 }
 function tableXml(block) {
   var rows = block.rows || [];
@@ -1693,7 +1713,7 @@ function buildDocx(pageModels) {
       } else {
         model.blocks.forEach(function (b) {
           if (b.type === 'table') pageXml += tableXml(b);
-          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt);
+          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt, pageHeightPt);
           else if (b.type === 'image') {
             try {
               var relId = 'rId' + (relIdCounter++);
@@ -1735,10 +1755,11 @@ function buildDocx(pageModels) {
       }
       bodyXml += pageXml;
     });
-
     var documentXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ' +
+      'xmlns:v="urn:schemas-microsoft-com:vml" ' +
+      'xmlns:w10="urn:schemas-microsoft-com:office:word">' +
       '<w:body>' + bodyXml + '</w:body></w:document>';
 
     var stylesXml =
