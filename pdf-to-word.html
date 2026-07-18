@@ -957,7 +957,36 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
   })
 ));
 var rects2 = finalRects;
+// ---- Discard spurious large solid-dark shapes ----
+// Browser "print to PDF" often flattens CSS box-shadow / soft borders into
+// many nested vector rectangles with varying gray opacity. A few of these
+// can survive as large, solid near-black fills that were never meant to be
+// an actual filled block — the source page has no such black boxes.
+(function suppressSpuriousDarkShapes() {
+  var pageArea = pageWidthPt * pageHeightPt;
+  var areaThreshold = pageArea * 0.05;
+  var before = rects2.length;
+  rects2 = rects2.filter(function (rc) {
+    if (rc.line || rc.border || !rc.color) return true;
+    var isNearBlack = rc.color[0] < 40 && rc.color[1] < 40 && rc.color[2] < 40;
+    var area = rc.widthPt * rc.heightPt;
+    if (isNearBlack && area > areaThreshold) {
+      console.log('[TRACE] suppressed spurious dark shape', JSON.stringify({
+        xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
+      }));
+      return false;
+    }
+    return true;
+  });
+  console.log('[TRACE] dark shape suppression', JSON.stringify({ before: before, after: rects2.length }));
+})();
 // ---- Dedup layered/overlapping shapes ----
+// Shadow-ring rects (from CSS box-shadow flattened to PDF vectors) don't sit
+// at exactly the same x/y — they nest at slightly different offsets and
+// sizes. Grid-snapping by position alone misses most of them. Instead,
+// group any rects whose bounding boxes overlap substantially (by area) into
+// one cluster — regardless of exact position — then keep only the
+// tightest, most representative rect from each cluster.
 (function dedupLayeredShapes() {
   var pageArea = pageWidthPt * pageHeightPt;
   var backgroundAreaThreshold = pageArea * 0.15;
@@ -967,15 +996,47 @@ var rects2 = finalRects;
     var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
     return dr * dr + dg * dg + db * db;
   }
-  var byPosition = {};
-  rects2.forEach(function (rc) {
-    var key = Math.round(rc.xPt / 6) * 6 + ':' + Math.round(rc.yTopPt / 6) * 6;
-    if (!byPosition[key]) byPosition[key] = [];
-    byPosition[key].push(rc);
-  });
 
-  rects2 = Object.keys(byPosition).map(function (key) {
-    var cluster = byPosition[key];
+  function overlapArea(a, b) {
+    var aLeft = a.xPt, aRight = a.xPt + a.widthPt;
+    var aBottom = a.yTopPt - a.heightPt, aTop = a.yTopPt;
+    var bLeft = b.xPt, bRight = b.xPt + b.widthPt;
+    var bBottom = b.yTopPt - b.heightPt, bTop = b.yTopPt;
+    var ox = Math.max(0, Math.min(aRight, bRight) - Math.max(aLeft, bLeft));
+    var oy = Math.max(0, Math.min(aTop, bTop) - Math.max(aBottom, bBottom));
+    return ox * oy;
+  }
+
+  var n = rects2.length;
+  var parent = [];
+  for (var p = 0; p < n; p++) parent[p] = p;
+  function find(x) { while (parent[x] !== x) { parent[x] = parent[parent[x]]; x = parent[x]; } return x; }
+  function union(a, b) { var ra = find(a), rb = find(b); if (ra !== rb) parent[ra] = rb; }
+
+  // Two rects join the same cluster when their overlap covers at least 60%
+  // of the smaller rect's area — that threshold catches nested shadow rings
+  // (which mostly overlap) while leaving genuinely separate shapes (like two
+  // adjacent boxes that merely touch at an edge) untouched.
+  for (var i = 0; i < n; i++) {
+    for (var j = i + 1; j < n; j++) {
+      var areaI = rects2[i].widthPt * rects2[i].heightPt;
+      var areaJ = rects2[j].widthPt * rects2[j].heightPt;
+      var smaller = Math.min(areaI, areaJ);
+      if (smaller <= 0) continue;
+      var ov = overlapArea(rects2[i], rects2[j]);
+      if (ov / smaller >= 0.6) union(i, j);
+    }
+  }
+
+  var clusters = {};
+  for (var k = 0; k < n; k++) {
+    var root = find(k);
+    if (!clusters[root]) clusters[root] = [];
+    clusters[root].push(rects2[k]);
+  }
+
+  rects2 = Object.keys(clusters).map(function (root) {
+    var cluster = clusters[root];
     if (cluster.length === 1) return cluster[0];
 
     var withArea = cluster.map(function (rc) {
@@ -990,12 +1051,10 @@ var rects2 = finalRects;
       return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color);
     });
 
-    if (cluster.length > 1) {
-      console.log('[TRACE] dedup cluster resolved', JSON.stringify({
-        key: key, clusterSize: cluster.length,
-        chosenArea: candidates[0].area, chosenColor: candidates[0].rect.color
-      }));
-    }
+    console.log('[TRACE] dedup cluster resolved', JSON.stringify({
+      clusterSize: cluster.length,
+      chosenArea: candidates[0].area, chosenColor: candidates[0].rect.color
+    }));
 
     return candidates[0].rect;
   });
