@@ -1173,7 +1173,6 @@ console.log('[TRACE] shape position duplication', JSON.stringify({
   uniquePositions: posEntries.length,
   topRepeated: posEntries.slice(0, 10)
 }));
-
 console.log('[TRACE] extractPageModel done', JSON.stringify({
   totalBlocks: blocks.length,
   tableBlocks: blocks.filter(b => b.type === 'table').length,
@@ -1181,11 +1180,49 @@ console.log('[TRACE] extractPageModel done', JSON.stringify({
   imageBlocks: blocks.filter(b => b.type === 'image').length,
   paraBlocks: blocks.filter(b => b.type === 'para').length
 }));
-        return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
-      });
+
+// ---- Diagnostic: giant unique-position shapes (>15% page area) ----
+(function traceGiantShapes() {
+  var pageArea = pageWidthPt * pageHeightPt;
+  var threshold = pageArea * 0.15;
+  var paraYs = blocks.filter(function(b){ return b.type === 'para'; }).map(function(b){ return b.y; });
+
+  var giants = rects2.filter(function(rc) {
+    return (rc.widthPt * rc.heightPt) > threshold;
+  }).map(function(rc) {
+    var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
+    var rcLeft = rc.xPt, rcRight = rc.xPt + rc.widthPt;
+
+    var overlapsTable = tableBoxes.some(function(tb) {
+      var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
+      var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
+      return xOverlap && yOverlap;
     });
+
+    var overlapsImage = images.some(function(img) {
+      var imgTop = img.yTopPt, imgBottom = img.yTopPt - img.heightPt;
+      var imgLeft = img.xPt, imgRight = img.xPt + img.widthPt;
+      var xOverlap = rcLeft < imgRight && rcRight > imgLeft;
+      var yOverlap = rcTop > imgBottom && rcBottom < imgTop;
+      return xOverlap && yOverlap;
+    });
+
+    var overlapsText = paraYs.some(function(y) {
+      return y <= rcTop && y >= rcBottom;
+    });
+
+    return {
+      xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
+      areaPct: ((rc.widthPt * rc.heightPt) / pageArea * 100).toFixed(1) + '%',
+      color: rc.color, isLine: !!rc.line, isBorder: !!rc.border,
+      overlapsTable: overlapsTable, overlapsImage: overlapsImage, overlapsText: overlapsText
+    };
   });
-}
+
+  console.log('[TRACE] giant shapes (>15% page area)', JSON.stringify(giants));
+})();
+
+return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
 /* ---------------- extractPageImages() ---------------- */
 function extractPageImages(page) {
   return page.getOperatorList().then(function (opList) {
