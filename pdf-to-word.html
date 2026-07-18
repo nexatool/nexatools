@@ -956,29 +956,54 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
     };
   })
 ));
-
 var rects2 = finalRects;
 
 // ---- Dedup layered/overlapping shapes ----
 // Some PDFs draw a single visual effect (e.g. a photo's shadow/border)
 // as many stacked rectangles at (or very near) the same top-left position,
 // differing only slightly in size. Left as-is, each one becomes its own
-// paragraph in the DOCX, causing massive page bloat with no visual gain
-// (they overlapped in the PDF; sequentially they just add blank height).
-// We keep only the single largest-area shape per rounded position, so a
-// real, uniquely-positioned shape (a genuine line, box, or logo outline)
-// is never removed — only true stacked duplicates are collapsed.
+// paragraph in the DOCX, causing massive page bloat with no visual gain.
+// Positions with only ONE shape are real, uniquely-placed elements
+// (logo boxes, header borders, outlines) and are never touched below.
+// Within a true duplicate cluster (same rounded position, 2+ shapes),
+// we avoid picking the largest rect, since layered clusters often include
+// one oversized background/shadow fill that would otherwise blanket the
+// real content. Instead we exclude background-sized candidates and keep
+// the smallest remaining shape — the tightest, most representative outline.
 (function dedupLayeredShapes() {
+  var pageArea = pageWidthPt * pageHeightPt;
+  var backgroundAreaThreshold = pageArea * 0.15;
+
+  function colorDistanceFromWhite(color) {
+    if (!color) return 0;
+    var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
+    return dr * dr + dg * dg + db * db;
+  }
+
   var byPosition = {};
   rects2.forEach(function (rc) {
     var key = Math.round(rc.xPt) + ':' + Math.round(rc.yTopPt);
-    var area = rc.widthPt * rc.heightPt;
-    if (!byPosition[key] || area > byPosition[key].area) {
-      byPosition[key] = { rect: rc, area: area };
-    }
+    if (!byPosition[key]) byPosition[key] = [];
+    byPosition[key].push(rc);
   });
+
   rects2 = Object.keys(byPosition).map(function (key) {
-    return byPosition[key].rect;
+    var cluster = byPosition[key];
+    if (cluster.length === 1) return cluster[0]; // unique shape, keep untouched
+
+    var withArea = cluster.map(function (rc) {
+      return { rect: rc, area: rc.widthPt * rc.heightPt };
+    });
+
+    var nonBackground = withArea.filter(function (c) { return c.area <= backgroundAreaThreshold; });
+    var candidates = nonBackground.length ? nonBackground : withArea;
+
+    candidates.sort(function (a, b) {
+      if (a.area !== b.area) return a.area - b.area; // smallest first
+      return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color); // tie-break: less white-like first
+    });
+
+    return candidates[0].rect;
   });
 })();
 
