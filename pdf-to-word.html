@@ -1005,7 +1005,22 @@ console.log('[TRACE] sample rects (first 8, line/border only)', JSON.stringify(
     };
   })
 ));
-
+console.log('[TRACE] fill-based rects inside table y-ranges', JSON.stringify(
+  rects2.filter(function(rc) {
+    if (rc.line || rc.border) return false; // sirf fill-based (koi line/border flag nahi)
+    var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
+    return tableBoxes.some(function(tb) {
+      return rcTop > tb.yBottomPt - 5 && rcBottom < tb.yTopPt + 5;
+    });
+  }).slice(0, 20).map(function(rc) {
+    return {
+      xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
+      xRange: [rc.xPt, rc.xPt + rc.widthPt],
+      yRange: [rc.yTopPt - rc.heightPt, rc.yTopPt],
+      color: rc.color
+    };
+  })
+));
 var suppressedCount = 0, keptCount = 0;
 
         var suppressedCount = 0, keptCount = 0;
