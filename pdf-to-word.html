@@ -995,7 +995,17 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
   console.log('[TRACE] dark shape suppression', JSON.stringify({ before: before, after: rects2.length }));
 })();
 // ---- Dedup layered/overlapping shapes ----
+(function dedupLayeredShapes() {
+  var pageArea = pageWidthPt * pageHeightPt;
+  var backgroundAreaThreshold = pageArea * 0.15;
 
+  function colorDistanceFromWhite(color) {
+    if (!color) return 0;
+    var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
+    return dr * dr + dg * dg + db * db;
+  }
+  var byPosition = {};
+rects2.forEach(function (rc) {
   var byPosition = {};
 rects2.forEach(function (rc) {
   // Widened tolerance (6pt grid instead of exact pixel match) — CSS
