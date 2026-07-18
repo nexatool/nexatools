@@ -799,9 +799,18 @@ function extractPageModel(page) {
       else if (fn === OPS.rectangle) {
         pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
       }
-      else if (fn === OPS.constructPath) {
+         else if (fn === OPS.constructPath) {
         try {
+          var pathOps = args[0];
           var coords = args[1];
+          var hasCurve = pathOps && pathOps.indexOf(OPS.curveTo) !== -1;
+          console.log('[DIAG] constructPath', JSON.stringify({
+            opIndex: i,
+            coordsLength: coords ? coords.length : 0,
+            hasCurve: hasCurve,
+            first8Coords: coords ? coords.slice(0, 8) : null,
+            fillColorAtCall: fillColor
+          }));
           if (coords && coords.length >= 8) {
             var xs = [coords[0], coords[2], coords[4], coords[6]];
             var ys = [coords[1], coords[3], coords[5], coords[7]];
