@@ -930,12 +930,34 @@ function extractPageModel(page) {
     var remainingLines = lineRects.filter(function (r, idx) { return !usedIdx[idx]; });
     var finalRects = otherRects.concat(boxRects, remainingLines);
 
-    finalRects = finalRects.filter(function (r) {
-      if (r.line) return r.widthPt >= 20;
-      return r.widthPt >= 20 && r.heightPt >= 8;
-    });
+   var preFilterCount = finalRects.length;
+var rejectedRects = [];
+finalRects = finalRects.filter(function (r) {
+  var keep = r.line ? (r.widthPt >= 20) : (r.widthPt >= 20 && r.heightPt >= 8);
+  if (!keep) rejectedRects.push(r);
+  return keep;
+});
 
-    var rects2 = finalRects;
+console.log('[TRACE] rect filtering', JSON.stringify({
+  preFilterCount: preFilterCount,
+  rejectedCount: rejectedRects.length,
+  keptCount: finalRects.length,
+  rejectedLineCount: rejectedRects.filter(function(r){ return r.line; }).length,
+  rejectedBorderCount: rejectedRects.filter(function(r){ return r.border; }).length,
+  rejectedFillCount: rejectedRects.filter(function(r){ return !r.line && !r.border; }).length
+}));
+
+console.log('[TRACE] rejected rects sample', JSON.stringify(
+  rejectedRects.slice(0, 15).map(function(r) {
+    return {
+      xPt: r.xPt, yTopPt: r.yTopPt, widthPt: r.widthPt, heightPt: r.heightPt,
+      type: r.line ? 'line' : (r.border ? 'border' : 'fill'),
+      color: r.color
+    };
+  })
+));
+
+var rects2 = finalRects;
 
     return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
@@ -1012,6 +1034,23 @@ console.log('[TRACE] fill-based rects inside table y-ranges', JSON.stringify(
     return tableBoxes.some(function(tb) {
       return rcTop > tb.yBottomPt - 5 && rcBottom < tb.yTopPt + 5;
     });
+    console.log('[TRACE] rejected rects overlapping tableBoxes', JSON.stringify(
+  rejectedRects.filter(function(r) {
+    var rcTop = r.yTopPt, rcBottom = r.yTopPt - r.heightPt;
+    var rcLeft = r.xPt, rcRight = r.xPt + r.widthPt;
+    return tableBoxes.some(function(tb) {
+      var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
+      var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
+      return xOverlap && yOverlap;
+    });
+  }).map(function(r) {
+    return {
+      xPt: r.xPt, yTopPt: r.yTopPt, widthPt: r.widthPt, heightPt: r.heightPt,
+      type: r.line ? 'line' : (r.border ? 'border' : 'fill'),
+      color: r.color
+    };
+  })
+));
   }).slice(0, 20).map(function(rc) {
     return {
       xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
