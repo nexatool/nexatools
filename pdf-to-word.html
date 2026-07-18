@@ -998,15 +998,21 @@ var rects2 = finalRects;
     var nonBackground = withArea.filter(function (c) { return c.area <= backgroundAreaThreshold; });
     var candidates = nonBackground.length ? nonBackground : withArea;
 
-    candidates.sort(function (a, b) {
+candidates.sort(function (a, b) {
       if (a.area !== b.area) return a.area - b.area; // smallest first
       return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color); // tie-break: less white-like first
     });
 
+    if (cluster.length > 1) {
+      console.log('[TRACE] dedup cluster resolved', JSON.stringify({
+        key: key, clusterSize: cluster.length,
+        chosenArea: candidates[0].area, chosenColor: candidates[0].rect.color
+      }));
+    }
+
     return candidates[0].rect;
   });
 })();
-
     return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
