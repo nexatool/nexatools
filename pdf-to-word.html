@@ -959,6 +959,29 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
 
 var rects2 = finalRects;
 
+// ---- Dedup layered/overlapping shapes ----
+// Some PDFs draw a single visual effect (e.g. a photo's shadow/border)
+// as many stacked rectangles at (or very near) the same top-left position,
+// differing only slightly in size. Left as-is, each one becomes its own
+// paragraph in the DOCX, causing massive page bloat with no visual gain
+// (they overlapped in the PDF; sequentially they just add blank height).
+// We keep only the single largest-area shape per rounded position, so a
+// real, uniquely-positioned shape (a genuine line, box, or logo outline)
+// is never removed — only true stacked duplicates are collapsed.
+(function dedupLayeredShapes() {
+  var byPosition = {};
+  rects2.forEach(function (rc) {
+    var key = Math.round(rc.xPt) + ':' + Math.round(rc.yTopPt);
+    var area = rc.widthPt * rc.heightPt;
+    if (!byPosition[key] || area > byPosition[key].area) {
+      byPosition[key] = { rect: rc, area: area };
+    }
+  });
+  rects2 = Object.keys(byPosition).map(function (key) {
+    return byPosition[key].rect;
+  });
+})();
+
     return page.getTextContent({ includeMarkedContent: false }).then(function (content) {
       var colorIdx = 0;
       var items = content.items.map(function (item) {
