@@ -977,17 +977,36 @@ function extractPageModel(page) {
           return b.type === 'table' && b.yTopPt !== undefined;
         });
 
-        function rectOverlapsTable(rc) {
-          var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
-          var rcLeft = rc.xPt, rcRight = rc.xPt + rc.widthPt;
-          for (var t = 0; t < tableBoxes.length; t++) {
-            var tb = tableBoxes[t];
-            var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
-            var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
-            if (xOverlap && yOverlap) return true;
-          }
-          return false;
-        }
+      function rectOverlapsTable(rc) {
+  var rcTop = rc.yTopPt, rcBottom = rc.yTopPt - rc.heightPt;
+  var rcLeft = rc.xPt, rcRight = rc.xPt + rc.widthPt;
+  for (var t = 0; t < tableBoxes.length; t++) {
+    var tb = tableBoxes[t];
+    var xOverlap = rcLeft < tb.xRightPt && rcRight > tb.xLeftPt;
+    var yOverlap = rcTop > tb.yBottomPt && rcBottom < tb.yTopPt;
+    if (xOverlap && yOverlap) return true;
+  }
+  return false;
+}
+
+console.log('[TRACE] tableBoxes geometry', JSON.stringify(
+  tableBoxes.map(function(tb) {
+    return { xLeftPt: tb.xLeftPt, xRightPt: tb.xRightPt, yTopPt: tb.yTopPt, yBottomPt: tb.yBottomPt };
+  })
+));
+
+console.log('[TRACE] sample rects (first 8, line/border only)', JSON.stringify(
+  rects2.filter(function(rc){ return rc.line || rc.border; }).slice(0, 8).map(function(rc) {
+    return {
+      xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt,
+      xRange: [rc.xPt, rc.xPt + rc.widthPt],
+      yRange: [rc.yTopPt - rc.heightPt, rc.yTopPt],
+      type: rc.line ? 'line' : 'border'
+    };
+  })
+));
+
+var suppressedCount = 0, keptCount = 0;
 
         var suppressedCount = 0, keptCount = 0;
 rects2.forEach(function (rc) {
