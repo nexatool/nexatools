@@ -1102,7 +1102,25 @@ console.log('[TRACE] Bug B suppression', JSON.stringify({
             align: align
           });
         });
-       console.log('[TRACE] extractPageModel done', JSON.stringify({
+      var shapeBlocksOnly = blocks.filter(function(b){ return b.type === 'shape'; });
+var posMap = {};
+shapeBlocksOnly.forEach(function(b) {
+  var key = Math.round(b.xPt) + ':' + Math.round(b.yTopPt);
+  posMap[key] = (posMap[key] || 0) + 1;
+});
+var posEntries = Object.keys(posMap).map(function(k) {
+  var parts = k.split(':');
+  return { x: parts[0], y: parts[1], count: posMap[k] };
+});
+posEntries.sort(function(a, b) { return b.count - a.count; });
+
+console.log('[TRACE] shape position duplication', JSON.stringify({
+  totalShapes: shapeBlocksOnly.length,
+  uniquePositions: posEntries.length,
+  topRepeated: posEntries.slice(0, 10)
+}));
+
+console.log('[TRACE] extractPageModel done', JSON.stringify({
   totalBlocks: blocks.length,
   tableBlocks: blocks.filter(b => b.type === 'table').length,
   shapeBlocks: blocks.filter(b => b.type === 'shape').length,
