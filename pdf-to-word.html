@@ -1006,13 +1006,12 @@ rects2.forEach(function (rc) {
     color: rc.color, border: rc.border, line: rc.line
   });
 });
-console.log('[TRACE] Bug B suppression', {
+console.log('[TRACE] Bug B suppression', JSON.stringify({
   totalRects: rects2.length,
   tableBoxesFound: tableBoxes.length,
   suppressed: suppressedCount,
   kept: keptCount
-});
-
+}));
         images.forEach(function (img) {
           var insertAt = blocks.length;
           for (var b = 0; b < blocks.length; b++) {
@@ -1030,13 +1029,13 @@ console.log('[TRACE] Bug B suppression', {
             align: align
           });
         });
-        console.log('[TRACE] extractPageModel done', {
+       console.log('[TRACE] extractPageModel done', JSON.stringify({
   totalBlocks: blocks.length,
   tableBlocks: blocks.filter(b => b.type === 'table').length,
   shapeBlocks: blocks.filter(b => b.type === 'shape').length,
   imageBlocks: blocks.filter(b => b.type === 'image').length,
   paraBlocks: blocks.filter(b => b.type === 'para').length
-});
+}));
         return { blocks: blocks, pageWidthPt: pageWidthPt, pageHeightPt: pageHeightPt, pageRotation: pageRotation, pageBorder: pageBorderInfo };
       });
     });
@@ -1761,12 +1760,12 @@ convertBtn.addEventListener('click', function() {
 });
 
 function finishConversion(pageModels, isPartial) {
-  console.log('[TRACE] finishConversion input', {
+ console.log('[TRACE] finishConversion input', JSON.stringify({
   pageCount: pageModels.length,
   blocksPerPage: pageModels.map(m => m.blocks.length),
   tablesPerPage: pageModels.map(m => m.blocks.filter(b => b.type === 'table').length),
   shapesPerPage: pageModels.map(m => m.blocks.filter(b => b.type === 'shape').length)
-});
+}));
   setProgress(85, 'Building Word document…');
   var totalRuns = 0;
   pageModels.forEach(function(m){
@@ -1797,7 +1796,7 @@ blob.arrayBuffer().then(function(buf) {
   var view = new Uint8Array(buf);
   var hash = 0;
   for (var i = 0; i < view.length; i++) hash = (hash * 31 + view[i]) >>> 0;
-  console.log('[TRACE] docxBlob fingerprint', { size: blob.size, hash: hash });
+ console.log('[TRACE] docxBlob fingerprint', JSON.stringify({ size: blob.size, hash: hash }));
 });
     setProgress(100, 'Done!');
     var outName = (selectedFile.name.replace(/\.pdf$/i, '') || 'document') + '.docx';
