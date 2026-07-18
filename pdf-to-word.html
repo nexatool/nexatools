@@ -799,18 +799,9 @@ function extractPageModel(page) {
       else if (fn === OPS.rectangle) {
         pendingRectStart = { x: args[0], y: args[1], w: args[2], h: args[3], ctm: ctm.slice(), color: fillColor };
       }
-         else if (fn === OPS.constructPath) {
+      else if (fn === OPS.constructPath) {
         try {
-          var pathOps = args[0];
           var coords = args[1];
-          var hasCurve = pathOps && pathOps.indexOf(OPS.curveTo) !== -1;
-          console.log('[DIAG] constructPath', JSON.stringify({
-            opIndex: i,
-            coordsLength: coords ? coords.length : 0,
-            hasCurve: hasCurve,
-            first8Coords: coords ? coords.slice(0, 8) : null,
-            fillColorAtCall: fillColor
-          }));
           if (coords && coords.length >= 8) {
             var xs = [coords[0], coords[2], coords[4], coords[6]];
             var ys = [coords[1], coords[3], coords[5], coords[7]];
@@ -965,35 +956,30 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
     };
   })
 ));
+var rects2 = finalRects;
 
-  var rects2 = finalRects;
-
-// ---- Discard spurious large solid-dark shapes ----
-// Browser "print to PDF" often flattens CSS box-shadow / soft borders into
-// many nested vector rectangles with varying gray opacity. A few of these
-// can survive dedup as large, solid near-black fills that were never meant
-// to be an actual filled block — the source page has no such black boxes.
-// A rect this dark AND this large is virtually always a rendering
-// artifact, not real content, so we drop it rather than paint a black box
-// over real text underneath it.
-(function suppressSpuriousDarkShapes() {
+// ---- Dedup layered/overlapping shapes ----
+// Some PDFs draw a single visual effect (e.g. a photo's shadow/border)
+// as many stacked rectangles at (or very near) the same top-left position,
+// differing only slightly in size. Left as-is, each one becomes its own
+// paragraph in the DOCX, causing massive page bloat with no visual gain.
+// Positions with only ONE shape are real, uniquely-placed elements
+// (logo boxes, header borders, outlines) and are never touched below.
+// Within a true duplicate cluster (same rounded position, 2+ shapes),
+// we avoid picking the largest rect, since layered clusters often include
+// one oversized background/shadow fill that would otherwise blanket the
+// real content. Instead we exclude background-sized candidates and keep
+// the smallest remaining shape — the tightest, most representative outline.
+(function dedupLayeredShapes() {
   var pageArea = pageWidthPt * pageHeightPt;
-  var areaThreshold = pageArea * 0.05; // ignore fills bigger than 5% of the page
-  var before = rects2.length;
-  rects2 = rects2.filter(function (rc) {
-    if (rc.line || rc.border || !rc.color) return true; // only solid fills
-    var isNearBlack = rc.color[0] < 40 && rc.color[1] < 40 && rc.color[2] < 40;
-    var area = rc.widthPt * rc.heightPt;
-    if (isNearBlack && area > areaThreshold) {
-      console.log('[TRACE] suppressed spurious dark shape', JSON.stringify({
-        xPt: rc.xPt, yTopPt: rc.yTopPt, widthPt: rc.widthPt, heightPt: rc.heightPt, color: rc.color
-      }));
-      return false;
-    }
-    return true;
-  });
-  console.log('[TRACE] dark shape suppression', JSON.stringify({ before: before, after: rects2.length }));
-})();
+  var backgroundAreaThreshold = pageArea * 0.15;
+
+  function colorDistanceFromWhite(color) {
+    if (!color) return 0;
+    var dr = 255 - color[0], dg = 255 - color[1], db = 255 - color[2];
+    return dr * dr + dg * dg + db * db;
+  }
+
 // ---- Dedup layered/overlapping shapes ----
 (function dedupLayeredShapes() {
   var pageArea = pageWidthPt * pageHeightPt;
@@ -1005,16 +991,14 @@ console.log('[TRACE] rejected rects sample', JSON.stringify(
     return dr * dr + dg * dg + db * db;
   }
   var byPosition = {};
-rects2.forEach(function (rc) {
-  var byPosition = {};
-rects2.forEach(function (rc) {
-  // Widened tolerance (6pt grid instead of exact pixel match) — CSS
-  // box-shadow blur rings render as many nested rects offset by just
-  // a few points, so exact-position matching was missing most of them.
-  var key = Math.round(rc.xPt / 6) * 6 + ':' + Math.round(rc.yTopPt / 6) * 6;
-  if (!byPosition[key]) byPosition[key] = [];
-  byPosition[key].push(rc);
-});
+  rects2.forEach(function (rc) {
+    // Widened tolerance (6pt grid instead of exact pixel match) — CSS
+    // box-shadow blur rings render as many nested rects offset by just
+    // a few points, so exact-position matching was missing most of them.
+    var key = Math.round(rc.xPt / 6) * 6 + ':' + Math.round(rc.yTopPt / 6) * 6;
+    if (!byPosition[key]) byPosition[key] = [];
+    byPosition[key].push(rc);
+  });
 
   rects2 = Object.keys(byPosition).map(function (key) {
     var cluster = byPosition[key];
@@ -1027,7 +1011,7 @@ rects2.forEach(function (rc) {
     var nonBackground = withArea.filter(function (c) { return c.area <= backgroundAreaThreshold; });
     var candidates = nonBackground.length ? nonBackground : withArea;
 
-candidates.sort(function (a, b) {
+    candidates.sort(function (a, b) {
       if (a.area !== b.area) return a.area - b.area; // smallest first
       return colorDistanceFromWhite(b.rect.color) - colorDistanceFromWhite(a.rect.color); // tie-break: less white-like first
     });
@@ -1497,11 +1481,11 @@ while (i2 < lineMeta.length) {
   var listInfo = detectListInfo(lm.cells[0] || '');
 
   var spacingBefore = 0;
-if (lastEmittedY !== null) {
-  var gap0 = lastEmittedY - lm.y;
-  if (gap0 > lm.fontSize * 2.2) spacingBefore = 100;
-  else if (gap0 > lm.fontSize * 1.6) spacingBefore = 40;
-}
+  if (lastEmittedY !== null) {
+    var gap0 = lastEmittedY - lm.y;
+    if (gap0 > lm.fontSize * 1.8) spacingBefore = 160;
+    else if (gap0 > lm.fontSize * 1.35) spacingBefore = 80;
+  }
 
   var runsForBlock = lm.runs;
   if (listInfo.isList && runsForBlock.length > 1) {
@@ -1636,45 +1620,23 @@ function imageInlineXml(relId, widthPt, heightPt, contentWidthPt, id, align) {
     '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>' +
     '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
 }
-function shapeXml(block, id, pageWidthPt, marginPt, pageHeightPt) {
-  pageHeightPt = pageHeightPt || 792;
-
-  var leftPt = block.xPt || 0;
-  var topPt = (pageHeightPt || 792) - (block.yTopPt || 0);
-  var widthPt = Math.max(1, block.widthPt || 1);
-  var heightPt = Math.max(1, block.heightPt || 1);
-
-  var collapsedPPr = '<w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/><w:rPr><w:sz w:val="2"/></w:rPr></w:pPr>';
-
+function shapeXml(block, id) {
   if (block.line) {
-    var lineStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
-      'width:' + widthPt + 'pt;height:0pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;';
-    return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
-      '<v:line id="Line' + id + '" style="' + lineStyle + '" from="0,0" to="' + widthPt + 'pt,0" strokecolor="black" strokeweight="0.5pt"/>' +
-      '<w10:wrap type="none"/>' +
-      '</w:pict></w:r></w:p>';
+    return '<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/></w:pBdr></w:pPr></w:p>';
   }
-
-  var fillAttr = '';
-  var strokeAttr = 'stroked="false"';
+  var pPr;
   if (block.color) {
     var hex = rgbToHex(block.color);
-    if (hex) fillAttr = ' fillcolor="#' + hex + '"';
-  } else if (block.border) {
-    fillAttr = ' filled="false"';
-    strokeAttr = 'strokecolor="black" strokeweight="0.75pt"';
+    pPr = hex ? '<w:pPr><w:shd w:val="clear" w:color="auto" w:fill="' + hex + '"/></w:pPr>' : '';
   } else {
-    fillAttr = ' filled="false"';
+    pPr = '<w:pPr><w:pBdr>' +
+      '<w:top w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:left w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '<w:right w:val="single" w:sz="4" w:space="1" w:color="auto"/>' +
+      '</w:pBdr></w:pPr>';
   }
-
-  var shapeStyle = 'position:absolute;left:' + leftPt + 'pt;top:' + topPt + 'pt;' +
-    'width:' + widthPt + 'pt;height:' + heightPt + 'pt;' +
-    'mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-1;';
-
-  return '<w:p>' + collapsedPPr + '<w:r><w:pict>' +
-    '<v:rect id="Shape' + id + '" style="' + shapeStyle + '"' + fillAttr + ' ' + strokeAttr + '/>' +
-    '<w10:wrap type="none"/>' +
-    '</w:pict></w:r></w:p>';
+  return '<w:p>' + pPr + '</w:p>';
 }
 function tableXml(block) {
   var rows = block.rows || [];
@@ -1690,14 +1652,7 @@ function tableXml(block) {
     var cellsXml = '';
     for (var c2 = 0; c2 < colCount; c2++) {
       var cellText = row[c2] || '';
-      cellsXml += '<w:tc><w:tcPr>' +
-  '<w:tcMar>' +
-  '<w:top w:w="20" w:type="dxa"/>' +
-  '<w:left w:w="60" w:type="dxa"/>' +
-  '<w:bottom w:w="20" w:type="dxa"/>' +
-  '<w:right w:w="60" w:type="dxa"/>' +
-  '</w:tcMar>' +
-  '<w:tcBorders>' +
+      cellsXml += '<w:tc><w:tcPr><w:tcBorders>' +
         '<w:top w:val="single" w:sz="4" w:color="auto"/>' +
         '<w:left w:val="single" w:sz="4" w:color="auto"/>' +
         '<w:bottom w:val="single" w:sz="4" w:color="auto"/>' +
@@ -1727,7 +1682,7 @@ function buildDocx(pageModels) {
     var relEntries = [];
     var relIdCounter = 2;
     var docPrId = 1;
-    var marginPt = 36; // 0.5" instead of 1" — matches source page's tighter margins
+    var marginPt = 72;
 
     var bodyXml = '';
     pageModels.forEach(function (model, pIdx) {
@@ -1742,7 +1697,7 @@ function buildDocx(pageModels) {
       } else {
         model.blocks.forEach(function (b) {
           if (b.type === 'table') pageXml += tableXml(b);
-          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt, pageHeightPt);
+          else if (b.type === 'shape') pageXml += shapeXml(b, docPrId++, pageWidthPt, marginPt);
           else if (b.type === 'image') {
             try {
               var relId = 'rId' + (relIdCounter++);
@@ -1784,11 +1739,10 @@ function buildDocx(pageModels) {
       }
       bodyXml += pageXml;
     });
+
     var documentXml =
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ' +
-      'xmlns:v="urn:schemas-microsoft-com:vml" ' +
-      'xmlns:w10="urn:schemas-microsoft-com:office:word">' +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
       '<w:body>' + bodyXml + '</w:body></w:document>';
 
     var stylesXml =
