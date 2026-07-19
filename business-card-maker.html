@@ -190,6 +190,15 @@
 .ad-slot{text-align:center;margin:32px 0;min-height:90px}
 /* clipboard msg */
 #clipboard-msg{text-align:center;font-size:0.78rem;color:var(--cyan);margin-top:6px;opacity:0;transition:opacity 0.4s;min-height:20px}
+
+/* ===== FOOTER FALLBACK (in case style.css doesn't already define these) ===== */
+.footer-columns{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;max-width:900px;margin:0 auto 28px;text-align:left}
+.footer-col h4{font-family:var(--font-display,inherit);font-size:0.85rem;font-weight:700;color:#0f172a;margin-bottom:12px;letter-spacing:0.3px}
+.footer-col a{display:block;color:#64748b;font-size:0.85rem;line-height:2;text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-social{display:flex;flex-direction:column;gap:8px}
+.social-soon{font-size:0.8rem;color:#94a3b8;cursor:default}
+
 @media(max-width:768px){
   .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
   .tool-section{padding:0 20px 40px}
@@ -201,6 +210,8 @@
   .bc-canvas-wrap{padding:12px}
   .bc-actions{flex-direction:column}
   .industry-grid{grid-template-columns:repeat(4,1fr)}
+  .footer-columns{gap:32px;text-align:center}
+  .footer-social{align-items:center}
 }
 </style>
 </head>
