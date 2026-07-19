@@ -48,7 +48,9 @@
     {"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The compression process runs entirely inside your browser using JavaScript. Your file is never uploaded or stored anywhere."}},
     {"@type":"Question","name":"What compression levels are available?","acceptedAnswer":{"@type":"Answer","text":"Three levels are available: Low for minimal size reduction with the highest quality, Medium for a balance of size and quality, and High for the smallest file size."}},
     {"@type":"Question","name":"Will compressing reduce text quality or make my PDF blurry?","acceptedAnswer":{"@type":"Answer","text":"Compression rasterizes each page as an image, so very fine text may appear slightly softer at higher compression levels. Low and Medium settings keep text quite sharp."}},
-    {"@type":"Question","name":"Can I compress password-protected PDFs?","acceptedAnswer":{"@type":"Answer","text":"Not directly. Please remove the password protection from the PDF first, then upload it here to compress."}}
+    {"@type":"Question","name":"Can I compress password-protected PDFs?","acceptedAnswer":{"@type":"Answer","text":"Not directly. Please remove the password protection from the PDF first, then upload it here to compress."}},
+    {"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"Yes, files up to 25 MB are supported. Larger files will be rejected with an on-screen warning."}},
+    {"@type":"Question","name":"Will the compressed PDF still have selectable text?","acceptedAnswer":{"@type":"Answer","text":"No. Each page is rebuilt as an image during compression, so text in the output PDF is no longer selectable or searchable."}}
   ]
 }
 </script>
@@ -216,6 +218,61 @@
 .range-input:focus{outline:none;border-color:var(--cyan);background:var(--cyan-dim)}
 .page-count-badge{display:inline-block;margin-top:10px;background:var(--cyan-dim);border:1px solid var(--border3);color:var(--cyan);font-size:0.78rem;padding:6px 14px;border-radius:30px;font-weight:500}
 
+/* ===== FOOTER (matched to SEO tools footer layout) ===== */
+.footer-columns{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:80px;
+  text-align:left;
+  max-width:900px;
+  margin:0 auto 24px;
+}
+.footer-col{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  text-align:left;
+}
+.footer-col h4{
+  font-size:0.9rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:12px;
+  text-align:left;
+}
+.footer-col a{
+  color:var(--text2);
+  text-decoration:none;
+  font-size:0.85rem;
+  display:block;
+  margin-bottom:8px;
+  text-align:left;
+  transition:var(--transition);
+}
+.footer-col a:hover{ color:var(--cyan); }
+.footer-social{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+.social-soon{
+  font-size:0.85rem;
+  color:var(--muted2);
+}
+@media(max-width:768px){
+  .footer-columns{
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+  }
+  .footer-col, .footer-col a, .footer-col h4{
+    text-align:center;
+    align-items:center;
+  }
+}
+
 @media(max-width:768px){
   .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
   .tool-section{padding:0 20px 40px}
@@ -369,6 +426,12 @@
 </div>
 
 <div class="seo-section">
+  <h2>What Is PDF Compression and How Does It Work</h2>
+  <p>PDF compression is the process of reducing a document's file size while keeping it usable. NexaTools does this by rendering each page of your PDF onto a canvas in your browser, converting it into a compressed JPEG image at the quality level you choose, and rebuilding a new, smaller PDF from those images. The result is a file that opens the same way in any PDF viewer, just at a fraction of the original size.</p>
+  <p>Because the entire process happens with JavaScript running locally, no part of your document is sent anywhere while it's being compressed. This is different from many online compressors that upload your file to a remote server, process it there, and send it back you avoid that step entirely here.</p>
+</div>
+
+<div class="seo-section">
   <h2>Who Should Use This Tool</h2>
   <p>NexaTools Compress PDF is built for anyone who needs a smaller file quickly, without installing software or uploading documents to a third-party server.</p>
   <div class="benefits-list">
@@ -474,6 +537,14 @@
       <button class="faq-q-tool" onclick="toggleToolFaq(this)">Can I compress password-protected PDFs? <span class="faq-arrow-tool">▾</span></button>
       <div class="faq-a-tool">Not directly. Please remove the password protection from the PDF first, then upload it here to compress.</div>
     </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Is there a file size limit? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">Yes, files up to 25 MB are supported. Larger files will be rejected with an on-screen warning.</div>
+    </div>
+    <div class="faq-item-tool">
+      <button class="faq-q-tool" onclick="toggleToolFaq(this)">Will the compressed PDF still have selectable text? <span class="faq-arrow-tool">▾</span></button>
+      <div class="faq-a-tool">No. Each page is rebuilt as an image during compression, so text in the output PDF is no longer selectable or searchable.</div>
+    </div>
   </div>
 </div>
 
@@ -521,6 +592,7 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <div class="logo-icon">
@@ -531,7 +603,32 @@
     </div>
     <span>Nexa<em>Tools</em>.io</span>
   </div>
-  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <p style="font-size:0.85rem;color:var(--text2);margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="blog-section.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="cookies-policy.html">Cookies Policy</a>
+      <a href="copyright.html">Copyright</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter Coming Soon</span>
+        <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook Coming Soon</span>
+        <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram Coming Soon</span>
+        <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
+      </div>
+    </div>
+  </div>
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
