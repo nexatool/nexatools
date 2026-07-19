@@ -393,19 +393,19 @@
   .tpl-creative .rv-wrap{grid-template-columns:1fr}
   .tpl-creative .rv-sidebar{padding:16px}
   .tpl-creative .rv-main{padding:16px 0 0}
+  .footer-columns{gap:32px;text-align:center}
+  .footer-social{align-items:center}
 }
 
-.footer-trust-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin:18px 0 6px}
-.footer-trust-badges span{font-size:0.76rem;color:#94a3b8;display:inline-flex;align-items:center;gap:6px}
-.footer-legal-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin-top:10px;font-size:0.78rem}
-.footer-legal-links a{color:#64748b;text-decoration:none}
-.footer-legal-links a:hover{color:#2563eb;text-decoration:underline}
-.footer-legal-sep{border:none;border-top:1px solid rgba(0,0,0,0.08);max-width:900px;margin:24px auto 0}
-.footer-social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:14px 0 4px}
-.footer-social-links a{color:#64748b;text-decoration:none;font-size:0.78rem}
-.footer-social-links a:hover{color:#2563eb}
-.footer-support-line{text-align:center;font-size:0.78rem;color:#94a3b8;margin-top:6px}
-.footer-support-line a{color:#2563eb;text-decoration:none}
+footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !important; }
+
+/* ===== FOOTER FALLBACK (in case style.css doesn't already define these) ===== */
+.footer-columns{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;max-width:900px;margin:0 auto 28px;text-align:left}
+.footer-col h4{font-family:var(--font-display,inherit);font-size:0.85rem;font-weight:700;color:#0f172a;margin-bottom:12px;letter-spacing:0.3px}
+.footer-col a{display:block;color:#64748b;font-size:0.85rem;line-height:2;text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-social{display:flex;flex-direction:column;gap:8px}
+.social-soon{font-size:0.8rem;color:#94a3b8;cursor:default}
 
 .nav-link { font-weight: 700 !important; font-size: 1.00rem !important; }
 .btn-nav-ghost { font-weight: 700 !important; }
