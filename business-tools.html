@@ -196,6 +196,49 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 .biz-faq-q.open .biz-faq-arrow{transform:rotate(180deg);}
 .biz-faq-a{color:#64748b;font-size:0.87rem;line-height:1.8;padding:0 20px;max-height:0;overflow:hidden;transition:all 0.35s ease;}
 .biz-faq-a.open{max-height:260px;padding:0 20px 16px;}
+
+/* FOOTER COLUMNS FIX — side-by-side, left-aligned */
+.footer-columns{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  gap:80px !important;
+  text-align:left !important;
+  max-width:900px;
+  margin:0 auto 24px;
+}
+.footer-col{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start !important;
+  text-align:left !important;
+}
+.footer-col h4{
+  text-align:left !important;
+  margin-bottom:12px;
+}
+.footer-col a{
+  text-align:left !important;
+  display:block;
+  margin-bottom:8px;
+}
+.footer-social{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start !important;
+  gap:8px;
+}
+@media(max-width:768px){
+  .footer-columns{
+    flex-direction:column;
+    align-items:center !important;
+    gap:24px;
+  }
+  .footer-col, .footer-col a, .footer-col h4{
+    text-align:center !important;
+    align-items:center !important;
+  }
+}
 </style>
 </head>
 <body>
