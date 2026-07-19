@@ -194,6 +194,18 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 .ai-related-card .rt-icon{font-size:1.6rem;margin-bottom:8px;display:block;}
 .ai-related-card .rt-name{font-size:0.85rem;font-weight:700;color:#0f172a;margin-bottom:4px;}
 .ai-related-card .rt-desc{font-size:0.72rem;color:#64748b;}
+
+/* ===== FOOTER FALLBACK (guarantees side-by-side columns even if style.css doesn't define these) ===== */
+.footer-columns{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;max-width:900px;margin:0 auto 28px;text-align:left}
+.footer-col h4{font-family:var(--font-display,inherit);font-size:0.85rem;font-weight:700;color:#0f172a;margin-bottom:12px;letter-spacing:0.3px}
+.footer-col a{display:block;color:#64748b;font-size:0.85rem;line-height:2;text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-social{display:flex;flex-direction:column;gap:8px}
+.social-soon{font-size:0.8rem;color:#94a3b8;cursor:default}
+@media(max-width:768px){
+  .footer-columns{gap:32px;text-align:center}
+  .footer-social{align-items:center}
+}
 </style>
 </head>
 <body>
