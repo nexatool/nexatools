@@ -320,15 +320,6 @@ select option { background:#ffffff;color:var(--text); }
   .trust-strip { display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:18px 24px;margin:24px 0; }
   .trust-strip-item { display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text2);font-weight:600; }
 
-  footer { position:relative;z-index:1;border-top:1px solid var(--border);padding:48px 32px;text-align:center; }
-  .footer-logo { display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text);margin-bottom:12px; }
-  .footer-logo em { color:var(--cyan);font-style:normal; }
-  .footer-tagline { color:var(--muted2);font-size:0.82rem;margin-bottom:20px; }
-  .footer-links { display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px; }
-  .footer-links a { color:var(--text2);text-decoration:none;font-size:0.82rem;transition:var(--transition); }
-  .footer-links a:hover { color:var(--cyan); }
-  .footer-copy { color:var(--muted2);font-size:0.78rem; }
-
   @media (max-width:768px) {
     .tool-page-hero { padding:calc(var(--nav-h) + 30px) 20px 30px; }
     .tool-section { padding:0 20px 40px; }
@@ -951,23 +942,49 @@ select option { background:#ffffff;color:var(--text); }
 
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
         <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
         <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
       </svg>
     </div>
-    Nexa<em>Tools</em>.io
+    <span>Nexa<em>Tools</em>.io</span>
   </div>
-  <p class="footer-tagline">Built for the future. Free for everyone.</p>
+  <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="blog-section.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="cookies-policy.html">Cookies Policy</a>
+      <a href="copyright.html">Copyright</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter Coming Soon</span>
+        <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook Coming Soon</span>
+        <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram Coming Soon</span>
+        <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
+      </div>
+    </div>
+  </div>
   <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="about.html">About</a><span class="footer-sep">·</span>
+    <a href="contact.html">Contact</a><span class="footer-sep">·</span>
+    <a href="privacy-policy.html">Privacy Policy</a><span class="footer-sep">·</span>
+    <a href="terms.html">Terms &amp; Conditions</a><span class="footer-sep">·</span>
+    <a href="blog-section.html">Blog</a>
   </div>
   <p class="footer-copy">© 2026 NexaTools.io Worldwide 🌍</p>
 </footer>
