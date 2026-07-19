@@ -366,7 +366,7 @@
     .reviewed-by { padding: 20px 22px; }
   }
 
-  /* ===== NEW: Company Story ===== */
+  /* Company Story */
   .story-block { background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 24px; padding: 48px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .story-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #0f172a 40%, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .story-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 22px 0 10px; }
@@ -374,7 +374,7 @@
   .story-block p:last-child { margin-bottom: 0; }
   @media (max-width: 768px) { .story-block { padding: 28px 24px; } }
 
-  /* ===== NEW: How It Works ===== */
+  /* How It Works */
   .howworks-block { background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 24px; padding: 48px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .howworks-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 22px; background: linear-gradient(135deg, #0f172a 40%, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .howworks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -383,7 +383,7 @@
   .howworks-item p { color: #64748b; font-size: 0.85rem; line-height: 1.75; margin: 0; }
   @media (max-width: 768px) { .howworks-block { padding: 28px 24px; } .howworks-grid { grid-template-columns: 1fr; } }
 
-  /* ===== NEW: Company Info Cards ===== */
+  /* Company Info Cards */
   .companyinfo-block { margin-bottom: 32px; }
   .companyinfo-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 20px; text-align: center; color: #0f172a; }
   .companyinfo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -393,7 +393,7 @@
   @media (max-width: 768px) { .companyinfo-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .companyinfo-grid { grid-template-columns: 1fr; } }
 
-  /* ===== NEW: Roadmap ===== */
+  /* Roadmap */
   .roadmap-block { background: linear-gradient(135deg, rgba(37,99,235,0.04), rgba(124,58,237,0.04)); border: 1px solid rgba(124,58,237,0.15); border-radius: 24px; padding: 48px; margin-bottom: 32px; }
   .roadmap-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 20px; color: #0f172a; }
   .roadmap-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
@@ -401,7 +401,7 @@
   .roadmap-list li span.r-dot { color: #7c3aed; font-weight: 700; flex-shrink: 0; }
   @media (max-width: 768px) { .roadmap-block { padding: 28px 24px; } }
 
-  /* ===== NEW: FAQ ===== */
+  /* FAQ */
   .faq-block { background: #ffffff; border: 1px solid rgba(0,0,0,0.09); border-radius: 24px; padding: 48px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .faq-block h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #0f172a 40%, #2563eb); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 18px 0; }
@@ -410,19 +410,47 @@
   .faq-item p { color: #64748b; font-size: 0.87rem; line-height: 1.8; margin: 0; }
   @media (max-width: 768px) { .faq-block { padding: 28px 24px; } }
 
-  /* ===== NEW: Internal Links strip ===== */
+  /* Internal Links strip */
   .internal-links-block { text-align: center; margin-bottom: 32px; }
   .internal-links-block p { color: #64748b; font-size: 0.85rem; line-height: 1.9; max-width: 720px; margin: 0 auto; }
   .internal-links-block a { color: #2563eb; text-decoration: none; font-weight: 600; }
   .internal-links-block a:hover { text-decoration: underline; }
 
-  /* ===== NEW: Footer trust badges & extended links ===== */
-  .footer-trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: 18px 0 6px; }
-  .footer-trust-badges span { font-size: 0.76rem; color: #94a3b8; display: inline-flex; align-items: center; gap: 6px; }
-  .footer-legal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 10px; font-size: 0.78rem; }
-  .footer-legal-links a { color: #64748b; text-decoration: none; }
-  .footer-legal-links a:hover { color: #2563eb; text-decoration: underline; }
-  .footer-legal-sep { border: none; border-top: 1px solid rgba(0,0,0,0.08); max-width: 900px; margin: 24px auto 0; }
+  /* ===================================================================
+     NEW FOOTER (replaces old footer — matches Company/Legal/Follow Us
+     3-column layout from reference screenshot)
+     =================================================================== */
+  footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-logo { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; }
+  .footer-logo .logo-icon { width:34px; height:34px; border-radius:9px; background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.2); display:flex; align-items:center; justify-content:center; }
+  .footer-logo span { font-family: var(--font-display); font-size:1.15rem; font-weight:700; color:#0f172a; }
+  .footer-logo span em { color:#2563eb; font-style:normal; }
+  .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
+
+  .footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+  .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
+  .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
+  .footer-col a:hover { color:#2563eb; }
+  .footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
+  .footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
+
+  .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
+  .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
+  .footer-legal-row a:hover { color:#2563eb; text-decoration:underline; }
+  .footer-legal-row span.fl-sep { color:#cbd5e1; }
+
+  .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
+
+  @media (max-width:768px) {
+    .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
+    .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
+    .footer-legal-row { gap:6px 12px; }
+  }
+  @media (max-width:480px) {
+    .footer-cols { grid-template-columns:1fr; max-width:260px; }
+    .footer-col:nth-child(3) { grid-column: span 1; }
+  }
 </style>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
@@ -479,7 +507,7 @@
 
 <div class="about-content">
 
-  <!-- ================= NEW SECTION: Company Story ================= -->
+  <!-- Company Story -->
   <section class="story-block" aria-labelledby="story-heading">
     <h2 id="story-heading">📖 Our Story</h2>
     <p>NexaTools.io did not start as a business plan. It started as a frustration. While helping friends and family with everyday digital tasks writing a resume, generating an invoice, designing a simple logo for a small shop the same problem kept showing up: the tools that could actually do these jobs well were either locked behind monthly subscriptions, buried under intrusive signup forms, or so complicated that a non-technical person would give up halfway through.</p>
@@ -490,7 +518,7 @@
     <p>Three problems shaped how NexaTools.io was designed. First, cost: many people who need these tools most, such as students and early-stage freelancers, are the least able to afford recurring software subscriptions. Second, complexity: professional software is often built for professionals, with steep learning curves that discourage casual or first-time users. Third, trust: a lot of "free tool" websites are anonymous, low-quality, or exist only to harvest email addresses and data. We wanted NexaTools.io to be the opposite transparent, accountable, and genuinely useful.</p>
   </section>
 
-  <!-- Founder Section (enhanced with more personal narrative) -->
+  <!-- Founder Section -->
   <section class="founder-section" aria-labelledby="founder-heading">
     <div class="founder-container">
       <div class="founder-image">
@@ -539,7 +567,7 @@
     </div>
   </section>
 
-  <!-- Mission (expanded) -->
+  <!-- Mission -->
   <div class="mission-block">
     <h2>💡 Our Mission</h2>
     <p>NexaTools.io was built with one clear mission: give every person whether a student in Lahore, a freelancer in Nairobi, or a small business owner in Toronto access to <strong>professional-grade tools without spending a single dollar.</strong></p>
@@ -548,7 +576,7 @@
     <p>Today, NexaTools.io offers <strong>7 free AI-powered tools</strong> that anyone can use instantly, with no account required, no hidden fees, and no technical knowledge needed. Everything runs directly in your browser <strong>your data never leaves your device.</strong></p>
   </div>
 
-  <!-- Vision (new expanded section) -->
+  <!-- Vision -->
   <section class="story-block" aria-labelledby="vision-heading">
     <h2 id="vision-heading">🎯 Our Vision</h2>
     <p>Our vision is for NexaTools.io to become the platform people think of first when they need to get a practical task done quickly not because it's the flashiest tool on the market, but because it's the most reliable and the most respectful of their time and their data.</p>
@@ -556,7 +584,7 @@
     <p>Over time, we want NexaTools.io to expand its toolkit thoughtfully adding new tools only when they meet the same bar of usefulness, simplicity, and privacy that our existing tools are held to, rather than adding features just to pad a feature list.</p>
   </section>
 
-  <!-- Values (expanded descriptions) -->
+  <!-- Values -->
   <div class="values-grid">
     <div class="value-card"><span class="v-icon">🆓</span><h4>100% Free</h4><p>All tools are completely free to use, with no credit card required at signup, no forced upgrade after a few uses, and no feature locked behind a hidden paywall. We built NexaTools to be free by design, not free as a marketing hook.</p></div>
     <div class="value-card"><span class="v-icon">🔒</span><h4>Privacy First</h4><p>Wherever technically possible, our tools process your input directly in your browser. We do not require accounts, we do not sell user data, and we only handle information on our servers when a specific tool genuinely requires it.</p></div>
@@ -581,7 +609,7 @@
     </div>
   </div>
 
-  <!-- ================= NEW SECTION: How NexaTools Works ================= -->
+  <!-- How NexaTools Works -->
   <section class="howworks-block" aria-labelledby="howworks-heading">
     <h2 id="howworks-heading">⚙️ How NexaTools Works</h2>
     <div class="howworks-grid">
@@ -618,7 +646,7 @@
     <div class="about-card"><span class="card-icon">🔮</span><h3>What's Next</h3><p>We're working on more AI tools, new templates, and dedicated mobile apps. The roadmap is big and it's all free for our community.</p></div>
   </div>
 
-  <!-- ================= NEW SECTION: Company Information Cards ================= -->
+  <!-- Company Information Cards -->
   <section class="companyinfo-block" aria-labelledby="companyinfo-heading">
     <h2 id="companyinfo-heading">🏢 Company Information</h2>
     <div class="companyinfo-grid">
@@ -665,7 +693,7 @@
     <p><strong>Last Updated:</strong> July 2026</p>
   </section>
 
-  <!-- ================= NEW SECTION: Roadmap ================= -->
+  <!-- Roadmap -->
   <section class="roadmap-block" aria-labelledby="roadmap-heading">
     <h2 id="roadmap-heading">🚀 Roadmap</h2>
     <ul class="roadmap-list">
@@ -677,7 +705,7 @@
     </ul>
   </section>
 
-  <!-- ================= NEW SECTION: FAQ ================= -->
+  <!-- FAQ -->
   <section class="faq-block" aria-labelledby="faq-heading">
     <h2 id="faq-heading">Frequently Asked Questions ❓</h2>
 
@@ -732,7 +760,7 @@
     </div>
   </section>
 
-  <!-- ================= NEW SECTION: Internal Links strip ================= -->
+  <!-- Internal Links strip -->
   <section class="internal-links-block" aria-label="Related pages">
     <p>Explore more: browse our full <a href="index.html#tools-section">library of free tools</a>, see all <a href="index.html#categories-section">tool categories</a>, read practical guides on our <a href="blog-section.html">Blog</a>, review our <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>, or <a href="contact.html">get in touch</a> with the team directly.</p>
   </section>
@@ -748,48 +776,54 @@
 
 </div>
 
+<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
 <footer>
-  <div class="footer-logo">
-    <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
-        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
-      </svg>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em>.io</span>
     </div>
-    <span>Nexa<em>Tools</em>.io</span>
+    <p class="footer-tagline">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog-section.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="cookies-policy.html">Cookies Policy</a>
+        <a href="copyright.html">Copyright</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
+      </div>
+    </div>
+
+    <div class="footer-legal-row">
+      <a href="about.html">About</a><span class="fl-sep">·</span>
+      <a href="contact.html">Contact</a><span class="fl-sep">·</span>
+      <a href="privacy-policy.html">Privacy Policy</a><span class="fl-sep">·</span>
+      <a href="terms.html">Terms &amp; Conditions</a><span class="fl-sep">·</span>
+      <a href="blog-section.html">Blog</a>
+    </div>
+
+    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
   </div>
-  <p class="footer-tagline">Built for the future. Free for everyone.</p>
-
-  <!-- Primary footer navigation -->
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#tools-section">All Tools</a>
-    <a href="index.html#categories-section">Categories</a>
-    <a href="blog-section.html">Blog</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
-  </div>
-
-  <!-- NEW: Trust badges -->
-  <div class="footer-trust-badges">
-    <span>✓ Privacy First</span>
-    <span>✓ Browser-Based Tools</span>
-    <span>✓ No Hidden Fees</span>
-    <span>✓ Secure Experience</span>
-  </div>
-
-  <hr class="footer-legal-sep">
-
-  <!-- NEW: Extended legal / placeholder links, ready for future pages -->
-  <div class="footer-legal-links">
-    <a href="disclaimer.html">Disclaimer</a>
-    <a href="cookies-policy.html">Cookies Policy</a>
-    <a href="copyright.html">Copyright Notice</a>
-  </div>
-
-  <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
 </footer>
 
 <script src="script.js"></script>
