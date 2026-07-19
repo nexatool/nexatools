@@ -4,19 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
-<meta name="author" content="NexaTools.io">
-<title>Free Base64 Decoder Online | NexaTools.io</title>
-<meta name="description" content="Decode Base64 strings back to text or files instantly in your browser. 100% free, no signup, no backend, no data upload.">
-<meta name="robots" content="index, follow">
+<meta name="author" content="Rashid Amin, NexaTools.io">
+<title>Base64 Decoder Free Online Decode Text & Files | NexaTools.io</title>
+<meta name="description" content="Decode Base64 strings back to text or rebuild them as downloadable files, instantly in your browser. 100% free, no signup, no backend, no data upload.">
+<meta name="keywords" content="base64 decoder, decode base64 online, base64 to text, base64 to file, base64 decode free, data uri decoder">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.nexatools.io/base64-decoder.html">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<meta property="og:site_name" content="NexaTools.io">
+<meta property="og:title" content="Free Base64 Decoder Online | NexaTools.io">
+<meta property="og:description" content="Decode Base64 strings back to text or files instantly in your browser. No signup, no backend, no data upload.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nexatools.io/base64-decoder.html">
+<meta property="og:image" content="https://www.nexatools.io/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Base64 Decoder | NexaTools.io">
+<meta name="twitter:description" content="Decode Base64 strings back to text or files instantly in your browser. No login, no server upload.">
+<meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,13 +73,52 @@
     "priceCurrency": "USD"
   },
   "description": "Decode Base64 strings back to text or files instantly in your browser.",
+  "featureList": ["Decode Base64 to plain text","Rebuild Base64 into a downloadable file","Supports data URI prefixes","Runs entirely in your browser","No signup required","100% free"],
   "reviewedBy": {
     "@type": "Person",
     "name": "Rashid Amin",
     "jobTitle": "Founder, NexaTools"
+  },
+  "publisher": { "@type": "Organization", "name": "NexaTools.io", "url": "https://www.nexatools.io" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NexaTools.io",
+  "url": "https://www.nexatools.io",
+  "logo": "https://www.nexatools.io/favicon-96x96.png",
+  "founder": { "@type": "Person", "name": "Rashid Amin" },
+  "sameAs": []
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "NexaTools.io",
+  "url": "https://www.nexatools.io",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.nexatools.io/search.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does this decoder send my data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Decoding happens entirely in your browser using built-in JavaScript functions. Nothing is uploaded or stored."}},
+    {"@type":"Question","name":"What happens if I paste invalid Base64?","acceptedAnswer":{"@type":"Answer","text":"The tool shows an error message explaining that the input isn't valid Base64, so you can fix it and try again."}},
+    {"@type":"Question","name":"Can I recover a file, like an image, from Base64?","acceptedAnswer":{"@type":"Answer","text":"Yes, use the Base64 to File card. Paste the string (with or without the data: prefix), give it a file name, and download the reconstructed file."}},
+    {"@type":"Question","name":"Does this support Unicode text like emojis?","acceptedAnswer":{"@type":"Answer","text":"Yes, UTF-8 text including emojis and non-Latin characters is decoded correctly."}}
+  ]
+}
+</script>
+
 <style>
 body { background: #f8fafc !important; color: #0f172a !important; }
 nav { background: rgba(255,255,255,0.97) !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; box-shadow: 0 1px 0 rgba(0,0,0,0.05) !important; }
@@ -103,22 +158,30 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
 .cat-icon-big{background:var(--cyan-dim) !important}
 
+.footer-columns{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;max-width:900px;margin:0 auto 24px;text-align:left}
+.footer-col h4{font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:#2563eb;margin-bottom:10px}
+.footer-col a{display:block;color:#64748b;font-size:0.85rem;text-decoration:none;padding:4px 0}
+.footer-col a:hover, .footer-col a:focus-visible{color:#0f172a}
+.footer-social{display:flex;flex-direction:column;gap:4px}
+.social-soon{font-size:0.82rem;color:#64748b;opacity:0.8;padding:4px 0}
+
 @media(max-width:768px){
   .tool-page-hero{padding:calc(var(--nav-h) + 30px) 20px 30px}
   .tool-section{padding:0 20px 40px}
   .seo-section{padding:40px 20px}
+  .footer-columns{gap:32px;text-align:center}
 }
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
 
 <!-- NAVBAR -->
 <nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
-    <div class="nav-logo" onclick="window.location.href='index.html'">
+    <div class="nav-logo" onclick="window.location.href='index.html'" role="link" tabindex="0" aria-label="NexaTools Home" onkeypress="if(event.key==='Enter')window.location.href='index.html'">
       <div class="logo-icon">
         <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexaTools logo">
           <polygon points="48,6 80,24 80,60 48,78 16,60 16,24" fill="none" stroke="var(--cyan)" stroke-width="4"/>
@@ -171,7 +234,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 <div class="tool-page-hero">
   <div class="cat-icon-big" style="width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;background:rgba(8,145,178,0.08);" aria-hidden="true">🔓</div>
   <h1>Base64 Decoder</h1>
-  <p>Decode Base64 strings back to text or files, instantly in your browser. No signup, no backend, no data ever leaves your device.</p>
+  <p>Decode Base64 strings back to text or rebuild them as downloadable files, instantly in your browser. No signup, no backend, no data ever leaves your device.</p>
   <div class="hero-feature-pills">
     <span class="feature-pill">🔒 100% Private</span>
     <span class="feature-pill">⚡ Instant Results</span>
@@ -189,46 +252,46 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
     <div class="glass-card">
       <div class="card-header">
-        <h3>Base64 ⇒ Text</h3>
+        <h2>Base64 ⇒ Text</h2>
         <span class="ai-badge">🔓 Client-Side Only</span>
       </div>
       <div class="form-group">
         <label class="form-label" for="b64d-input">Base64 String</label>
-        <textarea id="b64d-input" placeholder="Paste your Base64 string here..." style="min-height:160px;font-family:monospace;font-size:0.85rem;"></textarea>
+        <textarea id="b64d-input" placeholder="Paste your Base64 string here..." style="min-height:160px;font-family:monospace;font-size:0.85rem;" aria-label="Base64 string to decode"></textarea>
       </div>
       <div class="btn-row">
-        <button class="btn btn-cyan" onclick="b64dDecode()">⬅️ Decode to Text</button>
-        <button class="btn btn-ghost" onclick="b64dClear()">🗑️ Clear</button>
+        <button class="btn btn-cyan" onclick="b64dDecode()" aria-label="Decode Base64 to text">⬅️ Decode to Text</button>
+        <button class="btn btn-ghost" onclick="b64dClear()" aria-label="Clear input and output">🗑️ Clear</button>
       </div>
 
-      <div class="error-box" id="b64d-error"></div>
+      <div class="error-box" id="b64d-error" role="alert"></div>
 
       <div class="output-wrap" id="b64d-output-wrap" style="display:none;">
         <div class="output-label">Decoded Result (Text)</div>
-        <pre id="b64d-output" style="white-space:pre-wrap;word-break:break-all;font-family:monospace;font-size:0.85rem;line-height:1.6;max-height:300px;overflow:auto;"></pre>
+        <pre id="b64d-output" style="white-space:pre-wrap;word-break:break-all;font-family:monospace;font-size:0.85rem;line-height:1.6;max-height:300px;overflow:auto;" aria-live="polite"></pre>
         <div class="btn-row">
-          <button class="btn btn-ghost" id="b64d-copy-btn" onclick="copyB64D()">📋 Copy Result</button>
+          <button class="btn btn-ghost" id="b64d-copy-btn" onclick="copyB64D()" aria-label="Copy decoded text to clipboard">📋 Copy Result</button>
         </div>
       </div>
     </div>
 
     <div class="glass-card" style="margin-top:24px;">
       <div class="card-header">
-        <h3>Base64 ⇒ File</h3>
+        <h2>Base64 ⇒ File</h2>
         <span class="ai-badge">📁 Optional</span>
       </div>
       <div class="form-group">
         <label class="form-label" for="b64d-file-input">Base64 String (with or without data: prefix)</label>
-        <textarea id="b64d-file-input" placeholder="Paste a Base64 string to rebuild it as a downloadable file..." style="min-height:120px;font-family:monospace;font-size:0.85rem;"></textarea>
+        <textarea id="b64d-file-input" placeholder="Paste a Base64 string to rebuild it as a downloadable file..." style="min-height:120px;font-family:monospace;font-size:0.85rem;" aria-label="Base64 string to rebuild as a file"></textarea>
       </div>
       <div class="form-group">
         <label class="form-label" for="b64d-file-name">File Name</label>
-        <input type="text" id="b64d-file-name" placeholder="decoded-file.bin" style="max-width:320px;">
+        <input type="text" id="b64d-file-name" placeholder="decoded-file.bin" style="max-width:320px;" aria-label="Output file name">
       </div>
       <div class="btn-row">
-        <button class="btn btn-cyan" onclick="b64dToFile()">💾 Decode & Download</button>
+        <button class="btn btn-cyan" onclick="b64dToFile()" aria-label="Decode Base64 and download as a file">💾 Decode &amp; Download</button>
       </div>
-      <div class="error-box" id="b64d-file-error"></div>
+      <div class="error-box" id="b64d-file-error" role="alert"></div>
     </div>
 
   </div>
@@ -241,41 +304,41 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <p>Everything runs locally on your device using standard browser JavaScript. Nothing you paste is uploaded to a server, which makes it safe to use with tokens, credentials, or private data.</p>
   <h3>How to Decode Base64</h3>
   <div class="steps-grid">
-    <div class="step-card"><div class="step-num">1</div><h4>Paste your Base64</h4><p>Add the encoded string into the input box above.</p></div>
-    <div class="step-card"><div class="step-num">2</div><h4>Choose a target</h4><p>Decode to plain text, or rebuild it as a downloadable file.</p></div>
-    <div class="step-card"><div class="step-num">3</div><h4>Copy or download</h4><p>Grab the decoded text or save the reconstructed file.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">1</div><h4>Paste your Base64</h4><p>Add the encoded string into the input box above.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">2</div><h4>Choose a target</h4><p>Decode to plain text, or rebuild it as a downloadable file.</p></div>
+    <div class="step-card"><div class="step-num" aria-hidden="true">3</div><h4>Copy or download</h4><p>Grab the decoded text or save the reconstructed file.</p></div>
   </div>
   <h3>Why Use This Base64 Tool</h3>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">🔒</span><p><strong>Private by design.</strong> Base64 data never leaves your browser or touches a server.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚡</span><p><strong>Instant results.</strong> Decoding happens as you click, no waiting.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📁</span><p><strong>File support.</strong> Rebuild a Base64 string into an actual downloadable file.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🆓</span><p><strong>100% free.</strong> No signup, no limits.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🔒</span><p><strong>Private by design.</strong> Base64 data never leaves your browser or touches a server.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚡</span><p><strong>Instant results.</strong> Decoding happens as you click, no waiting.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📁</span><p><strong>File support.</strong> Rebuild a Base64 string into an actual downloadable file.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🆓</span><p><strong>100% free.</strong> No signup, no limits.</p></div>
   </div>
 
   <h3>Who Should Use This Tool</h3>
   <p>This Base64 decoder is built for anyone who needs to turn an encoded string back into readable text or a usable file. That includes:</p>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">🧑‍💻</span><p><strong>Developers</strong> debugging API payloads, JWT tokens, or data URIs that contain Base64-encoded values.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📁</span><p><strong>Anyone recovering a file</strong> that was embedded as a Base64 string, like an image inside a data URI or email attachment.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Students and hobbyists</strong> learning how Base64 encoding represents binary data as text.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🛠️</span><p><strong>Anyone without dev tools installed</strong> who needs to decode a string without opening a terminal or IDE.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🧑‍💻</span><p><strong>Developers</strong> debugging API payloads, JWT tokens, or data URIs that contain Base64-encoded values.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📁</span><p><strong>Anyone recovering a file</strong> that was embedded as a Base64 string, like an image inside a data URI or email attachment.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📚</span><p><strong>Students and hobbyists</strong> learning how Base64 encoding represents binary data as text.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🛠️</span><p><strong>Anyone without dev tools installed</strong> who needs to decode a string without opening a terminal or IDE.</p></div>
   </div>
 
   <h3>Common Use Cases</h3>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">🔍</span><p><strong>Debugging API responses.</strong> Decode a Base64 field in a JSON payload to see its actual content.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🖼️</span><p><strong>Recovering embedded images.</strong> Rebuild a data URI back into a downloadable image or document file.</p></div>
-    <div class="benefit-item"><span class="bi-icon">🔑</span><p><strong>Inspecting tokens and config values.</strong> Decode a Base64-encoded segment to check what data it actually contains.</p></div>
-    <div class="benefit-item"><span class="bi-icon">📚</span><p><strong>Learning and teaching.</strong> See how Base64 text maps back to its original content.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🔍</span><p><strong>Debugging API responses.</strong> Decode a Base64 field in a JSON payload to see its actual content.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🖼️</span><p><strong>Recovering embedded images.</strong> Rebuild a data URI back into a downloadable image or document file.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">🔑</span><p><strong>Inspecting tokens and config values.</strong> Decode a Base64-encoded segment to check what data it actually contains.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">📚</span><p><strong>Learning and teaching.</strong> See how Base64 text maps back to its original content.</p></div>
   </div>
 
   <h3>Common Problems &amp; Troubleshooting</h3>
   <div class="benefits-list">
-    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>"Invalid Base64" error.</strong> Make sure you copied the entire string with no missing characters or extra line breaks in the middle.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>Copy button doesn't seem to work.</strong> Some browsers block clipboard access until you interact with the page first; click anywhere on the page, then try Copy Result again.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>The decoded file won't open.</strong> Double-check the file name and extension you entered match the actual file type the Base64 data represents.</p></div>
-    <div class="benefit-item"><span class="bi-icon">⚠️</span><p><strong>Nothing happens when I click Decode.</strong> Check that you've pasted a Base64 string into the input box the tool needs content to process.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚠️</span><p><strong>"Invalid Base64" error.</strong> Make sure you copied the entire string with no missing characters or extra line breaks in the middle.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚠️</span><p><strong>Copy button doesn't seem to work.</strong> Some browsers block clipboard access until you interact with the page first; click anywhere on the page, then try Copy Result again.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚠️</span><p><strong>The decoded file won't open.</strong> Double-check the file name and extension you entered match the actual file type the Base64 data represents.</p></div>
+    <div class="benefit-item"><span class="bi-icon" aria-hidden="true">⚠️</span><p><strong>Nothing happens when I click Decode.</strong> Check that you've pasted a Base64 string into the input box the tool needs content to process.</p></div>
   </div>
 
   <h3>Frequently Asked Questions</h3>
@@ -301,15 +364,15 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <div class="page-cta-box">
     <h2>Decode Base64 in Seconds</h2>
     <p>Paste your string copy the text or download the file instantly.</p>
-    <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})"><span>🚀 Use This Tool Now</span></button>
+    <button class="btn-primary cta-btn" onclick="document.querySelector('.tool-section').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to the Base64 decoder tool"><span>🚀 Use This Tool Now</span></button>
   </div>
 
   <h3>More Developer Tools</h3>
   <div class="related-tools-grid">
-    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc">Encode text & files to Base64</span></a>
-    <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc">Beautify, minify & validate JSON</span></a>
-    <a href="url-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔗</span><span class="rt-name">URL Encoder</span><span class="rt-desc">Encode & decode URL components</span></a>
-    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc">MD5, SHA-1, SHA-256 & more</span></a>
+    <a href="base64-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔤</span><span class="rt-name">Base64 Encoder</span><span class="rt-desc">Encode text &amp; files to Base64</span></a>
+    <a href="json-formatter.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🧾</span><span class="rt-name">JSON Formatter</span><span class="rt-desc">Beautify, minify &amp; validate JSON</span></a>
+    <a href="url-encoder.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔗</span><span class="rt-name">URL Encoder</span><span class="rt-desc">Encode &amp; decode URL components</span></a>
+    <a href="hash-generator.html" class="related-tool-card"><span class="rt-icon" aria-hidden="true">🔒</span><span class="rt-name">Hash Generator</span><span class="rt-desc">MD5, SHA-1, SHA-256 &amp; more</span></a>
   </div>
 </section>
 </main>
@@ -318,7 +381,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 <footer>
   <div class="footer-logo">
     <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
         <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
         <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
       </svg>
@@ -326,6 +389,31 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <span>Nexa<em>Tools</em>.io</span>
   </div>
   <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="blog-section.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="cookies-policy.html">Cookies Policy</a>
+      <a href="copyright.html">Copyright</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter  Coming Soon</span>
+        <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook  Coming Soon</span>
+        <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram  Coming Soon</span>
+        <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
+      </div>
+    </div>
+  </div>
   <div class="footer-links">
     <a href="about.html">About</a><span class="footer-sep">·</span>
     <a href="contact.html">Contact</a><span class="footer-sep">·</span>
@@ -335,7 +423,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </div>
   <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
 </footer>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
@@ -349,8 +437,16 @@ function toggleMobileNav() {
 function toggleFaqTool(btn) {
   const answer = btn.nextElementSibling;
   const isOpen = btn.classList.contains('open');
-  document.querySelectorAll('.faq-q-tool').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
-  if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+  document.querySelectorAll('.faq-q-tool').forEach(b => {
+    b.classList.remove('open');
+    b.setAttribute('aria-expanded', 'false');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    answer.classList.add('open');
+  }
 }
 
 function b64dShowError(msg) {
@@ -427,4 +523,4 @@ function b64dToFile() {
 }
 </script>
 </body>
-</html>s
+</html>
