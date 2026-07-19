@@ -83,6 +83,14 @@ nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
 .nav-mobile-toggle span { background:#475569 !important; }
 footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !important; }
 
+/* Fallback footer-columns styles (harmless if duplicated in style.css) */
+.footer-columns { display:flex; gap:60px; justify-content:center; flex-wrap:wrap; margin:28px 0; text-align:left; }
+.footer-col h4 { font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.03em; }
+.footer-col a { display:block; color:#64748b; font-size:0.88rem; text-decoration:none; margin-bottom:8px; transition:color 0.2s; }
+.footer-col a:hover { color:var(--cyan,#0891b2); }
+.footer-social { display:flex; flex-direction:column; gap:8px; }
+.social-soon { font-size:0.85rem; color:#94a3b8; cursor:default; }
+@media (max-width:640px){ .footer-columns{ gap:32px; text-align:center; } }
 
 /* ===== PAGE HERO (matched to JPG-to-PNG tool page) ===== */
 .tool-page-hero{position:relative;z-index:1;padding:calc(var(--nav-h) + 50px) 32px 40px;max-width:1000px;margin:0 auto;text-align:center}
@@ -311,7 +319,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 <footer>
   <div class="footer-logo">
     <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
         <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
         <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
       </svg>
@@ -319,6 +327,31 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
     <span>Nexa<em>Tools</em>.io</span>
   </div>
   <p style="font-size:0.85rem;color:#64748b;margin:8px 0 20px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="blog-section.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="cookies-policy.html">Cookies Policy</a>
+      <a href="copyright.html">Copyright</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter Coming Soon</span>
+        <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook Coming Soon</span>
+        <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram Coming Soon</span>
+        <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
+      </div>
+    </div>
+  </div>
   <div class="footer-links">
     <a href="about.html">About</a><span class="footer-sep">·</span>
     <a href="contact.html">Contact</a><span class="footer-sep">·</span>
