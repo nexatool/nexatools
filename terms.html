@@ -225,7 +225,7 @@
     .reviewed-by { padding: 18px 20px; }
   }
 
-  /* ===== NEW: Last Updated strip (top & bottom) ===== */
+  /* Last Updated strip (top & bottom) */
   .last-updated-strip {
     text-align: center;
     font-size: 0.78rem;
@@ -236,7 +236,7 @@
   .last-updated-strip strong { color: #2563eb; }
   .last-updated-strip a { color: #2563eb; text-decoration: none; }
 
-  /* ===== NEW: Trust badges card ===== */
+  /* Trust badges card */
   .terms-trust-card {
     background: #ffffff;
     border: 1px solid rgba(0,0,0,0.09);
@@ -269,7 +269,7 @@
   @media (max-width: 768px) { .terms-trust-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .terms-trust-grid { grid-template-columns: 1fr; } }
 
-  /* ===== NEW: FAQ ===== */
+  /* FAQ */
   .faq-terms-box {
     background: #ffffff;
     border: 1px solid rgba(0,0,0,0.09);
@@ -293,24 +293,49 @@
   .faq-terms-item p a { color: #2563eb; text-decoration: none; }
   .faq-terms-item p a:hover { text-decoration: underline; }
 
-  /* ===== NEW: Internal links strip ===== */
+  /* Internal links strip */
   .terms-links-strip { text-align: center; margin-bottom: 28px; }
   .terms-links-strip p { color: #64748b; font-size: 0.85rem; line-height: 1.9; max-width: 720px; margin: 0 auto; }
   .terms-links-strip a { color: #2563eb; text-decoration: none; font-weight: 600; }
   .terms-links-strip a:hover { text-decoration: underline; }
 
-  /* ===== NEW: Footer trust badges & extended links (matches About page) ===== */
-  .footer-trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: 18px 0 6px; }
-  .footer-trust-badges span { font-size: 0.76rem; color: #94a3b8; display: inline-flex; align-items: center; gap: 6px; }
-  .footer-legal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 10px; font-size: 0.78rem; }
-  .footer-legal-links a { color: #64748b; text-decoration: none; }
-  .footer-legal-links a:hover { color: #2563eb; text-decoration: underline; }
-  .footer-legal-sep { border: none; border-top: 1px solid rgba(0,0,0,0.08); max-width: 900px; margin: 24px auto 0; }
-  .footer-social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 14px 0 4px; }
-  .footer-social-links a { color: #64748b; text-decoration: none; font-size: 0.78rem; }
-  .footer-social-links a:hover { color: #2563eb; }
-  .footer-support-line { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 6px; }
-  .footer-support-line a { color: #2563eb; text-decoration: none; }
+  /* ===================================================================
+     NEW FOOTER (matches about.html / contact.html / blog-section.html /
+     cookies-policy.html / copyright.html / disclaimer.html /
+     privacy-policy.html / resume-tools.html — Company / Legal / Follow
+     Us 3-column layout)
+     =================================================================== */
+  footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-logo { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; }
+  .footer-logo .logo-icon { width:34px; height:34px; border-radius:9px; background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.2); display:flex; align-items:center; justify-content:center; }
+  .footer-logo span { font-family: var(--font-display); font-size:1.15rem; font-weight:700; color:#0f172a; }
+  .footer-logo span em { color:#2563eb; font-style:normal; }
+  .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
+
+  .footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+  .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
+  .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
+  .footer-col a:hover { color:#2563eb; }
+  .footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
+  .footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
+
+  .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
+  .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
+  .footer-legal-row a:hover { color:#2563eb; text-decoration:underline; }
+  .footer-legal-row span.fl-sep { color:#cbd5e1; }
+
+  .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
+
+  @media (max-width:768px) {
+    .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
+    .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
+    .footer-legal-row { gap:6px 12px; }
+  }
+  @media (max-width:480px) {
+    .footer-cols { grid-template-columns:1fr; max-width:260px; }
+    .footer-col:nth-child(3) { grid-column: span 1; }
+  }
 </style>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
@@ -320,7 +345,7 @@
 <div class="bg-orb orb-2"></div>
 <div class="bg-orb orb-3"></div>
 
-<!-- NAVIGATION (identical to About page) -->
+<!-- NAVIGATION -->
 <nav id="navbar">
   <div class="nav-inner">
     <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
@@ -334,8 +359,8 @@
     </div>
        <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="#tools-section">Tools</a>
-      <a class="nav-link" href="#categories-section">Categories</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="index.html#categories-section">Categories</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -345,6 +370,7 @@
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
     <a href="index.html#tools-section" onclick="toggleMobileNav()">Tools</a>
+    <a href="index.html#categories-section" onclick="toggleMobileNav()">Categories</a>
     <a href="about.html" onclick="toggleMobileNav()">About Us</a>
     <a href="blog-section.html" onclick="toggleMobileNav()">Blog</a>
     <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
@@ -368,7 +394,7 @@
 
 <main class="policy-content">
 
-  <!-- NEW: Last Updated strip (top) -->
+  <!-- Last Updated strip (top) -->
   <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong>reviewed regularly to stay accurate and current.</p>
 
   <section class="policy-card" aria-labelledby="intro-heading">
@@ -392,7 +418,7 @@
     </ul>
   </article>
 
-  <!-- ================= NEW SECTION: Fair Use Policy ================= -->
+  <!-- Fair Use Policy -->
   <section class="policy-card" aria-labelledby="fairuse-heading">
     <h2 id="fairuse-heading">3. Fair Use Policy</h2>
     <p>NexaTools.io is built to be used freely and generously, but that freedom depends on everyone using the platform in good faith. The following are examples of acceptable and unacceptable use:</p>
@@ -413,7 +439,7 @@
     <p style="margin-top:10px;">Violations of this Fair Use Policy may result in restricted access, as described in Section 12 (Termination of Service).</p>
   </section>
 
-  <!-- ================= NEW SECTION: User Responsibilities ================= -->
+  <!-- User Responsibilities -->
   <section class="policy-card" aria-labelledby="responsibilities-heading">
     <h2 id="responsibilities-heading">4. User Responsibilities</h2>
     <p>When you use NexaTools.io, you are responsible for:</p>
@@ -437,7 +463,7 @@
     </ul>
   </article>
 
-  <!-- ================= EXPANDED SECTION: Intellectual Property ================= -->
+  <!-- Intellectual Property -->
   <section class="policy-card" aria-labelledby="ip-heading">
     <h2 id="ip-heading">6. Intellectual Property</h2>
     <p>All designs, code, branding, logos, and content of the NexaTools.io platform itself are the intellectual property of NexaTools.io. This includes the website's visual design, underlying code, and the NexaTools name and logo.</p>
@@ -445,7 +471,7 @@
     <p style="margin-top:10px;">What you may not do is copy, reproduce, or redistribute the NexaTools.io platform itself (its code, design, or branding) without our written permission.</p>
   </section>
 
-  <!-- ================= NEW SECTION: Service Availability ================= -->
+  <!-- Service Availability -->
   <section class="policy-card" aria-labelledby="availability-heading">
     <h2 id="availability-heading">7. Service Availability</h2>
     <p>We continuously work to improve NexaTools.io, which means tools, features, and pages may be updated, adjusted, or occasionally changed as we make the platform better. Some features may be modified or replaced over time based on user feedback and technical improvements.</p>
@@ -467,7 +493,7 @@
     <p>Your use of NexaTools.io is also governed by our <a href="privacy-policy.html" style="color:#2563eb;">Privacy Policy</a>, which is incorporated into these Terms by reference. Please review it carefully to understand what information, if any, is involved when you use our tools.</p>
   </article>
 
-  <!-- ================= EXPANDED SECTION: Third-Party Services ================= -->
+  <!-- Third-Party Services -->
   <section class="policy-card" aria-labelledby="thirdparty-heading">
     <h2 id="thirdparty-heading">11. Third-Party Services</h2>
     <p>NexaTools.io integrates with a small number of third-party services to keep the platform free and functional:</p>
@@ -479,14 +505,14 @@
     <p style="margin-top:10px;">Your use of these third-party services is subject to their respective terms and privacy policies. As we grow, we may introduce additional integrations; when we do, this section will be updated to reflect them. NexaTools.io is not responsible for the practices, availability, or content of any third-party service.</p>
   </section>
 
-  <!-- ================= NEW SECTION: Termination of Service ================= -->
+  <!-- Termination of Service -->
   <section class="policy-card" aria-labelledby="termination-heading">
     <h2 id="termination-heading">12. Termination of Service</h2>
     <p>We reserve the right to restrict, suspend, or terminate access to NexaTools.io for any user found to be abusing the platform, violating this Fair Use Policy, engaging in illegal activity, or otherwise misusing our tools or contact channels.</p>
     <p style="margin-top:10px;">Where practical, we will attempt to notify affected users of the reason for any restriction. Termination of access does not entitle a user to a refund for any prior Pro or Business subscription charges already billed.</p>
   </section>
 
-  <!-- ================= NEW SECTION: Trust badges ================= -->
+  <!-- Trust badges -->
   <section class="terms-trust-card" aria-labelledby="terms-trust-heading">
     <h2 id="terms-trust-heading">🏅 Trusted &amp; Transparent</h2>
     <div class="terms-trust-grid">
@@ -508,7 +534,7 @@
     <p>These Terms shall be governed by and construed in accordance with applicable laws. Any disputes shall be resolved through good-faith negotiation, and if necessary, through appropriate legal channels.</p>
   </article>
 
-  <!-- ================= EXPANDED SECTION: Contact ================= -->
+  <!-- Contact -->
   <section class="policy-card" aria-labelledby="contact-heading">
     <h2 id="contact-heading">15. Contact Information</h2>
     <p>For legal inquiries or questions about these Terms, or about NexaTools.io generally, reach out through any of the following:</p>
@@ -520,7 +546,7 @@
     </ul>
   </section>
 
-  <!-- ================= NEW SECTION: Disclaimer & Privacy Notice ================= -->
+  <!-- Disclaimer & Privacy Notice -->
   <section class="policy-card" aria-labelledby="disclaimer-notice-heading">
     <h2 id="disclaimer-notice-heading">16. Disclaimer Notice</h2>
     <p>NexaTools.io's tools are designed to be helpful and accurate, but outputs such as AI-assisted resume suggestions should always be reviewed by you before use, and we cannot guarantee a specific outcome (such as a job offer) from using our tools. For the full detail on the limits of our tools and content, please read our <a href="disclaimer.html" style="color:#2563eb;">Disclaimer</a>.</p>
@@ -531,7 +557,7 @@
     <p>We take privacy seriously and have designed our tools to process data in your browser wherever possible, rather than on our servers. For full details on what information is and isn't collected, please read our <a href="privacy-policy.html" style="color:#2563eb;">Privacy Policy</a>.</p>
   </section>
 
-  <!-- ================= NEW SECTION: FAQ ================= -->
+  <!-- FAQ -->
   <section class="faq-terms-box" aria-labelledby="terms-faq-heading">
     <h2 id="terms-faq-heading">Frequently Asked Questions ❓ </h2>
 
@@ -586,7 +612,7 @@
     </div>
   </section>
 
-  <!-- ================= NEW SECTION: Internal Links ================= -->
+  <!-- Internal Links -->
   <section class="terms-links-strip" aria-label="Related pages">
     <p>Related reading: learn more <a href="about.html">about NexaTools</a>, read our <a href="privacy-policy.html">Privacy Policy</a>, our <a href="disclaimer.html">Disclaimer</a>, our <a href="cookies-policy.html">Cookies Policy</a>, visit the <a href="blog-section.html">Blog</a>, browse our <a href="index.html#tools-section">free tools</a>, or <a href="contact.html">contact us</a> directly.</p>
   </section>
@@ -602,65 +628,50 @@
     <p><strong>Last Updated:</strong> July 2026</p>
   </section>
 
-  <!-- NEW: Last Updated strip (bottom) -->
+  <!-- Last Updated strip (bottom) -->
   <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong>questions about these Terms? <a href="contact.html">Contact us anytime</a>.</p>
 
 </main>
 
-<!-- FOOTER (identical to About page) -->
+<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
 <footer>
-  <div class="footer-logo">
-    <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
-        <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
-      </svg>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+          <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
+        </svg>
+      </div>
+      <span>Nexa<em>Tools</em>.io</span>
     </div>
-    <span>Nexa<em>Tools</em>.io</span>
+    <p class="footer-tagline">Free, browser-based tools for resumes, invoices, logos, QR codes, business cards and passwords. No login required.</p>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog-section.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="cookies-policy.html">Cookies Policy</a>
+        <a href="copyright.html">Copyright</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
+        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
   </div>
-  <p class="footer-tagline">Built for the future. Free for everyone.</p>
-
-  <!-- Primary footer navigation -->
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#tools-section">All Tools</a>
-    <a href="index.html#categories-section">Categories</a>
-    <a href="blog-section.html">Blog</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
-  </div>
-
-  <!-- Social links (placeholders, ready for future accounts) -->
-  <div class="footer-social-links">
-    <a href="#" rel="nofollow">Twitter / X</a>
-    <a href="#" rel="nofollow">Facebook</a>
-    <a href="#" rel="nofollow">LinkedIn</a>
-    <a href="#" rel="nofollow">Instagram</a>
-  </div>
-
-  <!-- Support email -->
-  <p class="footer-support-line">Support: <a href="mailto:pro@nexatools.io">pro@nexatools.io</a></p>
-
-  <!-- Trust badges -->
-  <div class="footer-trust-badges">
-    <span>✓ Privacy First</span>
-    <span>✓ Browser-Based Tools</span>
-    <span>✓ No Hidden Fees</span>
-    <span>✓ Secure Experience</span>
-  </div>
-
-  <hr class="footer-legal-sep">
-
-  <!-- Extended legal / placeholder links, ready for future pages -->
-  <div class="footer-legal-links">
-    <a href="disclaimer.html">Disclaimer</a>
-    <a href="cookies-policy.html">Cookies Policy</a>
-    <a href="copyright.html">Copyright Notice</a>
-  </div>
-
-  <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
 </footer>
 
 <script src="script.js"></script>
