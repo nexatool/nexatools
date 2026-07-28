@@ -7,15 +7,12 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-XD3P7ENYZ0');
 </script>
-  <!-- Google AdSense -->
+<!-- Google AdSense -->
 <meta name="google-adsense-account" content="ca-pub-6135039378280600">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 
-<script async
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600"
-crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
@@ -46,7 +43,6 @@ crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 
 <!-- BreadcrumbList schema -->
 <script type="application/ld+json">
@@ -133,7 +129,7 @@ crossorigin="anonymous"></script>
   "url": "https://www.nexatools.io",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://www.nexatools.io/index.html?q={search_term_string}",
+    "target": "https://www.nexatools.io/search.html?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -208,24 +204,22 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   .cat-info-section{padding:20px 20px;}
 }
 
-/* ===== BENEFITS GRID (reuses existing tool card visual language) ===== */
 .img-benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0 8px;}
 .img-benefit-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:18px;}
 .img-benefit-card .ibc-icon{font-size:1.3rem;margin-bottom:8px;}
 .img-benefit-card h4{font-size:0.92rem;font-weight:700;color:#0f172a;margin-bottom:6px;}
 .img-benefit-card p{font-size:0.85rem;color:#475569;line-height:1.6;margin:0;}
 
-/* ===== FAQ (light theme) ===== */
 .img-faq-list{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
 .img-faq-item{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;}
 .img-faq-q{width:100%;background:none;border:none;color:#0f172a;font-family:var(--font-body);font-size:0.94rem;font-weight:700;padding:16px 18px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
 .img-faq-q:hover{color:#2563eb;}
+.img-faq-q:focus-visible{outline:2px solid #2563eb;outline-offset:-2px;}
 .img-faq-arrow{font-size:1rem;color:#2563eb;transition:transform 0.3s;flex-shrink:0;}
 .img-faq-q.open .img-faq-arrow{transform:rotate(180deg);}
 .img-faq-a{color:#475569;font-size:0.88rem;line-height:1.75;padding:0 18px;max-height:0;overflow:hidden;transition:all 0.35s ease;}
 .img-faq-a.open{max-height:260px;padding:0 18px 16px;}
 
-/* ===== REVIEWER TRUST CARD ===== */
 .reviewer-card{max-width:1200px;margin:8px auto 0;padding:0 32px;}
 .reviewer-card-inner{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;}
 .reviewer-avatar{width:52px;height:52px;border-radius:50%;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
@@ -235,22 +229,19 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   .reviewer-card{padding:0 20px;}
 }
 
-/* ===== FOOTER (latest NexaTools standard) ===== */
 .footer-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;max-width:1000px;margin:0 auto;padding:0 32px 24px;text-align:left}
 .footer-col h4{font-size:0.8rem;font-weight:700;color:#0f172a;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.04em}
 .footer-col a{display:block;color:#64748b;font-size:0.82rem;text-decoration:none;margin-bottom:8px;transition:all 0.2s}
 .footer-col a:hover{color:#2563eb}
-.footer-social{display:flex;gap:10px;flex-wrap:wrap}
-.footer-social span{font-size:0.72rem;color:#64748b;border:1px solid rgba(0,0,0,0.08);border-radius:20px;padding:5px 12px;cursor:default}
 @media(max-width:768px){
   .footer-columns{text-align:center;padding:0 20px 24px}
 }
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
 
 <!-- NAVBAR -->
 <nav id="navbar" aria-label="Main navigation">
@@ -421,24 +412,24 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <p>Common questions about the NexaTools image tools.</p>
   <div class="img-faq-list">
     <div class="img-faq-item">
-      <button class="img-faq-q" onclick="toggleImgFaq(this)" aria-expanded="false">Are these image tools really free? <span class="img-faq-arrow" aria-hidden="true">▾</span></button>
-      <div class="img-faq-a">Yes. Every image tool on NexaTools is 100% free with no signup, no credit card, and no hidden limits.</div>
+      <button class="img-faq-q" id="faq-q-imgt-1" onclick="toggleImgFaq(this)" aria-expanded="false" aria-controls="faq-a-imgt-1">Are these image tools really free?<span class="img-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="img-faq-a" id="faq-a-imgt-1" role="region" aria-labelledby="faq-q-imgt-1">Yes. Every image tool on NexaTools is 100% free with no signup, no credit card, and no hidden limits.</div>
     </div>
     <div class="img-faq-item">
-      <button class="img-faq-q" onclick="toggleImgFaq(this)" aria-expanded="false">Are my images uploaded to a server? <span class="img-faq-arrow" aria-hidden="true">▾</span></button>
-      <div class="img-faq-a">No. Each tool processes your image entirely inside your browser using JavaScript. Your files are never uploaded or stored anywhere.</div>
+      <button class="img-faq-q" id="faq-q-imgt-2" onclick="toggleImgFaq(this)" aria-expanded="false" aria-controls="faq-a-imgt-2">Are my images uploaded to a server?<span class="img-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="img-faq-a" id="faq-a-imgt-2" role="region" aria-labelledby="faq-q-imgt-2">No. Each tool processes your image entirely inside your browser using JavaScript. Your files are never uploaded or stored anywhere.</div>
     </div>
     <div class="img-faq-item">
-      <button class="img-faq-q" onclick="toggleImgFaq(this)" aria-expanded="false">Will compressing or converting reduce my image quality? <span class="img-faq-arrow" aria-hidden="true">▾</span></button>
-      <div class="img-faq-a">Compression is tuned to reduce file size while keeping images visually sharp. Format conversions preserve the original resolution unless you choose to resize.</div>
+      <button class="img-faq-q" id="faq-q-imgt-3" onclick="toggleImgFaq(this)" aria-expanded="false" aria-controls="faq-a-imgt-3">Will compressing or converting reduce my image quality?<span class="img-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="img-faq-a" id="faq-a-imgt-3" role="region" aria-labelledby="faq-q-imgt-3">Compression is tuned to reduce file size while keeping images visually sharp. Format conversions preserve the original resolution unless you choose to resize.</div>
     </div>
     <div class="img-faq-item">
-      <button class="img-faq-q" onclick="toggleImgFaq(this)" aria-expanded="false">Which image format should I use? <span class="img-faq-arrow" aria-hidden="true">▾</span></button>
-      <div class="img-faq-a">Use JPG for photos where small file size matters, PNG when you need transparency or sharp edges like logos, and WebP for the best balance of quality and size on modern websites.</div>
+      <button class="img-faq-q" id="faq-q-imgt-4" onclick="toggleImgFaq(this)" aria-expanded="false" aria-controls="faq-a-imgt-4">Which image format should I use?<span class="img-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="img-faq-a" id="faq-a-imgt-4" role="region" aria-labelledby="faq-q-imgt-4">Use JPG for photos where small file size matters, PNG when you need transparency or sharp edges like logos, and WebP for the best balance of quality and size on modern websites.</div>
     </div>
     <div class="img-faq-item">
-      <button class="img-faq-q" onclick="toggleImgFaq(this)" aria-expanded="false">Do I need to install any software? <span class="img-faq-arrow" aria-hidden="true">▾</span></button>
-      <div class="img-faq-a">No. All image tools run directly in your web browser on desktop, tablet, or mobile no downloads or installs required.</div>
+      <button class="img-faq-q" id="faq-q-imgt-5" onclick="toggleImgFaq(this)" aria-expanded="false" aria-controls="faq-a-imgt-5">Do I need to install any software?<span class="img-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="img-faq-a" id="faq-a-imgt-5" role="region" aria-labelledby="faq-q-imgt-5">No. All image tools run directly in your web browser on desktop, tablet, or mobile no downloads or installs required.</div>
     </div>
   </div>
 </section>
@@ -485,15 +476,6 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
       <a href="disclaimer.html">Disclaimer</a>
       <a href="cookies-policy.html">Cookies Policy</a>
       <a href="copyright.html">Copyright</a>
-    </div>
-    <div class="footer-col">
-      <h4>Follow Us</h4>
-      <div class="footer-social">
-        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter  Coming Soon</span>
-    <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook  Coming Soon</span>
-    <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram  Coming Soon</span>
-    <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
-      </div>
     </div>
   </div>
   <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
