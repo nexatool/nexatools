@@ -35,6 +35,7 @@ crossorigin="anonymous"></script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexatools.io/business-tools.html">
 <meta property="og:image" content="https://www.nexatools.io/og-image.png">
+<meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Business Tools Online | NexaTools.io">
@@ -42,9 +43,9 @@ crossorigin="anonymous"></script>
 <meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 
 <!-- SCHEMA: BreadcrumbList -->
 <script type="application/ld+json">
@@ -206,6 +207,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 .biz-faq-item{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;}
 .biz-faq-q{width:100%;background:none;border:none;color:#0f172a;font-family:var(--font-body,inherit);font-size:0.92rem;font-weight:600;padding:16px 20px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s;}
 .biz-faq-q:hover{color:#2563eb;}
+.biz-faq-q:focus-visible{outline:2px solid #2563eb;outline-offset:-2px;}
 .biz-faq-arrow{font-size:1rem;color:#2563eb;transition:transform 0.3s;}
 .biz-faq-q.open .biz-faq-arrow{transform:rotate(180deg);}
 .biz-faq-a{color:#64748b;font-size:0.87rem;line-height:1.8;padding:0 20px;max-height:0;overflow:hidden;transition:all 0.35s ease;}
@@ -236,12 +238,6 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   display:block;
   margin-bottom:8px;
 }
-.footer-social{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start !important;
-  gap:8px;
-}
 @media(max-width:768px){
   .footer-columns{
     flex-direction:column;
@@ -256,14 +252,14 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
 
 <!-- NAVBAR -->
 <nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
-    <div class="nav-logo" onclick="window.location.href='index.html'">
+    <div class="nav-logo" onclick="window.location.href='index.html'" role="link" tabindex="0" aria-label="NexaTools Home" onkeypress="if(event.key==='Enter')window.location.href='index.html'">
       <div class="logo-icon">
         <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NexaTools logo">
           <polygon points="48,6 80,24 80,60 48,78 16,60 16,24" fill="none" stroke="var(--cyan)" stroke-width="4"/>
@@ -302,7 +298,7 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;">
+  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
     <li><a href="index.html">Home</a></li>
     <li aria-hidden="true">›</li>
     <li style="color:#0f172a;" aria-current="page">Business Tools</li>
@@ -325,20 +321,20 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
 <section class="tools-section section tools-section-wrap" aria-labelledby="tools-heading">
   <h2 id="tools-heading" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Available Business Tools</h2>
   <div class="tools-grid">
-    <a href="invoice-generator.html" class="tool-card-link" style="--card-color:#7c3aed;">
+    <a href="invoice-generator.html" class="tool-card-link" style="--card-color:#7c3aed;" aria-label="Open Invoice / Billing Generator">
       <div class="tc-icon" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.15);" aria-hidden="true">🧾</div>
       <div class="tc-text"><h3 class="tc-name">Invoice / Billing Generator</h3><span class="tc-desc">4 templates · unlimited items · PDF export</span></div>
-      <span class="tc-arrow" style="color:#7c3aed;">→</span>
+      <span class="tc-arrow" style="color:#7c3aed;" aria-hidden="true">→</span>
     </a>
-    <a href="business-card-maker.html" class="tool-card-link" style="--card-color:#ea580c;">
+    <a href="business-card-maker.html" class="tool-card-link" style="--card-color:#ea580c;" aria-label="Open Business Card Maker">
       <div class="tc-icon" style="background:rgba(234,88,12,0.08);border-color:rgba(234,88,12,0.15);" aria-hidden="true">💼</div>
       <div class="tc-text"><h3 class="tc-name">Business Card Maker</h3><span class="tc-desc">7 themes · custom fonts · PNG export</span></div>
-      <span class="tc-arrow" style="color:#ea580c;">→</span>
+      <span class="tc-arrow" style="color:#ea580c;" aria-hidden="true">→</span>
     </a>
-    <a href="logo-maker.html" class="tool-card-link" style="--card-color:#db2777;">
+    <a href="logo-maker.html" class="tool-card-link" style="--card-color:#db2777;" aria-label="Open Logo Maker">
       <div class="tc-icon" style="background:rgba(219,39,119,0.08);border-color:rgba(219,39,119,0.15);" aria-hidden="true">🎨</div>
       <div class="tc-text"><h3 class="tc-name">Logo Maker</h3><span class="tc-desc">5 styles · custom colors · PNG download</span></div>
-      <span class="tc-arrow" style="color:#db2777;">→</span>
+      <span class="tc-arrow" style="color:#db2777;" aria-hidden="true">→</span>
     </a>
   </div>
 </section>
@@ -370,22 +366,22 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <p>Each tool follows a similar, straightforward flow:</p>
   <div class="biz-steps-grid">
     <div class="biz-step-card">
-      <div class="biz-step-num">1</div>
+      <div class="biz-step-num" aria-hidden="true">1</div>
       <h4>Pick a Tool</h4>
       <p>Choose the Invoice Generator, Business Card Maker, or Logo Maker based on what you need to create.</p>
     </div>
     <div class="biz-step-card">
-      <div class="biz-step-num">2</div>
+      <div class="biz-step-num" aria-hidden="true">2</div>
       <h4>Enter Your Details</h4>
       <p>Add your business name, contact info, and any line items, text, or colors the tool requires.</p>
     </div>
     <div class="biz-step-card">
-      <div class="biz-step-num">3</div>
+      <div class="biz-step-num" aria-hidden="true">3</div>
       <h4>Pick a Style</h4>
       <p>Select a template, theme, or style, and adjust fonts or colors until the preview looks right.</p>
     </div>
     <div class="biz-step-card">
-      <div class="biz-step-num">4</div>
+      <div class="biz-step-num" aria-hidden="true">4</div>
       <h4>Export Your File</h4>
       <p>Download your finished invoice as a PDF, or your card or logo as a PNG image, ready to use immediately.</p>
     </div>
@@ -450,6 +446,18 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   </ul>
 </section>
 
+<!-- COMMON PROBLEMS & TROUBLESHOOTING -->
+<section class="cat-info-section" aria-labelledby="troubleshoot-heading">
+  <h2 id="troubleshoot-heading">Common Problems &amp; Troubleshooting</h2>
+  <ul>
+    <li><strong>My PDF invoice looks different from the preview.</strong> Double-check that all line items and totals are filled in before exporting some browsers render fonts slightly differently in the downloaded PDF than in the live preview.</li>
+    <li><strong>The exported PNG looks blurry.</strong> Try re-downloading at full size rather than resizing the file afterward image quality is set at export time.</li>
+    <li><strong>My changes aren't showing in the preview.</strong> Make sure you've clicked or tabbed out of the input field some fields update the preview on blur rather than on every keystroke.</li>
+    <li><strong>The download button doesn't do anything.</strong> Check that your browser isn't blocking automatic downloads or pop-ups for this site, then try again.</li>
+    <li><strong>I can't find a template or theme that fits my brand.</strong> Try applying your own brand colors to an existing template first small color changes often go further than switching styles entirely.</li>
+  </ul>
+</section>
+
 <!-- WHO ARE THESE FOR -->
 <section class="cat-info-section" aria-labelledby="who-heading">
   <h2 id="who-heading">Who Are These Business Tools For?</h2>
@@ -482,44 +490,44 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
   <p>Common questions about the business tools available on NexaTools.</p>
   <div class="biz-faq-list">
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Are NexaTools' business tools really free?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">Yes. The Invoice Generator, Business Card Maker and Logo Maker are all completely free, with no signup and no hidden fees.</div>
+      <button class="biz-faq-q" id="faq-q-biz-1" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-1">Are NexaTools' business tools really free?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-1" role="region" aria-labelledby="faq-q-biz-1">Yes. The Invoice Generator, Business Card Maker and Logo Maker are all completely free, with no signup and no hidden fees.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Do I need to create an account to use these tools?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">No. Every business tool on NexaTools opens directly in your browser and works without registration or login.</div>
+      <button class="biz-faq-q" id="faq-q-biz-2" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-2">Do I need to create an account to use these tools?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-2" role="region" aria-labelledby="faq-q-biz-2">No. Every business tool on NexaTools opens directly in your browser and works without registration or login.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Is my business or client data stored anywhere?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">No. Invoices, card designs and logos are created locally in your browser. Nothing is uploaded to a server or stored on our end.</div>
+      <button class="biz-faq-q" id="faq-q-biz-3" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-3">Is my business or client data stored anywhere?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-3" role="region" aria-labelledby="faq-q-biz-3">No. Invoices, card designs and logos are created locally in your browser. Nothing is uploaded to a server or stored on our end.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Can I export my invoice, business card or logo?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">Yes. Invoices export to PDF, business cards export to PNG, and logos download as PNG files ready to use anywhere.</div>
+      <button class="biz-faq-q" id="faq-q-biz-4" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-4">Can I export my invoice, business card or logo?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-4" role="region" aria-labelledby="faq-q-biz-4">Yes. Invoices export to PDF, business cards export to PNG, and logos download as PNG files ready to use anywhere.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">How many invoice templates are available?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">The Invoice Generator includes 4 templates and supports unlimited line items, so it works for simple one-off bills and larger itemized invoices alike.</div>
+      <button class="biz-faq-q" id="faq-q-biz-5" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-5">How many invoice templates are available?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-5" role="region" aria-labelledby="faq-q-biz-5">The Invoice Generator includes 4 templates and supports unlimited line items, so it works for simple one-off bills and larger itemized invoices alike.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Can I match my business card, logo and invoice together?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">Yes. Many users start with the Logo Maker, then carry the same colors and style into the Business Card Maker and Invoice Generator for a consistent brand look.</div>
+      <button class="biz-faq-q" id="faq-q-biz-6" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-6">Can I match my business card, logo and invoice together?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-6" role="region" aria-labelledby="faq-q-biz-6">Yes. Many users start with the Logo Maker, then carry the same colors and style into the Business Card Maker and Invoice Generator for a consistent brand look.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Do these tools work on mobile devices?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">Yes. All three business tools are fully responsive and work smoothly on phones, tablets and desktop browsers.</div>
+      <button class="biz-faq-q" id="faq-q-biz-7" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-7">Do these tools work on mobile devices?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-7" role="region" aria-labelledby="faq-q-biz-7">Yes. All three business tools are fully responsive and work smoothly on phones, tablets and desktop browsers.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Is there a limit to how many invoices or cards I can create?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">No. There's no usage cap, no watermark, and no premium tier you can create as many invoices, cards and logos as you need.</div>
+      <button class="biz-faq-q" id="faq-q-biz-8" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-8">Is there a limit to how many invoices or cards I can create?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-8" role="region" aria-labelledby="faq-q-biz-8">No. There's no usage cap, no watermark, and no premium tier you can create as many invoices, cards and logos as you need.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Who are these business tools designed for?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">They're built for freelancers, small business owners, startups and anyone who needs professional branding assets without hiring a designer or buying software.</div>
+      <button class="biz-faq-q" id="faq-q-biz-9" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-9">Who are these business tools designed for?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-9" role="region" aria-labelledby="faq-q-biz-9">They're built for freelancers, small business owners, startups and anyone who needs professional branding assets without hiring a designer or buying software.</div>
     </div>
     <div class="biz-faq-item">
-      <button class="biz-faq-q" onclick="toggleBizFaq(this)">Do I need design experience to use the Logo Maker or Business Card Maker?<span class="biz-faq-arrow">▾</span></button>
-      <div class="biz-faq-a">No. Both tools use pre-built styles and themes you can customize with your own colors, fonts and text, so no design background is required.</div>
+      <button class="biz-faq-q" id="faq-q-biz-10" onclick="toggleBizFaq(this)" aria-expanded="false" aria-controls="faq-a-biz-10">Do I need design experience to use the Logo Maker or Business Card Maker?<span class="biz-faq-arrow" aria-hidden="true">▾</span></button>
+      <div class="biz-faq-a" id="faq-a-biz-10" role="region" aria-labelledby="faq-q-biz-10">No. Both tools use pre-built styles and themes you can customize with your own colors, fonts and text, so no design background is required.</div>
     </div>
   </div>
 </section>
@@ -554,21 +562,11 @@ footer { background:#f1f5f9 !important; border-top-color:rgba(0,0,0,0.08) !impor
       <a href="cookies-policy.html">Cookies Policy</a>
       <a href="copyright.html">Copyright</a>
     </div>
-    <div class="footer-col">
-      <h4>Follow Us</h4>
-      <div class="footer-social">
-        <span class="social-soon" aria-label="Twitter coming soon">🐦 Twitter Coming Soon</span>
-        <span class="social-soon" aria-label="Facebook coming soon">📘 Facebook Coming Soon</span>
-        <span class="social-soon" aria-label="Instagram coming soon">📸 Instagram Coming Soon</span>
-        <span class="social-soon" aria-label="LinkedIn coming soon">💼 LinkedIn Coming Soon</span>
-      </div>
-    </div>
   </div>
- 
   <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
@@ -584,10 +582,12 @@ function toggleBizFaq(btn) {
   const isOpen = btn.classList.contains('open');
   document.querySelectorAll('.biz-faq-q').forEach(b => {
     b.classList.remove('open');
+    b.setAttribute('aria-expanded', 'false');
     b.nextElementSibling.classList.remove('open');
   });
   if (!isOpen) {
     btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
     answer.classList.add('open');
   }
 }
