@@ -12,7 +12,6 @@
 </script>
   <!-- Google AdSense -->
 <meta name="google-adsense-account" content="ca-pub-6135039378280600">
-
 <script async
 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600"
 crossorigin="anonymous"></script>
@@ -28,10 +27,17 @@ crossorigin="anonymous"></script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta property="og:site_name" content="NexaTools.io">
 <meta property="og:title" content="Contact NexaTools.io Get in Touch">
 <meta property="og:description" content="Have a question or found a bug? Contact the NexaTools.io team. We reply within 24–48 business hours.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexatools.io/contact.html">
+<meta property="og:image" content="https://www.nexatools.io/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact NexaTools.io Get in Touch">
+<meta name="twitter:description" content="Have a question or found a bug? Contact the NexaTools.io team. We reply within 24–48 business hours.">
+<meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
 
 <!-- ContactPage Schema (expanded) -->
 <script type="application/ld+json">
@@ -181,9 +187,14 @@ crossorigin="anonymous"></script>
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css?v=2">
 <style>
+  .nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
+  .btn-nav-ghost { font-weight: 700 !important; }
+  .nav-links { gap:130px !important; margin-left:70px !important; }
+
   .page-hero {
     position: relative;
     z-index: 1;
@@ -247,10 +258,11 @@ crossorigin="anonymous"></script>
     opacity: 0;
     transition: opacity 0.25s ease;
   }
-  .contact-card:hover {
+  .contact-card:hover, .contact-card:focus-visible {
     border-color: rgba(37,99,235,0.28);
     transform: translateX(5px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+    outline: none;
   }
   .contact-card:hover::before { opacity: 1; }
   .contact-card .cc-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
@@ -377,6 +389,7 @@ crossorigin="anonymous"></script>
     box-shadow: 0 8px 28px rgba(37,99,235,0.3);
     transform: translateY(-2px);
   }
+  .submit-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
   .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
   .success-msg {
     display: none;
@@ -530,7 +543,7 @@ crossorigin="anonymous"></script>
   .privacy-notice-box a:hover { text-decoration: underline; }
 
   /* ===================================================================
-     NEW FOOTER (matches about.html — Company / Legal / Follow Us layout)
+     FOOTER (Company / Legal layout — Follow Us removed, no fake socials)
      =================================================================== */
   footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
   .footer-inner { max-width: 900px; margin: 0 auto; }
@@ -540,63 +553,44 @@ crossorigin="anonymous"></script>
   .footer-logo span em { color:#2563eb; font-style:normal; }
   .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
 
-  .footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+  .footer-cols { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:420px; margin:0 auto 40px; text-align:left; }
   .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
   .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
   .footer-col a:hover { color:#2563eb; }
-  .footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
-  .footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
-
-  .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
-  .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
-  .footer-legal-row a:hover { color:#2563eb; text-decoration:underline; }
-  .footer-legal-row span.fl-sep { color:#cbd5e1; }
 
   .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
 
-  @media (max-width:768px) {
-    .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
-    .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
-    .footer-legal-row { gap:6px 12px; }
-  }
   @media (max-width:480px) {
     .footer-cols { grid-template-columns:1fr; max-width:260px; }
-    .footer-col:nth-child(3) { grid-column: span 1; }
   }
 </style>
-<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-orb orb-1"></div>
-<div class="bg-orb orb-2"></div>
-<div class="bg-orb orb-3"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
+<div class="bg-orb orb-3" aria-hidden="true"></div>
 
-<nav id="navbar">
+<nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
-    <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+    <div class="nav-logo" onclick="window.location.href='index.html'" role="link" tabindex="0" aria-label="NexaTools Home" onkeypress="if(event.key==='Enter')window.location.href='index.html'" style="cursor:pointer;">
       <div class="logo-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
           <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
           <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
         </svg>
       </div>
       <span>Nexa<em>Tools</em></span>
     </div>
-     <style>
-.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
-.btn-nav-ghost { font-weight: 700 !important; }
-.nav-links { gap:130px !important; margin-left:70px !important; }
-</style>
-     <div class="nav-links">
+    <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="#tools-section">Tools</a>
-      <a class="nav-link" href="#categories-section">Categories</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="index.html#categories-section">Categories</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
@@ -611,8 +605,8 @@ crossorigin="anonymous"></script>
 <!-- Breadcrumb -->
 <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="max-width:900px;margin:0 auto;padding:16px 32px 0;">
   <ol style="list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0;font-size:0.8rem;color:#64748b;">
-    <li style="display:flex;"><a href="index.html" style="color:#2563eb;text-decoration:none;">Home</a><span style="margin-left:6px;color:#94a3b8;">/</span></li>
-    <li>Contact Us</li>
+    <li style="display:flex;"><a href="index.html" style="color:#2563eb;text-decoration:none;">Home</a><span style="margin-left:6px;color:#94a3b8;" aria-hidden="true">/</span></li>
+    <li aria-current="page">Contact Us</li>
   </ol>
 </nav>
 
@@ -632,25 +626,25 @@ crossorigin="anonymous"></script>
     <!-- Left: Contact Info -->
     <div class="contact-info">
       <a href="mailto:pro@nexatools.io" class="contact-card">
-        <span class="cc-icon">✉️</span>
+        <span class="cc-icon" aria-hidden="true">✉️</span>
         <div class="cc-label">General Support</div>
         <div class="cc-value">pro@nexatools.io</div>
         <div class="cc-desc">Feature requests, general questions, feedback, and support inquiries.</div>
       </a>
       <a href="mailto:business@nexatools.io" class="contact-card">
-        <span class="cc-icon">🤝</span>
+        <span class="cc-icon" aria-hidden="true">🤝</span>
         <div class="cc-label">Business Inquiries</div>
         <div class="cc-value">business@nexatools.io</div>
         <div class="cc-desc">Collaborations, sponsorships, partnerships, and business inquiries.</div>
       </a>
       <a href="mailto:pro@nexatools.io" class="contact-card">
-        <span class="cc-icon">💬</span>
+        <span class="cc-icon" aria-hidden="true">💬</span>
         <div class="cc-label">Feedback</div>
         <div class="cc-value">pro@nexatools.io</div>
         <div class="cc-desc">Tell us what's working, what isn't, or what you'd like to see next.</div>
       </a>
       <a href="mailto:bugs@nexatools.io" class="contact-card">
-        <span class="cc-icon">🐛</span>
+        <span class="cc-icon" aria-hidden="true">🐛</span>
         <div class="cc-label">Bug Reports</div>
         <div class="cc-value">bugs@nexatools.io</div>
         <div class="cc-desc">Found something broken? Let us know and we'll look into it fast.</div>
@@ -658,7 +652,7 @@ crossorigin="anonymous"></script>
 
       <!-- Response Time -->
       <div class="response-card">
-        <div class="rc-icon">⏱️</div>
+        <div class="rc-icon" aria-hidden="true">⏱️</div>
         <div class="rc-text">
           <strong>Response Time</strong>
           We normally reply within 24–48 business hours.
@@ -667,7 +661,7 @@ crossorigin="anonymous"></script>
 
       <!-- Office Information -->
       <div class="office-card">
-        <div class="oc-icon">🌍</div>
+        <div class="oc-icon" aria-hidden="true">🌍</div>
         <div class="oc-text">
           <strong>Online Platform</strong>
           Available Worldwide no physical office, support handled entirely online.
@@ -682,18 +676,18 @@ crossorigin="anonymous"></script>
         <div class="form-row">
           <div class="form-group-cf">
             <label class="form-label-cf" for="cf-name">Full Name</label>
-            <input id="cf-name" name="name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name" required minlength="2">
-            <div class="field-error" id="err-name">Please enter your full name (at least 2 characters).</div>
+            <input id="cf-name" name="name" class="form-input-cf" type="text" placeholder="John Smith" autocomplete="name" required minlength="2" aria-describedby="err-name" aria-required="true">
+            <div class="field-error" id="err-name" role="alert">Please enter your full name (at least 2 characters).</div>
           </div>
           <div class="form-group-cf">
             <label class="form-label-cf" for="cf-email">Email Address</label>
-            <input id="cf-email" name="email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email" required>
-            <div class="field-error" id="err-email">Please enter a valid email address.</div>
+            <input id="cf-email" name="email" class="form-input-cf" type="email" placeholder="john@example.com" autocomplete="email" required aria-describedby="err-email" aria-required="true">
+            <div class="field-error" id="err-email" role="alert">Please enter a valid email address.</div>
           </div>
         </div>
         <div class="form-group-cf">
           <label class="form-label-cf" for="cf-subject">Subject</label>
-          <select id="cf-subject" name="subject" class="form-input-cf" required>
+          <select id="cf-subject" name="subject" class="form-input-cf" required aria-describedby="err-subject" aria-required="true">
             <option value="">Select a topic...</option>
             <option value="general">General Question</option>
             <option value="bug">Bug Report</option>
@@ -703,17 +697,17 @@ crossorigin="anonymous"></script>
             <option value="security">Security Issue</option>
             <option value="other">Other</option>
           </select>
-          <div class="field-error" id="err-subject">Please select a subject.</div>
+          <div class="field-error" id="err-subject" role="alert">Please select a subject.</div>
         </div>
         <div class="form-group-cf">
           <label class="form-label-cf" for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" class="form-input-cf" placeholder="Tell us how we can help you..." required minlength="10"></textarea>
-          <div class="field-error" id="err-message">Please write a message (at least 10 characters).</div>
+          <textarea id="cf-message" name="message" class="form-input-cf" placeholder="Tell us how we can help you..." required minlength="10" aria-describedby="err-message" aria-required="true"></textarea>
+          <div class="field-error" id="err-message" role="alert">Please write a message (at least 10 characters).</div>
         </div>
         <button class="submit-btn" id="submit-btn" type="submit">
           <span id="btn-text">📨 Send Message</span>
         </button>
-        <div class="success-msg" id="success-msg">
+        <div class="success-msg" id="success-msg" role="status" aria-live="polite">
           ✅ Message received! We'll get back to you within 24–48 business hours. Thank you!
         </div>
         <p class="form-note">
@@ -729,27 +723,27 @@ crossorigin="anonymous"></script>
     <p class="wc-intro">Not every message needs to go through the same channel. Here's when it makes sense to reach out, and what to expect from us.</p>
     <div class="why-contact-grid">
       <div class="why-contact-item">
-        <span class="wc-icon">🔧</span>
+        <span class="wc-icon" aria-hidden="true">🔧</span>
         <div><strong>Technical Issues</strong><span class="wc-desc">A tool isn't loading, a feature isn't working as expected, or you've hit an error. Email bugs@nexatools.io with the tool name and steps to reproduce.</span></div>
       </div>
       <div class="why-contact-item">
-        <span class="wc-icon">💡</span>
+        <span class="wc-icon" aria-hidden="true">💡</span>
         <div><strong>Feedback</strong><span class="wc-desc">You have an idea for improving an existing tool, a new template, or general thoughts on the experience. We read every message.</span></div>
       </div>
       <div class="why-contact-item">
-        <span class="wc-icon">🤝</span>
+        <span class="wc-icon" aria-hidden="true">🤝</span>
         <div><strong>Partnership</strong><span class="wc-desc">You'd like to collaborate, integrate, or explore a content or product partnership with NexaTools.io.</span></div>
       </div>
       <div class="why-contact-item">
-        <span class="wc-icon">📈</span>
+        <span class="wc-icon" aria-hidden="true">📈</span>
         <div><strong>Business Inquiries</strong><span class="wc-desc">Sponsorships, advertising questions, or other commercial inquiries related to the platform.</span></div>
       </div>
       <div class="why-contact-item">
-        <span class="wc-icon">🔒</span>
+        <span class="wc-icon" aria-hidden="true">🔒</span>
         <div><strong>Privacy Questions</strong><span class="wc-desc">You want to know how your data is handled, or you have a question about our Privacy Policy.</span></div>
       </div>
       <div class="why-contact-item">
-        <span class="wc-icon">🛡️</span>
+        <span class="wc-icon" aria-hidden="true">🛡️</span>
         <div><strong>Security Reports</strong><span class="wc-desc">You've found a potential vulnerability. Please report it responsibly by emailing pro@nexatools.io with full details.</span></div>
       </div>
     </div>
@@ -763,65 +757,65 @@ crossorigin="anonymous"></script>
   </section>
 
   <!-- FAQ -->
-  <div class="faq-box" aria-label="Frequently asked questions">
-    <h2> Frequently Asked Questions ❓</h2>
+  <section class="faq-box" aria-label="Frequently asked questions">
+    <h2>Frequently Asked Questions ❓</h2>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         How long does support take to respond?
       </div>
       <div class="faq-a-cf">We normally reply within 24–48 business hours. Messages sent over the weekend are typically answered on the next business day.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         Do you provide business support?
       </div>
       <div class="faq-a-cf">Yes. For partnerships, sponsorships, or business collaborations, email <a href="mailto:business@nexatools.io">business@nexatools.io</a> and our team will follow up with the relevant details.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         Can I report a bug?
       </div>
       <div class="faq-a-cf">Yes. Email <a href="mailto:bugs@nexatools.io">bugs@nexatools.io</a> or use the contact form above and select "Bug Report." Please include the tool name and the steps that led to the issue so we can reproduce and fix it quickly.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         How can I request a new tool?
       </div>
       <div class="faq-a-cf">Use the contact form and select "Feature Request," or email <a href="mailto:pro@nexatools.io">pro@nexatools.io</a> directly. Many of our current tools exist because users suggested them.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         Do I need an account to contact NexaTools.io?
       </div>
       <div class="faq-a-cf">No account is needed to contact us or to use any tool on NexaTools.io. Simply fill out the contact form or send an email directly.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         How do I report a security issue?
       </div>
       <div class="faq-a-cf">If you discover a security vulnerability, please email <a href="mailto:pro@nexatools.io">pro@nexatools.io</a> with full details so we can investigate and address it as quickly as possible.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         Is NexaTools.io really 100% free?
       </div>
-      <div class="faq-a-cf">Yes! All tools are completely free to use no credit card, no signup, no hidden charges. Every feature including AI writing, all templates, and watermark-free exports is free.</div>
+      <div class="faq-a-cf">Yes! All tools are completely free to use no credit card, no signup, no hidden charges.</div>
     </div>
     <div class="faq-item-cf">
       <div class="faq-q-cf">
-        <span class="faq-badge">Q</span>
+        <span class="faq-badge" aria-hidden="true">Q</span>
         Is my data safe? Do you store my information?
       </div>
-      <div class="faq-a-cf">Absolutely. All tools run entirely in your browser. We never collect, store, or transmit any of your personal data or documents to our servers, and information submitted via this contact form is only used to respond to you. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.</div>
+      <div class="faq-a-cf">Yes. Most tools run entirely in your browser, so your files and inputs stay on your own device. Information submitted via this contact form is only used to respond to you. Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.</div>
     </div>
-  </div>
+  </section>
 
   <!-- REVIEWED BY -->
   <div class="reviewer-card">
@@ -833,7 +827,7 @@ crossorigin="anonymous"></script>
 
   <!-- CTA -->
   <div class="cta-bottom">
-    <div class="cta-icon">🚀</div>
+    <div class="cta-icon" aria-hidden="true">🚀</div>
     <h2>Start Using NexaTools Free</h2>
     <p>No account needed. Just open any tool and start building right away.</p>
     <a href="index.html" class="btn-primary" style="text-decoration:none;display:inline-flex;"><span>⚡ Go to Free Tools</span></a>
@@ -843,12 +837,12 @@ crossorigin="anonymous"></script>
 
 </main>
 
-<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
       <div class="logo-icon">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
           <path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#2563eb" stroke-width="1.5" fill="none"/>
           <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#2563eb" opacity="0.6"/>
         </svg>
@@ -872,26 +866,22 @@ crossorigin="anonymous"></script>
         <a href="cookies-policy.html">Cookies Policy</a>
         <a href="copyright.html">Copyright</a>
       </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
-      </div>
     </div>
 
-    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍</p>
+    <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 function toggleMobileNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
+  const nav = document.getElementById('mobileNav');
+  const toggle = document.getElementById('navMobileToggle');
+  const isOpen = nav.classList.toggle('open');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 
 /* ── Improved inline validation (replaces alert()-based checks) ── */
