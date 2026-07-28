@@ -49,7 +49,7 @@ crossorigin="anonymous"></script>
 }
 </script>
 
-<!-- Organization Schema (expanded) -->
+<!-- Organization Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -83,7 +83,7 @@ crossorigin="anonymous"></script>
 }
 </script>
 
-<!-- FAQ Schema -->
+<!-- FAQ Schema (matches visible FAQ section exactly) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -94,7 +94,7 @@ crossorigin="anonymous"></script>
       "name": "Can I use NexaTools commercially?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Files you create with NexaTools.io tools, such as resumes, invoices, logos, and business cards, can be used for both personal and commercial purposes unless a specific tool states otherwise."
+        "text": "Yes. Files you create with our tools, such as resumes, invoices, logos, and business cards, can be used for both personal and commercial purposes unless a specific tool states otherwise."
       }
     },
     {
@@ -110,7 +110,7 @@ crossorigin="anonymous"></script>
       "name": "Can these Terms change?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We may update these Terms from time to time, and the Last Updated date at the top of this page will always reflect the most recent revision. Continued use of the platform after a change means you accept the updated Terms."
+        "text": "Yes. We may update these Terms from time to time, and the Last Updated date at the top of this page will always reflect the most recent revision."
       }
     },
     {
@@ -118,12 +118,12 @@ crossorigin="anonymous"></script>
       "name": "Can my access be restricted?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, in cases of abuse, misuse, illegal activity, or violation of these Terms, we reserve the right to restrict or suspend access to the platform."
+        "text": "Yes, in cases of abuse, misuse, illegal activity, or violation of our Fair Use Policy, we reserve the right to restrict or suspend access to the platform."
       }
     },
     {
       "@type": "Question",
-      "name": "Do I need an account to use NexaTools.io?",
+      "name": "Do I need an account?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "No. Free tools on NexaTools.io do not require an account. Pro subscriptions are managed through Gumroad."
@@ -142,7 +142,7 @@ crossorigin="anonymous"></script>
       "name": "Can I contact support?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Email pro@nexatools.io for general support or use our Contact page. We normally reply within 24–48 business hours."
+        "text": "Yes. Email pro@nexatools.io or use our Contact page. We normally reply within 24-48 business hours."
       }
     },
     {
@@ -150,7 +150,7 @@ crossorigin="anonymous"></script>
       "name": "Where can I read the Privacy Policy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our full Privacy Policy is available at nexatools.io/privacy-policy.html and explains exactly what data is and isn't collected."
+        "text": "Our full Privacy Policy explains exactly what data is and isn't collected across the platform."
       }
     },
     {
@@ -196,8 +196,9 @@ crossorigin="anonymous"></script>
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css?v=3">
 <style>
   .page-hero { position:relative;z-index:1;padding:calc(var(--nav-h,68px) + 60px) 32px 50px;max-width:820px;margin:0 auto;text-align:center; }
   .page-hero h1 { font-family:var(--font-display,'Clash Display',sans-serif);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-1.5px;margin-bottom:16px;color:#0f172a; }
@@ -315,10 +316,8 @@ crossorigin="anonymous"></script>
   .terms-links-strip a:hover { text-decoration: underline; }
 
   /* ===================================================================
-     NEW FOOTER (matches about.html / contact.html / blog-section.html /
-     cookies-policy.html / copyright.html / disclaimer.html /
-     privacy-policy.html / resume-tools.html — Company / Legal / Follow
-     Us 3-column layout)
+     FOOTER — Company / Legal 2-column layout.
+     "Follow Us" removed (no live social accounts to link to yet).
      =================================================================== */
   footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
   .footer-inner { max-width: 900px; margin: 0 auto; }
@@ -328,12 +327,10 @@ crossorigin="anonymous"></script>
   .footer-logo span em { color:#2563eb; font-style:normal; }
   .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
 
-  .footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+  .footer-cols { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:420px; margin:0 auto 40px; text-align:left; }
   .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
   .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
   .footer-col a:hover { color:#2563eb; }
-  .footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
-  .footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
 
   .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
   .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
@@ -342,17 +339,10 @@ crossorigin="anonymous"></script>
 
   .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
 
-  @media (max-width:768px) {
-    .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
-    .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
-    .footer-legal-row { gap:6px 12px; }
-  }
   @media (max-width:480px) {
     .footer-cols { grid-template-columns:1fr; max-width:260px; }
-    .footer-col:nth-child(3) { grid-column: span 1; }
   }
 </style>
-<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -372,7 +362,7 @@ crossorigin="anonymous"></script>
       </div>
       <span>Nexa<em>Tools</em></span>
     </div>
-       <div class="nav-links">
+    <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="index.html#tools-section">Tools</a>
       <a class="nav-link" href="index.html#categories-section">Categories</a>
@@ -380,7 +370,7 @@ crossorigin="anonymous"></script>
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
@@ -397,7 +387,7 @@ crossorigin="anonymous"></script>
 <nav class="breadcrumb-nav" aria-label="Breadcrumb">
   <ol>
     <li><a href="index.html">Home</a></li>
-    <li>Terms &amp; Conditions</li>
+    <li aria-current="page">Terms &amp; Conditions</li>
   </ol>
 </nav>
 
@@ -410,7 +400,7 @@ crossorigin="anonymous"></script>
 <main class="policy-content">
 
   <!-- Last Updated strip (top) -->
-  <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong>reviewed regularly to stay accurate and current.</p>
+  <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong> — reviewed regularly to stay accurate and current.</p>
 
   <section class="policy-card" aria-labelledby="intro-heading">
     <h2 id="intro-heading">Why These Terms Exist</h2>
@@ -459,9 +449,9 @@ crossorigin="anonymous"></script>
     <h2 id="responsibilities-heading">4. User Responsibilities</h2>
     <p>When you use NexaTools.io, you are responsible for:</p>
     <ul>
-      <li><strong style="color:#0f172a;">Your uploaded content</strong> any text, images, or information you enter into a tool, and ensuring you have the right to use it</li>
-      <li><strong style="color:#0f172a;">Your generated files</strong> how you use, distribute, or publish resumes, invoices, logos, QR codes, and other output created with our tools</li>
-      <li><strong style="color:#0f172a;">Compliance with local laws</strong> making sure your use of the platform, and the content you create, complies with the laws and regulations that apply to you in your country or region</li>
+      <li><strong style="color:#0f172a;">Your uploaded content</strong> — any text, images, or information you enter into a tool, and ensuring you have the right to use it</li>
+      <li><strong style="color:#0f172a;">Your generated files</strong> — how you use, distribute, or publish resumes, invoices, logos, QR codes, and other output created with our tools</li>
+      <li><strong style="color:#0f172a;">Compliance with local laws</strong> — making sure your use of the platform, and the content you create, complies with the laws and regulations that apply to you in your country or region</li>
     </ul>
     <p style="margin-top:10px;">NexaTools.io provides the tools; you remain responsible for what you create and do with them.</p>
   </section>
@@ -482,7 +472,7 @@ crossorigin="anonymous"></script>
   <section class="policy-card" aria-labelledby="ip-heading">
     <h2 id="ip-heading">6. Intellectual Property</h2>
     <p>All designs, code, branding, logos, and content of the NexaTools.io platform itself are the intellectual property of NexaTools.io. This includes the website's visual design, underlying code, and the NexaTools name and logo.</p>
-    <p style="margin-top:10px;">Content you create using our tools including resumes, invoices, logos, QR codes, and business cards belongs to you. You may use these files for personal or commercial purposes, unless a specific tool or feature states otherwise on its own page.</p>
+    <p style="margin-top:10px;">Content you create using our tools — including resumes, invoices, logos, QR codes, and business cards — belongs to you. You may use these files for personal or commercial purposes, unless a specific tool or feature states otherwise on its own page.</p>
     <p style="margin-top:10px;">What you may not do is copy, reproduce, or redistribute the NexaTools.io platform itself (its code, design, or branding) without our written permission.</p>
   </section>
 
@@ -513,9 +503,9 @@ crossorigin="anonymous"></script>
     <h2 id="thirdparty-heading">11. Third-Party Services</h2>
     <p>NexaTools.io integrates with a small number of third-party services to keep the platform free and functional:</p>
     <ul>
-      <li><strong style="color:#0f172a;">Google AdSense</strong> displays advertising that supports free access to our tools</li>
-      <li><strong style="color:#0f172a;">Gumroad</strong> handles payment processing for Pro and Business subscriptions</li>
-      <li><strong style="color:#0f172a;">Google Fonts</strong> provides the typography used across the site</li>
+      <li><strong style="color:#0f172a;">Google AdSense</strong> — displays advertising that supports free access to our tools</li>
+      <li><strong style="color:#0f172a;">Gumroad</strong> — handles payment processing for Pro and Business subscriptions</li>
+      <li><strong style="color:#0f172a;">Google Fonts</strong> — provides the typography used across the site</li>
     </ul>
     <p style="margin-top:10px;">Your use of these third-party services is subject to their respective terms and privacy policies. As we grow, we may introduce additional integrations; when we do, this section will be updated to reflect them. NexaTools.io is not responsible for the practices, availability, or content of any third-party service.</p>
   </section>
@@ -574,7 +564,7 @@ crossorigin="anonymous"></script>
 
   <!-- FAQ -->
   <section class="faq-terms-box" aria-labelledby="terms-faq-heading">
-    <h2 id="terms-faq-heading">Frequently Asked Questions ❓ </h2>
+    <h2 id="terms-faq-heading">Frequently Asked Questions ❓</h2>
 
     <div class="faq-terms-item">
       <h3>Can I use NexaTools commercially?</h3>
@@ -644,11 +634,11 @@ crossorigin="anonymous"></script>
   </section>
 
   <!-- Last Updated strip (bottom) -->
-  <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong>questions about these Terms? <a href="contact.html">Contact us anytime</a>.</p>
+  <p class="last-updated-strip">📅 <strong>Last Updated: July 2026</strong> — questions about these Terms? <a href="contact.html">Contact us anytime</a>.</p>
 
 </main>
 
-<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
+<!-- ============ FOOTER (Company / Legal layout — Follow Us removed, no live accounts yet) ============ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
@@ -677,25 +667,21 @@ crossorigin="anonymous"></script>
         <a href="cookies-policy.html">Cookies Policy</a>
         <a href="copyright.html">Copyright</a>
       </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
-      </div>
     </div>
-    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 function toggleMobileNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
+  const nav = document.getElementById('mobileNav');
+  const toggle = document.querySelector('.nav-mobile-toggle');
+  const isOpen = nav.classList.toggle('open');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 </script>
 <style>
