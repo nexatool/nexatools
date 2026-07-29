@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XD3P7ENYZ0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,7 +10,7 @@
 
   gtag('config', 'G-XD3P7ENYZ0');
 </script>
-  <!-- Google AdSense -->
+  <!-- Google AdSense (verification only, no live ad units on this page) -->
 <meta name="google-adsense-account" content="ca-pub-6135039378280600">
 
 <script async
@@ -130,8 +130,8 @@ crossorigin="anonymous"></script>
 }
 
 /* ===================================================================
-   NEW FOOTER (matches about.html / contact.html — Company / Legal /
-   Follow Us 3-column layout)
+   STANDARD FOOTER (matches base64-decoder.html / png-to-jpg.html /
+   blog-whatsapp-image-guide.html / blog-word-to-pdf-guide.html)
    =================================================================== */
 footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
 .footer-inner { max-width: 900px; margin: 0 auto; }
@@ -141,12 +141,10 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 .footer-logo span em { color:#2563eb; font-style:normal; }
 .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
 
-.footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+.footer-cols { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:420px; margin:0 auto 40px; text-align:left; }
 .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
 .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
 .footer-col a:hover { color:#2563eb; }
-.footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
-.footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
 
 .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
 .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
@@ -156,17 +154,11 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
 
 @media (max-width:768px) {
-  .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
-  .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
+  .footer-cols { grid-template-columns:1fr; max-width:260px; gap:24px; }
   .footer-legal-row { gap:6px 12px; }
-}
-@media (max-width:480px) {
-  .footer-cols { grid-template-columns:1fr; max-width:260px; }
-  .footer-col:nth-child(3) { grid-column: span 1; }
 }
 </style>
 <link rel="stylesheet" href="style.css?v=2">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -192,7 +184,7 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
     </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
@@ -203,6 +195,13 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
     <a href="index.html" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
   </div>
+</nav>
+
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="index.html">Home</a></li>
+    <li aria-current="page" style="color:#0f172a;">Blog</li>
+  </ol>
 </nav>
 
 <main class="blog-page-wrap">
@@ -226,18 +225,13 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     </ul>
     <p>You can jump straight to the <a href="index.html#tools-section">full list of free tools</a> mentioned across these guides, or browse a category below.</p>
     <div class="category-links">
-      <a href="index.html#tools-section">PDF Tools</a>
-      <a href="index.html#tools-section">Image Tools</a>
-      <a href="index.html#tools-section">AI Tools</a>
-      <a href="index.html#tools-section">Developer Tools</a>
-      <a href="index.html#tools-section">Resume</a>
-      <a href="index.html#tools-section">Invoice</a>
-      <a href="index.html#tools-section">QR Code</a>
-      <a href="index.html#tools-section">Business Card</a>
-      <a href="index.html#tools-section">Branding</a>
-      <a href="index.html#tools-section">Security</a>
-      <a href="index.html#tools-section">Social Media</a>
-      <a href="index.html#tools-section">Freelancing</a>
+      <a href="pdf-tools.html">PDF Tools</a>
+      <a href="image-tools.html">Image Tools</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="developer-tools.html">Developer Tools</a>
+      <a href="resume-tools.html">Resume</a>
+      <a href="business-tools.html">Business</a>
+      <a href="seo-tools.html">SEO Tools</a>
     </div>
   </section>
 
@@ -315,6 +309,22 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 
     <article class="blog-card">
       <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">PNG to JPG Converter  Step-by-Step Conversion Guide</div>
+      <p class="blog-desc">A focused, step-by-step guide to converting PNG images to JPG online for free, including when JPG is the better choice.</p>
+      <div class="blog-meta"><span>📅 June 23, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-png-to-jpg-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">JPG to PNG Converter  When and Why to Make the Switch</div>
+      <p class="blog-desc">Learn when converting JPG to PNG actually makes sense, and how to do it online for free without losing image quality.</p>
+      <div class="blog-meta"><span>📅 June 23, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-jpg-to-png-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Image Tools</div>
       <div class="blog-title">PNG vs JPG vs WebP  Which Image Format Should You Use?</div>
       <p class="blog-desc">Understand the real differences between PNG, JPG, and WebP image formats, and learn exactly which one to use for websites, social media, and print.</p>
       <div class="blog-meta"><span>📅 June 22, 2026</span><span>7 min read</span></div>
@@ -323,10 +333,42 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 
     <article class="blog-card">
       <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">Best Image Format for Your Website  A Practical Guide</div>
+      <p class="blog-desc">Choosing between PNG, JPG, and WebP for your website images? Here's how each format affects page speed, quality, and SEO.</p>
+      <div class="blog-meta"><span>📅 June 22, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-image-format-website-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">Image SEO Basics  How Image Format and Size Affect Rankings</div>
+      <p class="blog-desc">Learn how image format, file size, and alt text impact your site's SEO, and how to optimize images for free before publishing.</p>
+      <div class="blog-meta"><span>📅 June 22, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-image-seo-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Image Tools</div>
       <div class="blog-title">Best Image Resizer for Social Media (Instagram, Facebook & LinkedIn)</div>
       <p class="blog-desc">Resize images to the exact dimensions for Instagram, Facebook, LinkedIn, and other social platforms. Free guide with all current size specs for 2026.</p>
       <div class="blog-meta"><span>📅 June 21, 2026</span><span>7 min read</span></div>
       <a class="blog-btn" href="blog-image-resizer-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Social Media</div>
+      <div class="blog-title">Social Media Image Sizes Cheat Sheet for 2026</div>
+      <p class="blog-desc">The exact image dimensions to use for Instagram, Facebook, LinkedIn, and Twitter posts and profiles in 2026, plus how to resize for free.</p>
+      <div class="blog-meta"><span>📅 June 21, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-social-media-image-sizes.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">How to Resize Images for WhatsApp Without Losing Quality</div>
+      <p class="blog-desc">Learn why WhatsApp compresses your photos and how to resize images the right way before sending, so they arrive sharp instead of blurry.</p>
+      <div class="blog-meta"><span>📅 July 11, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-whatsapp-image-guide.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -339,10 +381,34 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 
     <article class="blog-card">
       <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">The Complete Guide to PDF Tools Online</div>
+      <p class="blog-desc">An overview of the most useful free PDF tools compress, merge, split, and convert and when to reach for each one.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-complete-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
       <div class="blog-title">Compress PDF Without Losing Quality (Complete Guide)</div>
       <p class="blog-desc">Reduce PDF file size for email and uploads without ruining text clarity or image quality. Complete free guide to compressing PDFs online.</p>
       <div class="blog-meta"><span>📅 June 19, 2026</span><span>7 min read</span></div>
       <a class="blog-btn" href="blog-compress-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Keep a PDF Small Enough to Email</div>
+      <p class="blog-desc">Most inboxes reject large attachments. Here's how to shrink a PDF down to an email-friendly size without losing readability.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-pdf-email-size-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Make a Scanned PDF Searchable and Smaller</div>
+      <p class="blog-desc">Scanned documents are often huge and unsearchable. Learn how to clean up scanned PDFs for sharing and storage.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-scanned-pdf-guide.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -375,6 +441,14 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
       <p class="blog-desc">Learn how to convert PDF to Word online for free without breaking layout, fonts, or images. Step-by-step guide for students and professionals.</p>
       <div class="blog-meta"><span>📅 June 15, 2026</span><span>7 min read</span></div>
       <a class="blog-btn" href="blog-pdf-to-word-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Developer Tools</div>
+      <div class="blog-title">Best Free File Converter Tools for Everyday Use</div>
+      <p class="blog-desc">A round-up of the free NexaTools file converters for images, PDFs, and documents, and when to use each one.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-file-converter-guide.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -721,7 +795,7 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
 
 </main>
 
-<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
+<!-- ============ STANDARD FOOTER (Company / Legal layout) ============ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
@@ -750,13 +824,6 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
         <a href="cookies-policy.html">Cookies Policy</a>
         <a href="copyright.html">Copyright</a>
       </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
-      </div>
     </div>
 
     <div class="footer-legal-row">
@@ -767,7 +834,7 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
       <a href="blog-section.html">Blog</a>
     </div>
 
-    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍</p>
+    <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
   </div>
 </footer>
 
@@ -777,7 +844,10 @@ window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
 function toggleMobileNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
+  const nav = document.getElementById('mobileNav');
+  const isOpen = nav.classList.toggle('open');
+  const toggle = document.querySelector('.nav-mobile-toggle');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 </script>
   <style>
