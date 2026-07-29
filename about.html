@@ -28,11 +28,17 @@ crossorigin="anonymous"></script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta property="og:site_name" content="NexaTools.io">
 <meta property="og:title" content="About NexaTools.io Free AI Tools for Everyone">
 <meta property="og:description" content="The story, mission, and people behind NexaTools.io free browser-based AI tools for students, freelancers and small businesses worldwide.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexatools.io/about.html">
 <meta property="og:image" content="https://www.nexatools.io/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About NexaTools.io Free AI Tools for Everyone">
+<meta name="twitter:description" content="The story, mission, and people behind NexaTools.io free, privacy-first, browser-based tools.">
+<meta name="twitter:image" content="https://www.nexatools.io/og-image.png">
 
 <!-- AboutPage Schema (expanded) -->
 <script type="application/ld+json">
@@ -89,7 +95,7 @@ crossorigin="anonymous"></script>
 }
 </script>
 
-<!-- BreadcrumbList Schema (kept) -->
+<!-- BreadcrumbList Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -111,7 +117,7 @@ crossorigin="anonymous"></script>
 }
 </script>
 
-<!-- FAQ Schema -->
+<!-- FAQ Schema (matches visible FAQs on this page) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -202,8 +208,9 @@ crossorigin="anonymous"></script>
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6135039378280600" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css?v=2">
 <style>
   .page-hero {
     position: relative;
@@ -432,8 +439,7 @@ crossorigin="anonymous"></script>
   .internal-links-block a:hover { text-decoration: underline; }
 
   /* ===================================================================
-     NEW FOOTER (replaces old footer — matches Company/Legal/Follow Us
-     3-column layout from reference screenshot)
+     FOOTER (Company / Legal layout)
      =================================================================== */
   footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px 32px 32px; text-align:center; }
   .footer-inner { max-width: 900px; margin: 0 auto; }
@@ -443,12 +449,10 @@ crossorigin="anonymous"></script>
   .footer-logo span em { color:#2563eb; font-style:normal; }
   .footer-tagline { color:#64748b; font-size:0.9rem; line-height:1.7; max-width:480px; margin:0 auto 40px; }
 
-  .footer-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:640px; margin:0 auto 40px; text-align:left; }
+  .footer-cols { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:420px; margin:0 auto 40px; text-align:left; }
   .footer-col h4 { font-family: var(--font-display); font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:14px; }
   .footer-col a { display:block; color:#475569; font-size:0.86rem; text-decoration:underline; text-decoration-color:rgba(71,85,105,0.35); margin-bottom:11px; transition:color 0.2s; }
   .footer-col a:hover { color:#2563eb; }
-  .footer-social-item { display:flex; align-items:center; gap:8px; color:#475569; font-size:0.86rem; margin-bottom:11px; }
-  .footer-social-item span.fs-icon { font-size:1rem; flex-shrink:0; }
 
   .footer-legal-row { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08); max-width:900px; margin:0 auto; }
   .footer-legal-row a { color:#64748b; font-size:0.82rem; text-decoration:none; }
@@ -457,17 +461,10 @@ crossorigin="anonymous"></script>
 
   .footer-copy { color:#94a3b8; font-size:0.8rem; margin-top:18px; }
 
-  @media (max-width:768px) {
-    .footer-cols { grid-template-columns:1fr 1fr; gap:24px 16px; max-width:420px; }
-    .footer-col:nth-child(3) { grid-column: span 2; margin-top:8px; }
-    .footer-legal-row { gap:6px 12px; }
-  }
   @media (max-width:480px) {
     .footer-cols { grid-template-columns:1fr; max-width:260px; }
-    .footer-col:nth-child(3) { grid-column: span 1; }
   }
 </style>
-<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="bg-grid"></div>
@@ -487,8 +484,8 @@ crossorigin="anonymous"></script>
     </div>
        <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="#tools-section">Tools</a>
-      <a class="nav-link" href="#categories-section">Categories</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="index.html#categories-section">Categories</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -585,10 +582,10 @@ crossorigin="anonymous"></script>
   <!-- Mission -->
   <div class="mission-block">
     <h2>💡 Our Mission</h2>
-    <p>NexaTools.io was built with one clear mission: give every person whether a student in Lahore, a freelancer in Nairobi, or a small business owner in Toronto access to <strong>professional-grade tools without spending a single dollar.</strong></p>
+    <p>NexaTools.io was built with one clear mission: give every person whether a student, a freelancer, or a small business owner access to <strong>professional-grade tools without spending a single dollar.</strong></p>
     <p>We noticed that the tools professionals use every day resume builders, invoice generators, logo makers were either locked behind expensive subscriptions or required technical skills most people simply don't have. We decided to change that.</p>
     <p>Concretely, our mission means three commitments we hold ourselves to on every page we publish: every tool must work the first time you open it, without a tutorial; every tool must be honest about what it can and cannot do, rather than overselling AI capability; and every tool must respect your privacy by default, not as an opt-in feature buried in a settings menu.</p>
-    <p>Today, NexaTools.io offers <strong>7 free AI-powered tools</strong> that anyone can use instantly, with no account required, no hidden fees, and no technical knowledge needed. Everything runs directly in your browser <strong>your data never leaves your device.</strong></p>
+    <p>Today, NexaTools.io offers <strong>a growing set of free AI-powered tools</strong> that anyone can use instantly, with no account required, no hidden fees, and no technical knowledge needed. Wherever technically possible, everything runs directly in your browser <strong>so your data stays on your own device.</strong></p>
   </div>
 
   <!-- Vision -->
@@ -611,7 +608,7 @@ crossorigin="anonymous"></script>
 
   <div class="tools-block">
     <h2>🛠️ What We Offer</h2>
-    <p>NexaTools.io currently provides 7 powerful free tools with more on the way:</p>
+    <p>NexaTools.io currently provides a set of free tools built around the tasks people need most often, with more on the way:</p>
     <div class="tools-list">
       <div class="tool-item"><span class="t-icon">📄</span><div><strong>AI Resume Builder</strong><span>Create job-ready resumes with AI writing assistance</span></div></div>
       <div class="tool-item"><span class="t-icon">🧾</span><div><strong>Invoice Generator</strong><span>Professional invoices for freelancers and businesses</span></div></div>
@@ -620,7 +617,7 @@ crossorigin="anonymous"></script>
       <div class="tool-item"><span class="t-icon">💼</span><div><strong>Business Card Maker</strong><span>Professional cards with multiple themes and fonts</span></div></div>
       <div class="tool-item"><span class="t-icon">📅</span><div><strong>Social Media Scheduler</strong><span>Plan and organize your social media content calendar</span></div></div>
       <div class="tool-item"><span class="t-icon">🔐</span><div><strong>Password Generator</strong><span>Generate ultra-secure passwords with strength analysis</span></div></div>
-      <div class="tool-item" style="opacity:0.5;border-style:dashed;"><span class="t-icon">✨</span><div><strong>More Coming Soon</strong><span>We're always building new tools for our community</span></div></div>
+      <div class="tool-item" style="opacity:0.5;border-style:dashed;"><span class="t-icon">✨</span><div><strong>New Tools in Development</strong><span>We're actively building more tools for our community</span></div></div>
     </div>
   </div>
 
@@ -650,15 +647,15 @@ crossorigin="anonymous"></script>
   <div class="team-block">
     <h2>🌍 Who We Are</h2>
     <p>NexaTools.io is an independent project created by Rashid Amin, who believes that geography and budget should never be barriers to accessing professional tools.</p>
-    <p>Our users include fresh graduates looking for their first job, freelancers sending invoices to international clients, restaurant owners creating QR menus, and students building their first startup all using NexaTools completely free.</p>
+    <p>Our tools are built for people such as job seekers preparing a resume, freelancers sending invoices to clients, small business owners creating QR menus, and students working on their first projects all using NexaTools free of charge.</p>
     <a href="contact.html" class="btn-primary" style="display:inline-flex;text-decoration:none;"><span>✉️ Get in Touch</span></a>
   </div>
 
   <div class="about-grid">
-    <div class="about-card"><span class="card-icon">🎯</span><h3>Our Vision</h3><p>To become the world's most trusted free productivity platform where anyone, anywhere can create professional documents, branding, and tools without barriers.</p></div>
-    <div class="about-card"><span class="card-icon">📈</span><h3>Our Growth</h3><p>Since launching, NexaTools has been used by students, freelancers, and small businesses across multiple countries. Our tools have helped create thousands of resumes, invoices, logos, and business cards.</p></div>
-    <div class="about-card"><span class="card-icon">💬</span><h3>Community Driven</h3><p>We listen to our users. Every new feature, template, and tool comes from real feedback from our community. Your suggestions shape what we build next.</p></div>
-    <div class="about-card"><span class="card-icon">🔮</span><h3>What's Next</h3><p>We're working on more AI tools, new templates, and dedicated mobile apps. The roadmap is big and it's all free for our community.</p></div>
+    <div class="about-card"><span class="card-icon">🎯</span><h3>Our Vision</h3><p>To become a trusted free productivity platform where anyone, anywhere can create professional documents, branding, and tools without barriers.</p></div>
+    <div class="about-card"><span class="card-icon">🛠️</span><h3>Our Approach</h3><p>Every tool is built and reviewed with the same standard: it should work the first time, respect your privacy, and be honest about what it can and cannot do.</p></div>
+    <div class="about-card"><span class="card-icon">💬</span><h3>Community Driven</h3><p>We listen to our users. New features, templates, and tools are shaped by real feedback from the people who use NexaTools. Your suggestions help decide what we build next.</p></div>
+    <div class="about-card"><span class="card-icon">🔮</span><h3>What's Next</h3><p>We're working on more AI-assisted tools and new templates. The roadmap keeps growing and it stays free for our community.</p></div>
   </div>
 
   <!-- Company Information Cards -->
@@ -791,7 +788,7 @@ crossorigin="anonymous"></script>
 
 </div>
 
-<!-- ============ NEW FOOTER (Company / Legal / Follow Us layout) ============ -->
+<!-- ============ FOOTER (Company / Legal layout) ============ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
@@ -820,16 +817,9 @@ crossorigin="anonymous"></script>
         <a href="cookies-policy.html">Cookies Policy</a>
         <a href="copyright.html">Copyright</a>
       </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="footer-social-item"><span class="fs-icon">🐦</span>Twitter Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📘</span>Facebook Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">📷</span>Instagram Coming Soon</div>
-        <div class="footer-social-item"><span class="fs-icon">💼</span>LinkedIn Coming Soon</div>
-      </div>
     </div>
 
-    <p class="footer-copy">© 2026 NexaTools.io Free AI Tools for Everyone, Worldwide 🌍 All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 NexaTools.io Free Tools for Everyday Productivity 🌍</p>
   </div>
 </footer>
 
