@@ -124,9 +124,24 @@ crossorigin="anonymous"></script>
 .reviewed-by p { color: #64748b; font-size: 0.85rem; line-height: 1.75; margin-bottom: 8px; }
 .reviewed-by p:last-child { margin-bottom: 0; }
 
+.blog-category-heading {
+  font-family: var(--font-display, 'Clash Display', sans-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 48px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.blog-category-heading:first-of-type { margin-top: 8px; }
+
+.blog-card img { width: 100%; height: auto; border-radius: 14px; margin-bottom: 14px; display: block; }
+
 @media (max-width: 768px) {
   .blog-info-card { padding: 22px 20px; }
   .reviewed-by { padding: 18px 20px; }
+  .blog-category-heading { font-size: 1.2rem; margin: 36px 0 14px; }
 }
 
 /* ===================================================================
@@ -241,55 +256,145 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     <p>Guides are reviewed periodically and updated if a tool changes or if user feedback shows a step is unclear or outdated. If you spot something inaccurate, you can reach us through our <a href="contact.html">contact page</a>.</p>
   </section>
 
+  <h3 class="blog-category-heading">⭐ Featured Articles</h3>
   <div class="blog-grid">
 
     <article class="blog-card">
-      <div class="blog-tag">Fiverr</div>
-      <div class="blog-title">Fiverr Profile Tips for Pakistani Freelancers 2026  Get More Orders</div>
-      <p class="blog-desc">How to create a winning Fiverr profile in 2026 as a Pakistani freelancer. Tips on gig title, description, pricing, and getting your first order.</p>
-      <div class="blog-meta"><span>📅 July 1, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-fiverr-profile-tips.html">Read More →</a>
+      <img src="images/word-to-pdf-formatting.webp" alt="How to Convert Word to PDF Without Losing Formatting" loading="lazy" width="600" height="340">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Convert Word to PDF Without Losing Formatting</div>
+      <p class="blog-desc">A complete guide to converting Word documents to PDF online for free while keeping fonts, images, and layout exactly intact.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-word-to-pdf-formatting.html">Read More →</a>
     </article>
 
     <article class="blog-card">
-      <div class="blog-tag">Online Earning</div>
-      <div class="blog-title">Best Free Online Earning Tools for Pakistan 2026</div>
-      <p class="blog-desc">The best free online tools Pakistani freelancers and students need to earn money online in 2026 resume, invoice, logo, QR code, and more.</p>
-      <div class="blog-meta"><span>📅 July 1, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-online-earning-tools-pakistan.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Freelancing</div>
-      <div class="blog-title">How to Start Freelancing in Pakistan 2026  Complete Beginner Guide</div>
-      <p class="blog-desc">Complete step-by-step guide on how to start freelancing in Pakistan in 2026. Which skills to learn, which platforms to use, and how to get your first client.</p>
-      <div class="blog-meta"><span>📅 July 1, 2026</span><span>9 min read</span></div>
-      <a class="blog-btn" href="blog-how-to-start-freelancing-pakistan.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Payments</div>
-      <div class="blog-title">JazzCash & EasyPaisa for Freelancers Pakistan 2026  Payment Guide</div>
-      <p class="blog-desc">How Pakistani freelancers can use JazzCash and EasyPaisa to receive payments in 2026. Complete guide with tips, limits, and best practices.</p>
-      <div class="blog-meta"><span>📅 July 1, 2026</span><span>7 min read</span></div>
-      <a class="blog-btn" href="blog-jazzcash-easypaisa-freelancer.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Design Tools</div>
-      <div class="blog-title">Best Free Canva Alternative in 2026  No Subscription Needed</div>
-      <p class="blog-desc">Looking for a free Canva alternative? Discover the best free design tools for Pakistani freelancers and students no subscription needed.</p>
-      <div class="blog-meta"><span>📅 July 1, 2026</span><span>7 min read</span></div>
-      <a class="blog-btn" href="blog-canva-alternative-free.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
+      <img src="images/resume-fresh-graduates-pakistan.webp" alt="Resume Guide for Fresh Graduates in Pakistan" loading="lazy" width="600" height="340">
       <div class="blog-tag">Resume</div>
-      <div class="blog-title">How to Make a Resume for Upwork in Pakistan 2026</div>
-      <p class="blog-desc">Get more Upwork clients with a winning profile and resume. Complete guide for Pakistani freelancers free resume builder included.</p>
-      <div class="blog-meta"><span>📅 June 20, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-upwork-resume-pakistan.html">Read More →</a>
+      <div class="blog-title">How to Create a Professional Resume for Fresh Graduates in Pakistan (2026 Guide)</div>
+      <p class="blog-desc">Step-by-step resume guide for fresh graduates in Pakistan, covering structure, skills, and formatting that gets you noticed in 2026.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-resume-fresh-graduates-pakistan.html">Read More →</a>
     </article>
+
+    <article class="blog-card">
+      <img src="images/qr-code-business-guide.webp" alt="How to Create a QR Code for Your Business" loading="lazy" width="600" height="340">
+      <div class="blog-tag">QR Code</div>
+      <div class="blog-title">How to Create a QR Code for Your Business in Minutes</div>
+      <p class="blog-desc">A fast, practical guide to generating a QR code for your business website, menu, or contact card completely free.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-qr-code-business-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <img src="images/png-vs-jpg-vs-webp.webp" alt="PNG vs JPG vs WebP Which Image Format is Best for SEO" loading="lazy" width="600" height="340">
+      <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">PNG vs JPG vs WebP: Which Image Format is Best for SEO?</div>
+      <p class="blog-desc">A clear, practical breakdown of PNG, JPG, and WebP for SEO and page speed, with guidance on which format to pick and when.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-png-vs-jpg-vs-webp.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <img src="images/image-compression-guide.webp" alt="How to Compress Images Without Losing Quality for Websites" loading="lazy" width="600" height="340">
+      <div class="blog-tag">Image Tools</div>
+      <div class="blog-title">How to Compress Images Without Losing Quality for Websites</div>
+      <p class="blog-desc">Learn how to shrink image file sizes for faster websites without any visible drop in quality, using free online tools.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-image-compression-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <img src="images/free-pdf-tools-students-2026.webp" alt="Best Free PDF Tools Every Student Should Use" loading="lazy" width="600" height="340">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">Best Free PDF Tools Every Student Should Use in 2026</div>
+      <p class="blog-desc">The essential free PDF tools every student needs in 2026, from merging assignments to compressing files for upload portals.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-free-pdf-tools-students-2026.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <img src="images/free-ai-tools-students-freelancers.webp" alt="Top 10 Free AI Tools for Students and Freelancers" loading="lazy" width="600" height="340">
+      <div class="blog-tag">AI Tools</div>
+      <div class="blog-title">Top 10 Free AI Tools for Students and Freelancers in 2026</div>
+      <p class="blog-desc">The best free AI tools students and freelancers can use in 2026 for writing, research, design, coding, and productivity.</p>
+      <div class="blog-meta"><span>📅 July 30, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-free-ai-tools-students-freelancers.html">Read More →</a>
+    </article>
+
+  </div>
+
+  <h3 class="blog-category-heading">📄 PDF Guides</h3>
+  <div class="blog-grid">
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">The Complete Guide to PDF Tools Online</div>
+      <p class="blog-desc">An overview of the most useful free PDF tools compress, merge, split, and convert and when to reach for each one.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-complete-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">Compress PDF Without Losing Quality (Complete Guide)</div>
+      <p class="blog-desc">Reduce PDF file size for email and uploads without ruining text clarity or image quality. Complete free guide to compressing PDFs online.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-compress-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Keep a PDF Small Enough to Email</div>
+      <p class="blog-desc">Most inboxes reject large attachments. Here's how to shrink a PDF down to an email-friendly size without losing readability.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-pdf-email-size-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Make a Scanned PDF Searchable and Smaller</div>
+      <p class="blog-desc">Scanned documents are often huge and unsearchable. Learn how to clean up scanned PDFs for sharing and storage.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-scanned-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">Split PDF Pages Online Without Installing Software</div>
+      <p class="blog-desc">Extract or split specific pages from a PDF file online for free. Simple guide for separating chapters, invoices, and reports without desktop software.</p>
+      <div class="blog-meta"><span>📅 June 18, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-split-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Merge Multiple PDF Files Online for Free</div>
+      <p class="blog-desc">Combine multiple PDF files into a single document online for free. Step-by-step guide for reports, invoices, applications, and academic submissions.</p>
+      <div class="blog-meta"><span>📅 June 17, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-merge-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">Best Free Word to PDF Converter for Students & Professionals</div>
+      <p class="blog-desc">Convert Word documents to PDF for free while keeping fonts, images, and layout exact. A complete guide for students, freelancers, and office professionals.</p>
+      <div class="blog-meta"><span>📅 June 16, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-word-to-pdf-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">PDF Tools</div>
+      <div class="blog-title">How to Convert PDF to Word Without Losing Formatting (2026)</div>
+      <p class="blog-desc">Learn how to convert PDF to Word online for free without breaking layout, fonts, or images. Step-by-step guide for students and professionals.</p>
+      <div class="blog-meta"><span>📅 June 15, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-pdf-to-word-guide.html">Read More →</a>
+    </article>
+
+  </div>
+
+  <h3 class="blog-category-heading">🖼️ Image Guides</h3>
+  <div class="blog-grid">
 
     <article class="blog-card">
       <div class="blog-tag">Image Tools</div>
@@ -379,84 +484,30 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
       <a class="blog-btn" href="blog-image-compressor-guide.html">Read More →</a>
     </article>
 
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">The Complete Guide to PDF Tools Online</div>
-      <p class="blog-desc">An overview of the most useful free PDF tools compress, merge, split, and convert and when to reach for each one.</p>
-      <div class="blog-meta"><span>📅 June 19, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-complete-pdf-guide.html">Read More →</a>
-    </article>
+  </div>
+
+  <h3 class="blog-category-heading">🤖 AI Tools</h3>
+  <div class="blog-grid">
 
     <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">Compress PDF Without Losing Quality (Complete Guide)</div>
-      <p class="blog-desc">Reduce PDF file size for email and uploads without ruining text clarity or image quality. Complete free guide to compressing PDFs online.</p>
-      <div class="blog-meta"><span>📅 June 19, 2026</span><span>7 min read</span></div>
-      <a class="blog-btn" href="blog-compress-pdf-guide.html">Read More →</a>
+      <div class="blog-tag">AI Tools</div>
+      <div class="blog-title">Best Free AI Tools for Freelancers in 2026</div>
+      <p class="blog-desc">Discover the top free AI-powered tools that every freelancer needs resume, logo, billing and more.</p>
+      <div class="blog-meta"><span>📅 May 20, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-ai-tools.html">Read More →</a>
     </article>
 
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">How to Keep a PDF Small Enough to Email</div>
-      <p class="blog-desc">Most inboxes reject large attachments. Here's how to shrink a PDF down to an email-friendly size without losing readability.</p>
-      <div class="blog-meta"><span>📅 June 19, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-pdf-email-size-guide.html">Read More →</a>
-    </article>
+  </div>
+
+  <h3 class="blog-category-heading">🎓 Resume & Career</h3>
+  <div class="blog-grid">
 
     <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">How to Make a Scanned PDF Searchable and Smaller</div>
-      <p class="blog-desc">Scanned documents are often huge and unsearchable. Learn how to clean up scanned PDFs for sharing and storage.</p>
-      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-scanned-pdf-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">Split PDF Pages Online Without Installing Software</div>
-      <p class="blog-desc">Extract or split specific pages from a PDF file online for free. Simple guide for separating chapters, invoices, and reports without desktop software.</p>
-      <div class="blog-meta"><span>📅 June 18, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-split-pdf-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">How to Merge Multiple PDF Files Online for Free</div>
-      <p class="blog-desc">Combine multiple PDF files into a single document online for free. Step-by-step guide for reports, invoices, applications, and academic submissions.</p>
-      <div class="blog-meta"><span>📅 June 17, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-merge-pdf-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">Best Free Word to PDF Converter for Students & Professionals</div>
-      <p class="blog-desc">Convert Word documents to PDF for free while keeping fonts, images, and layout exact. A complete guide for students, freelancers, and office professionals.</p>
-      <div class="blog-meta"><span>📅 June 16, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-word-to-pdf-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">PDF Tools</div>
-      <div class="blog-title">How to Convert PDF to Word Without Losing Formatting (2026)</div>
-      <p class="blog-desc">Learn how to convert PDF to Word online for free without breaking layout, fonts, or images. Step-by-step guide for students and professionals.</p>
-      <div class="blog-meta"><span>📅 June 15, 2026</span><span>7 min read</span></div>
-      <a class="blog-btn" href="blog-pdf-to-word-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Developer Tools</div>
-      <div class="blog-title">Best Free File Converter Tools for Everyday Use</div>
-      <p class="blog-desc">A round-up of the free NexaTools file converters for images, PDFs, and documents, and when to use each one.</p>
-      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-file-converter-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Invoice</div>
-      <div class="blog-title">How to Send a Professional Invoice as a Freelancer in Pakistan 2026</div>
-      <p class="blog-desc">Get paid faster from local and international clients. Payment methods, tax tips, and complete invoicing guide for Pakistani freelancers.</p>
-      <div class="blog-meta"><span>📅 June 14, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-freelancer-invoice-pakistan.html">Read More →</a>
+      <div class="blog-tag">Resume</div>
+      <div class="blog-title">How to Make a Resume for Upwork in Pakistan 2026</div>
+      <p class="blog-desc">Get more Upwork clients with a winning profile and resume. Complete guide for Pakistani freelancers free resume builder included.</p>
+      <div class="blog-meta"><span>📅 June 20, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-upwork-resume-pakistan.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -468,27 +519,72 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     </article>
 
     <article class="blog-card">
-      <div class="blog-tag">Productivity</div>
-      <div class="blog-title">Top Free Tools Every Student Needs in 2026</div>
-      <p class="blog-desc">From resume building to password management here are the must-have free tools for every student worldwide.</p>
-      <div class="blog-meta"><span>📅 June 5, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-student-tools.html">Read More →</a>
+      <div class="blog-tag">Resume</div>
+      <div class="blog-title">Top 10 Resume Tips for Students & Fresh Graduates</div>
+      <p class="blog-desc">Learn how to write a resume that gets noticed even with zero experience. Simple tips that actually work.</p>
+      <div class="blog-meta"><span>📅 May 14, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-resume-tips.html">Read More →</a>
+    </article>
+
+  </div>
+
+  <h3 class="blog-category-heading">💼 Business & Freelancing</h3>
+  <div class="blog-grid">
+
+    <article class="blog-card">
+      <div class="blog-tag">Fiverr</div>
+      <div class="blog-title">Fiverr Profile Tips for Pakistani Freelancers 2026  Get More Orders</div>
+      <p class="blog-desc">How to create a winning Fiverr profile in 2026 as a Pakistani freelancer. Tips on gig title, description, pricing, and getting your first order.</p>
+      <div class="blog-meta"><span>📅 July 1, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-fiverr-profile-tips.html">Read More →</a>
     </article>
 
     <article class="blog-card">
-      <div class="blog-tag">Social Media</div>
-      <div class="blog-title">Free Social Media Scheduler for Small Businesses in 2026</div>
-      <p class="blog-desc">Schedule Instagram, Facebook, LinkedIn & Twitter posts for free. Perfect for freelancers and small business owners.</p>
-      <div class="blog-meta"><span>📅 June 4, 2026</span><span>5 min read</span></div>
-      <a class="blog-btn" href="blog-scheduler-guide.html">Read More →</a>
+      <div class="blog-tag">Online Earning</div>
+      <div class="blog-title">Best Free Online Earning Tools for Pakistan 2026</div>
+      <p class="blog-desc">The best free online tools Pakistani freelancers and students need to earn money online in 2026 resume, invoice, logo, QR code, and more.</p>
+      <div class="blog-meta"><span>📅 July 1, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-online-earning-tools-pakistan.html">Read More →</a>
     </article>
 
     <article class="blog-card">
-      <div class="blog-tag">Security</div>
-      <div class="blog-title">How to Generate Strong Passwords for Free  Complete Guide</div>
-      <p class="blog-desc">Why weak passwords are dangerous and how to create unbreakable ones instantly 100% free, nothing stored.</p>
-      <div class="blog-meta"><span>📅 June 2, 2026</span><span>4 min read</span></div>
-      <a class="blog-btn" href="blog-password-guide.html">Read More →</a>
+      <div class="blog-tag">Freelancing</div>
+      <div class="blog-title">How to Start Freelancing in Pakistan 2026  Complete Beginner Guide</div>
+      <p class="blog-desc">Complete step-by-step guide on how to start freelancing in Pakistan in 2026. Which skills to learn, which platforms to use, and how to get your first client.</p>
+      <div class="blog-meta"><span>📅 July 1, 2026</span><span>9 min read</span></div>
+      <a class="blog-btn" href="blog-how-to-start-freelancing-pakistan.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Payments</div>
+      <div class="blog-title">JazzCash & EasyPaisa for Freelancers Pakistan 2026  Payment Guide</div>
+      <p class="blog-desc">How Pakistani freelancers can use JazzCash and EasyPaisa to receive payments in 2026. Complete guide with tips, limits, and best practices.</p>
+      <div class="blog-meta"><span>📅 July 1, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-jazzcash-easypaisa-freelancer.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Design Tools</div>
+      <div class="blog-title">Best Free Canva Alternative in 2026  No Subscription Needed</div>
+      <p class="blog-desc">Looking for a free Canva alternative? Discover the best free design tools for Pakistani freelancers and students no subscription needed.</p>
+      <div class="blog-meta"><span>📅 July 1, 2026</span><span>7 min read</span></div>
+      <a class="blog-btn" href="blog-canva-alternative-free.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Invoice</div>
+      <div class="blog-title">How to Send a Professional Invoice as a Freelancer in Pakistan 2026</div>
+      <p class="blog-desc">Get paid faster from local and international clients. Payment methods, tax tips, and complete invoicing guide for Pakistani freelancers.</p>
+      <div class="blog-meta"><span>📅 June 14, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-freelancer-invoice-pakistan.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Invoice</div>
+      <div class="blog-title">Free Billing Generator for Freelancers in Pakistan</div>
+      <p class="blog-desc">Send professional invoices to clients worldwide no software needed. Step by step guide for Pakistani freelancers.</p>
+      <div class="blog-meta"><span>📅 May 17, 2026</span><span>8 min read</span></div>
+      <a class="blog-btn" href="blog-invoice-guide.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -515,28 +611,17 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
       <a class="blog-btn" href="blog-qr-guide.html">Read More →</a>
     </article>
 
-    <article class="blog-card">
-      <div class="blog-tag">AI Tools</div>
-      <div class="blog-title">Best Free AI Tools for Freelancers in 2026</div>
-      <p class="blog-desc">Discover the top free AI-powered tools that every freelancer needs resume, logo, billing and more.</p>
-      <div class="blog-meta"><span>📅 May 20, 2026</span><span>6 min read</span></div>
-      <a class="blog-btn" href="blog-ai-tools.html">Read More →</a>
-    </article>
+  </div>
+
+  <h3 class="blog-category-heading">🛠️ Developer Tools</h3>
+  <div class="blog-grid">
 
     <article class="blog-card">
-      <div class="blog-tag">Invoice</div>
-      <div class="blog-title">Free Billing Generator for Freelancers in Pakistan</div>
-      <p class="blog-desc">Send professional invoices to clients worldwide no software needed. Step by step guide for Pakistani freelancers.</p>
-      <div class="blog-meta"><span>📅 May 17, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-invoice-guide.html">Read More →</a>
-    </article>
-
-    <article class="blog-card">
-      <div class="blog-tag">Resume</div>
-      <div class="blog-title">Top 10 Resume Tips for Students & Fresh Graduates</div>
-      <p class="blog-desc">Learn how to write a resume that gets noticed even with zero experience. Simple tips that actually work.</p>
-      <div class="blog-meta"><span>📅 May 14, 2026</span><span>8 min read</span></div>
-      <a class="blog-btn" href="blog-resume-tips.html">Read More →</a>
+      <div class="blog-tag">Developer Tools</div>
+      <div class="blog-title">Best Free File Converter Tools for Everyday Use</div>
+      <p class="blog-desc">A round-up of the free NexaTools file converters for images, PDFs, and documents, and when to use each one.</p>
+      <div class="blog-meta"><span>📅 June 19, 2026</span><span>6 min read</span></div>
+      <a class="blog-btn" href="blog-file-converter-guide.html">Read More →</a>
     </article>
 
     <article class="blog-card">
@@ -780,6 +865,36 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     </article>
 
   </div>
+
+  <h3 class="blog-category-heading">⚡ Productivity</h3>
+  <div class="blog-grid">
+
+    <article class="blog-card">
+      <div class="blog-tag">Productivity</div>
+      <div class="blog-title">Top Free Tools Every Student Needs in 2026</div>
+      <p class="blog-desc">From resume building to password management here are the must-have free tools for every student worldwide.</p>
+      <div class="blog-meta"><span>📅 June 5, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-student-tools.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Social Media</div>
+      <div class="blog-title">Free Social Media Scheduler for Small Businesses in 2026</div>
+      <p class="blog-desc">Schedule Instagram, Facebook, LinkedIn & Twitter posts for free. Perfect for freelancers and small business owners.</p>
+      <div class="blog-meta"><span>📅 June 4, 2026</span><span>5 min read</span></div>
+      <a class="blog-btn" href="blog-scheduler-guide.html">Read More →</a>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-tag">Security</div>
+      <div class="blog-title">How to Generate Strong Passwords for Free  Complete Guide</div>
+      <p class="blog-desc">Why weak passwords are dangerous and how to create unbreakable ones instantly 100% free, nothing stored.</p>
+      <div class="blog-meta"><span>📅 June 2, 2026</span><span>4 min read</span></div>
+      <a class="blog-btn" href="blog-password-guide.html">Read More →</a>
+    </article>
+
+  </div>
+
 </section>
 
 <section class="reviewed-by" aria-labelledby="reviewed-heading">
