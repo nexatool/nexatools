@@ -246,18 +246,18 @@ crossorigin="anonymous"></script>
         </svg>
       </div>
       <span>Nexa<em>Tools</em></span>
-    </div>
-     <div class="nav-links">
-  <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
-  <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
-  <a class="nav-link" href="about.html" style="color:var(--cyan);font-weight:700;">About</a>
-  <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
-  <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
-</div>
-    <div class="nav-right">
-      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
-      <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
-    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="index.html#tools-section">Tools</a>
+    <a class="nav-link" href="index.html#categories-section">Categories</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="blog-section.html">Blog</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn-nav-pro" href="index.html#tools-section">⚡Try Free</a>
+  </div>
     <button class="nav-mobile-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
@@ -271,18 +271,6 @@ crossorigin="anonymous"></script>
     <a href="index.html" class="btn-nav-pro">⚡ Try Free Tools</a>
   </div>
 </nav>
-
-<!-- BREADCRUMB -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
-    <li><a href="index.html">Home</a></li>
-    <li aria-hidden="true">›</li>
-    <li><a href="index.html#tools">Tools</a></li>
-    <li aria-hidden="true">›</li>
-    <li style="color:var(--text);" aria-current="page">Business Card Maker</li>
-  </ol>
-</nav>
-
 <main>
 <!-- HERO -->
 <div class="tool-page-hero">
@@ -1321,9 +1309,8 @@ window.addEventListener('DOMContentLoaded',()=>{
 });
 </script>
 <style>
-.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
-.btn-nav-ghost { font-weight: 700 !important; }
-.nav-links { gap:120px !important; margin-left:70px !important; }
+.nav-links { display:flex;gap:120px;margin-left:70px; }
+.nav-link { color:#334155;text-decoration:none;font-size:1.00rem;font-weight:700;padding:6px 0;border-radius:8px;transition:var(--transition);white-space:nowrap; }
 </style>
 </body>
 </html>
