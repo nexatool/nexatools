@@ -130,7 +130,8 @@ button { cursor: pointer; }
   color: #fff; text-decoration: none;
 }
 .nav-logo em { color: var(--cyan); font-style: normal; }
-.nav-links { display: flex; gap: 90px; margin-left: 70px; }
+.nav-links { display:flex; gap:120px !important; margin-left:70px !important; }
+.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
 .nav-link { font-weight: 700; font-size: 0.95rem; color: var(--text2); text-decoration: none; transition: color 0.2s; }
 .nav-link:hover { color: var(--cyan); }
 .btn-try {
@@ -444,21 +445,23 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
           <path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="var(--cyan)" opacity="0.6"/>
         </svg>
       </div>
-      <span>Nexa<em>Tools</em>.io</span>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="index.html#tools-section">Tools</a>
-      <a class="nav-link" href="about.html">About</a>
-      <a class="nav-link" href="blog-section.html">Blog</a>
-      <a class="nav-link" href="contact.html">Contact</a>
-    </div>
-    <div class="nav-right">
-      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
-      <a class="btn-nav-pro" href="index.html#tools-section">⚡ Try Free</a>
-    </div>
-    <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle"><span></span><span></span><span></span></button>
+       <span>Nexa<em>Tools</em></span>
   </div>
+
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="index.html#tools-section">Tools</a>
+    <a class="nav-link" href="index.html#categories-section">Categories</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="blog-section.html">Blog</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+
+  <div class="nav-right">
+    <a class="btn-nav-pro" href="index.html#tools-section">⚡Try Free</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle"><span></span><span></span><span></span></button>
+</div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" onclick="toggleMobileNav()">Home</a>
     <a href="index.html#tools-section" onclick="toggleMobileNav()">Tools</a>
@@ -466,28 +469,6 @@ footer { background:#f1f5f9; border-top:1px solid rgba(0,0,0,0.08); padding:56px
     <a href="contact.html" onclick="toggleMobileNav()">Contact</a>
     <a href="index.html#tools-section" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
   </div>
-</nav>
-
-<!-- TOOL TABS NAV -->
-<nav class="tool-tabs-bar" aria-label="Tool categories">
-  <a href="resume-builder.html" class="ttab">📄 Resume</a>
-  <a href="invoice-generator.html" class="ttab">🧾 Billing</a>
-  <a href="scheduler.html" class="ttab">📅 Scheduler</a>
-  <a href="logo-maker.html" class="ttab">🎨 Logo</a>
-  <a href="qr-code-generator.html" class="ttab active" aria-current="page">📱 QR Code</a>
-  <a href="business-card-maker.html" class="ttab">💼 Business Card</a>
-  <a href="password-generator.html" class="ttab">🔐 Password</a>
-</nav>
-
-<!-- BREADCRUMB -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol style="display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
-    <li><a href="index.html">Home</a></li>
-    <li aria-hidden="true">›</li>
-    <li><a href="index.html#tools-section">Tools</a></li>
-    <li aria-hidden="true">›</li>
-    <li aria-current="page">QR Code Generator</li>
-  </ol>
 </nav>
 
 <main>
