@@ -240,9 +240,8 @@
 @media(max-width:420px){
   .resize-fields{grid-template-columns:1fr}
 }
-.nav-link { font-weight: 700 !important; font-size: 0.95rem !important; }
-.btn-nav-ghost { font-weight: 700 !important; }
-.nav-links { gap:60px !important; margin-left:40px !important; }
+.nav-links { display:flex; gap:120px !important; margin-left:70px !important; }
+.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
 </style>
 </head>
 
@@ -269,10 +268,9 @@
       <a class="nav-link" href="image-tools.html" style="color:var(--cyan);" aria-current="page">Image Tools</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="blog-section.html">Blog</a>
-      <a class="nav-link" href="contact.html">Contact</a>
     </div>
     <div class="nav-right">
-      <a class="btn-nav-pro" href="index.html#tools-section">⚡ Try Free</a>
+      <a class="btn-nav-pro" href="index.html#tools-section">⚡Try Free</a>
     </div>
     <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" id="navMobileToggle">
       <span></span><span></span><span></span>
@@ -287,16 +285,6 @@
     <a href="index.html#tools-section" class="btn-nav-pro" onclick="toggleMobileNav()">⚡ Try Free Tools</a>
   </div>
 </nav>
-
-<!-- ===== BREADCRUMB ===== -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="index.html">Home</a>
-  <span aria-hidden="true">›</span>
-  <a href="image-tools.html">Image Tools</a>
-  <span aria-hidden="true">›</span>
-  <span style="color:var(--text);" aria-current="page">Image Resizer</span>
-</nav>
-
 <main>
 <!-- ===== HERO ===== -->
 <div class="tool-page-hero">
