@@ -278,16 +278,15 @@
         </svg>
       </div>
       <span>Nexa<em>Tools</em></span>
-    </div>
+     </div>
     <div class="nav-links">
-      <a class="nav-link" href="index.html" style="font-weight:700;">Home</a>
-      <a class="nav-link" href="index.html#tools-section" style="font-weight:700;">Tools</a>
-      <a class="nav-link" href="pdf-tools.html" style="color:var(--cyan);font-weight:700;" aria-current="page">PDF Tools</a>
-      <a class="nav-link" href="blog-section.html" style="font-weight:700;">Blog</a>
-      <a class="nav-link" href="contact.html" style="font-weight:700;">Contact</a>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#tools-section">Tools</a>
+      <a class="nav-link" href="pdf-tools.html" style="color:var(--cyan);">PDF Tools</a>
+      <a class="nav-link" href="blog-section.html">Blog</a>
+      <a class="nav-link" href="contact.html">Contact</a>
     </div>
     <div class="nav-right">
-      <a class="btn-nav-ghost" href="contact.html">Contact Us</a>
       <a class="btn-nav-pro" href="index.html">⚡ Try Free</a>
     </div>
     <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav" onclick="toggleMobileNav()">
@@ -305,14 +304,6 @@
   </div>
 </nav>
 
-<!-- ===== BREADCRUMB ===== -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="index.html">Home</a>
-  <span aria-hidden="true">›</span>
-  <a href="pdf-tools.html">PDF Tools</a>
-  <span aria-hidden="true">›</span>
-  <span style="color:var(--text);" aria-current="page">Extract PDF Pages</span>
-</nav>
 
 <main>
 <!-- ===== HERO ===== -->
@@ -779,5 +770,9 @@ function toggleToolFaq(btn) {
 </script>
 
 <script defer src="script.js"></script>
+<style>
+.nav-links { display:flex; gap:120px !important; margin-left:70px !important; }
+.nav-link { color:#334155 !important; font-size:1.00rem !important; font-weight:700 !important; padding:6px 0 !important; border-radius:8px; text-decoration:none; transition:all 0.2s; white-space:nowrap !important; }
+</style>
 </body>
 </html>
